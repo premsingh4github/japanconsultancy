@@ -1,0 +1,25 @@
+
+/*input[type=file]{*/
+  /*padding:10px;*/
+  /*background:pink;}*/
+
+.student_image {
+  margin-top: 50px;
+  margin-left: -20px;
+}
+
+.student_img_show img{
+  max-width: 100%;
+  overflow: hidden;
+  height: 120px;
+}
+.border_bottom{
+  margin-bottom: 7px;
+  width: 100%;
+  border-bottom: 2px solid lightgrey;
+}
+
+label {
+  color: #0b2290;
+  font-weight: 600;
+}
