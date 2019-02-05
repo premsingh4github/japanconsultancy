@@ -8,11 +8,11 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        Section Wis Students
+                        Section Wise Students
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">Section Wis Students</li>
+                            <li class="breadcrumb-item">Section Wise Students</li>
                             {{--<li class="breadcrumb-item" aria-current="page">--}}
                                 {{--<a class="link-fx" href="{{url('admin/list_section')}}">List Section</a>--}}
                             {{--</li>--}}
@@ -70,8 +70,8 @@
                                 @foreach($Students as $key=>$Student)
                                     <tr>
                                         <td>{{++$key}}</td>
-                                        <td>{{$Student->student_name}}</td>
-                                        <td>{{$Student->residensal_card}}</td>
+                                        <td>{{$Student->last_student_name}} {{$Student->first_student_name}}</td>
+                                        <td>{{$Student->unique_id}}</td>
                                         <td>{{$Student->address}}</td>
                                         <td><input type="checkbox" name="student_id[{{$Student->id}}]" value="{{$Student->id}}"></td>
                                     </tr>

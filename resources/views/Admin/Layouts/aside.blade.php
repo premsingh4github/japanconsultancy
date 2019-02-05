@@ -633,6 +633,38 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-main-heading ">Days/Holiday Manager</li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='holiday' || request()->segment('2') =='new_holiday'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                            <i class="nav-main-link-icon si si-badge"></i>
+                            <span class="nav-main-link-name">Holiday</span>
+                        </a>
+                        <ul class="nav-main-submenu">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='holiday'){ echo 'active' ;} ?>" href="{{url('admin/holiday')}}">
+                                    <span class="nav-main-link-name">List Exist Holiday</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='new_holiday'){ echo 'active' ;} ?>" href="{{url('admin/new_holiday')}}">
+                                    <span class="nav-main-link-name">Add New Holiday</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='holiday' || request()->segment('2') =='new_holiday'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                            <i class="nav-main-link-icon si si-badge"></i>
+                            <span class="nav-main-link-name">Section Wise Days</span>
+                        </a>
+                        <ul class="nav-main-submenu">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='section_day'){ echo 'active' ;} ?>" href="{{url('admin/section_day')}}">
+                                    <span class="nav-main-link-name">Class Section Days</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <!-- END Side Navigation -->

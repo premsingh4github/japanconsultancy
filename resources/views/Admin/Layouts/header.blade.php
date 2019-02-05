@@ -15,6 +15,8 @@
             @endif
         </title>
 
+    <link rel="stylesheet" href="{{asset('public/server')}}/assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+
 
     <link rel="stylesheet" href="{{asset('public/server')}}/assets/css/custom.css">
     <link rel="stylesheet" href="{{asset('public/server')}}/assets/js/plugins/datatables/dataTables.bootstrap4.css">

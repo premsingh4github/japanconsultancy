@@ -63,9 +63,15 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
 
     Route::any('class_section','SectionController@class_section');
 
+    Route::any('holiday','HolidayController@index');
+    Route::any('new_holiday','HolidayController@create');
+    Route::any('post_holiday','HolidayController@store');
+    Route::any('holiday/edit={id}','HolidayController@edit');
+    Route::post('holiday/edit={id}','HolidayController@update');
 
-
-
+    Route::any('section_day','HolidayController@section_day');
+    Route::any('new_section_day','HolidayController@new_section_day');
+    Route::post('post_section_wise_days','HolidayController@post_section_wise_days');
 });
 /* ================================================ ADMIN CONTROL END============================================================== */
 

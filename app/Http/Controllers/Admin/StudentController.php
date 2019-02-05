@@ -77,7 +77,7 @@ class StudentController extends Controller
         }
 
         if (Student::create($data)) {
-            return redirect()->back()->with('success', 'Record Saved Successfully');
+            return redirect('admin/list_student')->with('success', 'Record Saved Successfully');
         }
     }
     public function list_student(Request $request){
@@ -136,7 +136,7 @@ class StudentController extends Controller
         }
 
         $list_student->save();
-         return redirect()->back()->with('success', 'Recored Updated');
+         return redirect('admin/list_student')->with('success', 'Record Updated');
         }
 
     public function destroy($id){
@@ -165,8 +165,9 @@ class StudentController extends Controller
         if ($request->isMethod('post')){
             $this->validate($request, [
                 'class_section_id' => 'required',
-                'student_id' => 'required',
+                'student_id' => 'required|unique:class_section_students,student_id',
             ]);
+
 
         }
 

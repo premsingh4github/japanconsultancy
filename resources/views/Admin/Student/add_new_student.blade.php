@@ -93,7 +93,7 @@
                         </div>
 
                         <div class="form-group col-sm-9">
-                            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" placeholder="生年月日"  required="" data-validation-error-msg="Date of Birth">
+                            <input type="text" class="js-datepicker form-control" id="example-datepicker3" name="date_of_birth" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
                             {{$errors->first('date_of_birth')}}
                         </div>
 
@@ -190,13 +190,13 @@
 
                         <div class="form-group col-sm-5">
                             <label for="entry_date">Entry Date / 入学年月日<font color="#ff0000">*</font></label>
-                            <input type="date" class="form-control" id="entry_date" name="entry_date" placeholder="入学年月日"  required="" data-validation-error-msg="Entry Date / 入学年月日">
+                            <input type="text" class="js-datepicker form-control" id="example-datepicker3" name="entry_date" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
                             {{$errors->first('entry_date')}}
                         </div>
 
                         <div class="form-group col-sm-5">
                             <label for="expire_date">Expire Date / 入学年月日<font color="#ff0000">*</font></label>
-                            <input type="date" class="form-control" id="expire_date" name="expire_date">
+                            <input type="text" class="js-datepicker form-control" id="example-datepicker3" name="expire_date" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
                             {{$errors->first('expire_date')}}
                         </div>
 
@@ -205,7 +205,7 @@
                         </div>
 
                         <div class="form-group col-sm-7">
-                            <input type="date" class="form-control" id="residensal_card_time" name="residensal_card_time" placeholder="在留期間"  required="" data-validation-error-msg="Residensal card Time Period / 在留期間">
+                            <input type="text" class="js-datepicker form-control" id="example-datepicker3" name="residensal_card_time" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
                             {{$errors->first('residensal_card_time')}}
                         </div>
 
@@ -214,7 +214,7 @@
                         </div>
 
                         <div class="form-group col-sm-7">
-                            <input type="date" class="form-control" id="residensal_card_expire" name="residensal_card_expire" placeholder="在留満了日"  required="" data-validation-error-msg="Residenal card Expiry / 在留満了日">
+                            <input type="text" class="js-datepicker form-control" id="example-datepicker3" name="residensal_card_expire" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
                             {{$errors->first('residensal_card_expire')}}
                         </div>
 
