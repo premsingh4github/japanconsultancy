@@ -80,3 +80,5 @@ Route::group(['middleware'=>'staff','prefix'=>'staff','namespace'=>'Staff'],func
     Route::get('','StaffController@index');
 });
 /* ================================================ ADMIN CONTROL END============================================================== */
+
+Route::get('attendance','AttendanceController@index');

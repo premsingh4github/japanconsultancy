@@ -76,7 +76,9 @@ class StudentController extends Controller
             }
         }
 
-        if (Student::create($data)) {
+        if ($student = Student::create($data)) {
+             $student->unique_id = $student->unique_id.$student->id;
+             $student->save();
             return redirect('admin/list_student')->with('success', 'Record Saved Successfully');
         }
     }
