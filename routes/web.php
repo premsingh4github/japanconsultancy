@@ -81,4 +81,5 @@ Route::group(['middleware'=>'staff','prefix'=>'staff','namespace'=>'Staff'],func
 });
 /* ================================================ ADMIN CONTROL END============================================================== */
 
-Route::get('attendance','AttendanceController@index');
+Route::get('attendance','AttendanceController@index')->middleware('auth');
+Route::get('attendance/{code}','AttendanceController@store')->middleware('auth');
