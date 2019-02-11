@@ -3,42 +3,182 @@
     <!-- Main Container -->
     <main id="main-container">
 
-        <!-- Hero -->
-        <div class="bg-body-light">
-            <div class="content content-full">
-                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                    <h1 class="flex-sm-fill h3 my-2">
-                        Student Manager
-                    </h1>
-                    <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                        <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">List Student</li>
-                            <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="{{url('admin/add_student')}}">Add Student</a>
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
-        <!-- END Hero -->
-        <div class="col-sm-12 col-md-12 col-xs-12">
 
-
-            <p class="font-size-sm text-muted">
-                @if(session('success'))
-                    <span class="alert alert-success"> {{session('success')}}</span>
+        <p class="font-size-sm text-muted">
+            @if(session('success'))
+                <span class="alert alert-success"> {{session('success')}}</span>
+        @endif
+        @if($errors->any())
+            <ul  class="alert alert-danger">
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
             @endif
-            @if($errors->any())
-                <ul  class="alert alert-danger">
-                    @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-                @endif
-                </p>
+            </p>
 
-        </div>
+            <!-- Page Content -->
+            <div class="content">
+                <!-- Full Table -->
+                <div class="block">
+                    <div class="block-header">
+                        <h3 class="block-title">Full Table</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option">
+                                <i class="si si-settings"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-vcenter">
+                                <thead>
+                                <tr>
+                                    <th class="text-center" style="width: 100px;">
+                                        <i class="far fa-user"></i>
+                                    </th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+
+                                    <th style="width: 15%;">Access</th>
+                                    <th style="width: 15%;">Access</th>
+                                    <th style="width: 15%;">Access</th>
+                                    <th style="width: 15%;">Access</th>
+                                    <th style="width: 15%;">Access</th>
+                                    <th style="width: 15%;">Access</th>
+                                    <th style="width: 15%;">Access</th>
+                                    <th class="text-center" style="width: 100px;">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($list_students as $key=>$students)
+                                    <tr>
+                                        <td>{{++$key}}</td>
+                                        <td>
+                                            @if(isset($students->photo))
+                                                <img src="{{url('public/photos').'/'.$students->photo}}" alt="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">
+                                            @else
+                                                <img src="{{url('public/photos/avatar.jpg')}}" alt="" class="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">
+                                            @endif
+
+                                        </td>
+                                        @endforeach
+                                    <td class="font-w600 font-size-sm">
+                                        <a href="be_pages_generic_profile.html">Alice Moore</a>
+                                    </td>
+                                    <td class="font-size-sm">client1<em class="text-muted">@example.com</em></td>
+                                    <td>
+                                        <span class="badge badge-warning">Trial</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Edit">
+                                                <i class="fa fa-fw fa-pencil-alt"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Delete">
+                                                <i class="fa fa-fw fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <img class="img-avatar img-avatar48" src="assets/media/avatars/avatar7.jpg" alt="">
+                                    </td>
+                                    <td class="font-w600 font-size-sm">
+                                        <a href="be_pages_generic_profile.html">Carol Ray</a>
+                                    </td>
+                                    <td class="font-size-sm">client2<em class="text-muted">@example.com</em></td>
+                                    <td>
+                                        <span class="badge badge-primary">Personal</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Edit">
+                                                <i class="fa fa-fw fa-pencil-alt"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Delete">
+                                                <i class="fa fa-fw fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <img class="img-avatar img-avatar48" src="assets/media/avatars/avatar8.jpg" alt="">
+                                    </td>
+                                    <td class="font-w600 font-size-sm">
+                                        <a href="be_pages_generic_profile.html">Sara Fields</a>
+                                    </td>
+                                    <td class="font-size-sm">client3<em class="text-muted">@example.com</em></td>
+                                    <td>
+                                        <span class="badge badge-success">VIP</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Edit">
+                                                <i class="fa fa-fw fa-pencil-alt"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Delete">
+                                                <i class="fa fa-fw fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <img class="img-avatar img-avatar48" src="assets/media/avatars/avatar2.jpg" alt="">
+                                    </td>
+                                    <td class="font-w600 font-size-sm">
+                                        <a href="be_pages_generic_profile.html">Sara Fields</a>
+                                    </td>
+                                    <td class="font-size-sm">cliedasssssssssssssssssssssssssssssssssssnt4<em class="text-muted">@example.com</em></td>
+                                    <td>
+                                        <span class="badge badge-primary">Personal</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Edit">
+                                                <i class="fa fa-fw fa-pencil-alt"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Delete">
+                                                <i class="fa fa-fw fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <img class="img-avatar img-avatar48" src="assets/media/avatars/avatar1.jpg" alt="">
+                                    </td>
+                                    <td class="font-w600 font-size-sm">
+                                        <a href="be_pages_generic_profile.html">Lisa Jenkins</a>
+                                    </td>
+                                    <td class="font-size-sm">client5<em class="text-muted">@example.com</em></td>
+                                    <td>
+                                        <span class="badge badge-warning">Trial</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Edit">
+                                                <i class="fa fa-fw fa-pencil-alt"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Delete">
+                                                <i class="fa fa-fw fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Full Table -->
+            </div>
+            <!-- END Page Content -->
+
+
         <!-- Page Content -->
         <div class="content">
             <!-- Customers and Latest Orders -->

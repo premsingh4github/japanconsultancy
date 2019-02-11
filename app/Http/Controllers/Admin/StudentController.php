@@ -21,7 +21,7 @@ class StudentController extends Controller
             $countries = Country::all();
             $subjects = Subject::where('subject_type','optional')->orderBy('name','ASC')->get();
             $title = 'Add Student Record | Chubi Project : Management System';
-            return view('Admin.Student.add_new_student',compact('','title','class_batch','countries','subjects'));
+            return view('Admin.Student.add_new_student',compact('title','class_batch','countries','subjects'));
 
         }
         if ($request->isMethod('post')){
@@ -86,7 +86,7 @@ class StudentController extends Controller
         if ($request->isMethod('get')) {
             $list_students = Student::all();
             $title = 'Student Record | Chubi Project : Management System';
-            return view('Admin.Student.list_student', compact('', 'title','list_students'));
+            return view('Admin.Student.list_student', compact( 'title','list_students'));
         }
         if ($request->isMethod('post')){
 
@@ -99,7 +99,7 @@ class StudentController extends Controller
             $class_batch = ClassRoomBatch::all();
             $countries = Country::all();
             $title = 'Edit Student Record | Chubi Project : Management System';
-            return view('Admin.Student.edit_new_student', compact('', 'title','student','class_batch','countries'));
+            return view('Admin.Student.edit_new_student', compact( 'title','student','class_batch','countries'));
         }
     public function update_student(Request $request, $id){
             $list_student = Student::findOrFail($id);
@@ -153,7 +153,7 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
 
         $title = 'Student Id Card | Chubi Project : Management System';
-        return view('Admin.Student.id_preview', compact('', 'title','student'));
+        return view('Admin.Student.id_preview', compact( 'title','student'));
     }
 
     public function section_wise_student(Request $request){
@@ -161,7 +161,7 @@ class StudentController extends Controller
             $class_section = ClassBatchSection::all();
             $Students = Student::all();
             $title = 'Section Wise Record | Chubi Project : Management System';
-            return view('Admin.Student.section_wise_student',compact('','Students','title','class_section'));
+            return view('Admin.Student.section_wise_student',compact('Students','title','class_section'));
 
         }
         if ($request->isMethod('post')){

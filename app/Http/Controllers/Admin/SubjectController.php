@@ -18,7 +18,7 @@ class SubjectController extends Controller
     public function add_subject(Request $request){
         if ($request->isMethod('get')){
             $title = 'Add Subject Record | Chubi Project : Management System';
-            return view('Admin.Subject.add_subject',compact('','title'));
+            return view('Admin.Subject.add_subject',compact('title'));
 
         }
         if ($request->isMethod('post')){
@@ -39,7 +39,7 @@ class SubjectController extends Controller
         if ($request->isMethod('get')) {
             $list_subject= Subject::all();
             $title = 'Subject Record | Chubi Project : Management System';
-            return view('Admin.Subject.list_subject', compact('', 'title','list_subject'));
+            return view('Admin.Subject.list_subject', compact( 'title','list_subject'));
         }
         if ($request->isMethod('post')){
 
@@ -50,7 +50,7 @@ class SubjectController extends Controller
     public function edit_subject($id){
             $subject = Subject::findOrfail($id);
             $title = 'Edit Subject Record | Chubi Project : Management System';
-            return view('Admin.Subject.edit_subject', compact('', 'title','subject'));
+            return view('Admin.Subject.edit_subject', compact( 'title','subject'));
         }
     public function update_subject(Request $request, $id){
             $list_subject = Subject::findOrFail($id);
@@ -62,7 +62,7 @@ class SubjectController extends Controller
     public function add_section(Request $request){
         if ($request->isMethod('get')){
             $title = 'Add Section Record | Chubi Project : Management System';
-            return view('Admin.Section.add_section',compact('','title'));
+            return view('Admin.Section.add_section',compact('title'));
 
         }
         if ($request->isMethod('post')){
@@ -81,7 +81,7 @@ class SubjectController extends Controller
         if ($request->isMethod('get')) {
             $list_subject= Section::all();
             $title = 'Section Record | Chubi Project : Management System';
-            return view('Admin.Section.list_section', compact('', 'title','list_subject'));
+            return view('Admin.Section.list_section', compact( 'title','list_subject'));
         }
         if ($request->isMethod('post')){
 
@@ -92,7 +92,7 @@ class SubjectController extends Controller
     public function edit_section($id){
             $subject = Section::findOrfail($id);
             $title = 'Edit Section Record | Chubi Project : Management System';
-            return view('Admin.Section.edit_section', compact('', 'title','subject'));
+            return view('Admin.Section.edit_section', compact( 'title','subject'));
         }
     public function update_section(Request $request, $id){
             $list_subject = Section::findOrFail($id);
@@ -106,7 +106,7 @@ class SubjectController extends Controller
             $class_batch = ClassRoomBatch::all();
             $subjects = Subject::all();
             $title = 'Batch Wise Subject | Chubi Project : Management System';
-            return view('Admin.Subject.batch_wise_subject',compact('','subjects','title','class_batch'));
+            return view('Admin.Subject.batch_wise_subject',compact('subjects','title','class_batch'));
 
         }
         if ($request->isMethod('post')){
