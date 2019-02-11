@@ -25,4 +25,10 @@ class AttendanceController extends Controller
         }
 
     }
+
+    public function show()
+    {
+        $attendaces = Attendance::select('student_id')->with('student')->distinct('student_id')->get();
+        return view('attendance.show',compact('attendaces'));
+    }
 }
