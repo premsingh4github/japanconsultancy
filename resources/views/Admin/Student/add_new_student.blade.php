@@ -44,31 +44,31 @@
                         <div class="border_bottom"></div>
 
                         <div class="form-group col-sm-6">
-                            <label for="last_student_name">Last Name / 氏名 (English)<font color="#ff0000">*</font></label>
+                            <label for="last_student_name">English Last Name / 氏（漢字） <font color="#ff0000">*</font></label>
                             <input type="text" class="form-control" id="last_student_name" name="last_student_name" placeholder=" Last Name / 氏名 "  required="" data-validation-error-msg="Last Student Name">
                             {{$errors->first('last_student_name')}}
                         </div>
 
                         <div class="form-group col-sm-6">
-                            <label for="first_student_name">First Name (English)</label>
-                            <input type="text" class="form-control" id="first_student_name" name="first_student_name" placeholder=" First Name / 氏名 "  required="" data-validation-error-msg="First Student Name">
+                            <label for="first_student_name">English First Name / 　名（漢字）</label>
+                            <input type="text" class="form-control" id="first_student_name" name="first_student_name" placeholder=" First Name / 名（漢字） "  required="" data-validation-error-msg="First Student Name">
                             {{$errors->first('first_student_name')}}
                         </div>
 
                         <div class="form-group col-sm-6">
-                            <label for="last_student_japanese_name">Last Name /フリガナ(Japanese)<font color="#ff0000">*</font></label>
-                            <input type="text" class="form-control" id="last_student_japanese_name" name="last_student_japanese_name" placeholder="Last Name / フリガナ"  required="" data-validation-error-msg="Last Student Japanese Name">
+                            <label for="last_student_japanese_name">Japanese Last Name / 氏（カナ）<font color="#ff0000">*</font></label>
+                            <input type="text" class="form-control" id="last_student_japanese_name" name="last_student_japanese_name" placeholder="氏（カナ）"  required="" data-validation-error-msg="Last Student Japanese Name">
                             {{$errors->first('last_student_japanese_name')}}
                         </div>
 
                         <div class="form-group col-sm-6">
-                            <label for="first_student_japanese_name">First Name(Japanese)</label>
-                            <input type="text" class="form-control" id="first_student_japanese_name" name="first_student_japanese_name" placeholder=" First Name / フリガナ"  required="" data-validation-error-msg="First Student Japanese Name">
+                            <label for="first_student_japanese_name">Japanese First Name / 名（カナ）</label>
+                            <input type="text" class="form-control" id="first_student_japanese_name" name="first_student_japanese_name" placeholder="名（カナ）"  required="" data-validation-error-msg="First Student Japanese Name">
                             {{$errors->first('first_student_japanese_name')}}
                         </div>
 
                         <div class="form-group col-sm-3">
-                            <label for="student_sex">Gender / 性別 <font color="#ff0000">*</font></label>
+                            <label for="student_sex">Gender / 男　　女 <font color="#ff0000">*</font></label>
                         </div>
 
                         <div class="form-group col-sm-9">
@@ -107,7 +107,7 @@
                         </div>
 
                         <div class="form-group col-sm-3">
-                            <label for="personal_phone_number">Phone Number /学績番号<font color="#ff0000">*</font></label>
+                            <label for="personal_phone_number">Phone Number / 学績番号<font color="#ff0000">*</font></label>
                         </div>
 
                         <div class="form-group col-sm-3">
@@ -145,7 +145,7 @@
                             </select>
                         </div>
                         <div class="form-group col-sm-2">
-                            <label for="class_room_batch_id">Opt. Subject</label>
+                            <label for="class_room_batch_id">Opt. Subject / 件名</label>
                             <select name="subject_optional_id" class="form-control" id="subject_optional_id">
                                 <option value="">[Select]</option>
                                 @foreach($subjects as $subject)
@@ -154,7 +154,7 @@
                             </select>
                         </div>
                         <div class="form-group col-sm-2">
-                            <label>Batch<font color="#ff0000">*</font></label>
+                            <label>Batch / バッチ<font color="#ff0000">*</font></label>
                             <select name="batch_default" class="form-control"  required="required" data-validation-error-msg="Batch Required">
                                 <option value="{{date('y')}}">{{date('Y')}}</option>
                                 <option value="30" <?php if (date('y')=='30') echo 'selected'?>>2030</option>
@@ -195,7 +195,7 @@
                         </div>
 
                         <div class="form-group col-sm-5">
-                            <label for="expire_date">Expire Date / 入学年月日<font color="#ff0000">*</font></label>
+                            <label for="expire_date">Expire Date / 有効期限 <font color="#ff0000">*</font></label>
                             <input type="text" class="js-datepicker form-control" id="example-datepicker3" name="expire_date" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
                             {{$errors->first('expire_date')}}
                         </div>
@@ -245,7 +245,7 @@
                         </div>
 
                         <div class="form-group col-sm-12">
-                            <label for="student_note">Student Note</label>
+                            <label for="student_note">Student Note / 学生メモ</label>
                             <textarea class="form-control content" id="js-ckeditor" name="student_note"></textarea>
                             {{$errors->first('student_note')}}
                         </div>

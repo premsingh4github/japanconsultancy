@@ -12112,7 +12112,7 @@ button.bg-primary-dark:focus {
 }
 
 .bg-primary-dark-op {
-  background-color: rgba(62, 74, 89, 0.8) !important;
+  background-color: rgba(1, 138, 204, 0.8)!important
 }
 
 a.bg-primary-dark-op:hover, a.bg-primary-dark-op:focus,
@@ -23167,3 +23167,10 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 .slick-slider.slick-nav-hover:hover .slick-next {
   opacity: 1;
 }
+
+
+/*custome start */
+header#page-header {
+    background: #042df7;
+}
+/*Custome end */

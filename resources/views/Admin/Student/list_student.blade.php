@@ -3,42 +3,22 @@
     <!-- Main Container -->
     <main id="main-container">
 
-        <!-- Hero -->
-        <div class="bg-body-light">
-            <div class="content content-full">
-                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                    <h1 class="flex-sm-fill h3 my-2">
-                        Student Manager
-                    </h1>
-                    <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                        <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">List Student</li>
-                            <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="{{url('admin/add_student')}}">Add Student</a>
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
-        <!-- END Hero -->
-        <div class="col-sm-12 col-md-12 col-xs-12">
 
-
-            <p class="font-size-sm text-muted">
-                @if(session('success'))
-                    <span class="alert alert-success"> {{session('success')}}</span>
+        <p class="font-size-sm text-muted">
+            @if(session('success'))
+                <span class="alert alert-success"> {{session('success')}}</span>
+        @endif
+        @if($errors->any())
+            <ul  class="alert alert-danger">
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
             @endif
-            @if($errors->any())
-                <ul  class="alert alert-danger">
-                    @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-                @endif
-                </p>
+            </p>
 
-        </div>
+
+
         <!-- Page Content -->
         <div class="content">
             <!-- Customers and Latest Orders -->

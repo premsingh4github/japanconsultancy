@@ -528,27 +528,27 @@
                     <li class="nav-main-item">
                         <a class="nav-main-link <?php if(request()->segment('2') ==''){ echo 'active' ;} ?>" href="{{url('login')}}">
                             <i class="nav-main-link-icon si si-speedometer"></i>
-                            <span class="nav-main-link-name">Admin Panel</span>
+                            <span class="nav-main-link-name">Admin Panel / 管理ダッシュボード </span>
                         </a>
                     </li>
-                    <li class="nav-main-heading ">User Manager</li>
+                    <li class="nav-main-heading ">User Manager / ユーザー管理</li>
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu <?php if(request()->segment('2') =='superAdmin' || request()->segment('2') =='generalAdmin' || request()->segment('2') =='moderator'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-energy"></i>
-                            <span class="nav-main-link-name">User Control</span>
+                            <span class="nav-main-link-name">User Control / ウーザーコントロール</span>
                         </a>
                     </li>
-                    <li class="nav-main-heading ">Student/Teacher Manager</li>
+                    <li class="nav-main-heading ">Student/Teacher Manager / 学生/先生管理</li>
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu  <?php if(request()->segment('2') =='clients' || request()->segment('2') =='createClient'){ echo 'active' ;} ?>" data-toggle="submenu"  href="#">
                             <i class="nav-main-link-icon si si-badge"></i>
-                            <span class="nav-main-link-name">Teachers</span>
+                            <span class="nav-main-link-name">Teachers / 先生</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='add_student' || request()->segment('2') =='list_student' || request()->segment('2') =='section_wise_student'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-badge"></i>
-                            <span class="nav-main-link-name">Students</span>
+                            <span class="nav-main-link-name">Students / 学生</span>
                         </a>
                         <ul class="nav-main-submenu">
                             <li class="nav-main-item">
@@ -568,11 +568,11 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-main-heading ">Class/Batch Manager</li>
+                    <li class="nav-main-heading ">Class/Batch Manager / クラス管理 /li>
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='list_subject' || request()->segment('2') =='add_subject' || request()->segment('2') =='batch_wise_subject'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-badge"></i>
-                            <span class="nav-main-link-name">Subjects</span>
+                            <span class="nav-main-link-name">Subjects / 学部</span>
                         </a>
                         <ul class="nav-main-submenu">
                             <li class="nav-main-item">
@@ -595,7 +595,7 @@
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='list_record' || request()->segment('2') =='add_record'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-badge"></i>
-                            <span class="nav-main-link-name">Class/Batch</span>
+                            <span class="nav-main-link-name">Class/Batch / クラス</span>
                         </a>
                         <ul class="nav-main-submenu">
                             <li class="nav-main-item">
@@ -613,7 +613,7 @@
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='list_section' || request()->segment('2') =='add_section' || request()->segment('2') =='add_section' || request()->segment('2') =='class_section'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-badge"></i>
-                            <span class="nav-main-link-name">Section</span>
+                            <span class="nav-main-link-name">Section / セクション</span>
                         </a>
                         <ul class="nav-main-submenu">
                             <li class="nav-main-item">
