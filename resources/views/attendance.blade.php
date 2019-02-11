@@ -136,8 +136,12 @@
                         var result = JSON.parse(this.response);
                         var dom = result['user']['first_student_japanese_name']+" "+result['user']['first_student_japanese_name'] + "-" + result['status'];
                         $("[title="+result['user']['unique_id']+"]").html(dom);
-                        debugger;
                         // document.getElementById("demo").innerHTML = this.responseText;
+                    }
+                    else if(this.status == 422){
+                        var result = JSON.parse(this.response);
+                        var dom = result['message'];
+                        $("[title="+result['code']).html(dom);
                     }
                 };
                 xhttp.open("GET", "{{url('attendance')}}/"+content, true);
