@@ -83,4 +83,4 @@ Route::group(['middleware'=>'staff','prefix'=>'staff','namespace'=>'Staff'],func
 
 Route::get('attendance','AttendanceController@index')->middleware('auth');
 Route::get('attendance/{code}','AttendanceController@store')->middleware('auth');
-Route::get('attendance','AttendanceController@show')->middleware('auth');
+Route::get('attendance/list','AttendanceController@show')->middleware('auth');

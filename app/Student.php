@@ -14,10 +14,10 @@ class Student extends Model
     public function country(){
     return $this->belongsTo('App\Country');
 }
-    public function classBatchSections()
-    {
-        return $this->belongsToMany(ClassBatchSection::class,'class_section_students');
-    }
+//    public function classBatchSections()
+//    {
+//        return $this->belongsToMany(ClassBatchSection::class,'class_section_students');
+//    }
 
 }
 
