@@ -667,7 +667,7 @@
                     </li>
                     <li class="nav-main-heading ">Attendance</li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link   <?php if(request()->segment('2') =='holiday' || request()->segment('2') =='new_holiday'){ echo 'active' ;} ?>" href="{{url('attendance')}}">
+                        <a class="nav-main-link   <?php if(request()->segment('2') =='holiday' || request()->segment('2') =='new_holiday'){ echo 'active' ;} ?>" href="{{url('attendance_list')}}">
                             <span class="nav-main-link-name">Attendance</span>
                         </a>
                     </li>
