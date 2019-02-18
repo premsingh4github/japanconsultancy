@@ -16,6 +16,11 @@ class ClassBatchSection extends Model
         return $this->belongsTo('App\Section','section_id');
     }
 
+    public function class_section_students()
+    {
+      return $this->hasMany(ClassSectionStudent::class,'class_section_id');
+    }
+
 
 
 }

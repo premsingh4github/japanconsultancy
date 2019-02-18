@@ -1,4 +1,11 @@
 @extends('Admin.index')
+@section('style')
+    <style>
+        .row.row-deck>div>.block{
+            min-width: unset;
+        }
+    </style>
+@endsection
 @section('body')
     <!-- Main Container -->
     <main id="main-container">
@@ -56,6 +63,18 @@
                         </div>
                         <div class="block-content block-content-full">
 
+                            <div class="form-group col-sm-3">
+                                <div class="student_image">
+                                    <label for="student_name"></label>
+                                    <select name="section" class="form-control" onchange="sectionChanged(this)">
+                                        <option value="">Select Running Section</option>
+                                        @foreach($sections as $section)
+                                            <option @if(request('section') == $section->id) selected @endif value="{{$section->id}}">{{$section->class_section->name}}_{{$section->class_room_batch->batch->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
 
 
 
@@ -69,7 +88,19 @@
                                 <tr>
                                     <td colspan="6"> &nbsp;</td>
                                     <td > 曜日(DAYS)</td>
-                                    <td > 月(MON))</td>
+                                    <?php
+                                    $start_date = $class_section_student->start_date;
+                                    $end_date = $class_section_student->end_date;
+                                    ?>
+                                    <?php
+                                    $start_date = $class_section_student->start_date;
+                                    $end_date = $class_section_student->end_date;
+                                    ?>
+                                    <td >{{date('D',strtotime($start_date))}}</td>
+                                    @while($start_date != $end_date)
+                                        @php $start_date = date('Y-m-d',strtotime("+1 day", strtotime($start_date)))  @endphp
+                                        <td >{{date('D',strtotime($start_date))}}</td>
+                                    @endwhile
                                 </tr>
                                 <tr>
                                     <th >SN</th>
@@ -79,33 +110,37 @@
                                     <th class="font-w700">フリガナ(JAPANESE NAME)</th>
                                     <th class="font-w700">性別(SEX)</th>
                                     <th class="font-w700">時限(PERIOD)</th>
-                                    <th class="font-w700">3</th>
-                                    <th class="font-w700">4</th>
-                                    <th class="font-w700">5</th>
-                                    <th class="font-w700">6</th>
-                                    <th class="font-w700">7</th>
+                                    <th class="font-w700">{{$class_section_student->start_date}}</th>
+                                    <?php
+                                    $start_date = $class_section_student->start_date;
+                                    $end_date = $class_section_student->end_date;
+                                    ?>
+                                    @while($start_date != $end_date)
+                                        @php $start_date = date('Y-m-d',strtotime("+1 day", strtotime($start_date)))  @endphp
+                                        <th class="font-w700">{{date('d',strtotime($start_date))}}</th>
+                                    @endwhile
                                 </tr>
                                 </thead>
                                 <tbody>
-
-                                @foreach($attendaces as $key=>$value)
-                                    @php $students = $value->student @endphp
+                                @php $students = $class_section_student->class_section_students @endphp
+                                    @foreach($students as $classSectionStudent)
+                                        @php $student = $classSectionStudent->student @endphp
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
-                                        <td>{{$value->student->unique_id}}</td>
+                                        <td>{{$student->unique_id}}</td>
                                         <td>
-                                            @if(isset($students->photo))
-                                                <img src="{{url('public/photos').'/'.$students->photo}}" alt="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">
+                                            @if(isset($student->photo))
+                                                <img src="{{url('public/photos').'/'.$student->photo}}" alt="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">
                                             @else
                                                 <img src="{{url('public/photos/avatar.jpg')}}" alt="" class="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">
                                             @endif
 
                                         </td>
-                                        <td>{{$students->last_student_name}} {{$students->first_student_name}}</td>
-                                        <td>{{$students->last_student_japanese_name}} {{$students->first_student_japanese_name}}</td>
+                                        <td>{{$student->last_student_name}} {{$student->first_student_name}}</td>
+                                        <td>{{$student->last_student_japanese_name}} {{$student->first_student_japanese_name}}</td>
                                         <td>
-                                        @if($students->student_sex == 'm')Male
-                                            @elseif($students->student_sex == 'f')Female
+                                        @if($student->student_sex == 'm')Male
+                                            @elseif($student->student_sex == 'f')Female
                                             @else
                                             Others
                                         @endif
@@ -125,24 +160,53 @@
                                                <tr>
                                                    <td>A3</td>
                                                </tr>
+                                               <tr>
+                                                   <td>A4</td>
+                                               </tr>
                                            </table>
                                         </td>
-                                        <td>{{$students->residensal_card}}</td>
-                                        <td>{{$students->last_student_name}} {{$students->first_student_name}}</td>
-                                        <td>{{$students->last_student_japanese_name}} {{$students->first_student_japanese_name}}</td>
-                                        <td>{{$students->unique_id}}</td>
-                                        @if(isset($students->class_room_batch_id))
-                                            <td>{{$students->class_room_batch->class_room->name}} ({{$students->class_room_batch->batch->name}})</td>
-                                        @else
-                                            <td></td>
-                                        @endif
-                                        <td>{{$students->address}}</td>
-
-                                        <td>
-                                            <a href="{{url('admin/list_student/student_id=').$students->id}}" class="fa fa-edit"></a>
-                                            <a href="{{url('admin/list_student/student_id=').$students->id}}.'/delete" onclick="return confirm('Are you sure you want to delete this Record?');"  class="fa fa-trash-alt" style="color: red;"></a>
+                                        <?php
+                                        $start_date = $class_section_student->start_date;
+                                        $end_date = $class_section_student->end_date;
+                                        ?>
+                                        <td >
+                                            <table>
+                                                <tr>
+                                                    <td>{{$student->present(1,$class_section_student,$start_date)}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>{{$student->present(2,$class_section_student,$start_date)}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>{{$student->present(3,$class_section_student,$start_date)}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>{{$student->present(4,$class_section_student,$start_date)}}</td>
+                                                </tr>
+                                            </table>
                                         </td>
 
+                                        @while($start_date != $end_date)
+                                            @php $start_date = date('Y-m-d',strtotime("+1 day", strtotime($start_date)))  @endphp
+
+
+                                            <td >
+                                                <table>
+                                                    <tr>
+                                                        <td>{{$student->present(1,$class_section_student,$start_date)}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>{{$student->present(2,$class_section_student,$start_date)}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>{{$student->present(3,$class_section_student,$start_date)}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>{{$student->present(4,$class_section_student,$start_date)}}</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        @endwhile
 
                                     </tr>
                                 @endforeach
@@ -159,4 +223,15 @@
 
     </main>
     <!-- END Main Container -->
+@endsection
+@section('script')
+    <script>
+        function sectionChanged(btn) {
+            var url = '{{url('attendance_list')}}'
+            if(parseInt($(btn).val()) > 0){
+                 url += "?section="+parseInt($(btn).val());
+            }
+            window.location  = url;
+        }
+    </script>
 @endsection
