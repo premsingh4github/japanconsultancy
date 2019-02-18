@@ -75,7 +75,7 @@
         <h4>{{$student->student_number}}</h4>
         <?php $countValue=strlen($student->last_student_name)+strlen($student->first_student_name) ?>
         @if($countValue>20)
-            <h4>{{str_limit($student->last_student_name,14)}} {{str_limit($student->first_student_name,10)}}</h4>
+            <h4 style="font-size: 6px;padding-bottom: 4px;">{{$student->last_student_name}} {{$student->first_student_name}}</h4>
         @else
         <h4>{{$student->last_student_name}} {{$student->first_student_name}}</h4>
         @endif

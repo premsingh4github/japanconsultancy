@@ -1,4 +1,4 @@
-<html>
+    <html>
 <head>
     <title>Attendance</title>
     <link rel="icon" type="image/png" href="{{url('public/favicon.ico')}}">

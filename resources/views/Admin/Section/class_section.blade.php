@@ -41,7 +41,6 @@
                 @endif
                 </p>
 
-        </div>
         <!-- Page Content -->
         <div class="content">
             <!-- Partial Table -->
