@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Attendance;
+use App\ClassBatchSection;
+use App\ClassSectionStudent;
 use App\Student;
 use Illuminate\Http\Request;
 
@@ -28,7 +30,12 @@ class AttendanceController extends Controller
 
     public function show()
     {
-        $attendaces = Attendance::select('student_id')->with('student')->distinct('student_id')->get();
-        return view('attendance.show',compact('attendaces'));
+        $sections = ClassBatchSection::all();
+        $class_section_student = $sections[0];
+        if(\request('section')){
+            $class_section_student = ClassBatchSection::find(\request('section'));
+        }
+
+        return view('attendance.show',compact('sections','class_section_student'));
     }
 }

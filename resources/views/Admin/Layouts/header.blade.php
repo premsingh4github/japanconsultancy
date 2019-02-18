@@ -36,6 +36,7 @@
     <!-- Fonts and OneUI framework -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
     <link rel="stylesheet" id="css-main" href="{{asset('public/server')}}/assets/css/oneui.min.css">
+    @yield('style')
 </head>
 <body class="nav-md">
 <body>

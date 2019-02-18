@@ -34,5 +34,35 @@ class Student extends Model
         return $this->hasMany(ClassSectionStudent::class);
     }
 
+    public function present($period,$class_bath_section,$day)
+    {
+        if(Holiday::where('date',$day)->count() > 0){
+            return 'H';
+        }
+        if($class_bath_section->shift =='morning'){
+            switch ($period){
+                case 1:
+
+                    break;
+                case 2:
+                    break;
+                case 3;
+                    break;
+                case 4:
+                    break;
+                default:
+                    continue;
+            }
+        }else{
+
+        }
+        if(Attendance::where('student_id',$this->id)->whereBetween('updated_at',array($day.' 00:00:00',$day.' 23:59:59',))->count()){
+            return "P" ;
+        }else{
+            return "A";
+        }
+
+    }
+
 }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Attendance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,5 +47,12 @@ class HomeController extends Controller
         return redirect('login')->withErrors(['email'=>'Invalid credentail'])->withInput(request()->only('email'));
     }
 
+    public function test()
+    {
+        $attendance = new Attendance;
+        $attendance->student_id = 1;
+        $attendance->save();
+
+    }
 
 }
