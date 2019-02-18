@@ -55,6 +55,13 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
 
     Route::any('batch_wise_subject','SubjectController@batch_wise_subject');
 
+/*==============================Residensal Section===================*/
+    Route::any('add-residensal','ResidensalCardTimeController@add_residensal');
+    Route::any('list-residensal','ResidensalCardTimeController@list_residensal');
+    Route::get('list-residensal={id}','ResidensalCardTimeController@edit_residensal');
+    Route::post('list-residensal={id}','ResidensalCardTimeController@update_residensal');
+    /*==============================Residensal Section===================*/
+
 
     Route::any('add_section','SectionController@add_section');
     Route::any('list_section','SectionController@list_section');

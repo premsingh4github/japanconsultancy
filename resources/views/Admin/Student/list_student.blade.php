@@ -27,8 +27,17 @@
                 <div class="col-lg-12">
                     <div class="block block-mode-loading-oneui">
                         <div class="block-header border-bottom">
-                            <h3 class="block-title">Students Record</h3>
+                            <h3 class="block-title">Students Record
+                                <b style="color: blue"> 総学生 (Total Student)
+                                    <?php $totalStudent = \App\Student::all()?>
+                                    {{count($totalStudent)}}
+                                    <?php ; ?>
+                                </b>
+                            </h3>
                             <div class="block-options">
+                                <button type="button" class="btn-block-option">
+                                    {{$list_students->render()}}
+                                </button>
                                 <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
                                     <i class="si si-refresh"></i>
                                 </button>
@@ -51,8 +60,8 @@
                                     <th class="font-w700">ID Card</th>
                                     <th class="font-w700">Residential ID</th>
                                     <th class="font-w700">Student Name</th>
-                                    <th class="font-w700">Student Name (In Japanese)</th>
-                                    <th class="font-w700">ID</th>
+                                    <th class="font-w700">Japanese Name</th>
+                                    <th class="font-w700">Student ID No.</th>
                                     <th class="font-w700">Student Class/Batch</th>
                                     <th class="font-w700">Address</th>
                                     <th class="font-w700">Gender</th>
@@ -79,7 +88,7 @@
                                     <td>{{$students->residensal_card}}</td>
                                     <td>{{$students->last_student_name}} {{$students->first_student_name}}</td>
                                     <td>{{$students->last_student_japanese_name}} {{$students->first_student_japanese_name}}</td>
-                                    <td>{{$students->unique_id}}</td>
+                                    <td>{{$students->student_number}}</td>
                                     @if(isset($students->class_room_batch_id))
                                     <td>{{$students->class_room_batch->class_room->name}} ({{$students->class_room_batch->batch->name}})</td>
                                     @else
@@ -101,6 +110,13 @@
 
                                 </tr>
                                     @endforeach
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <th colspan="11">
+                                        {{$list_students->links()}}
+                                    </th>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>

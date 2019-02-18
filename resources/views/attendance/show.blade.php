@@ -55,6 +55,10 @@
                             </div>
                         </div>
                         <div class="block-content block-content-full">
+
+
+
+
                             <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
                                 <thead  >
                                 <style>
@@ -114,21 +118,21 @@
                                                </tr>
                                            </table>
                                         </td>
-                                        {{--<td>{{$students->residensal_card}}</td>--}}
-                                        {{--<td>{{$students->last_student_name}} {{$students->first_student_name}}</td>--}}
-                                        {{--<td>{{$students->last_student_japanese_name}} {{$students->first_student_japanese_name}}</td>--}}
-                                        {{--<td>{{$students->unique_id}}</td>--}}
-                                        {{--@if(isset($students->class_room_batch_id))--}}
-                                            {{--<td>{{$students->class_room_batch->class_room->name}} ({{$students->class_room_batch->batch->name}})</td>--}}
-                                        {{--@else--}}
-                                            {{--<td></td>--}}
-                                        {{--@endif--}}
-                                        {{--<td>{{$students->address}}</td>--}}
+                                        <td>{{$students->residensal_card}}</td>
+                                        <td>{{$students->last_student_name}} {{$students->first_student_name}}</td>
+                                        <td>{{$students->last_student_japanese_name}} {{$students->first_student_japanese_name}}</td>
+                                        <td>{{$students->unique_id}}</td>
+                                        @if(isset($students->class_room_batch_id))
+                                            <td>{{$students->class_room_batch->class_room->name}} ({{$students->class_room_batch->batch->name}})</td>
+                                        @else
+                                            <td></td>
+                                        @endif
+                                        <td>{{$students->address}}</td>
 
-                                        {{--<td>--}}
-                                            {{--<a href="{{url('admin/list_student/student_id=').$students->id}}" class="fa fa-edit"></a>--}}
-                                            {{--<a href="{{url('admin/list_student/student_id=').$students->id}}.'/delete" onclick="return confirm('Are you sure you want to delete this Record?');"  class="fa fa-trash-alt" style="color: red;"></a>--}}
-                                        {{--</td>--}}
+                                        <td>
+                                            <a href="{{url('admin/list_student/student_id=').$students->id}}" class="fa fa-edit"></a>
+                                            <a href="{{url('admin/list_student/student_id=').$students->id}}.'/delete" onclick="return confirm('Are you sure you want to delete this Record?');"  class="fa fa-trash-alt" style="color: red;"></a>
+                                        </td>
 
 
                                     </tr>

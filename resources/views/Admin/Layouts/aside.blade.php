@@ -570,6 +570,24 @@
                     </li>
                     <li class="nav-main-heading ">Class/Batch Manager / クラス管理 /li>
                     <li class="nav-main-item">
+                        <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='list_section' || request()->segment('2') =='add_section' || request()->segment('2') =='add_section' || request()->segment('2') =='class_section'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                            <i class="nav-main-link-icon si si-badge"></i>
+                            <span class="nav-main-link-name">Residensal C.Time</span>
+                        </a>
+                        <ul class="nav-main-submenu">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='list-residensal'){ echo 'active' ;} ?>" href="{{url('admin/list-residensal')}}">
+                                    <span class="nav-main-link-name">List Residensal C.Time</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='add-residensal'){ echo 'active' ;} ?>" href="{{url('admin/add-residensal')}}">
+                                    <span class="nav-main-link-name">Add Residensal C.Time</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='list_subject' || request()->segment('2') =='add_subject' || request()->segment('2') =='batch_wise_subject'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-badge"></i>
                             <span class="nav-main-link-name">Subjects / 学部</span>

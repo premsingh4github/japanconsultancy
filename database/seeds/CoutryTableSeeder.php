@@ -12,10 +12,25 @@ class CoutryTableSeeder extends Seeder
     public function run()
     {
         $country = new \App\Country;
+        $country->name = "Japan";
+        $country->save();
+        $country = new \App\Country;
         $country->name = "Nepal";
         $country->save();
         $country = new \App\Country;
-        $country->name = "Japan";
+        $country->name = "Uzbekistan";
+        $country->save();
+        $country = new \App\Country;
+        $country->name = "Vietnam";
+        $country->save();
+        $country = new \App\Country;
+        $country->name = "China";
+        $country->save();
+        $country = new \App\Country;
+        $country->name = "Srilanka";
+        $country->save();
+        $country = new \App\Country;
+        $country->name = "Mynmar";
         $country->save();
     }
 }

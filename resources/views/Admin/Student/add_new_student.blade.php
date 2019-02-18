@@ -107,21 +107,30 @@
                         </div>
 
                         <div class="form-group col-sm-3">
+                            <label for="nearest_station1">Nearest station / 最寄駅<font color="#ff0000">*</font></label>
+                        </div>
+
+                        <div class="form-group col-sm-9">
+                            <input type="text" class="form-control" id="nearest_station1" name="nearest_station1" placeholder="最寄駅">
+                            {{$errors->first('nearest_station1')}}
+                        </div>
+
+                        <div class="form-group col-sm-3">
                             <label for="personal_phone_number">Phone Number / 学績番号<font color="#ff0000">*</font></label>
                         </div>
 
                         <div class="form-group col-sm-3">
-                            <input type="text" class="form-control" id="personal_phone_number_1" name="personal_phone_number_1" placeholder="Phone Number (Required)"  required="" data-validation-error-msg="Phone Number">
-                            {{$errors->first('personal_phone_number_1')}}
+                            <input type="text" class="form-control" id="personal_phone_number" name="personal_phone_number" placeholder="Phone Number (Required)"  required="" data-validation-error-msg="Phone Number">
+                            {{$errors->first('personal_phone_number')}}
                         </div>
-                        <div class="form-group col-sm-3">
-                            <input type="text" class="form-control" id="personal_phone_number" name="personal_phone_number_2" placeholder="Phone Number (Optional)">
-                            {{$errors->first('personal_phone_number_2')}}
-                        </div>
-                        <div class="form-group col-sm-3">
-                            <input type="text" class="form-control" id="personal_phone_number" name="personal_phone_number_3" placeholder="Phone Number (Optional)">
-                            {{$errors->first('personal_phone_number_3')}}
-                        </div>
+                        {{--<div class="form-group col-sm-3">--}}
+                            {{--<input type="text" class="form-control" id="personal_phone_number" name="personal_phone_number_2" placeholder="Phone Number (Optional)">--}}
+                            {{--{{$errors->first('personal_phone_number_2')}}--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group col-sm-3">--}}
+                            {{--<input type="text" class="form-control" id="personal_phone_number" name="personal_phone_number_3" placeholder="Phone Number (Optional)">--}}
+                            {{--{{$errors->first('personal_phone_number_3')}}--}}
+                        {{--</div>--}}
 
                         {{--<div class="form-group col-sm-3">--}}
                             {{--<input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number"  required="" data-validation-error-msg="Phone Number">--}}
@@ -176,25 +185,35 @@
                             </select>
                         </div>
 
+                        <div class="form-group col-sm-2">
+                            <label for="student_of_year">Student of Year</label>
+                            <select name="student_of_year" class="form-control" id="student_of_year">
+                                <option value="">[Select]</option>
+                                <option value="第1学年">第1学年</option>
+                                <option value="第2学年">第2学年</option>
+
+                            </select>
+                        </div>
+
                         <div class="form-group col-sm-3">
                             <label for="student_number">Student Number / 学績番号<font color="#ff0000">*</font></label>
                             <input type="tel" class="form-control" id="student_number" name="student_number" placeholder="Student Number"  required="" data-validation-error-msg="Studnet Number">
                             {{$errors->first('student_number')}}
                         </div>
 
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-4">
                             <label for="residensal_card">Resi.. id No. / 在留カード番号<font color="#ff0000">*</font></label>
                             <input type="text" class="form-control" id="residensal_card" name="residensal_card" placeholder=" 在留カード番号"  required="" data-validation-error-msg="Residensal Card Number">
                             {{$errors->first('residensal_card')}}
                         </div>
 
-                        <div class="form-group col-sm-5">
+                        <div class="form-group col-sm-4">
                             <label for="entry_date">Entry Date / 入学年月日<font color="#ff0000">*</font></label>
                             <input type="text" class="js-datepicker form-control" id="example-datepicker3" name="entry_date" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
                             {{$errors->first('entry_date')}}
                         </div>
 
-                        <div class="form-group col-sm-5">
+                        <div class="form-group col-sm-4">
                             <label for="expire_date">Expire Date / 有効期限 <font color="#ff0000">*</font></label>
                             <input type="text" class="js-datepicker form-control" id="example-datepicker3" name="expire_date" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
                             {{$errors->first('expire_date')}}
@@ -205,8 +224,12 @@
                         </div>
 
                         <div class="form-group col-sm-7">
-                            <input type="text" class="js-datepicker form-control" id="example-datepicker3" name="residensal_card_time" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
-                            {{$errors->first('residensal_card_time')}}
+                            <select name="residensal_card_time" class="form-control" id="residensal_card_time">
+                                <option value="">[Select]</option>
+                                @foreach($list_residensal as $residensal)
+                                    <option value="{{$residensal->id}}">{{$residensal->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group col-sm-5">
