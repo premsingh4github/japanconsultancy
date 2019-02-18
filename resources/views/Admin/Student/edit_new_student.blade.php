@@ -83,7 +83,7 @@
                         </div>
 
                         <div class="form-group col-sm-9">
-                            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="{{$student->date_of_birth}}"  required="" data-validation-error-msg="Date of Birth">
+                            <input type="text" class="js-datepicker form-control" id="example-datepicker3" value="{{$student->date_of_birth}}" name="entry_date" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="yyyy-mm-dd">
                             {{$errors->first('date_of_birth')}}
                         </div>
 
@@ -101,7 +101,7 @@
                         </div>
 
                         <div class="form-group col-sm-3">
-                            <input type="text" class="form-control" id="personal_phone_number" name="personal_phone_number" value="{{$student->personal_phone_number}}"  required="" data-validation-error-msg="Phone Number">
+                            <input type="text" class="form-control" id="personal_phone_number" name="personal_phone_number" value="{{$student->personal_phone_number}}"  data-validation-error-msg="Phone Number">
                             {{$errors->first('personal_phone_number')}}
                         </div>
 
@@ -117,28 +117,36 @@
 
                         <div class="border_bottom"></div>
 
-                        <div class="form-group col-sm-4">
+                        <div class="form-group col-sm-3">
                             <label for="class_room_batch_id">Class / クラス<font color="#ff0000">*</font></label>
                             <select name="class_room_batch_id" class="form-control" id="class_room_batch_id">
                                 <option value="">[Select Class Group]</option>
                                 @foreach($class_batch as $classBatch)
                                     <option value="{{$classBatch->id}}" <?php if ($classBatch->id == $student->class_room_batch_id) echo 'selected'?>>{{$classBatch->class_room->name}} ({{$classBatch->batch->name}})</option>
                                 @endforeach
+
                             </select>
                         </div>
-                        {{--<div class="form-group col-sm-2">--}}
-                            {{--<label>Batch<font color="#ff0000">*</font></label>--}}
-                            {{--<select name="batch_default" class="form-control"  required="required">--}}
-                                {{--<option value="{{date('y')}}">{{date('Y')}}</option>--}}
-                                {{--<option value="19">2019</option>--}}
-                                {{--<option value="18">2018</option>--}}
-                                {{--<option value="17">2017</option>--}}
-                                {{--<option value="16">2016</option>--}}
-                                {{--<option value="15">2017</option>--}}
-                            {{--</select>--}}
-                        {{--</div>--}}
+                        <div class="form-group col-sm-3">
+                            <label for="class_room_batch_id">Opt. Subject / 件名</label>
+                            <select name="subject_optional_id" class="form-control" id="subject_optional_id">
+                                <option value="">[Select]</option>
+                                @foreach($opt_subject as $optional)
+                                    <option value="{{$optional->id}}"<?php if ($optional->id == $student->subject_optional_id) echo 'selected'?>>{{$optional->name}}</option>
+                                    @endforeach
+                            </select>
+                        </div>
 
-                        <div class="form-group col-sm-4">
+                        <div class="form-group col-sm-3">
+                            <label for="student_of_year">Student of Year</label>
+                            <select name="student_of_year" class="form-control" id="student_of_year">
+                                <option value="第1学年" <?php if ($student->student_of_year == '第1学年' ) echo 'selected'?>>第1学年</option>
+                                <option value="第2学年" <?php if ($student->student_of_year == '第2学年' ) echo 'selected'?>>第2学年</option>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group col-sm-3">
                             <label for="student_number">Student Number / 学績番号<font color="#ff0000">*</font></label>
                             <input type="tel" class="form-control" id="student_number" name="student_number" value="{{$student->student_number}}"  required="" data-validation-error-msg="Studnet Number">
                             {{$errors->first('student_number')}}
@@ -150,15 +158,15 @@
                             {{$errors->first('residensal_card')}}
                         </div>
 
-                        <div class="form-group col-sm-5">
+                        <div class="form-group col-sm-4">
                             <label for="entry_date">Entry Date / 入学年月日<font color="#ff0000">*</font></label>
-                            <input type="date" class="form-control" id="entry_date" name="entry_date"  value="{{$student->entry_date}}"   required="" data-validation-error-msg="Entry Date / 入学年月日">
+                            <input type="text" class="js-datepicker form-control" id="example-datepicker3" value="{{$student->entry_date}}" name="entry_date" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="yyyy-mm-dd">
                             {{$errors->first('entry_date')}}
                         </div>
 
-                        <div class="form-group col-sm-5">
+                        <div class="form-group col-sm-4">
                             <label for="expire_date">Expire Date / 入学年月日<font color="#ff0000">*</font></label>
-                            <input type="date" class="form-control" id="expire_date" name="expire_date" value="{{$student->expire_date}}">
+                            <input type="text" class="js-datepicker form-control" id="example-datepicker3" value="{{$student->expire_date}}" name="expire_date" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="yyyy-mm-dd">
                             {{$errors->first('expire_date')}}
                         </div>
 
@@ -167,8 +175,13 @@
                         </div>
 
                         <div class="form-group col-sm-7">
-                            <input type="date" class="form-control" id="residensal_card_time" name="residensal_card_time" value="{{$student->residensal_card_time}}"  required="" data-validation-error-msg="Residensal card Time Period / 在留期間">
-                            {{$errors->first('residensal_card_time')}}
+                            <select name="residensalCardTime" class="form-control" id="residensal_card_time">
+                                <option value="">[Select]</option>
+                                @foreach($list_residensal as $Residensal)
+                                    <option value="{{$Residensal->id}}" <?php if ($Residensal->id == $student->residensalCardTime) echo 'selected'?>>{{$Residensal->name}}</option>
+                                @endforeach
+
+                            </select>
                         </div>
 
                         <div class="form-group col-sm-5">
@@ -176,7 +189,7 @@
                         </div>
 
                         <div class="form-group col-sm-7">
-                            <input type="date" class="form-control" id="residensal_card_expire" name="residensal_card_expire" value="{{$student->residensal_card_expire}}"  required="" data-validation-error-msg="Residenal card Expiry / 在留満了日">
+                            <input type="text" class="js-datepicker form-control" id="example-datepicker3" value="{{$student->residensal_card_expire}}" name="residensal_card_expire" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="yyyy-mm-dd">
                             {{$errors->first('residensal_card_expire')}}
                         </div>
 

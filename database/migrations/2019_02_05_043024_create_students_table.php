@@ -27,7 +27,7 @@ class CreateStudentsTable extends Migration
             $table->string('date_of_birth')->nullable();
             $table->string('entry_date')->nullable();
             $table->string('expire_date')->nullable();
-            $table->string('residensal_card_time')->nullable();
+            $table->string('residensalCardTime')->nullable();
             $table->string('residensal_card_expire')->nullable();
             $table->string('address')->nullable();
             $table->string('personal_phone_number')->nullable();
@@ -39,6 +39,9 @@ class CreateStudentsTable extends Migration
             $table->integer('unique_id')->nullable();
             $table->integer('subject_optional_id')->nullable();
             $table->string('photo')->nullable();
+            $table->string('student_of_year')->nullable();
+            $table->string('nearest_station1')->nullable();
+
             $table->timestamps();
         });
     }

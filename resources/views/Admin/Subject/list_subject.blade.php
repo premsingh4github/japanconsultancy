@@ -38,37 +38,30 @@
                 @endif
                 </p>
 
-        </div>
-        <!-- Page Content -->
-        <div class="content">
-            <!-- Customers and Latest Orders -->
-            <div class="row row-deck">
-                <!-- Latest Orders -->
-                <div class="col-lg-12">
-                    <div class="block block-mode-loading-oneui">
-                        <div class="block-header border-bottom">
-                            <h3 class="block-title">Subject Record</h3>
-                            <div class="block-options">
-                                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
-                                    <i class="si si-refresh"></i>
-                                </button>
-                                <button type="button" class="btn-block-option">
-                                    <i class="si si-settings"></i>
-                                </button>
-                            </div>
+                <div class="block block-mode-loading-oneui">
+                    <div class="block-header border-bottom">
+                        <h3 class="block-title">Subject Record</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
+                                <i class="si si-refresh"></i>
+                            </button>
+                            <button type="button" class="btn-block-option">
+                                <i class="si si-settings"></i>
+                            </button>
                         </div>
-                        <div class="block-content block-content-full">
-                            <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
-                                <thead class="thead-dark">
-                                <tr>
-                                    <th class="font-w700">SN</th>
-                                    <th class="font-w700">Subject Name</th>
-                                    <th class="font-w700">Subject Type</th>
-                                    <th class="font-w700">Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($list_subject as $key=>$subject)
+                    </div>
+                    <div class="block-content block-content-full">
+                        <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th class="font-w700">SN</th>
+                                <th class="font-w700">Subject Name</th>
+                                <th class="font-w700">Subject Type</th>
+                                <th class="font-w700">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($list_subject as $key=>$subject)
                                 <tr>
                                     <td>{{++$key}}</td>
                                     <td>{{$subject->name}}</td>
@@ -80,18 +73,13 @@
 
 
                                 </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <!-- END Latest Orders -->
-            </div>
-            <!-- END Customers and Latest Orders -->
-        </div>
-        <!-- END Page Content -->
 
+        </div>
     </main>
     <!-- END Main Container -->
 @endsection
