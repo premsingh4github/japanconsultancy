@@ -46,5 +46,9 @@ class HomeController extends Controller
         return redirect('login')->withErrors(['email'=>'Invalid credentail'])->withInput(request()->only('email'));
     }
 
+    public function test()
+    {
+        
+    }
 
 }
