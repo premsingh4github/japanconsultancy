@@ -79,11 +79,11 @@
                                     <th class="font-w700">フリガナ(JAPANESE NAME)</th>
                                     <th class="font-w700">性別(SEX)</th>
                                     <th class="font-w700">時限(PERIOD)</th>
-                                    <th class="font-w700">ID</th>
-                                    <th class="font-w700">Student Class/Batch</th>
-                                    <th class="font-w700">Address</th>
-                                    <th class="font-w700">Gender</th>
-                                    <th class="font-w700">Action</th>
+                                    <th class="font-w700">3</th>
+                                    <th class="font-w700">4</th>
+                                    <th class="font-w700">5</th>
+                                    <th class="font-w700">6</th>
+                                    <th class="font-w700">7</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -111,10 +111,19 @@
                                         @endif
                                         </td>
                                         <td>
-                                            {{$students->classBatchSections}}
+                                            {{--@foreach($students->classSections as $section)--}}
+                                            {{--{{$section->class_section}}--}}
+                                            {{--{{$section->class_section->class_section->name}}--}}
+                                            {{--@endforeach--}}
                                            <table>
                                                <tr>
                                                    <td>A1</td>
+                                               </tr>
+                                               <tr>
+                                                   <td>A2</td>
+                                               </tr>
+                                               <tr>
+                                                   <td>A3</td>
                                                </tr>
                                            </table>
                                         </td>

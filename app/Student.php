@@ -24,6 +24,15 @@ class Student extends Model
 //    {
 //        return $this->belongsToMany(ClassBatchSection::class,'class_section_students');
 //    }
+    public function classBatchSections()
+    {
+        return $this->belongsToMany(ClassBatchSection::class,'class_section_students');
+    }
+
+    public function classSections()
+    {
+        return $this->hasMany(ClassSectionStudent::class);
+    }
 
 }
 
