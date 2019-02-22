@@ -37,6 +37,7 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::post('list_student/student_id={id}','StudentController@update_student');
     Route::get('list_student/student_id={id}/delete','StudentController@destroy');
     Route::get('list_student/{id}','StudentController@id_preview');
+    Route::get('list_student/pdf/{id}','StudentController@export_pdf');
 
 
     Route::any('section_wise_student','StudentController@section_wise_student');
