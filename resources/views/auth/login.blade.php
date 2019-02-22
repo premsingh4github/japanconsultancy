@@ -25,7 +25,7 @@
                                     </div>
                                     <div class="block-content">
                                         <div class="p-sm-3 px-lg-4 py-lg-5">
-                                            <h1 class="mb-2">Chubi-Management</h1>
+                                            <h2 class="mb-2"><img src="{{asset('public')}}/images/logo/logo.png" alt="" width="300" style="margin-top: -30px;"></h2>
                                             <p>Welcome, please login.</p>
 
                                             <!-- Sign In Form -->

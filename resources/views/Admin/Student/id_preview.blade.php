@@ -82,8 +82,8 @@
         <h4>{{$student->date_of_birth}}</h4>
         <h4>造形芸術科</h4>
         <h4>{{$student->student_of_year}}</h4>
-        <h4>{{date('Y-m-d')}}</h4>
-
+        <h4>{{$student->expire_date}}</h4>
+        {{--<h4>{{$student->entry_date}}</h4>--}}
 
         <div class="id_photo">
             @if(isset($student->photo))
@@ -100,6 +100,7 @@
         <div style="clear: both; margin-bottom:20px;"></div>
         <div class="issue-date">
             <h4>{{$student->entry_date}}</h4>
+
         </div>
         <div style="clear: both; margin-bottom:20px;"></div>
 

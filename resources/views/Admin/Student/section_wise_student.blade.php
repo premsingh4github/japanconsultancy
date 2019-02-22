@@ -75,6 +75,7 @@
                                         <td>{{$Student->address}}</td>
                                         <td><input type="checkbox" name="student_id[{{$Student->id}}]" value="{{$Student->id}}"></td>
                                     </tr>
+
                                 @endforeach
                                 </tbody>
                             </table>

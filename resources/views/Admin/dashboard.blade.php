@@ -10,8 +10,8 @@
                 <div class="content content-narrow content-full">
                     <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mt-5 mb-2 text-center text-sm-left">
                         <div class="flex-sm-fill">
-                            <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear">Admin Dashboard</h1>
-                            <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">Welcome Administrator</h2>
+                            <h1 class="font-w600 text-white mb-0 invisible" data-toggle="appear">{{__('language.Admin_Dashboard')}}</h1>
+                            <h2 class="h4 font-w400 text-white-75 mb-0 invisible" data-toggle="appear" data-timeout="250">{{__('language.Welcome_Administrator')}}</h2>
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                 <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                     <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
                         <div class="block-content block-content-full">
-                            <div class="font-size-sm font-w600 text-uppercase text-muted">Teachers</div>
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">{{__('language.Teachers')}}</div>
                             <div class="font-size-h2 font-w400 text-dark">0</div>
                         </div>
                     </a>
@@ -40,9 +40,9 @@
                 <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                     <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
                         <div class="block-content block-content-full">
-                            <div class="font-size-sm font-w600 text-uppercase text-muted">Total Students</div>
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">{{__('language.Total_Students')}}</div>
                             <?php $totalStudent = \App\Student::all()?>
-                            <div class="font-size-h2 font-w400 text-dark">{{count($totalStudent)}}</div>
+                            <div class="font-size-h2 font-w400 text-dark"><i class="fa fa-users"></i> {{count($totalStudent)}}</div>
                             <?php ; ?>
                         </div>
                     </a>
@@ -50,17 +50,17 @@
                 <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                     <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
                         <div class="block-content block-content-full">
-                            <div class="font-size-sm font-w600 text-uppercase text-muted">Absent Student</div>
-                            <div class="font-size-h2 font-w400 text-dark">0</div>
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">{{__('language.Absent_Student')}}</div>
+                            <div class="font-size-h2 font-w400 text-dark"><i class="fa fa-users"></i> 0</div>
                         </div>
                     </a>
                 </div>
                 <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                     <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
                         <div class="block-content block-content-full">
-                            <div class="font-size-sm font-w600 text-uppercase text-muted">Total Users</div>
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">{{__('language.Total_Users')}}</div>
                             <?php $totalUser = \App\User::all()?>
-                            <div class="font-size-h2 font-w400 text-dark">{{count($totalUser)}}</div>
+                            <div class="font-size-h2 font-w400 text-dark"> <i class="fa fa-users"></i> {{count($totalUser)}}</div>
                             <?php ; ?>
                         </div>
                     </a>

@@ -21,7 +21,7 @@ Route::group(['middleware'=>'guest'],function(){
     Route::post('login','HomeController@postLogin');
 });
 
-
+Route::get('lang/{locale}', 'LocalizationController@index');
 
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::any('logout', 'Auth\LoginController@logout')->name('logout');
@@ -29,6 +29,7 @@ Route::any('logout', 'Auth\LoginController@logout')->name('logout');
 
 /* ========================================= ADMIN CONTROL START====================================================================== */
 Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],function(){
+    Route::get('lang/{locale}', 'LocalizationController@index');
     Route::get('','AdminController@index');
     Route::any('add_student','StudentController@add_student');
     Route::any('list_student','StudentController@list_student');

@@ -1,7 +1,7 @@
 @extends('Admin.index')
 @section('body')
     <!-- Main Container -->
-    <main id="main-container">
+    <main id="container">
 
 
         <p class="font-size-sm text-muted">
@@ -57,7 +57,7 @@
                                 <tr>
                                     <th class="font-w700">SN</th>
                                     <th class="font-w700">Photo</th>
-                                    <th class="font-w700">ID Card</th>
+                                    <th class="font-w700">Download</th>
                                     <th class="font-w700">Residential ID</th>
                                     <th class="font-w700">Student Name</th>
                                     <th class="font-w700">Japanese Name</th>
@@ -71,7 +71,7 @@
                                 <tbody>
                                 @foreach($list_students as $key=>$students)
                                 <tr>
-                                    <td>{{++$key}}</td>
+                                    <td>{{++$key}} </td>
                                     <td>
                                         @if(isset($students->photo))
                                         <img src="{{url('public/photos').'/'.$students->photo}}" alt="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">
@@ -81,9 +81,36 @@
 
                                     </td>
                                     <td>
-                                        <a title="View ID Card"  onclick="window.open('{{url('admin/list_student/'.$students->id)}}', 'popup', 'height=600,width=700,scrollbars=yes,resize=no,status=no,left=100,top=100');">
-                                            <span class="fa fa-eye"></span>
-                                        </a>
+                                        <div class="dropdown d-inline-block ml-2">
+                                            <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="d-none d-sm-inline-block ml-1"><i class="fa fa-download"></i>  Download</span>
+                                                <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-left p-0 border-0 font-size-sm" aria-labelledby="page-header-user-dropdown">
+                                                <div class="p-2">
+                                                    <a class="dropdown-item d-flex align-items-center justify-content-between" onclick="window.open('{{url('admin/list_student/'.$students->id)}}', 'popup', 'height=600,width=700,scrollbars=yes,resize=no,status=no,left=100,top=100');">
+                                                        <span>ID Card</span> <i class="fa fa-eye"></i>
+                                                    </a>
+                                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="admin/lang/en">
+                                                        <span>Certificate</span>  <i class="fa fa-download"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{--<div class="input-group-prepend">--}}
+                                            {{--<button type="button" class="btn btn-primary btn-sm">Choose</button>--}}
+                                            {{--<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+                                                {{--<span class="sr-only">Toggle Dropdown</span>--}}
+                                            {{--</button>--}}
+                                            {{--<div class="dropdown-menu">--}}
+                                                {{--<a title="View ID Card" class="dropdown-item" onclick="window.open('{{url('admin/list_student/'.$students->id)}}', 'popup', 'height=600,width=700,scrollbars=yes,resize=no,status=no,left=100,top=100');">--}}
+                                                    {{--<i class="fa fa-download"></i> ID Card--}}
+                                                {{--</a>--}}
+                                                {{--<a class="dropdown-item" href="#">--}}
+                                                    {{--<i class="fa fa-download"></i> Certificate--}}
+                                                {{--</a>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
                                     </td>
                                     <td>{{$students->residensal_card}}</td>
                                     <td>{{$students->last_student_name}} {{$students->first_student_name}}</td>
@@ -104,7 +131,7 @@
                                     </td>
                                     <td>
                                         <a href="{{url('admin/list_student/student_id=').$students->id}}" class="fa fa-edit"></a>
-                                        <a href="{{url('admin/list_student/student_id=').$students->id}}.'/delete" onclick="return confirm('Are you sure you want to delete this Record?');"  class="fa fa-trash-alt" style="color: red;"></a>
+                                        <a href="#" onclick="return confirm('Are you sure you want to transfer this Student another batch?');"  class="fa fa-exchange-alt" style="color: red;"></a>
                                     </td>
 
 
@@ -114,7 +141,7 @@
                                 <tbody>
                                 <tr>
                                     <th colspan="11">
-                                        {{$list_students->links()}}
+                                        {{ $list_students->onEachSide(1)->links() }}
                                     </th>
                                 </tr>
                                 </tbody>

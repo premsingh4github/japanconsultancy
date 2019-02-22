@@ -443,7 +443,7 @@
                 <a class="font-w600 text-dual" href="{{url('')}}" title="Redirect to home page">
                     <i class="fa fa-circle-notch text-primary"></i>
                     <span class="smini-hide">
-                            <span class="font-w700 font-size-h6">Chubi</span> <span class="font-w400" style="color:#5c80d1;">Project</span>
+                            <span class="font-w700 font-size-h6">Chubi</span> <span class="font-w400" style="color:#5c80d1;">Management</span>
                         </span>
                 </a>
                 <!-- END Logo -->
@@ -528,27 +528,27 @@
                     <li class="nav-main-item">
                         <a class="nav-main-link <?php if(request()->segment('2') ==''){ echo 'active' ;} ?>" href="{{url('login')}}">
                             <i class="nav-main-link-icon si si-speedometer"></i>
-                            <span class="nav-main-link-name">Admin Panel / 管理ダッシュボード </span>
+                            <span class="nav-main-link-name">{{__('language.Admin_Panel')}} </span>
                         </a>
                     </li>
-                    <li class="nav-main-heading ">User Manager / ユーザー管理</li>
+                    <li class="nav-main-heading ">{{__('language.User_Manager')}}</li>
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu <?php if(request()->segment('2') =='superAdmin' || request()->segment('2') =='generalAdmin' || request()->segment('2') =='moderator'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-energy"></i>
-                            <span class="nav-main-link-name">User Control / ウーザーコントロール</span>
+                            <span class="nav-main-link-name">{{__('language.User_controller')}}</span>
                         </a>
                     </li>
-                    <li class="nav-main-heading ">Student/Teacher Manager / 学生/先生管理</li>
+                    <li class="nav-main-heading ">{{__('language.STUDENT_TEACHER_MANAGER')}}</li>
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu  <?php if(request()->segment('2') =='clients' || request()->segment('2') =='createClient'){ echo 'active' ;} ?>" data-toggle="submenu"  href="#">
                             <i class="nav-main-link-icon si si-badge"></i>
-                            <span class="nav-main-link-name">Teachers / 先生</span>
+                            <span class="nav-main-link-name">{{__('language.Teachers')}}</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='add_student' || request()->segment('2') =='list_student' || request()->segment('2') =='section_wise_student'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-badge"></i>
-                            <span class="nav-main-link-name">Students / 学生</span>
+                            <span class="nav-main-link-name">{{__('language.Students')}}</span>
                         </a>
                         <ul class="nav-main-submenu">
                             <li class="nav-main-item">
@@ -568,11 +568,11 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-main-heading ">Class/Batch Manager / クラス管理 /li>
+                    <li class="nav-main-heading ">{{__('language.CLASS_BATCH_MANAGER')}} </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='list_section' || request()->segment('2') =='add_section' || request()->segment('2') =='add_section' || request()->segment('2') =='class_section'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-badge"></i>
-                            <span class="nav-main-link-name">Residensal C.Time</span>
+                            <span class="nav-main-link-name">{{__('language.Residensal_Card_Time')}}</span>
                         </a>
                         <ul class="nav-main-submenu">
                             <li class="nav-main-item">
@@ -590,7 +590,7 @@
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='list_subject' || request()->segment('2') =='add_subject' || request()->segment('2') =='batch_wise_subject'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-badge"></i>
-                            <span class="nav-main-link-name">Subjects / 学部</span>
+                            <span class="nav-main-link-name">{{__('language.Subjects')}}</span>
                         </a>
                         <ul class="nav-main-submenu">
                             <li class="nav-main-item">
@@ -613,7 +613,7 @@
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='list_record' || request()->segment('2') =='add_record'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-badge"></i>
-                            <span class="nav-main-link-name">Class/Batch / クラス</span>
+                            <span class="nav-main-link-name">{{__('language.Class_Batch')}}</span>
                         </a>
                         <ul class="nav-main-submenu">
                             <li class="nav-main-item">
@@ -631,7 +631,7 @@
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='list_section' || request()->segment('2') =='add_section' || request()->segment('2') =='add_section' || request()->segment('2') =='class_section'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-badge"></i>
-                            <span class="nav-main-link-name">Section / セクション</span>
+                            <span class="nav-main-link-name">{{__('language.Section')}}</span>
                         </a>
                         <ul class="nav-main-submenu">
                             <li class="nav-main-item">
@@ -686,7 +686,7 @@
                     <li class="nav-main-heading ">Attendance</li>
                     <li class="nav-main-item">
                         <a class="nav-main-link   <?php if(request()->segment('2') =='holiday' || request()->segment('2') =='new_holiday'){ echo 'active' ;} ?>" href="{{url('attendance_list')}}">
-                            <span class="nav-main-link-name">Attendance</span>
+                            <span class="nav-main-link-name">List Attendance</span>
                         </a>
                     </li>
                 </ul>
@@ -746,6 +746,40 @@
 
                 <!-- Right Section -->
                 <div class="d-flex align-items-center">
+                    {{--language--}}
+                    {{--<div class="input-group-prepend">--}}
+                        {{--<button type="button" class="btn btn-primary btn-sm">Language</button>--}}
+                        {{--<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+                            {{--<span class="sr-only">Language Dropdown</span>--}}
+                        {{--</button>--}}
+                        {{--<div class="dropdown-menu">--}}
+                            {{--<a class="dropdown-item" href="{{url('admin/lang/en')}}">--}}
+                                {{--<i class="fa fa-download"></i> English--}}
+                            {{--</a>--}}
+                            {{--<a class="dropdown-item" href="{{url('admin/lang/jv')}}">--}}
+                                {{--<i class="fa fa-download"></i> Japanese--}}
+                            {{--</a>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    <div class="dropdown d-inline-block ml-2">
+                        <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="rounded" src="{{asset('public')}}/images/icon/language_chubi.png" alt="Language" style="width: 18px;">
+                            <span class="d-none d-sm-inline-block ml-1">{{__('language.Language')}}</span>
+                            <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-left p-0 border-0 font-size-sm" aria-labelledby="page-header-user-dropdown">
+                            <div class="p-2">
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{url('admin/lang/jv')}}">
+                                    <span>{{__('language.Japanese')}}</span>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{url('admin/lang/en')}}">
+                                    <span>{{__('language.English')}}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{--language--}}
                     <!-- Staff Dropdown -->
                     <div class="dropdown d-inline-block ml-2">
                         <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
