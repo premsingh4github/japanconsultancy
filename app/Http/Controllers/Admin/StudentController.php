@@ -14,6 +14,7 @@ use App\StudentOptional;
 use App\Subject;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class StudentController extends Controller
 {
@@ -91,7 +92,7 @@ class StudentController extends Controller
         if ($request->isMethod('get')) {
             $list_students = Student::orderBy('student_number','ASC')->paginate(10);
             $title = 'Student Record | Chubi Project : Management System';
-            return view('Admin.Student.list_student', compact( 'title','list_students'));
+            return view('Admin.Student.list_student', compact( 'title','list_students','count'));
         }
         if ($request->isMethod('post')){
 
@@ -164,6 +165,14 @@ class StudentController extends Controller
         $title = 'Student Id Card | Chubi Project : Management System';
         return view('Admin.Student.id_preview', compact( 'title','student'));
     }
+    public function export_pdf($id)
+    {
+        $student = Student::findOrFail($id);
+        $title = 'Student Id Card | Chubi Project : Management System';
+        $pdf = PDF::loadView('Admin.Student.id_preview',compact('student','title'));
+        return $pdf->download('id_card.pdf');
+    }
+
 
     public function section_wise_student(Request $request){
         if ($request->isMethod('get')){

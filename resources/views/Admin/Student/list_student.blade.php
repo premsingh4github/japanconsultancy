@@ -36,7 +36,7 @@
                             </h3>
                             <div class="block-options">
                                 <button type="button" class="btn-block-option">
-                                    {{$list_students->render()}}
+                                    {{ $list_students->onEachSide(1)->links() }}
                                 </button>
                                 <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
                                     <i class="si si-refresh"></i>
@@ -69,9 +69,10 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <?php $i = $list_students->perPage() * ($list_students->currentPage() - 1); ?>
                                 @foreach($list_students as $key=>$students)
                                 <tr>
-                                    <td>{{++$key}} </td>
+                                    <td><?php $i++;?>{{$i}} </td>
                                     <td>
                                         @if(isset($students->photo))
                                         <img src="{{url('public/photos').'/'.$students->photo}}" alt="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">
@@ -91,7 +92,10 @@
                                                     <a class="dropdown-item d-flex align-items-center justify-content-between" onclick="print_id('{{url('admin/list_student/'.$students->id)}}');">
                                                         <span>ID Card</span> <i class="fa fa-eye"></i>
                                                     </a>
-                                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="admin/lang/en">
+                                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ url('admin/list_student/pdf').'/'.$students->id }}">
+                                                        <span>ID Card</span>  <i class="fa fa-download"></i>
+                                                    </a>
+                                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="#">
                                                         <span>Certificate</span>  <i class="fa fa-download"></i>
                                                     </a>
                                                 </div>
@@ -142,6 +146,7 @@
                                 <tr>
                                     <th colspan="11">
                                         {{ $list_students->onEachSide(1)->links() }}
+
                                     </th>
                                 </tr>
                                 </tbody>
@@ -161,11 +166,7 @@
 @section('script')
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
     <script>
-        var doc = new jsPDF();
         function print_id(id_url) {
-            debugger;
-            doc.html(id_url);
-            doc.save('prem.pdf');
             window.open(id_url, 'popup', 'height=600,width=700,scrollbars=yes,resize=no,status=no,left=100,top=100');
         }
     </script>
