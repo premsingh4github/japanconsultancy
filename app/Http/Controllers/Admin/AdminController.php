@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\ClassRoomBatch;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +28,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('Admin.dashboard');
+        $batch = ClassRoomBatch::withCount('students')->orderBy('students_count','DESC')->get();
+        return view('Admin.dashboard',compact('batch'));
     }
 
 

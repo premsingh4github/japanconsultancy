@@ -41,14 +41,19 @@
             <!-- Partial Table -->
             <div class="block" style="padding:10px;">
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <span><h4>Create Class Room</h4></span>
                     <form action="{{url('admin/post_class_record')}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                             <label for="name">Create Class <font color="#ff0000">*</font></label>
                             <input type="text" class="form-control" id="name" name="name" required="" data-validation-error-msg="news title is required">
-                            {{$errors->first('name')}}
                                 <button type="submit" class="btn  btn-success">Create Class</button>
+                        <ul>
+                            Allready Listed Class</li>
+                            @foreach($class as $classRoom)
+                            <li>{{$classRoom->name}}</li>
+                                @endforeach
+                        </ul>
                     </form>
                     </div>
                         <div class="col-sm-4">
@@ -57,11 +62,17 @@
                                 {{csrf_field()}}
                                 <label for="name">Create Batch <font color="#ff0000">*</font></label>
                                 <input type="text" class="form-control" id="name" name="name"  required="" data-validation-error-msg="news title is required">
-                                {{$errors->first('name')}}
                                 <button type="submit" class="btn  btn-success">Create Batch</button>
+                                <ul>
+                                    Allready Listed Batch Year</li>
+                                    @foreach($batch as $batchYear)
+                                        <li>{{$batchYear->name}}</li>
+                                    @endforeach
+                                </ul>
+
                             </form>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <span><h4>Create Group</h4></span>
                             <form action="{{url('admin/post_classbatch_record')}}" method="post" enctype="multipart/form-data">
                                 {{csrf_field()}}
@@ -81,6 +92,13 @@
                                 </select>
                                 <div style="clear: both;"></div>
                                 <button type="submit" class="btn  btn-success">Create Group</button>
+                                <ul>
+                                    Allready Listed Batch Wise Class</li>
+                                    @foreach($ClassRoomBatch as $ClassRoomBatches)
+                                        <li>{{$ClassRoomBatches->class_room->name}}-{{$ClassRoomBatches->batch->name}}</li>
+                                    @endforeach
+                                </ul>
+
                             </form>
                         </div>
                     </div>

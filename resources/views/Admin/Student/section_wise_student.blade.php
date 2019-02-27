@@ -43,6 +43,10 @@
                 <form action="" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="row">
+                        <div class="form-group col-sm-12">
+                            <button type="submit" class="btn  btn-success">Update Section</button>
+                        </div>
+
                         <div class="form-group col-sm-3">
                             <label for="class_section_id">Section<font color="#ff0000">*</font></label>
                             <select name="class_section_id" id="class_section_id" class="form-control">
@@ -73,15 +77,14 @@
                                         <td>{{$Student->last_student_name}} {{$Student->first_student_name}}</td>
                                         <td>{{$Student->unique_id}}</td>
                                         <td>{{$Student->address}}</td>
-                                        <td><input type="checkbox" name="student_id[{{$Student->id}}]" value="{{$Student->id}}"></td>
+                                        <td><input type="checkbox"  name="student_id[{{$Student->id}}]" value="{{$Student->id}}"></td>
                                     </tr>
-
                                 @endforeach
                                 </tbody>
                             </table>
                         </div>
                         <div class="form-group col-sm-4">
-                            <button type="submit" class="btn  btn-success">Save Section</button>
+                            <button type="submit" class="btn  btn-success">Update Section</button>
                         </div>
                     </div>
                 </form>

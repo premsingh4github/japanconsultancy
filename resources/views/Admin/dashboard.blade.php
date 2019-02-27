@@ -50,6 +50,27 @@
                 <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                     <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
                         <div class="block-content block-content-full">
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">Student (Male)</div>
+                            <?php $totalUser = \App\Student::where('student_sex','m')->get()?>
+                            <div class="font-size-h2 font-w400 text-dark"> <i class="fa fa-users"></i> {{count($totalUser)}}</div>
+                            <?php ; ?>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+                    <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
+                        <div class="block-content block-content-full">
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">Student (Female)</div>
+                            <?php $totalUser = \App\Student::where('student_sex','f')->get()?>
+                            <div class="font-size-h2 font-w400 text-dark"> <i class="fa fa-users"></i> {{count($totalUser)}}</div>
+                            <?php ; ?>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+                    <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
+                        <div class="block-content block-content-full">
                             <div class="font-size-sm font-w600 text-uppercase text-muted">{{__('language.Absent_Student')}}</div>
                             <div class="font-size-h2 font-w400 text-dark"><i class="fa fa-users"></i> 0</div>
                         </div>
@@ -65,6 +86,18 @@
                         </div>
                     </a>
                 </div>
+                @foreach($batch as $countBatch)
+                    @if(count($countBatch->students)>0)
+                <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+                    <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
+                        <div class="block-content block-content-full">
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">Students in {{$countBatch->class_room->name}}-{{$countBatch->batch->name}}</div>
+                            <div class="font-size-h2 font-w400 text-dark"> <i class="fa fa-users"></i> {{count($countBatch->students)}}</div>
+                        </div>
+                    </a>
+                </div>
+                    @endif
+                    @endforeach
             </div>
             <!-- END Stats -->
 

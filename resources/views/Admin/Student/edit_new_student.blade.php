@@ -4,7 +4,20 @@
     <main id="main-container">
         <div class="content">
             <div class="block" style="padding:20px;">
-                <form action="" method="post" enctype="multipart/form-data">
+                <p class="font-size-sm text-muted">
+                    @if(session('success'))
+                        <span class="alert alert-success"> {{session('success')}}</span>
+                @endif
+                @if($errors->any())
+                    <ul  class="alert alert-danger">
+                        @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                    @endif
+                    </p>
+
+                    <form action="" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="row">
                         <div class="form-group col-sm-2">
@@ -83,7 +96,7 @@
                         </div>
 
                         <div class="form-group col-sm-9">
-                            <input type="text" class="js-datepicker form-control" id="example-datepicker3" value="{{$student->date_of_birth}}" name="entry_date" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="yyyy-mm-dd">
+                            <input type="text" class="js-datepicker form-control" id="example-datepicker3" value="{{$student->date_of_birth}}" name="date_of_birth" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="yyyy-mm-dd">
                             {{$errors->first('date_of_birth')}}
                         </div>
 
@@ -126,6 +139,7 @@
                                 @endforeach
 
                             </select>
+                            <i style="font-size: 14px; color:Red;">Not Found? <a href="{{url('admin/add_record')}}" target="_blank">Click here</a> to add</i>
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="class_room_batch_id">Opt. Subject / 件名</label>
@@ -135,6 +149,7 @@
                                     <option value="{{$optional->id}}"<?php if ($optional->id == $student->subject_optional_id) echo 'selected'?>>{{$optional->name}}</option>
                                     @endforeach
                             </select>
+                            <i style="font-size: 14px; color:Red;">Not Found? <a href="{{url('admin/add_subject')}}" target="_blank">Click here</a> to add</i>
                         </div>
 
                         <div class="form-group col-sm-3">
@@ -165,7 +180,7 @@
                         </div>
 
                         <div class="form-group col-sm-4">
-                            <label for="expire_date">Expire Date / 入学年月日<font color="#ff0000">*</font></label>
+                            <label for="expire_date">Expire Date / 有効期限<font color="#ff0000">*</font></label>
                             <input type="text" class="js-datepicker form-control" id="example-datepicker3" value="{{$student->expire_date}}" name="expire_date" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="yyyy-mm-dd">
                             {{$errors->first('expire_date')}}
                         </div>

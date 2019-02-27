@@ -32,10 +32,14 @@ class StudentController extends Controller
             $this->validate($request, [
                 'residensal_card' => 'required|unique:students,residensal_card',
                 'last_student_name' => 'required',
+                'class_room_batch_id' => 'required',
                 'first_student_name' => 'required',
                 'last_student_japanese_name' => 'required',
                 'first_student_japanese_name' => 'required',
-                'subject_optional_id' => 'required',
+                'date_of_birth' => 'required',
+                'entry_date' => 'required',
+                'expire_date' => 'required',
+
             ]);
 
         }
@@ -88,14 +92,46 @@ class StudentController extends Controller
             return redirect('admin/list_student')->with('success', 'Record Saved Successfully');
         }
     }
+    public function student_immigration(Request $request){
+        if ($request->isMethod('get')) {
+            $list_students = Student::orderBy('student_number', 'ASC')->get();
+            $classRoomBatch = ClassRoomBatch::all();
+            $title = 'Student Immigration | Chubi Project : Management System';
+            return view('Admin.Student.student_immigration', compact('title', 'list_students', 'classRoomBatch', 'count'));
+        }
+        if ($request->isMethod('post')){
+            $list_students = Student::orderBy('student_number','ASC');
+            if (\request('class_room_batch_id')){
+                $list_students->where('class_room_batch_id',\request('class_room_batch_id'));
+            }
+            $list_students =$list_students->get();
+            $classRoomBatch = ClassRoomBatch::all();
+            return view('Admin.Student.student_immigration', compact( 'title','list_students','classRoomBatch','count'));
+        }
+    }
     public function list_student(Request $request){
         if ($request->isMethod('get')) {
-            $list_students = Student::orderBy('student_number','ASC')->paginate(10);
+            $list_students = Student::orderBy('student_number','ASC')->get();
             $title = 'Student Record | Chubi Project : Management System';
             return view('Admin.Student.list_student', compact( 'title','list_students','count'));
         }
         if ($request->isMethod('post')){
+            $list_students = Student::orderBy('student_number','ASC');
+            if (\request('student_number')){
+                $list_students->where('student_number',\request('student_number'));
+            }
+            if (\request('student_of_year')){
+                $list_students->where('student_of_year',\request('student_of_year'));
+            }
+            $list_students =$list_students->get();
 
+//            if(\request('student_number')){
+//                $list_students = Student::where('student_number',\request('student_number'))->orderBy('student_number','ASC')->get();
+//            }
+//            if(\request('student_of_year')){
+//                $list_students = Student::where('student_of_year',\request('student_of_year'))->orderBy('student_number','ASC')->get();
+//            }
+            return view('Admin.Student.list_student', compact( 'title','list_students','count'));
         }
 
 
@@ -110,6 +146,17 @@ class StudentController extends Controller
             return view('Admin.Student.edit_new_student', compact( 'title','student','class_batch','countries','list_residensal','opt_subject'));
         }
     public function update_student(Request $request, $id){
+        $this->validate($request, [
+            'last_student_name' => 'required',
+            'first_student_name' => 'required',
+            'last_student_japanese_name' => 'required',
+            'first_student_japanese_name' => 'required',
+            'date_of_birth' => 'required',
+            'entry_date' => 'required',
+            'expire_date' => 'required',
+            'class_room_batch_id' => 'required',
+        ]);
+
         $list_student = Student::findOrFail($id);
         $list_student->last_student_name = \request('last_student_name');
         $list_student->first_student_name = \request('first_student_name');

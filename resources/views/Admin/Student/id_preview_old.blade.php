@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -38,7 +39,7 @@
         }
         .issue-date h4{
             margin-top: 21px;
-            margin-left: 33px;
+            margin-left: 23px;
             font-size: 10px;
         }
 
@@ -52,8 +53,8 @@
         .id_photo_stamp{
             float: right;
             position: absolute;
-            top: 70px;
-            left: 3px;
+            top: 64px;
+            left: 1px;
             z-index: 11;
         }
         .qr_photo{
@@ -73,8 +74,8 @@
     <div class="id-content">
         <h4>{{$student->student_number}}</h4>
         <?php $countValue=strlen($student->last_student_name)+strlen($student->first_student_name) ?>
-        @if($countValue>23)
-            <h4 style="font-size: 7px;padding-bottom: 4px;">{{$student->last_student_name}} {{$student->first_student_name}}</h4>
+        @if($countValue>20)
+            <h4 style="font-size: 6px;padding-bottom: 4px;">{{$student->last_student_name}} {{$student->first_student_name}}</h4>
         @else
         <h4>{{$student->last_student_name}} {{$student->first_student_name}}</h4>
         @endif
@@ -87,7 +88,13 @@
         </h4>
         <h4>造形芸術科</h4>
         <h4>{{$student->student_of_year}}</h4>
-        <h4>{{$student->entry_date}}</h4>
+        <h4>
+            @if(isset($student->expire_date))
+                {{$student->expire_date}}
+            @else
+                <i style="font-size: 7px; color:red;">expiry date not found... plz update student</i>
+            @endif
+        </h4>
         {{--<h4>{{$student->entry_date}}</h4>--}}
 
         <div class="id_photo">
@@ -98,13 +105,13 @@
             @endif
             <div class="id_photo_stamp">
 
-                <img src="{{url('public/photos/stamp.png')}}" alt="" style="width:50px;">
+                <img src="{{url('public/photos/stamp.png')}}" alt="" style="width:58px;">
             </div>
             <div style="clear: both; margin-bottom:20px;"></div>
         </div>
         <div style="clear: both; margin-bottom:20px;"></div>
         <div class="issue-date">
-            <h4>{{$student->expire_date}}</h4>
+            <h4>{{$student->entry_date}}</h4>
 
         </div>
         <div style="clear: both; margin-bottom:20px;"></div>

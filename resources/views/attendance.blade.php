@@ -102,7 +102,7 @@
             </ul>
         </section>
         <section class="scans">
-            <h2>Attendances</h2>
+            <h2>Attendances <a href="{{url('attendance_list')}}" style="background-color:darkgrey; color:#fff; padding:5px; text-decoration: none; border-radius: 5px;">Back</a></h2>
             <ul v-if="scans.length === 0">
                 <li class="empty">No Attendance Yet</li>
             </ul>

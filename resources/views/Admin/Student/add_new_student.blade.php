@@ -152,6 +152,7 @@
                                     <option value="{{$classBatch->id}}">{{$classBatch->class_room->name}} ({{$classBatch->batch->name}})</option>
                                 @endforeach
                             </select>
+                            <i style="font-size: 14px; color:Red;">Not Found? <a href="{{url('admin/add_record')}}" target="_blank">Click here</a></i>
                         </div>
                         <div class="form-group col-sm-2">
                             <label for="class_room_batch_id">Opt. Subject / 件名</label>
@@ -161,6 +162,7 @@
                                     <option value="{{$subject->id}}">{{$subject->name}}</option>
                                 @endforeach
                             </select>
+                            <i style="font-size: 14px; color:Red;">Not Found? <a href="{{url('admin/add_subject')}}" target="_blank">Click here</a></i>
                         </div>
                         <div class="form-group col-sm-2">
                             <label>Batch / バッチ<font color="#ff0000">*</font></label>

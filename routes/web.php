@@ -32,6 +32,7 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::get('lang/{locale}', 'LocalizationController@index');
     Route::get('','AdminController@index');
     Route::any('add_student','StudentController@add_student');
+    Route::any('student_immigration','StudentController@student_immigration');
     Route::any('list_student','StudentController@list_student');
     Route::get('list_student/student_id={id}','StudentController@edit_student');
     Route::post('list_student/student_id={id}','StudentController@update_student');
@@ -45,6 +46,10 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
 
     Route::any('add_record','ClassBatchController@add_record');
     Route::any('list_record','ClassBatchController@list_record');
+    Route::get('list_record/{id}/edit_class_room','ClassBatchController@edit_class_room');
+    Route::post('list_record/{id}/edit_class_room','ClassBatchController@update_class_room');
+
+
     Route::post('post_class_record','ClassBatchController@post_class_record');
     Route::post('post_batch_record','ClassBatchController@post_batch_record');
     Route::post('post_classbatch_record','ClassBatchController@post_classbatch_record');

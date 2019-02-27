@@ -92,7 +92,9 @@
 
 
 
-    <!-- Page JS Plugins -->
+    <script src="{{asset('public/server')}}/assets/js/oneui.core.min.js"></script>
+
+    <script src="{{asset('public/server')}}/assets/js/oneui.app.min.js"></script>
     <script src="{{asset('public/server')}}/assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="{{asset('public/server')}}/assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="{{asset('public/server')}}/assets/js/plugins/datatables/buttons/dataTables.buttons.min.js"></script>
@@ -103,9 +105,6 @@
 
     <!-- Page JS Code -->
     <script src="{{asset('public/server')}}/assets/js/pages/be_tables_datatables.min.js"></script>
-    <script src="{{asset('public/server')}}/assets/js/oneui.core.min.js"></script>
-
-    <script src="{{asset('public/server')}}/assets/js/oneui.app.min.js"></script>
     <script src="{{asset('public/server')}}/assets/js/custom.js"></script>
     <!-- Page JS Plugins -->
     <script src="{{asset('public/server')}}/assets/js/plugins/summernote/summernote-bs4.min.js"></script>

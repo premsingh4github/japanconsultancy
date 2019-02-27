@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="{{url('re_logo.png')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{url('public/favcon(2).png')}}">
         <title>
             @if(isset($title))
                 {!! $title !!}
@@ -24,8 +24,6 @@
 
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-    <link rel="shortcut icon" href="{{asset('public/server')}}/assets/media/favicons/favicon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{asset('public/server')}}/assets/media/favicons/favicon-192x192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="{{asset('public/server')}}/assets/media/favicons/apple-touch-icon-180x180.png">
     <!-- END Icons -->
     <!-- Page JS Plugins CSS -->

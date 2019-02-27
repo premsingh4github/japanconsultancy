@@ -443,7 +443,7 @@
                 <a class="font-w600 text-dual" href="{{url('')}}" title="Redirect to home page">
                     <i class="fa fa-circle-notch text-primary"></i>
                     <span class="smini-hide">
-                            <span class="font-w700 font-size-h6">Chubi</span> <span class="font-w400" style="color:#5c80d1;">Management</span>
+                            <span class="font-w700 font-size-h6">Chubi</span> <span class="font-w400" style="font-size:14px; color:#5c80d1;">Management</span>
                         </span>
                 </a>
                 <!-- END Logo -->
@@ -534,20 +534,20 @@
                     <li class="nav-main-heading ">{{__('language.User_Manager')}}</li>
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu <?php if(request()->segment('2') =='superAdmin' || request()->segment('2') =='generalAdmin' || request()->segment('2') =='moderator'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-energy"></i>
+                            <i class="nav-main-link-icon si si-user"></i>
                             <span class="nav-main-link-name">{{__('language.User_controller')}}</span>
                         </a>
                     </li>
                     <li class="nav-main-heading ">{{__('language.STUDENT_TEACHER_MANAGER')}}</li>
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu  <?php if(request()->segment('2') =='clients' || request()->segment('2') =='createClient'){ echo 'active' ;} ?>" data-toggle="submenu"  href="#">
-                            <i class="nav-main-link-icon si si-badge"></i>
+                            <i class="nav-main-link-icon si si-user"></i>
                             <span class="nav-main-link-name">{{__('language.Teachers')}}</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='add_student' || request()->segment('2') =='list_student' || request()->segment('2') =='section_wise_student'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-badge"></i>
+                        <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='add_student' || request()->segment('2') =='list_student' ||  request()->segment('2') =='student_immigration' || request()->segment('2') =='section_wise_student'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                            <i class="nav-main-link-icon si si-user"></i>
                             <span class="nav-main-link-name">{{__('language.Students')}}</span>
                         </a>
                         <ul class="nav-main-submenu">
@@ -562,6 +562,11 @@
                                 </a>
                             </li>
                             <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='student_immigration'){ echo 'active' ;} ?>" href="{{url('admin/student_immigration')}}">
+                                    <span class="nav-main-link-name">Students Immigration</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
                                 <a class="nav-main-link <?php if(request()->segment('2') =='section_wise_student'){ echo 'active' ;} ?>" href="{{url('admin/section_wise_student')}}">
                                     <span class="nav-main-link-name">Section Wise Students</span>
                                 </a>
@@ -571,7 +576,7 @@
                     <li class="nav-main-heading ">{{__('language.CLASS_BATCH_MANAGER')}} </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='list_section' || request()->segment('2') =='add_section' || request()->segment('2') =='add_section' || request()->segment('2') =='class_section'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-badge"></i>
+                            <i class="nav-main-link-icon far fa-calendar-alt"></i>
                             <span class="nav-main-link-name">{{__('language.Residensal_Card_Time')}}</span>
                         </a>
                         <ul class="nav-main-submenu">
@@ -589,7 +594,7 @@
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='list_subject' || request()->segment('2') =='add_subject' || request()->segment('2') =='batch_wise_subject'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-badge"></i>
+                            <i class="nav-main-link-icon fa fa-book-open"></i>
                             <span class="nav-main-link-name">{{__('language.Subjects')}}</span>
                         </a>
                         <ul class="nav-main-submenu">
@@ -612,7 +617,7 @@
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='list_record' || request()->segment('2') =='add_record'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-badge"></i>
+                            <i class="nav-main-link-icon fa fa-layer-group"></i>
                             <span class="nav-main-link-name">{{__('language.Class_Batch')}}</span>
                         </a>
                         <ul class="nav-main-submenu">
@@ -630,7 +635,7 @@
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='list_section' || request()->segment('2') =='add_section' || request()->segment('2') =='add_section' || request()->segment('2') =='class_section'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-badge"></i>
+                            <i class="nav-main-link-icon fa fa-object-group"></i>
                             <span class="nav-main-link-name">{{__('language.Section')}}</span>
                         </a>
                         <ul class="nav-main-submenu">
@@ -654,7 +659,7 @@
                     <li class="nav-main-heading ">Days/Holiday Manager</li>
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='holiday' || request()->segment('2') =='new_holiday'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-badge"></i>
+                            <i class="nav-main-link-icon fa fa-birthday-cake"></i>
                             <span class="nav-main-link-name">Holiday</span>
                         </a>
                         <ul class="nav-main-submenu">
@@ -672,7 +677,7 @@
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='holiday' || request()->segment('2') =='new_holiday'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-badge"></i>
+                            <i class="nav-main-link-icon si si-calendar"></i>
                             <span class="nav-main-link-name">Section Wise Days</span>
                         </a>
                         <ul class="nav-main-submenu">
@@ -685,8 +690,13 @@
                     </li>
                     <li class="nav-main-heading ">Attendance</li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link   <?php if(request()->segment('2') =='holiday' || request()->segment('2') =='new_holiday'){ echo 'active' ;} ?>" href="{{url('attendance_list')}}">
+                        <a class="nav-main-link   <?php if(request()->segment('2') =='attendance_list'){ echo 'active' ;} ?>" href="{{url('attendance_list')}}">
+                            <i class="nav-main-link-icon fa fa-th-list"></i>
                             <span class="nav-main-link-name">List Attendance</span>
+                        </a>
+                        <a class="nav-main-link" href="{{url('attendance')}}" >
+                            <i class="nav-main-link-icon si si-reload"></i>
+                            <span class="nav-main-link-name">QR Scanner</span>
                         </a>
                     </li>
                 </ul>
@@ -763,7 +773,7 @@
                     {{--</div>--}}
                     <div class="dropdown d-inline-block ml-2">
                         <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="rounded" src="{{asset('public')}}/images/icon/language_chubi.png" alt="Language" style="width: 18px;">
+                            <i class="fa fa-language" style="width: 20px; color:blue;"></i>
                             <span class="d-none d-sm-inline-block ml-1">{{__('language.Language')}}</span>
                             <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
                         </button>
