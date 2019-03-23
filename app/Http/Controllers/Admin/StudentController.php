@@ -257,7 +257,8 @@ class StudentController extends Controller
     public function export_pdf($id)
     {
         $student = Student::findOrFail($id);
-        $pdf = PDF::loadView('Admin.Student.id_preview',compact('student'));
+        $title = 'Student Id Card | Chubi Project : Management System';
+        $pdf = PDF::loadView('Admin.Student.id_preview',compact('student','title'));
         return $pdf->download('id_card.pdf');
     }
 

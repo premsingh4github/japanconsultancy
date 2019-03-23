@@ -104,7 +104,6 @@
                 <img src="{{url('public/photos/avatar.jpg')}}" alt="" class="" style="background-color: #fff; width:80px; height:85px;  border: 2px solid lightgrey; padding:2px;">
             @endif
             <div class="id_photo_stamp">
-
                 <img src="{{url('public/photos/stamp.png')}}" alt="" style="width:58px;">
             </div>
             <div style="clear: both; margin-bottom:20px;"></div>
