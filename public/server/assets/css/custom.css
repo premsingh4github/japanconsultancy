@@ -7,7 +7,19 @@
   margin-top: 50px;
   margin-left: -20px;
 }
-
+.teacher_details b {
+  color: white;
+  font-size: large;
+}
+.teacher_details {
+    text-align: justify;
+  border-radius: 20px 40px 0 40px;
+  padding: 10px;
+  background-color: #f33d03;
+}
+.teacher_profile img{
+  border-radius: 50%;
+}
 .student_img_show img{
   max-width: 100%;
   overflow: hidden;

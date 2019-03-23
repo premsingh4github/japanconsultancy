@@ -15,7 +15,7 @@ class Student extends Model
     return $this->belongsTo('App\Country');
 }
     public function residensal(){
-    return $this->belongsTo(ResidensalCardTime::class,'residensalCardTime');
+    return $this->belongsTo('App\ResidensalCardTime','residensalCardTime');
 }
     public function subject(){
     return $this->belongsTo(Subject::class,'subject_optional_id');

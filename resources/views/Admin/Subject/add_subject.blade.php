@@ -8,13 +8,13 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        Subject Manager
+                        {{__('language.Subject_Manager')}}
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">Add Subject</li>
+                            <li class="breadcrumb-item">{{__('language.Add_New_Subject')}}</li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="{{url('admin/list_subject')}}">List Subject</a>
+                                <a class="link-fx" href="{{url('admin/list_subject')}}">{{__('language.List_Exist_Subject')}}</a>
                             </li>
                         </ol>
                     </nav>
@@ -44,19 +44,19 @@
                     {{csrf_field()}}
                     <div class="row">
                         <div class="form-group col-sm-6">
-                            <label for="student_name">Subject Name<font color="#ff0000">*</font></label>
+                            <label for="student_name">{{__('language.Subject_Name')}}<font color="#ff0000">*</font></label>
                             <input type="text" class="form-control" id="name" name="name" required="" data-validation-error-msg="news title is required">
                             {{$errors->first('name')}}
                         </div>
                         <div class="form-group col-sm-6">
-                            <label for="subject_type">Subject Type <font color="#ff0000">*</font></label>
+                            <label for="subject_type">{{__('language.Subject_Type')}} <font color="#ff0000">*</font></label>
                             <select name="subject_type" id="subject_type" class="form-control">
-                                <option value="compulsary">Compulsary</option>
-                                <option value="optional">Optional</option>
+                                <option value="compulsary">{{__('language.Compulsary')}}</option>
+                                <option value="optional">{{__('language.Optional')}}</option>
                             </select>
                         </div>
                         <div class="form-group col-sm-4">
-                            <button type="submit" class="btn  btn-success">Save Student</button>
+                            <button type="submit" class="btn  btn-success">{{__('language.Save_Student')}}</button>
                         </div>
                     </div>
                 </form>

@@ -12,8 +12,9 @@
         <!-- Hero -->
         <div class="block-content block-content-full">
             <div class="form-group col-sm-3">
+                
                 <div class="student_image">
-                    <label for="student_name">Select Running Section</label>
+                    <label for="student_name">{{__('language.Select_Running_Section')}}</label>
                     <select name="section" class="form-control" onchange="sectionChanged(this)">
                         @foreach($sections as $section)
                             <option @if(request('section') == $section->id) selected @endif value="{{$section->id}}">{{$section->class_section->name}}_{{$section->class_room_batch->batch->name}}</option>
@@ -28,9 +29,10 @@
                         text-transform: none;
                     }
                 </style>
+                
                 <tr>
                     <td colspan="6"> &nbsp;</td>
-                    <td > 曜日(DAYS)</td>
+                    <td >{{__('language.Day')}}</td>
                     <?php
                     $start_date = $class_section_student->start_date;
                     $end_date = $class_section_student->end_date;
@@ -46,13 +48,13 @@
                     @endwhile
                 </tr>
                 <tr>
-                    <th >SN</th>
-                    <th >Student NO.</th>
-                    <th class="font-w700">顔写真(PHOTO)</th>
-                    <th class="font-w700">名前(NAME)</th>
-                    <th class="font-w700">フリガナ(JAPANESE NAME)</th>
-                    <th class="font-w700">性別(SEX)</th>
-                    <th class="font-w700">時限(PERIOD)</th>
+                    <th >{{__('language.SN')}}</th>
+                    <th >{{__('language.Student_ID_No')}}</th>
+                    <th class="font-w700">{{__('language.Photo')}}</th>
+                    <th class="font-w700">{{__('language.Student_Name')}}</th>
+                    <th class="font-w700">{{__('language.Japanese_Name')}}</th>
+                    <th class="font-w700">{{__('language.Sex')}}</th>
+                    <th class="font-w700">{{__('language.Period')}}</th>
                     <th class="font-w700">{{$class_section_student->start_date}}</th>
                     <?php
                     $start_date = $class_section_student->start_date;

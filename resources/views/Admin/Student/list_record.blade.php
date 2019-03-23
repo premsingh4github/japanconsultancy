@@ -28,13 +28,13 @@
                         <div class="block-header border-bottom">
                             <div class="block-options">
                                 <h1 class="flex-sm-fill h3 my-2">
-                                    Class/Batch Manager
+                                    {{__('language.Class_batch_manger')}}
                                 </h1>
                                 <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                                     <ol class="breadcrumb breadcrumb-alt">
-                                        <li class="breadcrumb-item">Class/Batch Manager</li>
+                                        <li class="breadcrumb-item">{{__('language.Class_batch_manger')}}</li>
                                         <li class="breadcrumb-item" aria-current="page">
-                                            <a class="link-fx" href="{{url('admin/add_record')}}">Add Record</a>
+                                            <a class="link-fx" href="{{url('admin/add_record')}}">{{__('language.Add_Record')}}</a>
                                         </li>
                                     </ol>
                                 </nav>
@@ -43,13 +43,13 @@
                         <div class="block-content block-content-full">
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <h4>Class Room Status</h4>
+                                    <h4>{{__('language.class_room_status')}}</h4>
                                     <table class="table table-responsive table-bordered table-striped">
                                         <thead>
                                         <tr>
-                                            <th>SN</th>
-                                            <th>Class Name</th>
-                                            <th>Action</th>
+                                            <th>{{__('language.SN')}}</th>
+                                            <th>{{__('language.Class_Name')}}</th>
+                                            <th>{{__('language.Action')}}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -66,13 +66,13 @@
                                     </table>
                                 </div>
                                 <div class="col-sm-4">
-                                    <h4>Batch Year Status</h4>
+                                    <h4>{{__('language.batch_year_status')}}</h4>
                                     <table class="table table-responsive table-bordered table-striped">
                                         <thead>
                                         <tr>
-                                            <th>SN</th>
-                                            <th>Batch Year</th>
-                                            <th>Action</th>
+                                            <th>{{__('language.SN')}}</th>
+                                            <th>{{__('language.Batch_Year')}}</th>
+                                            <th>{{__('language.Action')}}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -90,14 +90,14 @@
 
                                 </div>
                                 <div class="col-sm-4">
-                                    <h4>Class/Batch Group</h4>
+                                    <h4>{{__('language.Class_Batch_Group')}}</h4>
                                     <table class="table table-responsive table-bordered table-striped">
                                         <thead>
                                         <tr>
-                                            <th>SN</th>
-                                            <th>Class Name</th>
-                                            <th>Batch Year</th>
-                                            <th>Action</th>
+                                            <th>{{__('language.SN')}}</th>
+                                            <th>{{__('language.Class_Name')}}</th>
+                                            <th>{{__('language.Batch_Year')}}</th>
+                                            <th>{{__('language.Action')}}</th>
                                         </tr>
                                         </thead>
                                         <tbody>

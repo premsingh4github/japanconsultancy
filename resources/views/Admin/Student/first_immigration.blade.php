@@ -12,7 +12,7 @@
                     <h3 class="block-title">届　出　機　関　名:<small>　学校法人郡山学園　専門学校　中央美術学園</small></h3>
                 </div>
                 <div class="block-header">
-                    <h3 class="block-title">Name of the organization:<small></small></h3>
+                    <h3 class="block-title">{{__('language.Name_of_the_organization')}}<small></small></h3>
                 </div>
                 <div class="block-content block-content-full">
                     <p class="font-size-sm text-muted">
@@ -34,10 +34,10 @@
                         <form action="" method="post">
                             {{csrf_field()}}
                             <div class="row">
-                                <div class="col-sm-3"><label for="">Choose Student Batch</label></div>
+                                <div class="col-sm-3"><label for="">{{__('language.Choose_student_batch')}}</label></div>
                                 <div class="col-sm-3">
                                     <select name="class_room_batch_id" class="form-control form-control-sm" id="">
-                                        <option value="">View All Year</option>
+                                        <option value="">{{__('language.View_All_Year')}}</option>
                                     @foreach($classRoomBatch as $batch)
                                             <option @if(request('class_room_batch_id') == $batch->id) selected="selected" @endif value="{{$batch->id}}">{{$batch->class_room->name}}-{{$batch->batch->name}}</option>
                                             @endforeach
@@ -48,10 +48,10 @@
                                 </div>
                                 <div class="col-sm-12">
                                     @if(count($list_students)>0)
-                                        <i style="font-size: 15px; color:Green;">{{count($list_students)}} Students Found</i>
+                                        <i style="font-size: 15px; color:Green;">{{count($list_students)}} {{__('language.Students_Found')}}</i>
                                     </div>
                                 @else
-                                    <i style="font-size: 15px; color:Red;">Record Not Found</i>
+                                    <i style="font-size: 15px; color:Red;">{{__('language.Record_Not_Found')}}</i>
                                     @endif
                             </div>
                         </form>
@@ -61,27 +61,22 @@
                     <table class="table-bordered table-striped js-dataTable-buttons">
                         <thead>
                         <tr>
-                            <th>SN</th>
-                            <th>{{__('language.Residential_Card_No')}}</th>
+                            <th>{{__('language.SN')}}</th>
                             <th>{{__('language.Nationality')}}</th>
                             <th>{{__('language.student_name')}}</th>
                             {{--<th class="d-none d-sm-table-cell" style="width: 30%;">Name (Japanese)</th>--}}
                             <th>{{__('language.student_gender')}}</th>
                             <th>{{__('language.student_dob')}}</th>
-                            <th>{{__('language.Entry_Date')}}</th>
-                            <th>{{__('language.student_Status')}}</th>
-                            <th>{{__('language.Card_Period')}}</th>
-                            <th>{{__('language.Card_Expire')}}</th>
-                            <th>{{__('language.student_remarks')}}</th>
+                            <th>{{__('language.Address')}}</th>
+                            <th>{{__('language.Residential_Card_No')}}</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($list_students as $key=>$students)
                         <tr>
                             <td>{{++$key}}</td>
-                            <td>{{$students->residensal_card}}</td>
                             <td>{{$students->country->name}}</td>
-                            <td><a href="{{url('admin/list_student/student_id=').$students->id.'/remarks'}}" title="Click here to update">{{$students->last_student_name}} {{$students->first_student_name}}</a></td>
+                            <td>{{$students->last_student_name}} {{$students->first_student_name}}</td>
                             {{--<td>{{$students->last_student_japanese_name}} {{$students->first_student_japanese_name}}</td>--}}
                             <td>
                                 @if($students->student_sex == 'f')
@@ -93,13 +88,8 @@
                                     @endif
                             </td>
                             <td>{{$students->date_of_birth}}</td>
-                            <td>{{$students->entry_date}}</td>
-                            <td>{{$students->student_status}}</td>
-                            <td>@if(isset($students->residensal->name)){{$students->residensal->name}}@endif</td>
-                            <td>{{$students->residensal_card_expire}}</td>
-                            <td>
-                                <a href="{{url('admin/list_student/student_id=').$students->id.'/remarks'}}" title="Click here to edit">{!! $students->student_note !!}</a>
-                            </td>
+                            <td>{{$students->address}}</td>
+                            <td>{{$students->residensal_card}}</td>
                         </tr>
                             @endforeach
                         </tbody>

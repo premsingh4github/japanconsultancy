@@ -6,9 +6,9 @@
             <!-- Dynamic Table with Export Buttons -->
             <div class="block">
                 <div class="block-header">
-                    <h3 class="block-title">Section Wise Days</h3>
+                    <h3 class="block-title">{{__('language.Section_Wise_Days')}}</h3>
                     <div class="pull-right">
-                        <a href="{{url('admin/new_section_day')}}" class="btn btn-primary btn-sm"><i class=" fa fa-plus"></i> Add Record</a>
+                        <a href="{{url('admin/new_section_day')}}" class="btn btn-primary btn-sm"><i class=" fa fa-plus"></i>{{__('language.Add_New_Section')}}</a>
                     </div>
                 </div>
                 <div class="block-content block-content-full">
@@ -30,10 +30,10 @@
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
                         <tr>
-                            <th>SN</th>
-                            <th>Class Section</th>
-                            <th>Day</th>
-                            <th>Action</th>
+                            <th>{{__('language.SN')}}</th>
+                            <th>{{__('language.Class_Wise_Section')}}</th>
+                            <th>{{__('language.Day')}}</th>
+                            <th>{{__('language.Action')}}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -45,8 +45,8 @@
                                 </td>
                                 <td>{{$section_day->day}}</td>
                                 <td>
-                                    <a href="#"><span class="badge badge-info">Edit</span></a>
-                                    <a href=""><span class="badge badge-danger">Delete</span></a>
+                                    <a href="#"><span class="badge badge-info">{{__('language.Edit')}}</span></a>
+                                    <a href=""><span class="badge badge-danger">{{__('language.Delete')}}</span></a>
                                 </td>
                             </tr>
                             <@endforeach

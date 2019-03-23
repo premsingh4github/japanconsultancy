@@ -32,7 +32,6 @@ class StudentController extends Controller
             $this->validate($request, [
                 'residensal_card' => 'required|unique:students,residensal_card',
                 'last_student_name' => 'required',
-                'class_room_batch_id' => 'required',
                 'first_student_name' => 'required',
                 'last_student_japanese_name' => 'required',
                 'first_student_japanese_name' => 'required',
@@ -92,91 +91,24 @@ class StudentController extends Controller
             return redirect('admin/list_student')->with('success', 'Record Saved Successfully');
         }
     }
-    public function first_immigration(Request $request){
-        if ($request->isMethod('get')) {
-            $list_students = Student::orderBy('student_number', 'ASC')->get();
-            $classRoomBatch = ClassRoomBatch::all();
-            $title = 'Student Immigration | Chubi Project : Management System';
-            return view('Admin.Student.first_immigration', compact('title', 'list_students', 'classRoomBatch', 'count'));
-        }
-        if ($request->isMethod('post')){
-            $list_students = Student::orderBy('student_number','ASC');
-            if (\request('class_room_batch_id')){
-                $list_students->where('class_room_batch_id',\request('class_room_batch_id'));
-            }
-            $list_students =$list_students->get();
-            $classRoomBatch = ClassRoomBatch::all();
-            return view('Admin.Student.first_immigration', compact( 'title','list_students','classRoomBatch','count'));
-        }
-    }
-    public function second_immigration(Request $request){
-        if ($request->isMethod('get')) {
-            $list_students = Student::orderBy('student_number', 'ASC')->get();
-            $classRoomBatch = ClassRoomBatch::all();
-            $title = 'Student Immigration | Chubi Project : Management System';
-            return view('Admin.Student.second_immigration', compact('title', 'list_students', 'classRoomBatch', 'count'));
-        }
-        if ($request->isMethod('post')){
-            $list_students = Student::orderBy('student_number','ASC');
-            if (\request('class_room_batch_id')){
-                $list_students->where('class_room_batch_id',\request('class_room_batch_id'));
-            }
-            $list_students =$list_students->get();
-            $classRoomBatch = ClassRoomBatch::all();
-            return view('Admin.Student.second_immigration', compact( 'title','list_students','classRoomBatch','count'));
-        }
-    }
-    public function update_student_remarks(Request $request, $id){
-        $this->validate($request, [
-            'student_note' => 'required',
-            'student_status' => 'required',
-        ]);
-
-        $list_student = Student::findOrFail($id);
-        $list_student->student_note = \request('student_note');
-        $list_student->student_status = \request('student_status');
-        $list_student->save();
-        return redirect('admin/student_immigration')->with('success', 'Record Updated');
-    }
-
-
     public function list_student(Request $request){
         if ($request->isMethod('get')) {
-            $list_students = Student::orderBy('student_number','ASC')->get();
+            $list_students = Student::orderBy('student_number','ASC')->paginate(20);
             $title = 'Student Record | Chubi Project : Management System';
             return view('Admin.Student.list_student', compact( 'title','list_students','count'));
         }
         if ($request->isMethod('post')){
-            $list_students = Student::orderBy('student_number','ASC');
-            if (\request('student_number')){
-                $list_students->where('student_number',\request('student_number'));
+            $list_students = Student::orderBy('student_number','ASC')->paginate(20);
+            if(\request('student_number')){
+                $list_students = Student::where('student_number',\request('student_number'))->paginate(20);;
             }
-            if (\request('student_of_year')){
-                $list_students->where('student_of_year',\request('student_of_year'));
+            if(\request('student_of_year')){
+                $list_students = Student::where('student_of_year',\request('student_of_year'))->paginate(20);;
             }
-            $list_students =$list_students->get();
-
-//            if(\request('student_number')){
-//                $list_students = Student::where('student_number',\request('student_number'))->orderBy('student_number','ASC')->get();
-//            }
-//            if(\request('student_of_year')){
-//                $list_students = Student::where('student_of_year',\request('student_of_year'))->orderBy('student_number','ASC')->get();
-//            }
             return view('Admin.Student.list_student', compact( 'title','list_students','count'));
         }
 
 
-        }
-
-
-    public function edit_student_remarks ($id){
-            $student = Student::findOrfail($id);
-            $class_batch = ClassRoomBatch::all();
-            $countries = Country::all();
-            $opt_subject = Subject::where('subject_type','optional')->get();
-            $list_residensal = ResidensalCardTime::all();
-            $title = 'Edit Student Record | Chubi Project : Management System';
-            return view('Admin.Student.edit_student_remarks', compact( 'title','student','class_batch','countries','list_residensal','opt_subject'));
         }
     public function edit_student($id){
             $student = Student::findOrfail($id);
@@ -196,7 +128,6 @@ class StudentController extends Controller
             'date_of_birth' => 'required',
             'entry_date' => 'required',
             'expire_date' => 'required',
-            'class_room_batch_id' => 'required',
         ]);
 
         $list_student = Student::findOrFail($id);

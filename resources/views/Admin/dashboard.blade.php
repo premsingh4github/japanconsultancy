@@ -50,7 +50,7 @@
                 <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                     <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
                         <div class="block-content block-content-full">
-                            <div class="font-size-sm font-w600 text-uppercase text-muted">Student (Male)</div>
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">{{__('language.Students')}} ({{__('language.Male')}})</div>
                             <?php $totalUser = \App\Student::where('student_sex','m')->get()?>
                             <div class="font-size-h2 font-w400 text-dark"> <i class="fa fa-users"></i> {{count($totalUser)}}</div>
                             <?php ; ?>
@@ -60,7 +60,7 @@
                 <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                     <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
                         <div class="block-content block-content-full">
-                            <div class="font-size-sm font-w600 text-uppercase text-muted">Student (Female)</div>
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">{{__('language.Students')}} ({{__('language.Female')}})</div>
                             <?php $totalUser = \App\Student::where('student_sex','f')->get()?>
                             <div class="font-size-h2 font-w400 text-dark"> <i class="fa fa-users"></i> {{count($totalUser)}}</div>
                             <?php ; ?>
@@ -91,7 +91,7 @@
                 <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                     <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
                         <div class="block-content block-content-full">
-                            <div class="font-size-sm font-w600 text-uppercase text-muted">Students in {{$countBatch->class_room->name}}-{{$countBatch->batch->name}}</div>
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">{{__('language.Student_In_Batch')}} {{$countBatch->batch->name}}</div>
                             <div class="font-size-h2 font-w400 text-dark"> <i class="fa fa-users"></i> {{count($countBatch->students)}}</div>
                         </div>
                     </a>

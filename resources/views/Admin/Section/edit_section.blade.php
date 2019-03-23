@@ -8,16 +8,16 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        Edit Section
+                        {{__('language.Edit_Section')}}
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">Edit Section</li>
+                            <li class="breadcrumb-item">{{__('language.Edit_Section')}}</li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="{{url('admin/add_section')}}">Add Section</a>
+                                <a class="link-fx" href="{{url('admin/add_section')}}">{{__('language.Add_New_Section')}}</a>
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="{{url('admin/list_section')}}">List Section</a>
+                                <a class="link-fx" href="{{url('admin/list_section')}}">{{__('language.List_Exist_Section')}}</a>
                             </li>
                         </ol>
                     </nav>
@@ -47,12 +47,12 @@
                     {{csrf_field()}}
                     <div class="row">
                         <div class="form-group col-sm-12">
-                            <label for="student_name">Section Name<font color="#ff0000">*</font></label>
+                            <label for="student_name">{{__('language.Section')}}<font color="#ff0000">*</font></label>
                             <input type="text" class="form-control" id="name" name="name" value="{{$subject->name}}">
                             {{$errors->first('name')}}
                         </div>
                         <div class="form-group col-sm-4">
-                            <button type="submit" class="btn  btn-success">Update</button>
+                            <button type="submit" class="btn  btn-success">{{__('language.Update_Section')}}</button>
                         </div>
                     </div>
 

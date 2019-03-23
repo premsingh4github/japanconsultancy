@@ -6,9 +6,9 @@
             <!-- Dynamic Table with Export Buttons -->
             <div class="block">
                 <div class="block-header">
-                    <h3 class="block-title">Holiday List</h3>
+                    <h3 class="block-title">{{__('language.List_Exist_Holiday')}}</h3>
                     <div class="pull-right">
-                        <a href="{{url('admin/new_holiday')}}" class="btn btn-primary btn-sm"><i class=" fa fa-plus"></i> Add Holiday</a>
+                        <a href="{{url('admin/new_holiday')}}" class="btn btn-primary btn-sm"><i class=" fa fa-plus"></i> {{__('language.Add_New_Holiday')}}</a>
                     </div>
                 </div>
                 <div class="block-content block-content-full">
@@ -30,10 +30,10 @@
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
                         <tr>
-                            <th>SN</th>
-                            <th>Date</th>
-                            <th>Title</th>
-                            <th>Action</th>
+                            <th>{{__('language.SN')}}</th>
+                            <th>{{__('language.Date')}}</th>
+                            <th>{{__('language.Title')}}</th>
+                            <th>{{__('language.Action')}}</th>
                         </tr>
                         </thead>
                         <tbody>

@@ -19,17 +19,17 @@
                                 {{csrf_field()}}
                             <div class="row">
                                     <div class="col-sm-5">
-                                        <input type="text" name="student_number" @if(request('student_number')) value="{{request('student_number')}}" @endif  class="form-control" placeholder="{{__('language.Enter_student_number')}}">
+                                        <input type="text" name="student_number"  class="form-control" placeholder="Enter Student Number">
                                     </div>
                                     <div class="col-sm-4">
                                         <select  name="student_of_year"  class="form-control">
-                                            <option value="">{{__('language.student_year')}}</option>
-                                            <option @if(request('student_of_year') == '第1学年') selected @endif value="第1学年">第1学年</option>
-                                            <option @if(request('student_of_year') == '第2学年') selected @endif value="第2学年">第2学年</option>
+                                            <option value="">Student Year</option>
+                                            <option value="第1学年">第1学年</option>
+                                            <option value="第2学年">第2学年</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-3">
-                                        <button type="submit" class="btn btn-outline-primary">{{__('language.Search')}}</button>
+                                        <button type="submit" class="btn btn-outline-primary">Search</button>
                                     </div>
                             </div>
                             </form>
@@ -41,15 +41,17 @@
                 <div class="col-lg-12">
                     <div class="block block-mode-loading-oneui">
                         <div class="block-header border-bottom">
-                            <h3 class="block-title">{{__('language.student_record')}}
-                                <b style="color: blue"> 総学生 ({{__('language.Total_Students')}})
-                                    {{count($list_students)}}
+                            <h3 class="block-title">Students Record
+                                <b style="color: blue"> 総学生 (Total Student)
+                                    <?php $totalStudent = \App\Student::all()?>
+                                    {{count($totalStudent)}}
+                                    <?php ; ?>
                                 </b>
                             </h3>
                             <div class="block-options">
-                                {{--<button type="button" class="btn-block-option">--}}
-                                    {{--{{ $list_students->links() }}--}}
-                                {{--</button>--}}
+                                <button type="button" class="btn-block-option">
+                                    {{ $list_students->links() }}
+                                </button>
                                 <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
                                     <i class="si si-refresh"></i>
                                 </button>
@@ -81,29 +83,31 @@
                                     }
                                 </style>
                                 <tr>
-                                    <th class="font-w700">{{__('language.SN')}}</th>
-                                    <th class="font-w700">{{__('language.Photo')}}</th>
-                                    <th class="font-w700">{{__('language.Download')}}</th>
-                                    <th class="font-w700">{{__('language.Residential_ID')}}</th>
-                                    <th class="font-w700">{{__('language.Student_Name')}}</th>
-                                    <th class="font-w700">{{__('language.Japanese_Name')}}</th>
-                                    <th class="font-w700">{{__('language.Student_ID_No')}}</th>
-                                    <th class="font-w700">{{__('language.Student_Class_Batch')}}</th>
-                                    <th class="font-w700">{{__('language.Address')}}</th>
-                                    <th class="font-w700">{{__('language.Gender')}}</th>
-                                    <th class="font-w700">{{__('language.Action')}}</th>
+                                    <th class="font-w700">SN</th>
+                                    <th class="font-w700">Photo</th>
+                                    <th class="font-w700">Download</th>
+                                    <th class="font-w700">Residential ID</th>
+                                    <th class="font-w700">Student Name</th>
+                                    <th class="font-w700">Japanese Name</th>
+                                    <th class="font-w700">Student ID No.</th>
+                                    <th class="font-w700">Student Class/Batch</th>
+                                    <th class="font-w700">Address</th>
+                                    <th class="font-w700">Gender</th>
+                                    <th class="font-w700">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <?php $i = $list_students->perPage() * ($list_students->currentPage() - 1); ?>
                                 @foreach($list_students as $key=>$students)
                                 <tr>
-                                    <td>{{++$key}}</td>
+                                    <td><?php $i++;?>{{$i}} </td>
                                     <td>
                                         @if(isset($students->photo))
                                         <img src="{{url('public/photos').'/'.$students->photo}}" alt="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">
                                         @else
                                             <img src="{{url('public/photos/avatar.jpg')}}" alt="" class="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">
                                         @endif
+
                                     </td>
                                     <td>
                                         <div class="dropdown d-inline-block ml-2">
@@ -116,17 +120,11 @@
                                                     <a class="dropdown-item d-flex align-items-center justify-content-between" onclick="window.open('{{url('admin/list_student/'.$students->id)}}', 'popup', 'height=600,width=700,scrollbars=yes,resize=no,status=no,left=100,top=100');">
                                                     <span>ID Card</span> <i class="fa fa-eye"></i>
                                                     </a>
-                                                    {{--<a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ url('admin/list_student/pdf').'/'.$students->id }}">--}}
-                                                        {{--<span>ID Card</span>  <i class="fa fa-download"></i>--}}
-                                                    {{--</a>--}}
-                                                    <a class="dropdown-item d-flex align-items-center justify-content-between" onclick="window.open('{{url('admin/graduation_prospect_certificate/'.$students->id)}}', 'popup', 'height=1122,width=994,scrollbars=yes,resize=no,status=no,left=100,top=100');">
-                                                        <span>Graduation Prospect cerificate</span> <i class="fa fa-eye"></i>
-                                                    </a>
-                                                    <a class="dropdown-item d-flex align-items-center justify-content-between" onclick="window.open('{{url('admin/Graduation_certificate/'.$students->id)}}', 'popup', 'height=1122,width=994,scrollbars=yes,resize=no,status=no,left=100,top=100');">
-                                                        <span>Graduation Certificate </span>  <i class="fa fa-eye"></i>
-                                                    </a>
-                                                    <a class="dropdown-item d-flex align-items-center justify-content-between" onclick="window.open('{{url('admin/certificate_of_student_status/'.$students->id)}}', 'popup', 'height=1122,width=994,scrollbars=yes,resize=no,status=no,left=100,top=100');">
-                                                        <span>certificate of student status</span> <i class="fa fa-eye"></i>
+                                                    <!--<a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ url('admin/list_student/pdf').'/'.$students->id }}">-->
+                                                    <!--    <span>ID Card</span>  <i class="fa fa-download"></i>-->
+                                                    <!--</a>-->
+                                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="#">
+                                                        <span>Certificate</span>  <i class="fa fa-download"></i>
                                                     </a>
                                                 </div>
                                             </div>
@@ -167,16 +165,18 @@
                                         <a href="{{url('admin/list_student/student_id=').$students->id}}" class="fa fa-edit"></a>
                                         <a href="#" onclick="return confirm('Are you sure you want to transfer this Student another batch?');"  class="fa fa-exchange-alt" style="color: red;"></a>
                                     </td>
+
+
                                 </tr>
                                     @endforeach
                                 </tbody>
                                 <tbody>
-                                {{--<tr>--}}
-                                    {{--<th colspan="11">--}}
-                                        {{--{{ $list_students->links() }}--}}
+                                <tr>
+                                    <th colspan="11">
+                                        {{ $list_students->links() }}
 
-                                    {{--</th>--}}
-                                {{--</tr>--}}
+                                    </th>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>

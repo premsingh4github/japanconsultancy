@@ -8,13 +8,13 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        Class/Batch Manager
+                        {{__('language.Class_batch_manger')}}
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">Add Class/Batch</li>
+                            <li class="breadcrumb-item">{{__('language.Add_Class_Batch')}}</li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="{{url('admin/list_record')}}">List Class/Batch</a>
+                                <a class="link-fx" href="{{url('admin/list_record')}}">{{__('language.List_Class_Batch')}}</a>
                             </li>
                         </ol>
                     </nav>
@@ -42,14 +42,14 @@
             <div class="block" style="padding:10px;">
                 <div class="row">
                     <div class="col-sm-3">
-                        <span><h4>Create Class Room</h4></span>
+                        <span><h4>{{__('language.Create_Class_Room')}}</h4></span>
                     <form action="{{url('admin/post_class_record')}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
-                            <label for="name">Create Class <font color="#ff0000">*</font></label>
+                            <label for="name"> {{__('language.Create_Class')}}<font color="#ff0000">*</font></label>
                             <input type="text" class="form-control" id="name" name="name" required="" data-validation-error-msg="news title is required">
-                                <button type="submit" class="btn  btn-success">Create Class</button>
+                                <button type="submit" class="btn  btn-success">{{__('language.Create_Class')}}</button>
                         <ul>
-                            Allready Listed Class</li>
+                          <li> {{__('language.Allready_Listed_Class')}}</li>
                             @foreach($class as $classRoom)
                             <li>{{$classRoom->name}}</li>
                                 @endforeach
@@ -57,14 +57,14 @@
                     </form>
                     </div>
                         <div class="col-sm-4">
-                            <span><h4>Create Batch Year</h4></span>
+                            <span><h4>{{__('language.Create_Batch_Year')}}</h4></span>
                             <form action="{{url('admin/post_batch_record')}}" method="post" enctype="multipart/form-data">
                                 {{csrf_field()}}
-                                <label for="name">Create Batch <font color="#ff0000">*</font></label>
+                                <label for="name"> {{__('language.Create_Batch')}}<font color="#ff0000">*</font></label>
                                 <input type="text" class="form-control" id="name" name="name"  required="" data-validation-error-msg="news title is required">
-                                <button type="submit" class="btn  btn-success">Create Batch</button>
+                                <button type="submit" class="btn  btn-success">{{__('language.Create_Batch')}}</button>
                                 <ul>
-                                    Allready Listed Batch Year</li>
+                                   <li> {{__('language.Allready_Listed_Batch_Year')}}</li>
                                     @foreach($batch as $batchYear)
                                         <li>{{$batchYear->name}}</li>
                                     @endforeach
@@ -73,27 +73,27 @@
                             </form>
                         </div>
                         <div class="col-md-5">
-                            <span><h4>Create Group</h4></span>
+                            <span><h4>{{__('language.Create_Group')}}</h4></span>
                             <form action="{{url('admin/post_classbatch_record')}}" method="post" enctype="multipart/form-data">
                                 {{csrf_field()}}
-                                    <label for="class_room_id">Select Class <font color="#ff0000">*</font></label>
+                                    <label for="class_room_id">{{__('language.Select_Class')}} <font color="#ff0000">*</font></label>
                                 <select name="class_room_id" class="form-control"  id="">
-                                    <option value="">[Select]</option>
+                                    <option value="">[{{__('language.Select')}}]</option>
                                     @foreach($class as $classroom)
                                         <option value="{{$classroom->id}}">{{$classroom->name}}</option>
                                         @endforeach
                                 </select>
-                                    <label for="batch_id">Select Batch <font color="#ff0000">*</font></label>
+                                    <label for="batch_id"> {{__('language.Select_Batch')}}<font color="#ff0000">*</font></label>
                                 <select name="batch_id" class="form-control"  id="">
-                                    <option value="">[Select]</option>
+                                    <option value="">[{{__('language.Select')}}]</option>
                                     @foreach($batch as $batchyear)
                                         <option value="{{$batchyear->id}}">{{$batchyear->name}}</option>
                                     @endforeach
                                 </select>
                                 <div style="clear: both;"></div>
-                                <button type="submit" class="btn  btn-success">Create Group</button>
+                                <button type="submit" class="btn  btn-success">{{__('language.Create_Group')}}</button>
                                 <ul>
-                                    Allready Listed Batch Wise Class</li>
+                                    <li>{{__('language.Allready_Listed_Batch_Wise_Class')}}</li>
                                     @foreach($ClassRoomBatch as $ClassRoomBatches)
                                         <li>{{$ClassRoomBatches->class_room->name}}-{{$ClassRoomBatches->batch->name}}</li>
                                     @endforeach

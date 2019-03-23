@@ -8,13 +8,13 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        Subject Manager
+                       {{__('language.Subject_Manager')}}
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">Add Section</li>
+                            <li class="breadcrumb-item">{{__('language.Add_New_Section')}}</li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="{{url('admin/list_section')}}">List Section</a>
+                                <a class="link-fx" href="{{url('admin/list_section')}}">{{__('language.List_Exist_Section')}}</a>
                             </li>
                         </ol>
                     </nav>
@@ -44,12 +44,12 @@
                     {{csrf_field()}}
                     <div class="row">
                         <div class="form-group col-sm-12">
-                            <label for="student_name">Section Name<font color="#ff0000">*</font></label>
+                            <label for="student_name">{{__('language.Section')}}<font color="#ff0000">*</font></label>
                             <input type="text" class="form-control" id="name" name="name" required="" data-validation-error-msg="section is required">
                             {{$errors->first('name')}}
                         </div>
                         <div class="form-group col-sm-4">
-                            <button type="submit" class="btn  btn-success">Save Section</button>
+                            <button type="submit" class="btn  btn-success">{{__('language.Save_section')}}</button>
                         </div>
                     </div>
                 </form>

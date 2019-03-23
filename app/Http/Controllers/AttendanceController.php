@@ -7,6 +7,7 @@ use App\ClassBatchSection;
 use App\ClassSectionStudent;
 use App\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AttendanceController extends Controller
 {
@@ -21,11 +22,11 @@ class AttendanceController extends Controller
             $attendance = new Attendance;
             $attendance->student_id = $student->id;
             $attendance->save();
-            return response()->json(['user'=>$student,'status'=>"Accepted"],200);
+            Session::flash('student_id',$student->id);
+            return redirect('attendance_form')->with('success','Attendance Successfully !!! ' .$student->first_student_name .' '.$student->last_student_name .' is Present !');
         }else{
-            return response()->json(['message'=>"Invalide Card",'code'=>$code],422);
+			return redirect('attendance_form')->withErrors(['Something went wrong!.Please Try Again']);
         }
-
     }
 
     public function show()
@@ -38,4 +39,10 @@ class AttendanceController extends Controller
 
         return view('attendance.show',compact('sections','class_section_student'));
     }
+        public function attendance_form()
+    {
+        $title='Attendance Form - Chubi Management System';
+        return view('attendance.exit',compact('sections','title'));
+    }
+
 }

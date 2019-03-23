@@ -9,7 +9,7 @@
                     {{--Design & Develop by <a class="font-w600" href="https://www.geniusservice.com.np" target="_blank">Genius Service Nepal Pvt. Ltd.</a>--}}
                 {{--</div>--}}
                 <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
-                    <a class="font-w600" href="{{url('')}}" target="_blank"><span style="color:#00A8FF; font-weight: bolder;">Chubi Project</span> <span style="background-color: #00A8FF; color:#fff; padding:5px; border-radius: 50%;">Management System</span></a> &copy; <span data-toggle="year-copy">{{date('Y')}}</span>
+                    <a class="font-w600" href="{{url('')}}" target="_blank"><span style="color:#00A8FF; font-weight: bolder;">Chubi </span> <span style="background-color: #00A8FF; color:#fff; padding:5px; border-radius: 50%;">Management System</span></a> &copy; <span data-toggle="year-copy">{{date('Y')}}</span>
                 </div>
             </div>
         </div>

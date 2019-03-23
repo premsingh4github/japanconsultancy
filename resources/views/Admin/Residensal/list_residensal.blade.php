@@ -8,13 +8,13 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        Residensal Card Time Manager
+                        {{__('language.Residential_card_time_manager')}}
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">List Residensal Card Time</li>
+                            <li class="breadcrumb-item">{{__('language.List_Card_Time')}}</li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="{{url('admin/add-residensal')}}">Add Residensal</a>
+                                <a class="link-fx" href="{{url('admin/add-residensal')}}">{{__('language.Add_Card_Time')}}</a>
                             </li>
                         </ol>
                     </nav>
@@ -40,7 +40,7 @@
 
                 <div class="block block-mode-loading-oneui">
                     <div class="block-header border-bottom">
-                        <h3 class="block-title">Section Record</h3>
+                        <h3 class="block-title">{{__('language.section_record')}}</h3>
                         <div class="block-options">
                             <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
                                 <i class="si si-refresh"></i>
@@ -54,9 +54,9 @@
                         <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                             <tr>
-                                <th class="font-w700">SN</th>
-                                <th class="font-w700">Residensal card Time Period / 在留期間</th>
-                                <th class="font-w700">Action</th>
+                                <th class="font-w700">{{__('language.SN')}}</th>
+                                <th class="font-w700">{{__('language.Residential_card_time_Period')}}</th>
+                                <th class="font-w700">{{__('language.Action')}}</th>
                             </tr>
                             </thead>
                             <tbody>

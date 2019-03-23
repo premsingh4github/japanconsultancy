@@ -157,7 +157,6 @@
                             <select name="student_of_year" class="form-control" id="student_of_year">
                                 <option value="第1学年" <?php if ($student->student_of_year == '第1学年' ) echo 'selected'?>>第1学年</option>
                                 <option value="第2学年" <?php if ($student->student_of_year == '第2学年' ) echo 'selected'?>>第2学年</option>
-
                             </select>
                         </div>
 
@@ -234,7 +233,7 @@
                             {{$errors->first('nearest_station')}}
                         </div>
 
-                        <div class="form-group col-sm-12">
+                        <div class="form-group col-sm-12" id="Remarks">
                             <label for="student_note">Student Note</label>
                             <textarea class="form-control content" id="js-ckeditor" name="student_note">{{$student->student_note}}</textarea>
                             {{$errors->first('student_note')}}

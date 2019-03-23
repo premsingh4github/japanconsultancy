@@ -8,13 +8,13 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        Subject Manager
+                        {{__('language.Subject_Manager')}}
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">List Subject</li>
+                            <li class="breadcrumb-item">{{__('language.List_subject')}}</li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a class="link-fx" href="{{url('admin/add_subject')}}">Add Subject</a>
+                                <a class="link-fx" href="{{url('admin/add_subject')}}">{{__('language.Add_New_Subject')}}</a>
                             </li>
                         </ol>
                     </nav>
@@ -40,7 +40,7 @@
 
                 <div class="block block-mode-loading-oneui">
                     <div class="block-header border-bottom">
-                        <h3 class="block-title">Subject Record</h3>
+                        <h3 class="block-title">{{__('language.Subject_Record')}}</h3>
                         <div class="block-options">
                             <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
                                 <i class="si si-refresh"></i>
@@ -54,10 +54,10 @@
                         <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
                             <thead class="thead-dark">
                             <tr>
-                                <th class="font-w700">SN</th>
-                                <th class="font-w700">Subject Name</th>
-                                <th class="font-w700">Subject Type</th>
-                                <th class="font-w700">Action</th>
+                                <th class="font-w700">{{__('language.SN')}}</th>
+                                <th class="font-w700">{{__('language.Subject_Name')}}</th>
+                                <th class="font-w700">{{__('language.Subject_Type')}}</th>
+                                <th class="font-w700">{{__('language.Action')}}</th>
                             </tr>
                             </thead>
                             <tbody>

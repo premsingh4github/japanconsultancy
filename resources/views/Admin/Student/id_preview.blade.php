@@ -116,9 +116,9 @@
     <img src="{{asset('public/id-card/b-card.png')}}" alt="" style="width:100%;">
     <div class="id-content">
         <div class="qr_photo">
-            {{--{{}}--}}
-            {!! QrCode::size(100)->generate($student->unique_id); !!}
-            {{--                <img src="{{url('public/QR-Student/qr-default.png')}}" alt="" class="" style="background-color: #fff; width:70px;">--}}
+            {!! QrCode::size(100)->generate(url('attendance/'.$student->unique_id)) !!}
+            <!--{!! QrCode::size(100)->generate($student->unique_id) !!}-->
+            
         </div>
         <div style="clear: both; margin-bottom:20px;"></div>
     </div>

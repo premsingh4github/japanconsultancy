@@ -32,13 +32,24 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::get('lang/{locale}', 'LocalizationController@index');
     Route::get('','AdminController@index');
     Route::any('add_student','StudentController@add_student');
-    Route::any('student_immigration','StudentController@student_immigration');
+    Route::any('first_immigration','StudentController@first_immigration');
+    Route::any('second_immigration','StudentController@second_immigration');
     Route::any('list_student','StudentController@list_student');
+    Route::get('list_student/student_id={id}/remarks','StudentController@edit_student_remarks');
+    Route::post('list_student/student_id={id}/remarks','StudentController@update_student_remarks');
+
     Route::get('list_student/student_id={id}','StudentController@edit_student');
     Route::post('list_student/student_id={id}','StudentController@update_student');
     Route::get('list_student/student_id={id}/delete','StudentController@destroy');
     Route::get('list_student/{id}','StudentController@id_preview');
     Route::get('list_student/pdf/{id}','StudentController@export_pdf');
+
+    Route::any('add_teacher','TeacherController@add_teacher');
+    Route::get('list_teacher','TeacherController@list_teacher');
+    Route::get('list_teacher/teacher_id={id}','TeacherController@edit_teacher');
+    Route::get('list_teacher/teacher_id={id}','TeacherController@edit_teacher');
+    Route::get('list_teacher/teacher_view={id}','TeacherController@view_teacher');
+    Route::post('list_teacher/teacher_id={id}','TeacherController@update_teacher');
 
 
     Route::any('section_wise_student','StudentController@section_wise_student');
@@ -86,6 +97,13 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::any('section_day','HolidayController@section_day');
     Route::any('new_section_day','HolidayController@new_section_day');
     Route::post('post_section_wise_days','HolidayController@post_section_wise_days');
+    
+    
+     /*==================graduation_prospect_certificate=======*/
+    Route::get('graduation_prospect_certificate/{id}','CertificateController@graduation_prospect_certificate');
+    Route::get('Graduation_certificate/{id}','CertificateController@Graduation_certificate');
+    Route::get('certificate_of_student_status/{id}','CertificateController@certificate_of_student_status');
+    /*==================graduation_prospect_certificate=======*/
 });
 /* ================================================ ADMIN CONTROL END============================================================== */
 
@@ -96,6 +114,7 @@ Route::group(['middleware'=>'staff','prefix'=>'staff','namespace'=>'Staff'],func
 /* ================================================ ADMIN CONTROL END============================================================== */
 
 Route::get('attendance','AttendanceController@index')->middleware('auth');
+Route::get('attendance_form','AttendanceController@attendance_form')->middleware('auth');
 Route::get('attendance/{code}','AttendanceController@store')->middleware('auth');
 Route::get('attendance_list','AttendanceController@show')->middleware('auth');
 Route::get('test','HomeController@test');

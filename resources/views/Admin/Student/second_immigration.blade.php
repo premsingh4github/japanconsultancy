@@ -12,7 +12,7 @@
                     <h3 class="block-title">届　出　機　関　名:<small>　学校法人郡山学園　専門学校　中央美術学園</small></h3>
                 </div>
                 <div class="block-header">
-                    <h3 class="block-title">Name of the organization:<small></small></h3>
+                    <h3 class="block-title">{{__('language.Name_of_the_organization')}}<small></small></h3>
                 </div>
                 <div class="block-content block-content-full">
                     <p class="font-size-sm text-muted">
@@ -34,10 +34,10 @@
                         <form action="" method="post">
                             {{csrf_field()}}
                             <div class="row">
-                                <div class="col-sm-3"><label for="">Choose Student Batch</label></div>
+                                <div class="col-sm-3"><label for="">{{__('language.Choose_student_batch')}}</label></div>
                                 <div class="col-sm-3">
                                     <select name="class_room_batch_id" class="form-control form-control-sm" id="">
-                                        <option value="">View All Year</option>
+                                        <option value="">{{__('language.View_All_Year')}}</option>
                                     @foreach($classRoomBatch as $batch)
                                             <option @if(request('class_room_batch_id') == $batch->id) selected="selected" @endif value="{{$batch->id}}">{{$batch->class_room->name}}-{{$batch->batch->name}}</option>
                                             @endforeach
@@ -48,10 +48,10 @@
                                 </div>
                                 <div class="col-sm-12">
                                     @if(count($list_students)>0)
-                                        <i style="font-size: 15px; color:Green;">{{count($list_students)}} Students Found</i>
+                                        <i style="font-size: 15px; color:Green;">{{count($list_students)}} {{__('language.Students_Found')}}</i>
                                     </div>
                                 @else
-                                    <i style="font-size: 15px; color:Red;">Record Not Found</i>
+                                    <i style="font-size: 15px; color:Red;">{{__('language.Record_Not_Found')}}</i>
                                     @endif
                             </div>
                         </form>
@@ -61,7 +61,7 @@
                     <table class="table-bordered table-striped js-dataTable-buttons">
                         <thead>
                         <tr>
-                            <th>SN</th>
+                            <th>{{__('language.SN')}}</th>
                             <th>{{__('language.Residential_Card_No')}}</th>
                             <th>{{__('language.Nationality')}}</th>
                             <th>{{__('language.student_name')}}</th>
