@@ -558,7 +558,7 @@
                         </ul>
                     </li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='add_student' || request()->segment('2') =='list_student' || request()->segment('2') =='section_wise_student'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                        <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='add_student' || request()->segment('2') =='list_student' || request()->segment('2') =='section_wise_student_edit' || request()->segment('2') =='section_wise_student'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-user"></i>
                             <span class="nav-main-link-name">{{__('language.Students')}}</span>
                         </a>
@@ -575,7 +575,12 @@
                             </li>
                             <li class="nav-main-item">
                                 <a class="nav-main-link <?php if(request()->segment('2') =='section_wise_student'){ echo 'active' ;} ?>" href="{{url('admin/section_wise_student')}}">
-                                    <span class="nav-main-link-name">{{__('language.Section_Wise_Students')}}</span>
+                                    <span class="nav-main-link-name">{{__('language.Section_Wise_Students1')}}</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='section_wise_student_edit'){ echo 'active' ;} ?>" href="{{url('admin/section_wise_student_edit')}}">
+                                    <span class="nav-main-link-name">{{__('language.Section_Wise_Students2')}}</span>
                                 </a>
                             </li>
                         </ul>
@@ -719,11 +724,11 @@
                             <i class="nav-main-link-icon fa fa-th-list"></i>
                             <span class="nav-main-link-name">{{__('language.List_Attendance')}}</span>
                         </a>
-                        <a class="nav-main-link" href="{{url('attendance')}}" >
-                            <i class="nav-main-link-icon si si-reload"></i>
-                            <span class="nav-main-link-name">{{__('language.QR_Scanner')}}</span>
-                        </a>
-                         <a class="nav-main-link" href="{{url('attendance_form')}}" >
+                        {{--<a class="nav-main-link" href="{{url('attendance')}}" >--}}
+                            {{--<i class="nav-main-link-icon si si-reload"></i>--}}
+                            {{--<span class="nav-main-link-name">{{__('language.QR_Scanner')}}</span>--}}
+                        {{--</a>--}}
+                             <a class="nav-main-link" href="{{url('attendance_form')}}" >
                             <i class="nav-main-link-icon si si-reload"></i>
                             <span class="nav-main-link-name">Attendance Form</span>
                         </a>
@@ -801,6 +806,9 @@
                             {{--</a>--}}
                         {{--</div>--}}
                     {{--</div>--}}
+                    <div class="dropdown d-inline-block ml-2">
+                        <a href="{{url('attendance_form')}}" class="btn btn-sm btn-dual">Student Attendance Form</a>
+                    </div>
                     <div class="dropdown d-inline-block ml-2">
                         <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-language" style="width: 20px; color:blue;"></i>

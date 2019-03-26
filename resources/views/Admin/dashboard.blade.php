@@ -98,6 +98,23 @@
                 </div>
                     @endif
                     @endforeach
+                <div class="col-12" style="background-color: #fff; padding:10px;">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Calendar</h2>
+                        </div>
+                        <div class="col-sm-3">
+                            <select name="year" id="year" class="form-control">
+                                <option value="">Choose Year</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <a href="" class="btn btn-primary btn-xs">View</a>
+                        </div>
+                    </div>
+                    <div id='calendar'></div>
+                </div>
+
             </div>
             <!-- END Stats -->
 

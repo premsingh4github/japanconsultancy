@@ -68,7 +68,7 @@ class ClassBatchController extends Controller
 
         }
         public function post_classbatch_record (Request $request){
-            $data['class_room_id']=$request->class_room_id;
+            $data['class_room_id']=1;
             $data['batch_id']=$request->batch_id;
 
             if (ClassRoomBatch::create($data)) {

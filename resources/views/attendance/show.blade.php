@@ -8,16 +8,18 @@
 @endsection
 @section('body')
     <!-- Main Container -->
+    <main id="main-container">
+
     <div class="container" style="background-color: #2196f300;">
         <!-- Hero -->
         <div class="block-content block-content-full">
-            <div class="form-group col-sm-3">
+            <div class="form-group col-sm-4">
                 
                 <div class="student_image">
                     <label for="student_name">{{__('language.Select_Running_Section')}}</label>
                     <select name="section" class="form-control" onchange="sectionChanged(this)">
                         @foreach($sections as $section)
-                            <option @if(request('section') == $section->id) selected @endif value="{{$section->id}}">{{$section->class_section->name}}_{{$section->class_room_batch->batch->name}}</option>
+                            <option @if(request('section') == $section->id) selected @endif value="{{$section->id}}">{{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -161,6 +163,7 @@
 
     </div>
     <!-- END Main Container -->
+    </main>
 @endsection
 @section('script')
     <script>

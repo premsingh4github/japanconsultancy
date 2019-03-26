@@ -41,30 +41,29 @@
             <!-- Partial Table -->
             <div class="block" style="padding:10px;">
                 <div class="row">
-                    <div class="col-sm-3">
-                        <span><h4>{{__('language.Create_Class_Room')}}</h4></span>
-                    <form action="{{url('admin/post_class_record')}}" method="post" enctype="multipart/form-data">
-                    {{csrf_field()}}
-                            <label for="name"> {{__('language.Create_Class')}}<font color="#ff0000">*</font></label>
-                            <input type="text" class="form-control" id="name" name="name" required="" data-validation-error-msg="news title is required">
-                                <button type="submit" class="btn  btn-success">{{__('language.Create_Class')}}</button>
-                        <ul>
-                          <li> {{__('language.Allready_Listed_Class')}}</li>
-                            @foreach($class as $classRoom)
-                            <li>{{$classRoom->name}}</li>
-                                @endforeach
-                        </ul>
-                    </form>
-                    </div>
+                    <!--<div class="col-sm-3">-->
+                    <!--    <span><h4>{{__('language.Create_Class_Room')}}</h4></span>-->
+                    <!--<form action="{{url('admin/post_class_record')}}" method="post" enctype="multipart/form-data">-->
+                    <!--{{csrf_field()}}-->
+                    <!--        <label for="name"> {{__('language.Create_Class')}}<font color="#ff0000">*</font></label>-->
+                    <!--        <input type="text" class="form-control" id="name" name="name" required="" data-validation-error-msg="news title is required">-->
+                    <!--            <button type="submit" class="btn  btn-success">{{__('language.Create_Class')}}</button>-->
+                    <!--    <ul>-->
+                    <!--      <li> {{__('language.Allready_Listed_Class')}}</li>-->
+                    <!--        @foreach($class as $classRoom)-->
+                    <!--        <li>{{$classRoom->name}}</li>-->
+                    <!--            @endforeach-->
+                    <!--    </ul>-->
+                    <!--</form>-->
+                    <!--</div>-->
                         <div class="col-sm-4">
                             <span><h4>{{__('language.Create_Batch_Year')}}</h4></span>
                             <form action="{{url('admin/post_batch_record')}}" method="post" enctype="multipart/form-data">
                                 {{csrf_field()}}
-                                <label for="name"> {{__('language.Create_Batch')}}<font color="#ff0000">*</font></label>
+                                <label for="name"> {{__('language.Create_Batch_Year')}}<font color="#ff0000">*</font></label>
                                 <input type="text" class="form-control" id="name" name="name"  required="" data-validation-error-msg="news title is required">
                                 <button type="submit" class="btn  btn-success">{{__('language.Create_Batch')}}</button>
                                 <ul>
-                                   <li> {{__('language.Allready_Listed_Batch_Year')}}</li>
                                     @foreach($batch as $batchYear)
                                         <li>{{$batchYear->name}}</li>
                                     @endforeach
@@ -76,18 +75,12 @@
                             <span><h4>{{__('language.Create_Group')}}</h4></span>
                             <form action="{{url('admin/post_classbatch_record')}}" method="post" enctype="multipart/form-data">
                                 {{csrf_field()}}
-                                    <label for="class_room_id">{{__('language.Select_Class')}} <font color="#ff0000">*</font></label>
-                                <select name="class_room_id" class="form-control"  id="">
-                                    <option value="">[{{__('language.Select')}}]</option>
-                                    @foreach($class as $classroom)
-                                        <option value="{{$classroom->id}}">{{$classroom->name}}</option>
-                                        @endforeach
-                                </select>
+                                    
                                     <label for="batch_id"> {{__('language.Select_Batch')}}<font color="#ff0000">*</font></label>
                                 <select name="batch_id" class="form-control"  id="">
                                     <option value="">[{{__('language.Select')}}]</option>
                                     @foreach($batch as $batchyear)
-                                        <option value="{{$batchyear->id}}">{{$batchyear->name}}</option>
+                                        <option value="{{$batchyear->id}}">Batch-{{$batchyear->name}}</option>
                                     @endforeach
                                 </select>
                                 <div style="clear: both;"></div>

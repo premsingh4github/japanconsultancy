@@ -42,53 +42,53 @@
                         </div>
                         <div class="block-content block-content-full">
                             <div class="row">
-                                <div class="col-sm-4">
-                                    <h4>{{__('language.class_room_status')}}</h4>
-                                    <table class="table table-responsive table-bordered table-striped">
-                                        <thead>
-                                        <tr>
-                                            <th>{{__('language.SN')}}</th>
-                                            <th>{{__('language.Class_Name')}}</th>
-                                            <th>{{__('language.Action')}}</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($class_room as $key=>$clasRooms)
-                                            <tr>
-                                                <td>{{++$key}}</td>
-                                                <td>{{$clasRooms->name}}</td>
-                                                <td>
-                                                    <a href="{{url('admin/list_record/').'/'.$clasRooms->id.'/edit_class_room'}}" class="btn btn-primary btn-sm">Edit</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="col-sm-4">
-                                    <h4>{{__('language.batch_year_status')}}</h4>
-                                    <table class="table table-responsive table-bordered table-striped">
-                                        <thead>
-                                        <tr>
-                                            <th>{{__('language.SN')}}</th>
-                                            <th>{{__('language.Batch_Year')}}</th>
-                                            <th>{{__('language.Action')}}</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($batch as $key=>$batches)
-                                            <tr>
-                                                <td>{{++$key}}</td>
-                                                <td>{{$batches->name}}</td>
-                                                <td>
-                                                    <a href="" disabled="disabled" class="btn btn-primary btn-sm">Edit</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
+                                <!--<div class="col-sm-4">-->
+                                <!--    <h4>{{__('language.class_room_status')}}</h4>-->
+                                <!--    <table class="table table-responsive table-bordered table-striped">-->
+                                <!--        <thead>-->
+                                <!--        <tr>-->
+                                <!--            <th>{{__('language.SN')}}</th>-->
+                                <!--            <th>{{__('language.Class_Name')}}</th>-->
+                                <!--            <th>{{__('language.Action')}}</th>-->
+                                <!--        </tr>-->
+                                <!--        </thead>-->
+                                <!--        <tbody>-->
+                                <!--        @foreach($class_room as $key=>$clasRooms)-->
+                                <!--            <tr>-->
+                                <!--                <td>{{++$key}}</td>-->
+                                <!--                <td>{{$clasRooms->name}}</td>-->
+                                <!--                <td>-->
+                                <!--                    <a href="{{url('admin/list_record/').'/'.$clasRooms->id.'/edit_class_room'}}" class="btn btn-primary btn-sm">Edit</a>-->
+                                <!--                </td>-->
+                                <!--            </tr>-->
+                                <!--        @endforeach-->
+                                <!--        </tbody>-->
+                                <!--    </table>-->
+                                <!--</div>-->
+                                <!--<div class="col-sm-4">-->
+                                <!--    <h4>{{__('language.batch_year_status')}}</h4>-->
+                                <!--    <table class="table table-responsive table-bordered table-striped">-->
+                                <!--        <thead>-->
+                                <!--        <tr>-->
+                                <!--            <th>{{__('language.SN')}}</th>-->
+                                <!--            <th>{{__('language.Batch_Year')}}</th>-->
+                                <!--            <th>{{__('language.Action')}}</th>-->
+                                <!--        </tr>-->
+                                <!--        </thead>-->
+                                <!--        <tbody>-->
+                                <!--        @foreach($batch as $key=>$batches)-->
+                                <!--            <tr>-->
+                                <!--                <td>{{++$key}}</td>-->
+                                <!--                <td>{{$batches->name}}</td>-->
+                                <!--                <td>-->
+                                <!--                    <a href="" disabled="disabled" class="btn btn-primary btn-sm">Edit</a>-->
+                                <!--                </td>-->
+                                <!--            </tr>-->
+                                <!--        @endforeach-->
+                                <!--        </tbody>-->
+                                <!--    </table>-->
 
-                                </div>
+                                <!--</div>-->
                                 <div class="col-sm-4">
                                     <h4>{{__('language.Class_Batch_Group')}}</h4>
                                     <table class="table table-responsive table-bordered table-striped">

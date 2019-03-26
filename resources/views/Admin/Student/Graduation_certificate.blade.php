@@ -7,7 +7,7 @@
                     卒業証明書
                 </h1>
                 <h3 style="text-align: right">（1992年02月06日生）</h3>
-                <h3>氏　名 <b>{{$student->last_student_japanese_name}} {{$student->first_student_japanese_name}}</b></h3>
+                <h3>氏　名 <b>{{$student->last_student_name}} {{$student->first_student_name}}</b></h3>
                 <h3> 現住所</h3>
                 <div class="gradution_prospect_content">
                     <h3>上記の者は本学造型芸術専門課程・アートビジネスコースを

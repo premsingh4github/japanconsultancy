@@ -257,8 +257,7 @@ class StudentController extends Controller
     public function export_pdf($id)
     {
         $student = Student::findOrFail($id);
-        $title = 'Student Id Card | Chubi Project : Management System';
-        $pdf = PDF::loadView('Admin.Student.id_preview',compact('student','title'));
+        $pdf = PDF::loadView('Admin.Student.id_preview',compact('student'));
         return $pdf->download('id_card.pdf');
     }
 
@@ -266,7 +265,7 @@ class StudentController extends Controller
     public function section_wise_student(Request $request){
         if ($request->isMethod('get')){
             $class_section = ClassBatchSection::all();
-            $Students = Student::all();
+            $Students = Student::orderBy('student_number','ASC')->get();
             $classSectionStuden = ClassSectionStudent::all();
             $title = 'Section Wise Record | Chubi Project : Management System';
             return view('Admin.Student.section_wise_student',compact('Students','title','class_section','classSectionStuden'));
@@ -286,6 +285,58 @@ class StudentController extends Controller
             $classSectionS->save();
         }
         return redirect()->back()->with('success', 'Record Saved Successfully');
+    }
+    public function section_wise_student_edit(Request $request){
+            if ($request->isMethod('get')){
+                $class_section = ClassBatchSection::all();
+                $Students = Student::orderBy('student_number','ASC')->get();
+                $classSectionStudent = ClassSectionStudent::orderBy('id','DESC')->get();
+                $title = 'Edit Section Wise Student Record | Chubi Project : Management System';
+                return view('Admin.Student.section_wise_student_edit',compact('Students','title','class_section','classSectionStudent'));
+            }
+
+            if ($request->isMethod('post')){
+                $classSectionStudent = ClassSectionStudent::orderBy('id','DESC');
+                if(\request('class_section_id')){
+                    $classSectionStudent->where('class_section_id',\request('class_section_id'));
+                }
+                if(\request('student_number')){
+                    $student=Student::where('student_number',$request->student_number)->get();
+                    if (count($student)>0){
+                        $student=Student::where('student_number',$request->student_number)->firstOrFail();
+                        $classSectionStudent->where('student_id',$student->id);
+                    }else{
+                        $classSectionStudent->where('student_id', \request('student_number'));
+                    }
+                }
+                $classSectionStudent = $classSectionStudent->paginate(100);
+                $class_section = ClassBatchSection::all();
+                $Students = Student::orderBy('student_number','ASC')->get();
+                $title = 'Search Result Section Wise Student Record | Chubi Project : Management System';
+                return view('Admin.Student.section_wise_student_edit',compact('Students','title','class_section','classSectionStudent'));
+            }
+
+        }
+    public function section_wise_student_editing($id){
+        $class_section = ClassBatchSection::all();
+        $classSectionStudent = ClassSectionStudent::FindOrFail($id);
+        $title = 'Edit Section Wise Student Record | Chubi Project : Management System';
+        return view('Admin.Student.section_wise_student_update',compact('Students','title','class_section','classSectionStudent'));
+    }
+    public function section_wise_student_update(Request $request,$id){
+        $this->validate($request, [
+            'class_section_id' => 'required',
+        ]);
+
+        $classSectionStudent = ClassSectionStudent::FindOrFail($id);
+        $classSectionStudent->class_section_id = \request('class_section_id');
+        $classSectionStudent->save();
+        return redirect('admin/section_wise_student_edit')->with('success','Record Updated Successfully');
+    }
+    public function section_wise_student_delete($id){
+        $classSectionStudent = ClassSectionStudent::FindOrFail($id);
+        $classSectionStudent->delete();
+        return redirect('admin/section_wise_student_edit')->with('success','Record Deleted Successfully');
     }
 
 }

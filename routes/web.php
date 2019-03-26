@@ -53,7 +53,10 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
 
 
     Route::any('section_wise_student','StudentController@section_wise_student');
-
+    Route::any('section_wise_student_edit','StudentController@section_wise_student_edit');
+    Route::get('section_wise_student_edit/{id}/edit','StudentController@section_wise_student_editing');
+    Route::post('section_wise_student_edit/{id}/edit','StudentController@section_wise_student_update');
+    Route::get('section_wise_student_edit/{id}/delete','StudentController@section_wise_student_delete');
 
     Route::any('add_record','ClassBatchController@add_record');
     Route::any('list_record','ClassBatchController@list_record');
@@ -85,6 +88,9 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::any('list_section','SectionController@list_section');
     Route::get('list_section/section_id={id}','SectionController@edit_section');
     Route::post('list_section/section_id={id}','SectionController@update_section');
+    
+    Route::get('class_section/section_id={id}','SectionController@edit_class_section');
+    Route::post('class_section/section_id={id}','SectionController@update_class_section');
 
     Route::any('class_section','SectionController@class_section');
 

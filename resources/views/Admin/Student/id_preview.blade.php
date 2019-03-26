@@ -76,7 +76,7 @@
         @if($countValue>23)
             <h4 style="font-size: 7px;padding-bottom: 4px;">{{$student->last_student_name}} {{$student->first_student_name}}</h4>
         @else
-            <h4>{{$student->last_student_name}} {{$student->first_student_name}}</h4>
+        <h4>{{$student->last_student_name}} {{$student->first_student_name}}</h4>
         @endif
         <h4>
             @if(isset($student->date_of_birth))

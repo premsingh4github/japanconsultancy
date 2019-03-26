@@ -5,7 +5,7 @@
                 <h1 class="graduation_prospect_certificate_h2" style="text-align: center">
                     在学証明書
                 </h1>
-                <h3>氏　名 <b>{{$student->last_student_japanese_name}} {{$student->first_student_japanese_name}}</b></h3>
+                <h3>氏　名 <b>{{$student->last_student_name}} {{$student->first_student_name}}</b></h3>
                 <h3>先生月日</h3>
                 <h3>現住所</h3>
                 <h3> 学科名	造形芸術科（アートビギネスコズ）</h3>

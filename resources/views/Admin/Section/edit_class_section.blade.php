@@ -8,11 +8,11 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        Class Wise Section
+                        Edit Class Wise Section
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">List Class Wise Section</li>
+                            <li class="breadcrumb-item">Edit Class Wise Section</li>
                             <li class="breadcrumb-item" aria-current="page">
                                 <a class="link-fx" href="{{url('admin/add_section')}}">Add New Section</a>
                             </li>
@@ -53,7 +53,7 @@
                             <select name="class_batch_id" class="form-control" id="class_batch_id">
                                 <option value="">[Choose]</option>
                                 @foreach($class_room_batch as $clasBatch)
-                                    <option value="{{$clasBatch->id}}">{{$clasBatch->class_room->name}}/{{$clasBatch->batch->name}}</option>
+                                    <option value="{{$clasBatch->id}}" <?php if($clasBatch->id == $class_section->class_batch_id) echo 'selected' ?>>{{$clasBatch->class_room->name}}/{{$clasBatch->batch->name}}</option>
                                 @endforeach
                             </select>
                             <i style="font-size: 12px;">Note : Class Batch Not Found? <a target="_blank" href="{{url('admin/add_record')}}">Clear Here</a></i>
@@ -63,7 +63,7 @@
                             <select name="section_id" class="form-control" id="section_id">
                                 <option value="">[Choose]</option>
                                 @foreach($section as $sections)
-                                    <option value="{{$sections->id}}">{{$sections->name}}</option>
+                                    <option value="{{$sections->id}}" <?php if($sections->id == $class_section->section_id) echo 'selected' ?>>{{$sections->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -71,80 +71,26 @@
                             <label for="shift">Class Shift<font color="#ff0000">*</font></label>
                             <select name="shift" class="form-control" id="shift">
                                 <option value="">[Choose]</option>
-                                <option value="morning">Morning</option>
-                                <option value="day">Day</option>
+                                <option value="morning" <?php if($class_section->shift=='morning') echo 'selected' ?>>Morning</option>
+                                <option value="day" <?php if($class_section->shift=='day') echo 'selected' ?>>Day</option>
                             </select>
                         </div>
                         <div class="form-group col-sm-2">
                             <label for="shift">Start Date<font color="#ff0000">*</font></label>
-                            <input type="date" class="form-control" name="start_date">
+                            <input type="date" class="form-control" value="{{$class_section->start_date}}" name="start_date">
                         </div>
                         <div class="form-group col-sm-2">
                             <label for="shift">End Date<font color="#ff0000">*</font></label>
-                            <input type="date" class="form-control" name="end_date">
+                            <input type="date" class="form-control" value="{{$class_section->end_date}}" name="end_date">
                         </div>
                         <div class="form-group col-sm-4">
-                            <button type="submit" class="btn  btn-success">Create Class Wise Section</button>
+                            <button type="submit" class="btn  btn-success">Update</button>
                         </div>
                     </div>
                 </form>
             </div>
             <!-- END Partial Table -->
 
-            <!-- Customers and Latest Orders -->
-            <div class="row row-deck">
-                <!-- Latest Orders -->
-                <div class="col-lg-12">
-                    <div class="block block-mode-loading-oneui">
-                        <div class="block-header border-bottom">
-                            <h3 class="block-title">Class Wise Section Record</h3>
-                            <div class="block-options">
-                                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
-                                    <i class="si si-refresh"></i>
-                                </button>
-                                <button type="button" class="btn-block-option">
-                                    <i class="si si-settings"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="block-content block-content-full">
-                            <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
-                                <thead class="thead-dark">
-                                <tr>
-                                    <th class="font-w700">SN</th>
-                                    <th class="font-w700">Class</th>
-                                    <th class="font-w700">Section Name</th>
-                                    <th class="font-w700">Section Shift</th>
-                                    <th class="font-w700">Start Date</th>
-                                    <th class="font-w700">End Date</th>
-                                    <th class="font-w700">Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($class_section as $key=>$section)
-                                <tr>
-                                    <td>{{++$key}}</td>
-                                    <td>{{$section->class_room_batch->class_room->name}}/{{$section->class_room_batch->batch->name}}</td>
-                                    <td>{{$section->class_section->name}}</td>
-                                    <td>{{$section->shift}}</td>
-                                    <td>{{$section->start_date}}</td>
-                                    <td>{{$section->end_date}}</td>
-                                    <td>
-                                        <a href="{{url('admin/class_section/section_id=').$section->id}}" class="fa fa-edit"></a>
-                                        {{--<a href="{{url('admin/list_subject/subject_id=').$subject->id}}.'/delete" onclick="return confirm('Are you sure you want to delete this Record?');"  class="fa fa-trash-alt" style="color: red;"></a>--}}
-                                    </td>
-
-
-                                </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- END Latest Orders -->
-            </div>
-            <!-- END Customers and Latest Orders -->
         </div>
         <!-- END Page Content -->
 

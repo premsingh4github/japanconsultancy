@@ -41,7 +41,6 @@ class CreateStudentsTable extends Migration
             $table->string('photo')->nullable();
             $table->string('student_of_year')->nullable();
             $table->string('nearest_station1')->nullable();
-            $table->string('student_status')->nullable();
 
             $table->timestamps();
         });

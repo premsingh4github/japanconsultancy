@@ -57,6 +57,19 @@ class SectionController extends Controller
             $list_subject->update($requestData);
             return redirect()->back()->with('success', 'Recored Updated');
         }
+        public function edit_class_section ($id){
+            $class_section = ClassBatchSection::findOrfail($id);
+            $class_room_batch = ClassRoomBatch::all();
+            $section = Section::all();
+            $title = 'Edit Class-Section Record | Chubi Project : Management System';
+            return view('Admin.Section.edit_class_section', compact('', 'title','class_section','class_room_batch','section'));
+        }
+        public function update_class_section (Request $request, $id){
+            $class_section = ClassBatchSection::findOrFail($id);
+            $requestData = \request()->all();
+            $class_section->update($requestData);
+            return redirect('admin/class_section')->with('success', 'Recored Updated');
+        }
 
     public function class_section(Request $request){
         if ($request->isMethod('get')){

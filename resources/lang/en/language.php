@@ -30,7 +30,8 @@ return[
     'Add_New_Students'=>'Add New Students',
     'Students_1st_Immigration'=>'1st Immigration',
     'Students_2nd_Immigration'=>'2nd Immigration',
-    'Section_Wise_Students'=>'Section Wise Students',
+    'Section_Wise_Students1'=>'Section Wise (Add)',
+    'Section_Wise_Students2'=>'Section Wise (Edit)',
 
     'Enter_student_number'=>'Enter student number',
     'student_year'=>'student year',
@@ -87,7 +88,7 @@ return[
     'Create_Group'=>'Create Group',
     'Select_Class'=>'Select Class',
     'Select_Batch'=>'Select Batch',
-    'Allready_Listed_Batch_Wise_Class'=>'Allready_Listed_Batch_Wise_Class',
+    'Allready_Listed_Batch_Wise_Class'=>'Allready Listed Batch Wise Class',
     'Batch_Year'=>'Batch Year',
     'Class_Batch_Group'=>'Class Batch Group',
     'Student_In_Batch'=>'Student In Batch',

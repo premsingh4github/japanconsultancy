@@ -8,11 +8,11 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                       {{__('language.Section_Wise_Students')}}
+                       {{__('language.Section_Wise_Students1')}}
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item"> {{__('language.Section_Wise_Students')}}</li>
+                            <li class="breadcrumb-item"> {{__('language.Section_Wise_Students1')}}</li>
                             {{--<li class="breadcrumb-item" aria-current="page">--}}
                                 {{--<a class="link-fx" href="{{url('admin/list_section')}}">List Section</a>--}}
                             {{--</li>--}}
@@ -56,7 +56,7 @@
                         </div>
                         <div class="form-group col-sm-9">
                             <label for="student_id">{{__('language.Students')}}<font color="#ff0000">*</font></label>
-                            <table class="table table-responsive table-striped table-bordered">
+                            <table  class="table-striped table-bordered" style="width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>{{__('language.SN')}}</th>
@@ -71,9 +71,9 @@
                                     <tr>
                                         <td>{{++$key}}</td>
                                         <td>{{$Student->last_student_name}} {{$Student->first_student_name}}</td>
-                                        <td>{{$Student->unique_id}}</td>
+                                        <td>{{$Student->student_number}}</td>
                                         <td>{{$Student->address}}</td>
-                                        <td><input type="checkbox" name="student_id[{{$Student->id}}]" value="{{$Student->id}}"></td>
+                                        <td><input type="checkbox" name="student_id[{{$Student->id}}]" id="student_id" value="{{$Student->id}}"></td>
                                     </tr>
 
                                 @endforeach
@@ -92,4 +92,24 @@
 
     </main>
     <!-- END Main Container -->
+@endsection
+@section('script')
+    {{--<script>--}}
+
+        {{--$('#class_section_id').on('change',function (e) {--}}
+            {{--console.log(e);--}}
+            {{--var class_section_id = e.target.value;--}}
+            {{--$.get('section_wise_student?class_section_id=' + class_section_id, function (data) {--}}
+                {{--$('#ramesh').empty();--}}
+                {{--$.each(data, function (index, zoneObj) {--}}
+{{--//                    $('#student_id').append('<input type="checkbox" checked name="student_id['+zoneObj.id+']" value="'+zoneObj.id+'" >')--}}
+                    {{--$('#ramesh').append(' <input type="checkbox" id="ramesh" checked>')--}}
+                {{--})--}}
+
+            {{--})--}}
+        {{--})--}}
+
+
+
+    {{--</script>--}}
 @endsection
