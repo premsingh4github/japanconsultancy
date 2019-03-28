@@ -15,7 +15,9 @@ return[
     'Add_New_Students'=>'学生追加',
     'Students_1st_Immigration'=>'初回入国',
     'Students_2nd_Immigration'=>'再入国',
-    'Section_Wise_Students'=>'セクションごとの学生',
+    'Section_Wise_Students1'=>'セクションごとの学生 (Add)',
+    'Section_Wise_Students2'=>'セクションごとの学生 (Edit)',
+
 
     'Enter_student_number'=>'学生番号を入力',
     'student_year'=>'学年',

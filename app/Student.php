@@ -36,6 +36,7 @@ class Student extends Model
 
     public function present($period,$class_bath_section,$day)
     {
+        //dd($day);
         if(Holiday::where('date',$day)->count() > 0){
             return 'H';
         }
@@ -56,11 +57,20 @@ class Student extends Model
         }else{
 
         }
-        if(Attendance::where('student_id',$this->id)->whereBetween('updated_at',array($day.' 00:00:00',$day.' 23:59:59',))->count()){
+        if((Attendance::where('student_id',$this->id)->whereBetween('updated_at',array($day.' 00:00:00',$day.' 23:59:59',))->count())==1){
             return "P" ;
-        }else{
+        }
+        elseif((Attendance::where('student_id',$this->id)->whereBetween('updated_at',array($day.' 00:00:00',$day.' 23:59:59',))->count())>1){
+            return "F" ;
+        }
+        else{
             return "A";
         }
+//        if(Attendance::where('student_id',$this->id)->whereBetween('updated_at',array($day.' 00:00:00',$day.' 23:59:59',))->count()){
+//            return "P" ;
+//        }else{
+//            return "A";
+//        }
 
     }
 
