@@ -87,8 +87,8 @@ class StudentController extends Controller
         }
 
         if ($student = Student::create($data)) {
-             $student->unique_id = $student->unique_id.$student->id;
-             $student->save();
+            $student->unique_id = $student->unique_id.$student->id;
+            $student->save();
             return redirect('admin/list_student')->with('success', 'Record Saved Successfully');
         }
     }
@@ -166,27 +166,27 @@ class StudentController extends Controller
         }
 
 
-        }
+    }
 
 
     public function edit_student_remarks ($id){
-            $student = Student::findOrfail($id);
-            $class_batch = ClassRoomBatch::all();
-            $countries = Country::all();
-            $opt_subject = Subject::where('subject_type','optional')->get();
-            $list_residensal = ResidensalCardTime::all();
-            $title = 'Edit Student Record | Chubi Project : Management System';
-            return view('Admin.Student.edit_student_remarks', compact( 'title','student','class_batch','countries','list_residensal','opt_subject'));
-        }
+        $student = Student::findOrfail($id);
+        $class_batch = ClassRoomBatch::all();
+        $countries = Country::all();
+        $opt_subject = Subject::where('subject_type','optional')->get();
+        $list_residensal = ResidensalCardTime::all();
+        $title = 'Edit Student Record | Chubi Project : Management System';
+        return view('Admin.Student.edit_student_remarks', compact( 'title','student','class_batch','countries','list_residensal','opt_subject'));
+    }
     public function edit_student($id){
-            $student = Student::findOrfail($id);
-            $class_batch = ClassRoomBatch::all();
-            $countries = Country::all();
-            $opt_subject = Subject::where('subject_type','optional')->get();
-            $list_residensal = ResidensalCardTime::all();
-            $title = 'Edit Student Record | Chubi Project : Management System';
-            return view('Admin.Student.edit_new_student', compact( 'title','student','class_batch','countries','list_residensal','opt_subject'));
-        }
+        $student = Student::findOrfail($id);
+        $class_batch = ClassRoomBatch::all();
+        $countries = Country::all();
+        $opt_subject = Subject::where('subject_type','optional')->get();
+        $list_residensal = ResidensalCardTime::all();
+        $title = 'Edit Student Record | Chubi Project : Management System';
+        return view('Admin.Student.edit_new_student', compact( 'title','student','class_batch','countries','list_residensal','opt_subject'));
+    }
     public function update_student(Request $request, $id){
         $this->validate($request, [
             'last_student_name' => 'required',
@@ -237,8 +237,8 @@ class StudentController extends Controller
         }
 
         $list_student->save();
-         return redirect('admin/list_student')->with('success', 'Record Updated');
-        }
+        return redirect('admin/list_student')->with('success', 'Record Updated');
+    }
 
     public function destroy($id){
         $listStudents = Student::findOrFail($id);
@@ -287,36 +287,36 @@ class StudentController extends Controller
         return redirect()->back()->with('success', 'Record Saved Successfully');
     }
     public function section_wise_student_edit(Request $request){
-            if ($request->isMethod('get')){
-                $class_section = ClassBatchSection::all();
-                $Students = Student::orderBy('student_number','ASC')->get();
-                $classSectionStudent = ClassSectionStudent::orderBy('id','DESC')->get();
-                $title = 'Edit Section Wise Student Record | Chubi Project : Management System';
-                return view('Admin.Student.section_wise_student_edit',compact('Students','title','class_section','classSectionStudent'));
-            }
-
-            if ($request->isMethod('post')){
-                $classSectionStudent = ClassSectionStudent::orderBy('id','DESC');
-                if(\request('class_section_id')){
-                    $classSectionStudent->where('class_section_id',\request('class_section_id'));
-                }
-                if(\request('student_number')){
-                    $student=Student::where('student_number',$request->student_number)->get();
-                    if (count($student)>0){
-                        $student=Student::where('student_number',$request->student_number)->firstOrFail();
-                        $classSectionStudent->where('student_id',$student->id);
-                    }else{
-                        $classSectionStudent->where('student_id', \request('student_number'));
-                    }
-                }
-                $classSectionStudent = $classSectionStudent->paginate(100);
-                $class_section = ClassBatchSection::all();
-                $Students = Student::orderBy('student_number','ASC')->get();
-                $title = 'Search Result Section Wise Student Record | Chubi Project : Management System';
-                return view('Admin.Student.section_wise_student_edit',compact('Students','title','class_section','classSectionStudent'));
-            }
-
+        if ($request->isMethod('get')){
+            $class_section = ClassBatchSection::all();
+            $Students = Student::orderBy('student_number','ASC')->get();
+            $classSectionStudent = ClassSectionStudent::orderBy('id','DESC')->get();
+            $title = 'Edit Section Wise Student Record | Chubi Project : Management System';
+            return view('Admin.Student.section_wise_student_edit',compact('Students','title','class_section','classSectionStudent'));
         }
+
+        if ($request->isMethod('post')){
+            $classSectionStudent = ClassSectionStudent::orderBy('id','DESC');
+            if(\request('class_section_id')){
+                $classSectionStudent->where('class_section_id',\request('class_section_id'));
+            }
+            if(\request('student_number')){
+                $student=Student::where('student_number',$request->student_number)->get();
+                if (count($student)>0){
+                    $student=Student::where('student_number',$request->student_number)->firstOrFail();
+                    $classSectionStudent->where('student_id',$student->id);
+                }else{
+                    $classSectionStudent->where('student_id', \request('student_number'));
+                }
+            }
+            $classSectionStudent = $classSectionStudent->paginate(100);
+            $class_section = ClassBatchSection::all();
+            $Students = Student::orderBy('student_number','ASC')->get();
+            $title = 'Search Result Section Wise Student Record | Chubi Project : Management System';
+            return view('Admin.Student.section_wise_student_edit',compact('Students','title','class_section','classSectionStudent'));
+        }
+
+    }
     public function section_wise_student_editing($id){
         $class_section = ClassBatchSection::all();
         $classSectionStudent = ClassSectionStudent::FindOrFail($id);
