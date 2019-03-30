@@ -40,19 +40,19 @@ class Student extends Model
             return 'H';
         }
         if($class_bath_section->shift =='morning'){
-            switch ($period){
-                case 1:
-
-                    break;
-                case 2:
-                    break;
-                case 3;
-                    break;
-                case 4:
-                    break;
-                default:
-                    continue;
-            }
+//            switch ($period){
+//                case 1:
+//
+//                    break;
+//                case 2:
+//                    break;
+//                case 3;
+//                    break;
+//                case 4:
+//                    break;
+//                default:
+//                    continue;
+//            }
         }else{
 
         }

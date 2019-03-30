@@ -733,11 +733,14 @@
                             {{--<i class="nav-main-link-icon si si-reload"></i>--}}
                             {{--<span class="nav-main-link-name">{{__('language.QR_Scanner')}}</span>--}}
                         {{--</a>--}}
-                             <a class="nav-main-link" href="{{url('attendance_form')}}" >
+                         <a class="nav-main-link" href="{{url('attendance_form')}}" >
                             <i class="nav-main-link-icon si si-reload"></i>
                             <span class="nav-main-link-name">Attendance Form</span>
                         </a>
-
+                        <a class="nav-main-link" href="{{url('admin/manage_attendance')}}" >
+                            <i class="nav-main-link-icon si si-reload"></i>
+                            <span class="nav-main-link-name">Manage Attendance</span>
+                        </a>
                     </li>
                 </ul>
             </div>

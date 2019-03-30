@@ -62,6 +62,7 @@ return[
     'Attendance'=>'出席',
     'QR_Scanner'=>'QRスキャナー',
     'List_Attendance'=>'List 出席',
+    'Manage_Attendance'=>'出席を管理する',
 
     'Subjects'=>'学部',
     'Subject_Record'=>'件名レコード',

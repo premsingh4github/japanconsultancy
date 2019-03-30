@@ -39,10 +39,36 @@ class AttendanceController extends Controller
         }
         return view('attendance.show',compact('sections','class_section_student'));
     }
-        public function attendance_form()
+    public function attendance_form()
     {
         $title='Attendance Form - Chubi Management System';
         return view('attendance.exit',compact('sections','title'));
+    }
+
+    public function getAttendance()
+    {
+        $sections = ClassBatchSection::all();
+        return view('attendance.create',compact('sections'));
+    }
+
+    public function getStudents($class_batch_section_id)
+    {
+        $students = ClassSectionStudent::where('class_section_id',$class_batch_section_id)->with('student')->get();
+        return response()->json(['students'=>$students],200);
+    }
+
+    public function postAttendance()
+    {
+        $this->validate(request(),[
+            'date' => 'required',
+            'student_id' => 'required',
+        ]);
+        $attendance = new Attendance();
+        $attendance->student_id = \request('student_id');
+        $attendance->created_at = \request('date');
+        $attendance->save();
+        Session::flash('success','Attendance created!');
+        return redirect('admin/manage_attendance');
     }
 
 }

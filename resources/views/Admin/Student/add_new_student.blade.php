@@ -8,7 +8,7 @@
                     <p class="font-size-sm text-muted">
                         @if(session('success'))
                             <span class="alert alert-success"> {{session('success')}}</span>
-                    @endif
+                        @endif
                     @if($errors->any())
                         <ul  class="alert alert-danger">
                             @foreach($errors->all() as $error)

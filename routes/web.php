@@ -105,6 +105,8 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::any('section_day','HolidayController@section_day');
     Route::any('new_section_day','HolidayController@new_section_day');
     Route::post('post_section_wise_days','HolidayController@post_section_wise_days');
+
+
     
     
      /*==================graduation_prospect_certificate=======*/
@@ -126,3 +128,6 @@ Route::get('attendance_form','AttendanceController@attendance_form')->middleware
 Route::get('attendance/{code}','AttendanceController@store')->middleware('auth');
 Route::get('attendance_list','AttendanceController@show')->middleware('auth');
 Route::get('test','HomeController@test');
+Route::get('admin/manage_attendance','AttendanceController@getAttendance')->middleware('admin');
+Route::post('admin/manage_attendance','AttendanceController@postAttendance')->middleware('admin');
+Route::get('admin/get_students/{class_batch_section_id}','AttendanceController@getStudents')->middleware('admin');

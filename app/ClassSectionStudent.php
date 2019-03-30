@@ -13,7 +13,7 @@ class ClassSectionStudent extends Model
         return $this->belongsTo('App\ClassBatchSection','class_section_id');
     }
     public function student(){
-        return $this->belongsTo('App\Student','student_id');
+        return $this->belongsTo('App\Student','student_id','id');
     }
 
 }
