@@ -31,12 +31,12 @@ class AttendanceController extends Controller
 
     public function show()
     {
+        ini_set('max_execution_time',1200);
         $sections = ClassBatchSection::all();
         $class_section_student = $sections[0];
         if(\request('section')){
             $class_section_student = ClassBatchSection::find(\request('section'));
         }
-
         return view('attendance.show',compact('sections','class_section_student'));
     }
         public function attendance_form()
