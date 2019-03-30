@@ -20,23 +20,34 @@
         </div>
         <!-- END Hero -->
 
-
-            <p class="font-size-sm text-muted">
-                @if(session('success'))
-                    <span class="alert alert-success"> {{session('success')}}</span>
-            @endif
-            @if($errors->any())
-                <ul  class="alert alert-danger">
-                    @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-                @endif
-                </p>
-
         <!-- Page Content -->
         <div class="content">
-            <!-- Partial Table -->
+            @if(session('success'))
+                <div class="col-sm-12">
+                    <div class="alert  alert-success alert-dismissible fade show" role="alert">
+                        <span class="badge badge-pill badge-success">Success</span> {{session('success')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div style="clear: both;"></div>
+            @endif
+            @if($errors->any())
+                <div class="col-sm-12">
+                    <div class="alert  alert-success alert-dismissible fade show" role="alert">
+                        @foreach($errors->all() as $error)
+                            <span class="badge badge-pill badge-danger">Error</span> {{$error}}<br>
+                        @endforeach
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div style="clear: both;"></div>
+        @endif
+
+        <!-- Partial Table -->
             <div class="block" style="padding:20px;">
                 <form action="" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
@@ -46,7 +57,7 @@
                             <select name="c_b_s_id" class="form-control" id="c_b_s_id">
                                 <option value="">[Choose]</option>
                                 @foreach($classBatchSections as $section)
-                                    <option value="{{$section->id}}">{{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}}</option>
+                                    <option value="{{$section->id}}">({{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}}</option>
                                 @endforeach
                             </select>
                             <i style="font-size: 12px;">Note : Class Batch Section Not Found? <a target="_blank" href="{{url('admin/class_section')}}">Click Here</a></i>
@@ -93,7 +104,7 @@
                             </div>
                         </div>
                         <div class="block-content block-content-full">
-                            <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0">
+                            <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0 js-dataTable-buttons">
                                 <thead class="thead-dark">
                                 <tr>
                                     <th class="font-w700">SN</th>
@@ -110,7 +121,7 @@
                                     <td>{{++$key}}</td>
                                     <td>
                                         @php $section = $class_batch_section_period->classBatchSection  @endphp
-                                        {{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}}
+                                        ({{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}}
                                     </td>
                                     <td>{{$class_batch_section_period->period->name}}</td>
                                     <td>{{$class_batch_section_period->start_at}}</td>
