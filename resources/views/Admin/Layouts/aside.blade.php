@@ -664,7 +664,7 @@
                         </ul>
                     </li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='list_section' || request()->segment('2') =='add_section' || request()->segment('2') =='add_section' || request()->segment('2') =='class_section'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                        <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='list_section' || request()->segment('2') =='section_period' || request()->segment('2') =='add_section' || request()->segment('2') =='add_section' || request()->segment('2') =='class_section'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon fa fa-object-group"></i>
                             <span class="nav-main-link-name">{{__('language.Section')}}</span>
                         </a>
@@ -682,6 +682,11 @@
                             <li class="nav-main-item">
                                 <a class="nav-main-link <?php if(request()->segment('2') =='class_section'){ echo 'active' ;} ?>" href="{{url('admin/class_section')}}">
                                     <span class="nav-main-link-name">{{__('language.Class_Wise_Section')}}</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='section_period'){ echo 'active' ;} ?>" href="{{url('admin/section_period')}}">
+                                    <span class="nav-main-link-name">{{__('language.Section_Wise_Period')}}</span>
                                 </a>
                             </li>
                         </ul>

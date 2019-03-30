@@ -93,6 +93,8 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::post('class_section/section_id={id}','SectionController@update_class_section');
 
     Route::any('class_section','SectionController@class_section');
+    Route::get('section_period','SectionController@section_period');
+    Route::post('section_period','SectionController@section_period_post');
 
     Route::any('holiday','HolidayController@index');
     Route::any('new_holiday','HolidayController@create');

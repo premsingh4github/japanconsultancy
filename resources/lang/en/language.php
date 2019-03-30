@@ -47,6 +47,7 @@ return[
     'List_Exist_Section'=>'List Exist Section',
     'Add_New_Section'=>'Add New Section',
     'Class_Wise_Section'=>'Class Wise Section',
+    'Section_Wise_Period'=>'Section Wise Period',
     'Class_Section_Days'=>'Class Section Days',
     'class_room_status'=>'class room status',
     'Class_Name'=>'Class Name',

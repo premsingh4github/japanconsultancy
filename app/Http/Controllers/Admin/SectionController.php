@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Batch;
 use App\ClassBatchSection;
+use App\ClassBatchSectionPeriod;
 use App\ClassRoom;
 use App\ClassRoomBatch;
 use App\Country;
+use App\Period;
 use App\Section;
 use App\Student;
 use App\Subject;
@@ -99,6 +101,30 @@ class SectionController extends Controller
         if (ClassBatchSection::create($data)) {
             return redirect()->back()->with('success', 'Record Saved Successfully');
         }
+    }
+    public function section_period(){
+        $title = 'Section Wise Period';
+        $periods = Period::orderBy('name','ASC')->get();
+        $classBatchSections = ClassBatchSection::orderBy('id','ASC')->get();
+        $class_batch_section_periods = ClassBatchSectionPeriod::all();
+         return view('Admin.Section.section_period',compact('title','periods','classBatchSections','class_batch_section_periods'));
+    }
+    public function section_period_post(Request $request){
+        $this->validate($request, [
+            'c_b_s_id' => 'required',
+            'period_id' => 'required',
+            'start_at' => 'required',
+            'end_at' => 'required',
+        ]);
+
+        $class_section_period = new ClassBatchSectionPeriod();
+        $class_section_period->c_b_s_id = $request->c_b_s_id;
+        $class_section_period->period_id = $request->period_id;
+        $class_section_period->start_at = $request->start_at;
+        $class_section_period->end_at = $request->end_at;
+        $class_section_period->save();
+        return redirect()->back()->with('success','Record Seved Successfully !!');
+
     }
 
 }

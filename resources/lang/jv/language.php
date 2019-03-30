@@ -41,6 +41,7 @@ return[
     'List_Exist_Section'=>'セクション一覧',
     'Add_New_Section'=>'セクション追加',
     'Class_Wise_Section'=>'クラスごとのセクション',
+    'Section_Wise_Period'=>'クラスごとのセクション',
     'Section_Wise_Days'=>'セクションワイズデイズ',
     'Class_Section_Days'=>'クラスセクション日数',
     'section_manger'=>'セクション管理',
