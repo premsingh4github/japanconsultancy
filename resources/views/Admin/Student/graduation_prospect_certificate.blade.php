@@ -4,9 +4,6 @@
             .graduation_prospect_certificate_main b {
                 margin-left: 15px;
             }
-            h1.graduation_prospect_certificate_h2 {
-             margin-bottom: 65px;
-            }
         </style>
         <div class="row">
             <div class="graduation_prospect_certificate_main" style="padding:120px 80px;">
@@ -15,7 +12,7 @@
                     卒業見込証明書
                 </h1>
                 <h3>氏  名 &nbsp; &nbsp;<b>{{$student->last_student_name}} {{$student->first_student_name	}}</b></h3>
-                <h3>年月日 <b>{{$student->date_of_birth}}</b></h3>
+                <h3>生月日 <b>{{$student->date_of_birth}}</b></h3>
                 <h3>現住所 <b>{{$student->address}}</b></h3>
                 <h3>学科名 <b>@if(isset($student->subject->name)){{$student->subject->name}}@endif</b></h3>
                 {{--<h3>学科名	造形芸術科（アートビギネスコズ）</h3>--}}
@@ -26,10 +23,10 @@
                     </h3>
                 </div>
              <div class="graduation_prospect_right" style="float: right;text-align: right;">
-                 <h3> 平成31年1月7日</h3>
+                 <h3> 平成31年1月10日</h3>
                  <h3> 東京都練馬区関町北2丁目34番12号</h3>
-                 <h3>学校法人郡山学園	専門学校</h3>
-                 <h3> 中央美術学園　学校長　副田勝久</h3>
+                 <h3>学校法人郡山学園	専門学校　中央美術学園　</h3>
+                 <h3> 理事長カドカ．インドラ．バハドゥール</h3>
              </div>
             </div>
         </div>
