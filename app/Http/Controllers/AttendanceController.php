@@ -66,7 +66,6 @@ class AttendanceController extends Controller
         $attendance = new Attendance();
         $attendance->student_id = \request('student_id');
         $attendance->created_at = date('Y-m-d h:i:s', strtotime(\request('date')));
-        dd(date('Y-m-d h:i:s', strtotime(\request('date'))));
         $attendance->save();
         Session::flash('success','Attendance created!');
         return redirect('admin/manage_attendance');

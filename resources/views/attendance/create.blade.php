@@ -41,7 +41,12 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="type">Date</label>
-                                <input type="date" name="date" class="form-control datepicker" required>
+                                <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                    <input type="text"  name="date" required class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+                                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     <div class="form-group offset-5">
@@ -73,7 +78,6 @@
                     $(btn).parents('.form-row').find('.student_id').html(html)
                 }
             });
-
         }
     </script>
 @endsection

@@ -94,7 +94,7 @@
 
     <script src="{{asset('public/js/custom.js')}}"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>--}}
 
     <script src="{{asset('public/server')}}/assets/js/oneui.core.min.js"></script>
 
@@ -121,10 +121,11 @@
     <script src="{{asset('public/server')}}/assets/js/pages/be_pages_dashboard.min.js"></script>
     <script>jQuery(function(){ One.helpers(['summernote', 'ckeditor', 'simplemde']); });</script>
     <script src="{{asset('public/server')}}/assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-    <script>jQuery(function(){ One.helpers(['datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']); });</script>
+    {{--<script>jQuery(function(){ One.helpers(['datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']); });</script>--}}
     {{--<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>--}}
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
     <script>
         $(document).ready(function() {
             // page is now ready, initialize the calendar...
@@ -140,7 +141,8 @@
                     },
                     @endforeach
                 ]
-            })
+            });
+            $('#datetimepicker1').datetimepicker();
         });
     </script>
     @yield('script')
