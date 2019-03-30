@@ -33,24 +33,13 @@ class AttendanceController extends Controller
     {
         $sections = ClassBatchSection::all();
         $class_section_student = $sections[0];
-//        if(\request('section') && \request('from_date') && \request('to_date') && \request('student_id')){
-//            $class_section_student = ClassBatchSection::find(\request('section'));
-//
-//        }elseif (\request('section') && \request('from_date') && \request('to_date')){
-//            $class_section_student = ClassBatchSection::find(\request('section'));
-//        }elseif (\request('section') && \request('student_id')){
-//            $class_section_student = ClassBatchSection::find(\request('section'));
-//        }elseif(\request('section')){
-//            $class_section_student = ClassBatchSection::find(\request('section'));
-//        }
         if(\request('section')){
             $class_section_student = ClassBatchSection::find(\request('section'));
         }
+
         return view('attendance.show',compact('sections','class_section_student'));
     }
-
-
-    public function attendance_form()
+        public function attendance_form()
     {
         $title='Attendance Form - Chubi Management System';
         return view('attendance.exit',compact('sections','title'));

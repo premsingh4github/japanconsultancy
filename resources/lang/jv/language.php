@@ -18,7 +18,6 @@ return[
     'Section_Wise_Students1'=>'セクションごとの学生 (Add)',
     'Section_Wise_Students2'=>'セクションごとの学生 (Edit)',
 
-
     'Enter_student_number'=>'学生番号を入力',
     'student_year'=>'学年',
     'students_record'=>'学生レコード',

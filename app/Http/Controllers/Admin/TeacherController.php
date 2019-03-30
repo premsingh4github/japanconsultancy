@@ -74,7 +74,7 @@ class TeacherController extends Controller
         $countries = Country::all();
         $Subjects = Subject::all();
         $title = 'Edit Teacher Record | Chubi : Management System';
-        return view('Admin.teacher.edit_teacher', compact( 'title','teacher','countries','Subjects'));
+        return view('Admin.Teacher.edit_teacher', compact( 'title','teacher','countries','Subjects'));
     }
     public function view_teacher($id){
         $country = Country::all();
@@ -82,7 +82,7 @@ class TeacherController extends Controller
         $TeacherData = Teacher::all();
         $subject=TeacherSubject::where('teacher_id',$id)->get();
         $title = 'View Teache Record | Chubi Project : Management System';
-        return view('Admin.teacher.view_teacher', compact( 'title','teacher','subject','TeacherData','country'));
+        return view('Admin.Teacher.view_teacher', compact( 'title','teacher','subject','TeacherData','country'));
     }
 
     public function update_teacher(Request $request, $id){
