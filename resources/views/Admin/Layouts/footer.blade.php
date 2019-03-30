@@ -89,10 +89,13 @@
     <!-- END Apps Modal -->
     </div>
     <!-- END Page Container -->
-
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 
 
     <script src="{{asset('public/js/custom.js')}}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+
     <script src="{{asset('public/server')}}/assets/js/oneui.core.min.js"></script>
 
     <script src="{{asset('public/server')}}/assets/js/oneui.app.min.js"></script>
