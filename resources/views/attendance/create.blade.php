@@ -29,7 +29,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-4" id="student_show">
-                                <label for="student">Student</label>
+                                <label for="student">{{__('language.Student_Name')}}</label>
                                 <select class="form-control">
                                     <option selected value="" disabled>Choose...</option>
                                 </select>
@@ -40,7 +40,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="type">Date</label>
+                                <label for="type">{{__('language.Date')}} {{__('language.And')}} {{__('language.Time')}}</label>
                                 <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
                                     <input type="text"  name="date" required class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
                                     <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">

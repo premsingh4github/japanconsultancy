@@ -197,6 +197,8 @@ return[
     'Update_Student'=>'Update Student',
     'Select'=>'Select',
     'Date'=>'Date',
+    'Time'=>'Time',
+    'And'=>'and',
     'Year'=>'Year',
     'Month'=>'Month',
     'Day'=>'Day',

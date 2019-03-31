@@ -14,7 +14,7 @@
                 <h3>氏  名 &nbsp; &nbsp;<b>{{$student->last_student_name}} {{$student->first_student_name	}}</b></h3>
                 <h3>生月日 <b>{{$student->date_of_birth}}</b></h3>
                 <h3>現住所 <b>{{$student->address}}</b></h3>
-                <h3>学科名 <b>@if(isset($student->subject->name)){{$student->subject->name}}@endif</b></h3>
+                <h3>学科名 <b>造形芸術科（アートビギネスコズ）</b></h3>
                 {{--<h3>学科名	造形芸術科（アートビギネスコズ）</h3>--}}
                 <h3> 学年 &nbsp; &nbsp; <b>{{$student->student_of_year}}</b></h3>
                 <div class="gradution_prospect_content">

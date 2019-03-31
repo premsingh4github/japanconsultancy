@@ -739,7 +739,7 @@
                         </a>
                         <a class="nav-main-link" href="{{url('admin/manage_attendance')}}" >
                             <i class="nav-main-link-icon si si-reload"></i>
-                            <span class="nav-main-link-name">Manage Attendance</span>
+                            <span class="nav-main-link-name">Attendance by Admin</span>
                         </a>
                     </li>
                 </ul>
@@ -816,6 +816,9 @@
                     {{--</div>--}}
                     <div class="dropdown d-inline-block ml-2">
                         <a href="{{url('attendance_form')}}" class="btn btn-sm btn-dual">Student Attendance Form</a>
+                    </div>
+                    <div class="dropdown d-inline-block ml-2">
+                        <a href="{{url('admin/manage_attendance')}}" class="btn btn-sm btn-dual">Attendance by Admin</a>
                     </div>
                     <div class="dropdown d-inline-block ml-2">
                         <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

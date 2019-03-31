@@ -181,6 +181,8 @@ return[
     'Update_Student'=>'学生を更新する',
     'Select'=>'選択する',
     'Date'=>'日付',
+    'Time'=>'時間',
+    'And'=>'そして',
     'Year'=>'年',
     'Month'=>'月',
     'Day'=>'日',
