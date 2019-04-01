@@ -8,11 +8,12 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        Section Wise Period
+                       {{__('language.Period_Time_Update')}}
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                        <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">List Section Wise Period</li>
+                        <ol class="breadcrumb breadcrumb-alt">                            
+                            <li class="breadcrumb-item">{{__('language.Period_Time_Update')}}</li>
+                            <li class="breadcrumb-item"><a href="{{url('admin/section_period')}}">{{__('language.List_Exist_Section')}}</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -53,34 +54,20 @@
                     {{csrf_field()}}
                     <div class="row">
                         <div class="form-group col-sm-3">
-                            <label for="c_b_s_id">Class Batch<font color="#ff0000">*</font></label>
-                            <select name="c_b_s_id" class="form-control" id="c_b_s_id">
-                                <option value="">[Choose]</option>
-                                @foreach($classBatchSections as $section)
-                                    <option value="{{$section->id}}">({{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}}</option>
-                                @endforeach
-                            </select>
-                            <i style="font-size: 12px;">Note : Class Batch Section Not Found? <a target="_blank" href="{{url('admin/class_section')}}">Click Here</a></i>
+                            <label for="shift"> {{$class_section_period->period->name}}  Time Period</label>
                         </div>
                         <div class="form-group col-sm-3">
-                            <label for="period_id">Period<font color="#ff0000">*</font></label>
-                            <select name="period_id" class="form-control" id="period_id">
-                                <option value="">[Choose]</option>
-                                @foreach($periods as $period)
-                                    <option value="{{$period->id}}">{{$period->name}}</option>
-                                @endforeach
-                            </select>
+                            <label for="shift">{{__('language.Start_Time')}}<font color="#ff0000">*</font></label>
+                            <input type="time" class="form-control" value="{{$class_section_period->start_at}}" name="start_at">
                         </div>
                         <div class="form-group col-sm-3">
-                            <label for="shift">Start Time<font color="#ff0000">*</font></label>
-                            <input type="time" name="start_at" class="form-control">
+                            <label for="end_at">{{__('language.End_Time')}}<font color="#ff0000">*</font></label>
+                            <input type="time" class="form-control" value="{{$class_section_period->end_at}}" name="end_at">
                         </div>
-                        <div class="form-group col-sm-3">
-                            <label for="end_at">End Time<font color="#ff0000">*</font></label>
-                            <input type="time" class="form-control" name="end_at">
-                        </div>
+                    </div>
+                    <div class="row">
                         <div class="form-group col-sm-4">
-                            <button type="submit" class="btn  btn-success">Create Section Wise Period</button>
+                            <button type="submit" class="btn  btn-success">{{__('language.Period_Time_Update')}}</button>
                         </div>
                     </div>
                 </form>

@@ -8,11 +8,11 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        Section Wise Period
+                        {{__('language.Section_Wise_Period')}}
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">List Section Wise Period</li>
+                            <li class="breadcrumb-item">{{__('language.List_Exist_Section')}}</li>
                         </ol>
                     </nav>
                 </div>
@@ -53,7 +53,7 @@
                     {{csrf_field()}}
                     <div class="row">
                         <div class="form-group col-sm-3">
-                            <label for="c_b_s_id">Class Batch<font color="#ff0000">*</font></label>
+                            <label for="c_b_s_id">{{__('language.Class_Batch')}}<font color="#ff0000">*</font></label>
                             <select name="c_b_s_id" class="form-control" id="c_b_s_id">
                                 <option value="">[Choose]</option>
                                 @foreach($classBatchSections as $section)
@@ -63,7 +63,7 @@
                             <i style="font-size: 12px;">Note : Class Batch Section Not Found? <a target="_blank" href="{{url('admin/class_section')}}">Click Here</a></i>
                         </div>
                         <div class="form-group col-sm-3">
-                            <label for="period_id">Period<font color="#ff0000">*</font></label>
+                            <label for="period_id">{{__('language.Period')}}<font color="#ff0000">*</font></label>
                             <select name="period_id" class="form-control" id="period_id">
                                 <option value="">[Choose]</option>
                                 @foreach($periods as $period)
@@ -72,15 +72,15 @@
                             </select>
                         </div>
                         <div class="form-group col-sm-3">
-                            <label for="shift">Start Time<font color="#ff0000">*</font></label>
+                            <label for="shift">{{__('language.Start_Time')}}<font color="#ff0000">*</font></label>
                             <input type="time" name="start_at" class="form-control">
                         </div>
                         <div class="form-group col-sm-3">
-                            <label for="end_at">End Time<font color="#ff0000">*</font></label>
+                            <label for="end_at">{{__('language.End_Time')}}<font color="#ff0000">*</font></label>
                             <input type="time" class="form-control" name="end_at">
                         </div>
                         <div class="form-group col-sm-4">
-                            <button type="submit" class="btn  btn-success">Create Section Wise Period</button>
+                            <button type="submit" class="btn  btn-success">{{__('language.Create_Section_Wise_Period')}}</button>
                         </div>
                     </div>
                 </form>
@@ -107,12 +107,12 @@
                             <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0 js-dataTable-buttons">
                                 <thead class="thead-dark">
                                 <tr>
-                                    <th class="font-w700">SN</th>
-                                    <th class="font-w700">Class Batch Section</th>
-                                    <th class="font-w700">Period Name</th>
-                                    <th class="font-w700">Start Time</th>
-                                    <th class="font-w700">End Time</th>
-                                    <th class="font-w700">Action</th>
+                                    <th class="font-w700">{{__('language.S_N')}}</th>
+                                    <th class="font-w700">{{__('language.Class_Batch_Group')}}</th>
+                                    <th class="font-w700">{{__('language.Period_Name')}}</th>
+                                    <th class="font-w700">{{__('language.Start_Time')}}</th>
+                                    <th class="font-w700">{{__('language.End_Time')}}</th>
+                                    <th class="font-w700">{{__('language.Action')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -127,7 +127,7 @@
                                     <td>{{$class_batch_section_period->start_at}}</td>
                                     <td>{{$class_batch_section_period->end_at}}</td>
                                     <td>
-                                        <a href="{{url('admin/class_section/section_id=').$section->id}}" class="fa fa-edit"></a>
+                                        <a href="{{url('admin/section_period/section_period_id=').$class_batch_section_period->id}}" class="fa fa-edit"></a>
                                         {{--<a href="{{url('admin/list_subject/subject_id=').$subject->id}}.'/delete" onclick="return confirm('Are you sure you want to delete this Record?');"  class="fa fa-trash-alt" style="color: red;"></a>--}}
                                     </td>
 
