@@ -37,7 +37,12 @@ class HolidayController extends Controller
         $title = 'Create Holiday | Chubi Project : Management System';
         return view('Admin.Holiday.edit',compact('holiday','title'));
     }
-    public function update($id){
+    public function update(Request $request,$id){
+        $this->validate($request, [
+            'title' => 'required',
+            'start_date' => 'required',
+        ]);
+
         $holiday = Event::findOrFail($id);
         $holiday->start_date = \request('start_date');
         $holiday->end_date = \request('end_date');

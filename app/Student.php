@@ -39,7 +39,7 @@ class Student extends Model
         if(Event::where('start_date',$day)->count() > 0){
             return 'H';
         }
-        if(Event::where('end_date',$day)->count() > 0 ){
+        if(Event::where('end_date',$day)->count() > 0){
             return 'H';
         }
         if($class_bath_section->shift =='morning'){
