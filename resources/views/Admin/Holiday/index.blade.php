@@ -3,8 +3,34 @@
     <!-- Main Container -->
     <main id="main-container">
         <div class="content">
-            <!-- Dynamic Table with Export Buttons -->
+            @if(session('success'))
+                <div class="col-sm-12">
+                    <div class="alert  alert-success alert-dismissible fade show" role="alert">
+                        <span class="badge badge-pill badge-success">Success</span> {{session('success')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div style="clear: both;"></div>
+            @endif
+            @if($errors->any())
+                <div class="col-sm-12">
+                    <div class="alert  alert-success alert-dismissible fade show" role="alert">
+                        @foreach($errors->all() as $error)
+                            <span class="badge badge-pill badge-danger">Error</span> {{$error}}<br>
+                        @endforeach
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div style="clear: both;"></div>
+        @endif
+
+        <!-- Dynamic Table with Export Buttons -->
             <div class="block">
+
                 <div class="block-header">
                     <h3 class="block-title">{{__('language.List_Exist_Holiday')}}</h3>
                     <div class="pull-right">
@@ -12,20 +38,6 @@
                     </div>
                 </div>
                 <div class="block-content block-content-full">
-                    <div class="col-sm-12 col-md-12 col-xs-12">
-                        <p class="font-size-sm text-muted">
-                            @if(session('success'))
-                                <span class="alert alert-success"> {{session('success')}}</span>
-                        @endif
-                        @if($errors->any())
-                            <ul  class="alert alert-danger">
-                                @foreach($errors->all() as $error)
-                                    <li>{{$error}}</li>
-                                @endforeach
-                            </ul>
-                            @endif
-                            </p>
-                    </div>
                     <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
@@ -40,9 +52,8 @@
                         @foreach($list_holiday as $key=>$holiday)
                             <tr>
                                 <td>{{++$key}}</td>
-                                <td>{{$holiday->date}}</td>
+                                <td>{{$holiday->start_date}} {{$holiday->end_date}}</td>
                                 <td>{{$holiday->title}}</td>
-                                <td>{!! $holiday->description !!}</td>
                                 <td>
                                     <a href="{{url('admin/holiday/edit=').$holiday->id}}"><span class="badge badge-info">Edit</span></a>
                                     <a href=""><span class="badge badge-danger">Delete</span></a>

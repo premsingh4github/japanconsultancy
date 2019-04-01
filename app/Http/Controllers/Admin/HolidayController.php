@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\ClassBatchSection;
 use App\ClassSectionDay;
+use App\Event;
 use App\Holiday;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,7 +12,7 @@ use App\Http\Controllers\Controller;
 class HolidayController extends Controller
 {
     public function index(){
-        $list_holiday = Holiday::orderBy('date','ASC')->get();
+        $list_holiday = Event::orderBy('start_date','ASC')->get();
         $title = 'Holiday Manager | Chubi Project : Management System';
         return view('Admin.Holiday.index',compact('title','list_holiday'));
     }
@@ -22,27 +23,27 @@ class HolidayController extends Controller
     public function store(Request $request){
         $this->validate($request, [
             'title' => 'required',
-            'date' => 'required',
+            'start_date' => 'required',
         ]);
-        $holiday = new Holiday();
+        $holiday = new Event();
         $holiday->title = \request('title');
-        $holiday->date = \request('date');
-        $holiday->description = \request('description');
+        $holiday->start_date = \request('start_date');
+        $holiday->end_date = \request('end_date');
         $holiday->save();
     return redirect('admin/holiday')->with('success', 'Record Saved Successfully');
     }
     public function edit($id){
-        $holiday = Holiday::findOrFail($id);
+        $holiday = Event::findOrFail($id);
         $title = 'Create Holiday | Chubi Project : Management System';
         return view('Admin.Holiday.edit',compact('holiday','title'));
     }
     public function update($id){
-        $holiday = Holiday::findOrFail($id);
-        $holiday->date = \request('date');
+        $holiday = Event::findOrFail($id);
+        $holiday->start_date = \request('start_date');
+        $holiday->end_date = \request('end_date');
         $holiday->title = \request('title');
-        $holiday->description = \request('description');
         $holiday->save();
-        return redirect('admin/holiday')->with('success', 'Recored Updated');
+        return redirect('admin/holiday')->with('success', 'Record Updated');
     }
 
     public function section_day(){

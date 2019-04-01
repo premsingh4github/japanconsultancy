@@ -122,16 +122,19 @@
                                         <td>
                                             @if($student->present(1,$class_section_student,$start_date)=='F' || $student->present(1,$class_section_student,$start_date)=='P')
                                                 P
-                                            @else
+                                            @elseif($student->present(1,$class_section_student,$start_date)=='H')
+                                                H
+                                                @else
                                                 A
                                             @endif
-
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             @if($student->present(2,$class_section_student,$start_date)=='F' || $student->present(2,$class_section_student,$start_date)=='P')
                                                 P
+                                            @elseif($student->present(2,$class_section_student,$start_date)=='H')
+                                                H
                                             @else
                                                 A
                                             @endif
@@ -142,6 +145,8 @@
                                         <td>
                                             @if($student->present(3,$class_section_student,$start_date)=='F' || $student->present(3,$class_section_student,$start_date)=='P')
                                                 P
+                                            @elseif($student->present(3,$class_section_student,$start_date)=='H')
+                                                H
                                             @else
                                                 A
                                             @endif
@@ -151,6 +156,8 @@
                                         <td>
                                             @if($student->present(4,$class_section_student,$start_date)=='F')
                                                 P
+                                            @elseif($student->present(4,$class_section_student,$start_date)=='H')
+                                                H
                                             @else
                                                 A
                                             @endif
@@ -169,16 +176,19 @@
                                         <td>
                                             @if($student->present(1,$class_section_student,$start_date)=='F' || $student->present(1,$class_section_student,$start_date)=='P')
                                                 P
+                                            @elseif($student->present(1,$class_section_student,$start_date)=='H')
+                                                H
                                             @else
                                                 A
                                             @endif
-
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             @if($student->present(2,$class_section_student,$start_date)=='F' || $student->present(2,$class_section_student,$start_date)=='P')
                                                 P
+                                            @elseif($student->present(2,$class_section_student,$start_date)=='H')
+                                                H
                                             @else
                                                 A
                                             @endif
@@ -189,6 +199,8 @@
                                         <td>
                                             @if($student->present(3,$class_section_student,$start_date)=='F' || $student->present(3,$class_section_student,$start_date)=='P')
                                                 P
+                                            @elseif($student->present(3,$class_section_student,$start_date)=='H')
+                                                H
                                             @else
                                                 A
                                             @endif
@@ -198,6 +210,8 @@
                                         <td>
                                             @if($student->present(4,$class_section_student,$start_date)=='F')
                                                 P
+                                            @elseif($student->present(4,$class_section_student,$start_date)=='H')
+                                                H
                                             @else
                                                 A
                                             @endif

@@ -99,8 +99,10 @@
                     @endif
                     @endforeach
                 <div class="col-12" style="background-color: #fff; padding:10px;">
-                    <h2>Calendar</h2>
-                    <div id='calendar'></div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"> MY Calender </div>
+                        <div class="panel-body"> {!! $calendar->calendar() !!} {!! $calendar->script() !!} </div>
+                    </div>
                 </div>
 
             </div>

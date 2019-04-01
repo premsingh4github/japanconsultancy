@@ -127,23 +127,23 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
     <script>
-        $(document).ready(function() {
-            // page is now ready, initialize the calendar...
-            $('#calendar').fullCalendar({
-                // put your options and callbacks here
-                events : [
-                    @php $tasks = \App\Holiday::all(); @endphp
-                        @foreach($tasks as $task)
-                    {
-                        title : '{{ $task->title }}',
-                        start : '{{ $task->date }}',
-                        url : '{{url('admin/holiday/edit=').$task->id}}'
-                    },
-                    @endforeach
-                ]
-            });
-            $('#datetimepicker1').datetimepicker();
-        });
+        {{--$(document).ready(function() {--}}
+            {{--// page is now ready, initialize the calendar...--}}
+            {{--$('#calendar').fullCalendar({--}}
+                {{--// put your options and callbacks here--}}
+                {{--events : [--}}
+                    {{--@php $tasks = \App\Holiday::all(); @endphp--}}
+                        {{--@foreach($tasks as $task)--}}
+                    {{--{--}}
+                        {{--title : '{{ $task->title }}',--}}
+                        {{--start : '{{ $task->date }}',--}}
+                        {{--url : '{{url('admin/holiday/edit=').$task->id}}'--}}
+                    {{--},--}}
+                    {{--@endforeach--}}
+                {{--]--}}
+            {{--});--}}
+            {{--$('#datetimepicker1').datetimepicker();--}}
+        {{--});--}}
     </script>
     @yield('script')
     </body>
