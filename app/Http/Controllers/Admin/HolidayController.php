@@ -25,11 +25,24 @@ class HolidayController extends Controller
             'title' => 'required',
             'start_date' => 'required',
         ]);
-        $holiday = new Event();
-        $holiday->title = \request('title');
-        $holiday->start_date = \request('start_date');
-        $holiday->end_date = \request('end_date');
-        $holiday->save();
+        //dd(\request('start_date'));
+        $datetime1 = strtotime(\request('start_date'));
+       // dd($datetime1);
+        $datetime2 = strtotime(\request('end_date'));
+        while($datetime1 <= $datetime2) {
+            $date = date('Y-m-d', $datetime1);
+            $datetime1 = $datetime1 +86400;
+            $holiday = Event::firstOrNew(['start_date' => $date]);
+            $holiday->title = \request('title');
+            $holiday->end_date = $date;
+            $holiday->save();
+        }
+//        $holiday = new Event();
+//
+//        $holiday->title = \request('title');
+//        $holiday->start_date = \request('start_date');
+//        $holiday->end_date = \request('end_date');
+//        $holiday->save();
     return redirect('admin/holiday')->with('success', 'Record Saved Successfully');
     }
     public function edit($id){
