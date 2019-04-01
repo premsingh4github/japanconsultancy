@@ -14,7 +14,7 @@
         <!-- Hero -->
         <div class="block-content block-content-full">
             <div class="form-group col-sm-4">
-                
+
                 <div class="student_image">
                     <label for="student_name">{{__('language.Select_Running_Section')}}</label>
                     <select name="section" class="form-control" onchange="sectionChanged(this)">
@@ -31,7 +31,7 @@
                         text-transform: none;
                     }
                 </style>
-                
+
                 <tr>
                     <td colspan="6"> &nbsp;</td>
                     <td >{{__('language.Day')}}</td>
