@@ -6,6 +6,7 @@ return[
     'Graduation_Certificate'=>'卒業証明書',
     'Certificate_of_Student_Status'=>'在学証明書',
     'Download'=>'ダウンロード',
+    'Period_Time_Update'=>'期間更新',
 
     'admin'=>'アドミン',
     'Admin_Panel'=>'管理パネル',
@@ -47,6 +48,8 @@ return[
     'Add_New_Section'=>'セクション追加',
     'Class_Wise_Section'=>'クラスごとのセクション',
     'Section_Wise_Period'=>'クラスごとのセクション',
+    'Create_Section_Wise_Period'=>'セクションワイズ期間を作成',
+
     'Section_Wise_Days'=>'セクションワイズデイズ',
     'Class_Section_Days'=>'クラスセクション日数',
     'section_manger'=>'セクション管理',
@@ -107,6 +110,9 @@ return[
     'create_class'=>'クラスを追加',
     'Start_date'=>'始まる日',
     'End_date'=>'終了日',
+    'Start_Time'=>'始まる時間',
+    'End_Time'=>'終了時間',
+
     'Title'=>'タイトル',
     'Description'=>'詳細',
     'Search'=>'Search',
@@ -210,6 +216,7 @@ return[
     'Batch_Year'=>'バッチ年',
     'Class_Batch_Group'=>'クラスバッチグループ',
     'Student_In_Batch'=>'バッチで学生',
+    'Period_Name'=>'生理時',
 
 
 

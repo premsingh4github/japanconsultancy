@@ -128,11 +128,17 @@ class SectionController extends Controller
     }
 
     public function edit_class_section_period($id){
-        $class_section_period = Period::findOrfail($id);
-        $class_room_batch = ClassRoomBatch::all();
-        $section = Section::all();
+        $class_section_period = ClassBatchSectionPeriod::findOrfail($id);
+//        $class_room_batch = ClassRoomBatch::all();
+//        $section = Section::all();
         $title = 'Edit Class-Section Record | Chubi Project : Management System';
         return view('Admin.Section.edit_class_section_period', compact('', 'title','class_section_period','class_room_batch','section'));
+    }
+    public function update_class_section_period(Request $request, $id){
+        $class_section_period = ClassBatchSectionPeriod::findOrFail($id);
+        $requestData = \request()->all();
+        $class_section_period->update($requestData);
+        return redirect('admin/section_period')->with('success', 'Recored Updated');
     }
 
 }

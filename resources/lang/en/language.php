@@ -12,6 +12,8 @@ return[
     'Certificate_of_Student_Status'=>'Certificate of Student Status',
     'Download'=>'Download',
 
+    'Period_Time_Update'=>'Period Time Update',
+
     'Admin_Panel'=>'Admin Panel',
     'admin'=>'Admin',
     'User_Manager'=>'USER MANAGER',
@@ -53,6 +55,7 @@ return[
     'Add_New_Section'=>'Add New Section',
     'Class_Wise_Section'=>'Class Wise Section',
     'Section_Wise_Period'=>'Section Wise Period',
+    'Create_Section_Wise_Period'=>'Create Section Wise Period',
     'Class_Section_Days'=>'Class Section Days',
     'class_room_status'=>'class room status',
     'Class_Name'=>'Class Name',
@@ -128,9 +131,12 @@ return[
     'class_shift'=>'クラスシフト',
     'Start_date'=>'Start date',
     'End_date'=>'End date',
+    'Start_Time'=>'Start Time',
+    'End_Time'=>'End Time',
     'Title'=>'Title',
     'Description'=>'Description',
     'Search'=>'Search',
+    'Period_Name'=>'Period Name',
 
 
     /*dashboard*/
