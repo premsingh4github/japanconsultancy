@@ -36,12 +36,13 @@ class Student extends Model
 
     public function present($period,$class_bath_section,$day)
     {
+
         if(Event::where('start_date',$day)->count() > 0){
             return 'H';
         }
-        if(Event::where('end_date',$day)->count() > 0){
-            return 'H';
-        }
+//        if(Event::where('end_date',$day)->count() > 0){
+//            return 'H';
+//        }
         if($class_bath_section->shift =='morning'){
 //            switch ($period){
 //                case 1:
