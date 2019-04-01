@@ -17,26 +17,24 @@
                 <div class="form-group col-sm-4">
                     <div class="student_image">
                         <label for="student_name">{{__('language.Select_Running_Section')}}</label>
-                        <select name="section" class="form-control" onchange="sectionChanged(this)">
+                        <select name="section" class="form-control " onchange="sectionChanged(this)" id="section">
                             @foreach($sections as $section)
                                 <option @if(request('section') == $section->id) selected @endif value="{{$section->id}}">{{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
-                <div class="form-group col-sm-1">
+                <div class="form-group col-sm-1 print-hide">
                     <div class="student_image">
                         <label for="student_name" style="color: transparent;"> Pdf</label>
-                        <button name="section" class="form-control btn btn-primary"> Pdf
-                            <a href="#"></a>
+                        <button  class="form-control btn btn-primary" onclick="window.print()"> Print/Pdf
                         </button>
                     </div>
                 </div>
-                <div class="form-group col-sm-1">
+                <div class="form-group col-sm-1 print-hide">
                     <div class="student_image">
                         <label for="student_name" style="color: transparent;"> Excel</label>
-                        <button name="section" class="form-control btn btn-primary"> Excel
-                            <a href="#"></a>
+                        <button class="form-control btn btn-primary" onclick="getExcel()"> Excel
                         </button>
                     </div>
                 </div>
@@ -256,6 +254,20 @@
                  url += "?section="+parseInt($(btn).val());
             }
             window.location  = url;
+        }
+        function getExcel() {
+            var section_id = parseInt($('#section').val());
+            var url = '{{url('section_attendance_excel')}}'
+            if(section_id > 0){
+                url += "?section_attendance_excel="+section_id;
+            }
+            window.location  = url;
+            // $.ajax({
+            //     url: Laravel.url +"/section_attendance_excel/"+section_id,
+            //     method:"GET",
+            //     success:function(data){
+            //     }
+            // });
         }
     </script>
 @endsection

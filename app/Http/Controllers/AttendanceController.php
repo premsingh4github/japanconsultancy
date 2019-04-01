@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Attendance;
 use App\ClassBatchSection;
+use App\ClassBatchSectionPeriod;
 use App\ClassSectionStudent;
+use App\Exports\ClassBatchSectionExport;
+use App\Period;
 use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AttendanceController extends Controller
 {
@@ -37,7 +41,7 @@ class AttendanceController extends Controller
         if(\request('section')){
             $class_section_student = ClassBatchSection::find(\request('section'));
         }
-        return view('attendance.show',compact('sections','class_section_student'));
+        return view('attendance.show_new',compact('sections','class_section_student'));
     }
     public function attendance_form()
     {
@@ -69,6 +73,20 @@ class AttendanceController extends Controller
         $attendance->save();
         Session::flash('success','Attendance created!');
         return redirect('admin/manage_attendance');
+    }
+
+    public function getAttendanceExcel()
+    {
+        //dd(98);
+        //ini_set('max_execution_time',1200);
+        $sections = ClassBatchSection::all();
+        $class_section_student = $sections[0];
+        if(\request('section_attendance_excel')){
+            $class_section_student = ClassBatchSection::find(request('section_attendance_excel'));
+        }
+        $class_section_name = $class_section_student->class_room_batch->class_room->name.'-'.$class_section_student->class_room_batch->batch->name.')'. $class_section_student->class_section->name.'-'.$class_section_student->shift;
+
+        return Excel::download(new ClassBatchSectionExport(),$class_section_name.'.xlsx');
     }
 
 }

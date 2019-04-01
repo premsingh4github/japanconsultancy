@@ -14,6 +14,14 @@
                 Admin Panel
             @endif
         </title>
+    <style>
+        @media print {
+            .print-hide{
+                display: none;
+            }
+            /* styles go here */
+        }
+    </style>
 
     <link rel="stylesheet" href="{{asset('public/server')}}/assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
