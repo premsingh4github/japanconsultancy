@@ -7,6 +7,11 @@
  */
 return[
     /*admin Left menu*/
+    'Graduation_Prospect_Certificate'=>'Graduation Prospect Certificate',
+    'Graduation_Certificate'=>'Graduation Certificate',
+    'Certificate_of_Student_Status'=>'Certificate of Student Status',
+    'Download'=>'Download',
+
     'Admin_Panel'=>'Admin Panel',
     'admin'=>'Admin',
     'User_Manager'=>'USER MANAGER',

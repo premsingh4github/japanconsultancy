@@ -2,10 +2,15 @@
 
 return[
     /*admin left Menu */
+    'Graduation_Prospect_Certificate'=>'卒業見込証明書',
+    'Graduation_Certificate'=>'卒業証明書',
+    'Certificate_of_Student_Status'=>'在学証明書',
+    'Download'=>'ダウンロード',
+
     'admin'=>'アドミン',
     'Admin_Panel'=>'管理パネル',
     'User_Manager'=>'ユーザー管',
-    'User_controller'=>'ウーザーコントロール',
+    'User_controller'=>'ユーザーコントロール',
     'STUDENT_TEACHER_MANAGER'=>'学生/先生管理',
     'Teachers'=>'先生',
     'MANAGER'=>'学生/先生管理',
@@ -160,7 +165,7 @@ return[
     'Date_of_Birth'=>'生年月日',
     'Address'=>'居住地 ',
     'Nearest_station'=>'最寄駅',
-    'Phone_Number'=>'学績番号',
+    'Phone_Number'=>'携帯電話番',
     'Class'=>'クラス',
     'Opt_Subject'=>'件名',
     'Batch'=>'バッチ',

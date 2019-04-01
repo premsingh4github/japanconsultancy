@@ -2,11 +2,6 @@
 @section('body')
     <!-- Main Container -->
     <main id="container">
-
-
-
-
-
         <!-- Page Content -->
         <div class="content" style="margin-top:50px;">
 
@@ -108,7 +103,7 @@
                                     <td>
                                         <div class="dropdown d-inline-block ml-2">
                                             <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <span class="d-none d-sm-inline-block ml-1"><i class="fa fa-download"></i>  Download</span>
+                                                <span class="d-none d-sm-inline-block ml-1"><i class="fa fa-download"></i>{{__('language.Download')}}</span>
                                                 <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-left p-0 border-0 font-size-sm" aria-labelledby="page-header-user-dropdown">
@@ -120,13 +115,13 @@
                                                         {{--<span>ID Card</span>  <i class="fa fa-download"></i>--}}
                                                     {{--</a>--}}
                                                     <a class="dropdown-item d-flex align-items-center justify-content-between" onclick="window.open('{{url('admin/graduation_prospect_certificate/'.$students->id)}}', 'popup', 'height=1122,width=994,scrollbars=yes,resize=no,status=no,left=100,top=100');">
-                                                        <span>Graduation Prospect cerificate</span> <i class="fa fa-eye"></i>
+                                                        <span>{{__('language.Graduation_Prospect_Certificate')}}</span> <i class="fa fa-eye"></i>
                                                     </a>
                                                     <a class="dropdown-item d-flex align-items-center justify-content-between" onclick="window.open('{{url('admin/Graduation_certificate/'.$students->id)}}', 'popup', 'height=1122,width=994,scrollbars=yes,resize=no,status=no,left=100,top=100');">
-                                                        <span>Graduation Certificate </span>  <i class="fa fa-eye"></i>
+                                                        <span>{{__('language.Graduation_Certificate')}}</span>  <i class="fa fa-eye"></i>
                                                     </a>
                                                     <a class="dropdown-item d-flex align-items-center justify-content-between" onclick="window.open('{{url('admin/certificate_of_student_status/'.$students->id)}}', 'popup', 'height=1122,width=994,scrollbars=yes,resize=no,status=no,left=100,top=100');">
-                                                        <span>certificate of student status</span> <i class="fa fa-eye"></i>
+                                                        <span>{{__('language.Certificate_of_Student_Status')}}</span> <i class="fa fa-eye"></i>
                                                     </a>
                                                 </div>
                                             </div>
