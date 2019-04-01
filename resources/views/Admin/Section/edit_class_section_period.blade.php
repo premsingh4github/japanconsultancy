@@ -86,62 +86,6 @@
                 </form>
             </div>
             <!-- END Partial Table -->
-
-            <!-- Customers and Latest Orders -->
-            <div class="row row-deck">
-                <!-- Latest Orders -->
-                <div class="col-lg-12">
-                    <div class="block block-mode-loading-oneui">
-                        <div class="block-header border-bottom">
-                            <h3 class="block-title">Class Wise Section Record</h3>
-                            <div class="block-options">
-                                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
-                                    <i class="si si-refresh"></i>
-                                </button>
-                                <button type="button" class="btn-block-option">
-                                    <i class="si si-settings"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="block-content block-content-full">
-                            <table class="table table-striped table-hover table-borderless table-vcenter font-size-sm mb-0 js-dataTable-buttons">
-                                <thead class="thead-dark">
-                                <tr>
-                                    <th class="font-w700">SN</th>
-                                    <th class="font-w700">Class Batch Section</th>
-                                    <th class="font-w700">Period Name</th>
-                                    <th class="font-w700">Start Time</th>
-                                    <th class="font-w700">End Time</th>
-                                    <th class="font-w700">Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($class_batch_section_periods as $key=>$class_batch_section_period)
-                                <tr>
-                                    <td>{{++$key}}</td>
-                                    <td>
-                                        @php $section = $class_batch_section_period->classBatchSection  @endphp
-                                        ({{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}}
-                                    </td>
-                                    <td>{{$class_batch_section_period->period->name}}</td>
-                                    <td>{{$class_batch_section_period->start_at}}</td>
-                                    <td>{{$class_batch_section_period->end_at}}</td>
-                                    <td>
-                                        <a href="{{url('admin/class_section/section_id=').$section->id}}" class="fa fa-edit"></a>
-                                        {{--<a href="{{url('admin/list_subject/subject_id=').$subject->id}}.'/delete" onclick="return confirm('Are you sure you want to delete this Record?');"  class="fa fa-trash-alt" style="color: red;"></a>--}}
-                                    </td>
-
-
-                                </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- END Latest Orders -->
-            </div>
-            <!-- END Customers and Latest Orders -->
         </div>
         <!-- END Page Content -->
 

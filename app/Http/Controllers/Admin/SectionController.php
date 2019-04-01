@@ -127,4 +127,12 @@ class SectionController extends Controller
 
     }
 
+    public function edit_class_section_period($id){
+        $class_section_period = Period::findOrfail($id);
+        $class_room_batch = ClassRoomBatch::all();
+        $section = Section::all();
+        $title = 'Edit Class-Section Record | Chubi Project : Management System';
+        return view('Admin.Section.edit_class_section_period', compact('', 'title','class_section_period','class_room_batch','section'));
+    }
+
 }

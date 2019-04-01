@@ -13,15 +13,32 @@
     <div class="container" style="background-color: #2196f300;">
         <!-- Hero -->
         <div class="block-content block-content-full">
-            <div class="form-group col-sm-4">
-
-                <div class="student_image">
-                    <label for="student_name">{{__('language.Select_Running_Section')}}</label>
-                    <select name="section" class="form-control" onchange="sectionChanged(this)">
-                        @foreach($sections as $section)
-                            <option @if(request('section') == $section->id) selected @endif value="{{$section->id}}">{{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}}</option>
-                        @endforeach
-                    </select>
+            <div class="row">
+                <div class="form-group col-sm-4">
+                    <div class="student_image">
+                        <label for="student_name">{{__('language.Select_Running_Section')}}</label>
+                        <select name="section" class="form-control" onchange="sectionChanged(this)">
+                            @foreach($sections as $section)
+                                <option @if(request('section') == $section->id) selected @endif value="{{$section->id}}">{{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-sm-1">
+                    <div class="student_image">
+                        <label for="student_name" style="color: transparent;"> Pdf</label>
+                        <button name="section" class="form-control btn btn-primary"> Pdf
+                            <a href="#"></a>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group col-sm-1">
+                    <div class="student_image">
+                        <label for="student_name" style="color: transparent;"> Excel</label>
+                        <button name="section" class="form-control btn btn-primary"> Excel
+                            <a href="#"></a>
+                        </button>
+                    </div>
                 </div>
             </div>
             <table border="1">
