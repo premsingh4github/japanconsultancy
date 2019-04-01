@@ -21,6 +21,11 @@ class ClassBatchSection extends Model
       return $this->hasMany(ClassSectionStudent::class,'class_section_id');
     }
 
+    public function class_batch_section_periods()
+    {
+       return $this->hasMany(ClassBatchSectionPeriod::class,'c_b_s_id');
+    }
+
 
 
 }

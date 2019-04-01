@@ -36,6 +36,8 @@ class Student extends Model
 
     public function present($period,$class_bath_section,$day)
     {
+        return 'H';
+
         if(Event::where('start_date',$day)->count() > 0){
             return 'H';
         }

@@ -10,8 +10,11 @@ use App\Exports\ClassBatchSectionExport;
 use App\Period;
 use App\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
+use Nexmo\Numbers\Number;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class AttendanceController extends Controller
 {
@@ -37,11 +40,15 @@ class AttendanceController extends Controller
     {
         ini_set('max_execution_time',1200);
         $sections = ClassBatchSection::all();
-        $class_section_student = $sections[0];
+
         if(\request('section')){
-            $class_section_student = ClassBatchSection::find(\request('section'));
+            $class_section_student = ClassBatchSection::with('class_section_students.student')->find(\request('section'));
+            return view('attendance.show_batch',compact('class_section_student','sections'));
+        }else{
+            $class_section_student = $sections[0];
+            $attendances = Attendance::select(DB::raw('MAX(attendances.id) as my_id, attendances.student_id ,MAX(attendances.created_at) as time'))->with('student')->groupBy('attendances.student_id')->orderBy('my_id','DESC')->get();
+            return view('attendance.show_today',compact('attendances','sections','class_section_student'));
         }
-        return view('attendance.show_new',compact('sections','class_section_student'));
     }
     public function attendance_form()
     {
@@ -87,6 +94,52 @@ class AttendanceController extends Controller
         $class_section_name = $class_section_student->class_room_batch->class_room->name.'-'.$class_section_student->class_room_batch->batch->name.')'. $class_section_student->class_section->name.'-'.$class_section_student->shift;
 
         return Excel::download(new ClassBatchSectionExport(),$class_section_name.'.xlsx');
+    }
+
+    public function getattendace($code)
+    {
+        $data = explode('_',$code);
+        $period = $data[0];
+        if($attendences = Attendance::where('student_id',$data[3])->whereBetween('updated_at', array($data[2].' 00:00:00',$data[2].' 23:59:59'))->orderBy('id','ASC')->get()){
+
+            $class_section_student_id = $data[1];
+
+
+            $class_section_student = ClassSectionStudent::select(DB::raw('class_section_students.student_id, class_batch_sections.id as cbs_id, class_batch_section_periods.*'))->join('class_batch_sections','class_batch_sections.id','=','class_section_students.class_section_id')->join('class_batch_section_periods','class_batch_section_periods.c_b_s_id','=','class_batch_sections.id')->whereHas('class_section',function ($class_section) use ($period) {
+                $class_section->whereHas('class_batch_section_periods',function ($section_periods) use ($period) {
+                    $section_periods->where('period_id',$period);
+                });
+            })->find($class_section_student_id);
+
+            echo "start_at: ".$class_section_student->start_at;
+
+            echo "<br> Entry:".date('H:i',strtotime($attendences[0]->created_at));
+            echo "<br> Dif:".strtotime(date('H:i',strtotime($attendences[0]->created_at))). "-". strtotime($class_section_student->start_at) ;
+            $a =  strtotime(date('H:i',strtotime($attendences[0]->created_at)));
+            $b = strtotime($class_section_student->start_at);
+            echo "<br> Dif:".$a - $b ;
+
+            ;
+            dd($attendences);
+
+//        $class_section_student = ClassSectionStudent::select(DB::raw('class_batch_sections.id as cbs_id, class_batch_section_periods.*'))->join('class_batch_sections','class_batch_sections.id','=','class_section_students.class_section_id')->join('class_batch_section_periods','class_batch_section_periods.c_b_s_id','=','class_batch_sections.id')->whereHas('class_section',function ($class_section) use ($period) {
+//            $class_section->whereHas('class_batch_section_periods',function ($section_periods) use ($period) {
+//                $section_periods->where('period_id',$period);
+//            });
+//        })->join('attendances',function ($q){
+//            $q->where('attendances.student_id','class_section_students.student_id');
+//        })->find($class_section_student_id);
+
+
+            //('c_b_s_id',$class_batch_section_id)->where('period_id',$period)->first();
+            $date = $data[2];
+            $status = "P";
+            return response()->json(['id'=>$code,'status'=>$class_section_student]);
+        }else{
+            return response()->json(['id'=>$code,'status'=>"A"]);
+        }
+
+        
     }
 
 }
