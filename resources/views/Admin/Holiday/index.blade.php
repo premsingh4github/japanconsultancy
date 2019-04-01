@@ -52,7 +52,7 @@
                         @foreach($list_holiday as $key=>$holiday)
                             <tr>
                                 <td>{{++$key}}</td>
-                                <td>{{$holiday->start_date}} {{$holiday->end_date}}</td>
+                                <td>@if(isset($holiday->end_date)) From: {{$holiday->start_date}} To: {{$holiday->end_date}} @else {{$holiday->start_date}} @endif</td>
                                 <td>{{$holiday->title}}</td>
                                 <td>
                                     <a href="{{url('admin/holiday/edit=').$holiday->id}}"><span class="badge badge-info">Edit</span></a>

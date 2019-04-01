@@ -3,6 +3,31 @@
     <!-- Main Container -->
     <main id="main-container">
         <div class="content">
+            @if(session('success'))
+                <div class="col-sm-12">
+                    <div class="alert  alert-success alert-dismissible fade show" role="alert">
+                        <span class="badge badge-pill badge-success">Success</span> {{session('success')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div style="clear: both;"></div>
+            @endif
+            @if($errors->any())
+                <div class="col-sm-12">
+                    <div class="alert  alert-success alert-dismissible fade show" role="alert">
+                        @foreach($errors->all() as $error)
+                            <span class="badge badge-pill badge-danger">Error</span> {{$error}}<br>
+                        @endforeach
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div style="clear: both;"></div>
+            @endif
+
             <div class="block">
                 <div class="block-header">
                     <h3 class="block-title">Edit Holiday</h3>
