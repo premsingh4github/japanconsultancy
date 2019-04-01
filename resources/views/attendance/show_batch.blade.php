@@ -92,18 +92,11 @@
                                 {{--{{$section->class_section->class_section->name}}--}}
                                 {{--@endforeach--}}
                                 <table>
+                                    @foreach($class_section_student->class_batch_section_periods as $section_period)
                                     <tr>
-                                        <td>A1</td>
+                                        <td>{{$section_period->period->name}}</td>
                                     </tr>
-                                    <tr>
-                                        <td>A2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>A3</td>
-                                    </tr>
-                                    <tr>
-                                        <td>A4</td>
-                                    </tr>
+                                    @endforeach
                                 </table>
                             </td>
                             <?php
@@ -112,51 +105,44 @@
                             ?>
                             <td >
                                 <table>
-                                    <tr>
-                                        <td>
-                                            @if(time() < strtotime($start_date))
-                                                F
-                                            @else
-                                                <span id="1_{{$classSectionStudent->id}}_{{$start_date}}_{{$student->id}}" class="attendance" >coming..</span>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            {{--@if($student->present(2,$class_section_student,$start_date)=='F' || $student->present(2,$class_section_student,$start_date)=='P')--}}
-                                                {{--P--}}
-                                            {{--@elseif($student->present(2,$class_section_student,$start_date)=='H')--}}
-                                                {{--H--}}
-                                            {{--@else--}}
-                                                {{--A--}}
-                                            {{--@endif--}}
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-{{--                                            @if($student->present(3,$class_section_student,$start_date)=='F' || $student->present(3,$class_section_student,$start_date)=='P')--}}
-                                                {{--P--}}
-                                            {{--@elseif($student->present(3,$class_section_student,$start_date)=='H')--}}
-                                                {{--H--}}
-                                            {{--@else--}}
-                                                {{--A--}}
-                                            {{--@endif--}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            {{--@if($student->present(4,$class_section_student,$start_date)=='F')--}}
-                                                {{--P--}}
-                                            {{--@elseif($student->present(4,$class_section_student,$start_date)=='H')--}}
-                                                {{--H--}}
-                                            {{--@else--}}
-                                                {{--A--}}
-                                            {{--@endif--}}
-                                        </td>
-                                    </tr>
+                                    @foreach($class_section_student->class_batch_section_periods as $section_period)
+                                        <tr>
+                                            <td>
+
+                                                @if(time() < strtotime($start_date))
+                                                    F
+                                                @else
+                                                    <span id="{{$section_period->period->id}}_{{$classSectionStudent->id}}_{{$start_date}}_{{$student->id}}" class="attendance" >checking..</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </table>
                             </td>
+                            @while($start_date != $end_date)
+                                @php $start_date = date('Y-m-d',strtotime("+1 day", strtotime($start_date)))  @endphp
+
+
+                                <td >
+                                    <table>
+
+
+                                        @foreach($class_section_student->class_batch_section_periods as $section_period)
+                                            <tr>
+                                                <td>
+
+                                                    @if(time() < strtotime($start_date))
+                                                        F
+                                                    @else
+                                                        <span id="{{$section_period->period->id}}_{{$classSectionStudent->id}}_{{$start_date}}_{{$student->id}}" class="attendance" >coming..</span>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                </td>
+                            @endwhile
 
 
 
@@ -195,7 +181,6 @@
         }
         $(document).ready(function () {
             $('.attendance').each(function (i,ls) {
-                $(ls).html(i);
                 $.ajax({
                    url: Laravel.url + "/getattendace/"+$(ls).attr('id'),
                     method:"GET",

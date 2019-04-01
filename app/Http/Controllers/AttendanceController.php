@@ -42,7 +42,7 @@ class AttendanceController extends Controller
         $sections = ClassBatchSection::all();
 
         if(\request('section')){
-            $class_section_student = ClassBatchSection::with('class_section_students.student')->find(\request('section'));
+            $class_section_student = ClassBatchSection::with('class_batch_section_periods')->with('class_section_students.student')->find(\request('section'));
             return view('attendance.show_batch',compact('class_section_student','sections'));
         }else{
             $class_section_student = $sections[0];
@@ -100,41 +100,20 @@ class AttendanceController extends Controller
     {
         $data = explode('_',$code);
         $period = $data[0];
-        if($attendences = Attendance::where('student_id',$data[3])->whereBetween('updated_at', array($data[2].' 00:00:00',$data[2].' 23:59:59'))->orderBy('id','ASC')->get()){
-
+        if(($attendences = Attendance::where('student_id',$data[3])->whereBetween('updated_at', array($data[2].' 00:00:00',$data[2].' 23:59:59'))->orderBy('id','ASC')->get()) && ($attendences->count() > 0) ){
             $class_section_student_id = $data[1];
-
-
             $class_section_student = ClassSectionStudent::select(DB::raw('class_section_students.student_id, class_batch_sections.id as cbs_id, class_batch_section_periods.*'))->join('class_batch_sections','class_batch_sections.id','=','class_section_students.class_section_id')->join('class_batch_section_periods','class_batch_section_periods.c_b_s_id','=','class_batch_sections.id')->whereHas('class_section',function ($class_section) use ($period) {
                 $class_section->whereHas('class_batch_section_periods',function ($section_periods) use ($period) {
                     $section_periods->where('period_id',$period);
                 });
             })->find($class_section_student_id);
-
-            echo "start_at: ".$class_section_student->start_at;
-
-            echo "<br> Entry:".date('H:i',strtotime($attendences[0]->created_at));
-            echo "<br> Dif:".strtotime(date('H:i',strtotime($attendences[0]->created_at))). "-". strtotime($class_section_student->start_at) ;
-            $a =  strtotime(date('H:i',strtotime($attendences[0]->created_at)));
-            $b = strtotime($class_section_student->start_at);
-            echo "<br> Dif:".$a - $b ;
-
-            ;
-            dd($attendences);
-
-//        $class_section_student = ClassSectionStudent::select(DB::raw('class_batch_sections.id as cbs_id, class_batch_section_periods.*'))->join('class_batch_sections','class_batch_sections.id','=','class_section_students.class_section_id')->join('class_batch_section_periods','class_batch_section_periods.c_b_s_id','=','class_batch_sections.id')->whereHas('class_section',function ($class_section) use ($period) {
-//            $class_section->whereHas('class_batch_section_periods',function ($section_periods) use ($period) {
-//                $section_periods->where('period_id',$period);
-//            });
-//        })->join('attendances',function ($q){
-//            $q->where('attendances.student_id','class_section_students.student_id');
-//        })->find($class_section_student_id);
-
-
-            //('c_b_s_id',$class_batch_section_id)->where('period_id',$period)->first();
-            $date = $data[2];
-            $status = "P";
-            return response()->json(['id'=>$code,'status'=>$class_section_student]);
+           $dif = (strtotime(date('H:i',strtotime($attendences[0]->created_at))) - strtotime($class_section_student->start_at))/(60);
+            if($dif < 10){
+                return response()->json(['id'=>$code,'status'=>"P"]);
+            }elseif (($dif >= 10 ) && (strtotime(date('H:i',strtotime($attendences[0]->created_at))) < strtotime($class_section_student->end_at)) ) {
+                return response()->json(['id'=>$code,'status'=>"L"]);
+            }
+            return response()->json(['id'=>$code,'status'=>"A"]);
         }else{
             return response()->json(['id'=>$code,'status'=>"A"]);
         }
