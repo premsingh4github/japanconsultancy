@@ -60,10 +60,10 @@
                             <td>{{$attendance->student->last_student_name}} {{$attendance->student->first_student_name}}</td>
                             <td>{{$attendance->student->last_student_japanese_name}} {{$attendance->student->first_student_japanese_name}}</td>
                             <td>
-                                @if($attendance->student->student_sex == 'm')Male
-                                @elseif($attendance->student->student_sex == 'f')Female
+                                @if($attendance->student->student_sex == 'm')男
+                                @elseif($attendance->student->student_sex == 'f')女
                                 @else
-                                    Others
+                                    その他の
                                 @endif
                             </td>
                             <td>

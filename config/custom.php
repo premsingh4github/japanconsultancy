@@ -5,8 +5,8 @@ return [
         'm'=>'Married'
     ],
     'gender_types'=>[
-        'm'=>'Male',
-        'f'=>'Female',
-        'o'=>'Other'
+        'm'=>'男',
+        'f'=>'女',
+        'o'=>'その他の'
     ],
 ];

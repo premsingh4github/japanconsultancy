@@ -84,13 +84,11 @@
                             <td><a href="{{url('admin/list_student/student_id=').$students->id.'/remarks'}}" title="Click here to update">{{$students->last_student_name}} {{$students->first_student_name}}</a></td>
                             {{--<td>{{$students->last_student_japanese_name}} {{$students->first_student_japanese_name}}</td>--}}
                             <td>
-                                @if($students->student_sex == 'f')
-                                    Female
-                                @elseif($students->student_sex == 'm')
-                                    Male
-                                    @else
-                                    Other
-                                    @endif
+                                @if($students->student_sex == 'm')男
+                                @elseif($students->student_sex == 'f')女
+                                @else
+                                    その他の
+                                @endif
                             </td>
                             <td>{{$students->date_of_birth}}</td>
                             <td>{{$students->entry_date}}</td>
