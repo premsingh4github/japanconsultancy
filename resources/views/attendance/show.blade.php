@@ -79,7 +79,7 @@
                     ?>
                     @while($start_date != $end_date)
                         @php $start_date = date('Y-m-d',strtotime("+1 day", strtotime($start_date)))  @endphp
-                        <th class="font-w700">{{date('d',strtotime($start_date))}}</th>
+                        <th class="font-w700">{{date('m-d',strtotime($start_date))}}</th>
                     @endwhile
                 </tr>
                 </thead>

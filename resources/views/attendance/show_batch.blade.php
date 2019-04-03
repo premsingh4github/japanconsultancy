@@ -69,7 +69,7 @@
                         ?>
                         @while($start_date != $end_date)
                             @php $start_date = date('Y-m-d',strtotime("+1 day", strtotime($start_date)))  @endphp
-                            <th class="font-w700">{{date('d',strtotime($start_date))}}</th>
+                            <th class="font-w700">{{date('M-d',strtotime($start_date))}}</th>
                         @endwhile
                     </tr>
                     </thead>
@@ -90,10 +90,10 @@
                             <td>{{$student->last_student_name}} {{$student->first_student_name}}</td>
                             <td>{{$student->last_student_japanese_name}} {{$student->first_student_japanese_name}}</td>
                             <td>
-                                @if($student->student_sex == 'm')Male
-                                @elseif($student->student_sex == 'f')Female
+                                @if($student->student_sex == 'm')男
+                                @elseif($student->student_sex == 'f')女
                                 @else
-                                    Others
+                                    その他の
                                 @endif
                             </td>
                             <td>
@@ -103,9 +103,9 @@
                                 {{--@endforeach--}}
                                 <table>
                                     @foreach($class_section_student->class_batch_section_periods as $section_period)
-                                    <tr>
-                                        <td>{{$section_period->period->name}}</td>
-                                    </tr>
+                                        <tr>
+                                            <td>{{$section_period->period->name}}</td>
+                                        </tr>
                                     @endforeach
                                 </table>
                             </td>
@@ -121,7 +121,7 @@
                                             <td>
 
                                                 @if(time() < strtotime($start_date))
-                                                    F
+
                                                 @else
                                                     <span id="{{$section_period->period->id}}_{{$classSectionStudent->id}}_{{$start_date}}_{{$student->id}}" class="attendance" >checking..</span>
                                                 @endif
@@ -143,7 +143,7 @@
                                                 <td>
 
                                                     @if(time() < strtotime($start_date))
-                                                        F
+
                                                     @else
                                                         <span id="{{$section_period->period->id}}_{{$classSectionStudent->id}}_{{$start_date}}_{{$student->id}}" class="attendance" >coming..</span>
                                                     @endif
@@ -192,10 +192,10 @@
         $(document).ready(function () {
             $('.attendance').each(function (i,ls) {
                 $.ajax({
-                   url: Laravel.url + "/getattendace/"+$(ls).attr('id'),
+                    url: Laravel.url + "/getattendace/"+$(ls).attr('id'),
                     method:"GET",
                     success: function (data) {
-                       $("#"+data['id']).html(data['status']);
+                        $("#"+data['id']).html(data['status']);
                     },
                     error: function (error) {
                         debugger;
