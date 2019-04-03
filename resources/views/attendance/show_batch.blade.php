@@ -13,7 +13,7 @@
         <div class="container" style="background-color: #2196f300;">
             <!-- Hero -->
             <div class="block-content block-content-full">
-                <div class="row">
+                <div class="row hidden-print">
                     <div class="form-group col-sm-4">
                         <div class="student_image">
                             <label for="student_name">{{__('language.Select_Running_Section')}}</label>
@@ -24,8 +24,18 @@
                             </select>
                         </div>
                     </div>
+                    <div class="col-sm-2">
+                        <div class="student_image">
+                            <label for="">Download/Print</label>
+                        <button  class="form-control btn btn-primary" onclick="window.print()"> {{__('language.Print')}}/{{__('language.Pdf')}}
+                        </button>
+                        </div>
+                    </div>
                 </div>
-                <table class="table table-sm table-bordered table-striped table-hover table-borderless table-vcenter font-size-sm mb-0 js-dataTable-buttons">
+                <div class="row">
+                    <h2 class="attendance_report">{{__('language.Student_Attendance_Report')}}</h2>
+                </div>
+                <table border="1">
                     <thead  class="thead-dark">
                     <tr>
                         <td colspan="6"> &nbsp;</td>

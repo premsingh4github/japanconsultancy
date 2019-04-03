@@ -25,7 +25,7 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-sm table-bordered table-striped table-hover table-borderless table-vcenter font-size-sm mb-0 js-dataTable-buttons">
+                <table border="1">
                     <thead  class="thead-dark">
                     {{--<tr>--}}
                         {{--<td colspan="6"> &nbsp;</td>--}}

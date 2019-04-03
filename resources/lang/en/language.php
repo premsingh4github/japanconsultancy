@@ -115,12 +115,14 @@ return[
     'Details'=>'Details',
     'Copy'=>'Copy',
     'Print'=>'Print',
+    'Pdf'=>'Pdf',
     'CSV'=>'CSV',
     'No_data_avilable_in_table'=>'No data avilable in table',
     'Choose_file'=>'Choose file',
     'No_file_choosen'=>'No file choosen',
     'SN'=>'SN',
     'Choose'=>'Choose',
+    'Student_Attendance_Report'=>'Student Attendance Report',
 
 
 
