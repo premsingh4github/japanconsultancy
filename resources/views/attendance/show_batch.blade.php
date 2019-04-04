@@ -123,7 +123,7 @@
                                                 @if(time() < strtotime($start_date))
 
                                                 @else
-                                                    <span id="{{$section_period->period->id}}_{{$classSectionStudent->id}}_{{$start_date}}_{{$student->id}}" class="attendance" >checking..</span>
+                                                    <span id="{{$section_period->period->id}}_{{$classSectionStudent->id}}_{{$start_date}}_{{$student->id}}" class="attendance" >loading..</span>
                                                 @endif
                                             </td>
                                         </tr>
@@ -145,7 +145,7 @@
                                                     @if(time() < strtotime($start_date))
 
                                                     @else
-                                                        <span id="{{$section_period->period->id}}_{{$classSectionStudent->id}}_{{$start_date}}_{{$student->id}}" class="attendance" >coming..</span>
+                                                        <span id="{{$section_period->period->id}}_{{$classSectionStudent->id}}_{{$start_date}}_{{$student->id}}" class="attendance" >loading..</span>
                                                     @endif
                                                 </td>
                                             </tr>
