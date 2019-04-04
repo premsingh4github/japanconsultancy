@@ -6,6 +6,7 @@ use App\Attendance;
 use App\ClassBatchSection;
 use App\ClassBatchSectionPeriod;
 use App\ClassSectionStudent;
+use App\Event;
 use App\Exports\ClassBatchSectionExport;
 use App\Period;
 use App\Student;

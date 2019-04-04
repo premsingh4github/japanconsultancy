@@ -56,7 +56,7 @@
                                 <td>{{$holiday->title}}</td>
                                 <td>
                                     <a href="{{url('admin/holiday/edit=').$holiday->id}}"><span class="badge badge-info">Edit</span></a>
-                                    <a href=""><span class="badge badge-danger">Delete</span></a>
+                                    <a href="{{url('admin/holiday/delete=').$holiday->id}}"><span class="badge badge-danger">Delete</span></a>
                                 </td>
                             </tr>
                             <@endforeach
