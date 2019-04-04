@@ -136,7 +136,7 @@ class StudentController extends Controller
         $list_student->student_note = \request('student_note');
         $list_student->student_status = \request('student_status');
         $list_student->save();
-        return redirect('admin/student_immigration')->with('success', 'Record Updated');
+        return redirect('admin/second_immigration')->with('success', 'Record Updated');
     }
 
 

@@ -74,44 +74,36 @@
                         <thead style="font-size: 12px">
                         <tr>
                             <th>{{__('language.SN')}}</th>
-                            <th>{{__('language.Residential_Card_No')}}</th>
                             <th>{{__('language.Nationality')}}</th>
                             <th>{{__('language.student_name')}}</th>
                             {{--<th class="d-none d-sm-table-cell" style="width: 30%;">Name (Japanese)</th>--}}
                             <th>{{__('language.student_gender')}}</th>
                             <th>{{__('language.student_dob')}}</th>
-                            <th>{{__('language.Entry_Date')}}</th>
-                            <th>{{__('language.student_Status')}}</th>
-                            <th>{{__('language.Card_Period')}}</th>
-                            <th>{{__('language.Card_Expire')}}</th>
-                            <th>{{__('language.student_remarks')}}</th>
+                            <th>{{__('language.Address')}}</th>
+                            <th>{{__('language.Residential_Card_No')}}</th>
                         </tr>
                         </thead>
                         <tbody style="font-size: 12px;">
                         @foreach($list_students as $key=>$students)
                             <tr>
                                 <td>{{++$key}}</td>
-                                <td>{{$students->residensal_card}}</td>
                                 <td>{{$students->country->name}}</td>
-                                <td><a href="{{url('admin/list_student/student_id=').$students->id.'/remarks'}}" title="Click here to update">{{$students->last_student_name}} {{$students->first_student_name}}</a></td>
+                                <td>{{$students->last_student_name}} {{$students->first_student_name}}</td>
                                 {{--<td>{{$students->last_student_japanese_name}} {{$students->first_student_japanese_name}}</td>--}}
                                 <td>
-                                    @if($students->student_sex == 'm')男
-                                    @elseif($students->student_sex == 'f')女
+                                    @if($students->student_sex == 'f')
+                                        Female
+                                    @elseif($students->student_sex == 'm')
+                                        Male
                                     @else
-                                        その他の
+                                        Other
                                     @endif
                                 </td>
                                 <td>{{$students->date_of_birth}}</td>
-                                <td>{{$students->entry_date}}</td>
-                                <td>{{$students->student_status}}</td>
-                                <td>@if(isset($students->residensal->name)){{$students->residensal->name}}@endif</td>
-                                <td>{{$students->residensal_card_expire}}</td>
-                                <td>
-                                    <a href="{{url('admin/list_student/student_id=').$students->id.'/remarks'}}" title="Click here to edit">{!! $students->student_note !!}</a>
-                                </td>
+                                <td>{{$students->address}}</td>
+                                <td>{{$students->residensal_card}}</td>
                             </tr>
-                            @endforeach
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
