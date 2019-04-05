@@ -8,7 +8,7 @@
             <!-- Dynamic Table with Export Buttons -->
             <div class="block">
                 <div class="i_float_left">
-                    <b>別記第3号様式の2</b>
+                    <b>届出機関名</b>
                 </div>
                 <div class="i_float_right">
                     <b>{{ date('Y') }}年
@@ -16,10 +16,10 @@
                         {{ date('d') }}日</b>
                 </div>
                 <div class="block-header printView">
-                    <h3 class="block-title">当該機関で受け入れている外国人リスト</h3>
+                    <h3 class="block-title">学校法人郡山学園専門学校</h3>
                 </div>
-                <div class="i_float_right_b">
-                    <b>受け入れ機関名学）専門学校中央美術学園</b>
+                <div class="i_float_left">
+                    <b>{{__('language.Name_of_the_organization')}}</b>
                 </div>
                 <div class="block-header hidden-print">
                     <h3 class="block-title">{{__('language.Name_of_the_organization')}}<small></small></h3>
@@ -91,12 +91,10 @@
                                 <td>{{$students->last_student_name}} {{$students->first_student_name}}</td>
                                 {{--<td>{{$students->last_student_japanese_name}} {{$students->first_student_japanese_name}}</td>--}}
                                 <td>
-                                    @if($students->student_sex == 'f')
-                                        Female
-                                    @elseif($students->student_sex == 'm')
-                                        Male
+                                    @if($students->student_sex == 'm')男
+                                    @elseif($students->student_sex == 'f')女
                                     @else
-                                        Other
+                                        その他の
                                     @endif
                                 </td>
                                 <td>{{$students->date_of_birth}}</td>

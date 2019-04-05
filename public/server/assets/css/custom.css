@@ -2,7 +2,9 @@
 /*input[type=file]{*/
   /*padding:10px;*/
   /*background:pink;}*/
-
+body{
+  font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
 .student_image {
   margin-top: 50px;
   margin-left: -20px;
@@ -41,15 +43,22 @@ label {
   .hidden-print {
     display: none !important;
   }
+  a.second_immi_a{
+    font-weight: 600;
+    text-decoration: none!important;
+    color: #000000!important;
+  }
   .printView h3{
-    color: #9E9E9E!important;
+    font-weight: 600;
+    color: #000000!important;
     margin-top: 20px;
     font-size: 25px;
     text-align: center;
   }
   .i_float_left{
+    font-weight: 600;
     padding: 0 20px;
-    color: #9E9E9E!important;
+    color: #000000!important;
     float: left;
   }
   .i_float_right{
@@ -58,12 +67,14 @@ label {
     float: right;
   }
   .i_float_right_b{
+    font-weight: 600;
     padding: 0 50px;
-    color: #9E9E9E!important;
+    color: #000000!important;
     float: right;
   }
   h2.attendance_report{
-    color: #9E9E9E!important;
+    font-weight: 600;
+    color: #000000!important;
   }
 }
 .i_float_left{
@@ -78,4 +89,10 @@ label {
 h2.attendance_report{
     margin: -10px;
   color: transparent;
+}
+.table-bordered td, .table-bordered th {
+  font-weight: bold;
+  color: #000;
+  border: 1px solid #ebebeb;
+  font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 }
