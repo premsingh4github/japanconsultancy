@@ -2,9 +2,13 @@
 <style>
     .day-group{
         display: inline-block;
+        width: 50px;
+        border-right: solid 1px grey;
+        text-align: center;
     }
     .day-group div{
         display: block;
+
     }
 </style>
     <table>
@@ -23,7 +27,7 @@ $end_date = $class_section_student->end_date;
         <div class="day-group">
             @foreach($class_section_student->class_batch_section_periods as $section_period)
                 <div >
-                    F
+
                 </div>
             @endforeach
         </div>
@@ -33,18 +37,20 @@ $end_date = $class_section_student->end_date;
                 <td>
         @if(($atten = \App\Attendance::where('student_id',$id)->whereBetween('updated_at', array($start_date.' 00:00:00',$start_date.' 23:59:59'))->get()) && ($atten->count()))
 
-                    @foreach($class_section_student->class_batch_section_periods as $section_period)
-                <div id="{{$start_date}}_{{$section_period->period_id}}" width="20px">
-                    @php $dif = (strtotime(date('H:i',strtotime($atten[0]->created_at))) - strtotime($section_period->start_at))/(60); @endphp
-                    @if($dif < 10)
-                        P
-                    @elseif (($dif >= 10 ) && (strtotime(date('H:i',strtotime($atten[0]->created_at))) < strtotime($section_period->end_at)) )
-                        L
-                    @else
-                        A
-                    @endif
-                </div>
+           <div class="day-group">
+                @foreach($class_section_student->class_batch_section_periods as $section_period)
+                    <div id="{{$start_date}}_{{$section_period->period_id}}" width="20px">
+                        @php $dif = (strtotime(date('H:i',strtotime($atten[0]->created_at))) - strtotime($section_period->start_at))/(60); @endphp
+                        @if($dif < 10)
+                            P
+                        @elseif (($dif >= 10 ) && (strtotime(date('H:i',strtotime($atten[0]->created_at))) < strtotime($section_period->end_at)) )
+                            L
+                        @else
+                            A
+                        @endif
+                    </div>
             @endforeach
+            </div>
 
         @else
 
@@ -70,7 +76,7 @@ $end_date = $class_section_student->end_date;
             <div class="day-group">
         @foreach($class_section_student->class_batch_section_periods as $section_period)
             <div id="{{$start_date}}_{{$section_period->period_id}}" >
-                F
+
             </div>
         @endforeach
             </div>

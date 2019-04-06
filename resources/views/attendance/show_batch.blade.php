@@ -90,11 +90,11 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$student->unique_id}}</td>
                             <td>
-                                {{--@if(isset($student->photo))--}}
-                                    {{--<img src="{{url('public/photos/'.$student->photo)}}" alt="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">--}}
-                                {{--@else--}}
-                                    {{--<img src="{{url('photos/avatar.jpg')}}" alt="" class="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">--}}
-                                {{--@endif--}}
+                                @if(isset($student->photo))
+                                    <img src="{{url('public/photos/'.$student->photo)}}" alt="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">
+                                @else
+                                    <img src="{{url('photos/avatar.jpg')}}" alt="" class="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">
+                                @endif
                             </td>
                             <td>{{$student->last_student_name}} {{$student->first_student_name}}</td>
                             <td>{{$student->last_student_japanese_name}} {{$student->first_student_japanese_name}}</td>
