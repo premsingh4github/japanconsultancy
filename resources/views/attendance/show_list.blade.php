@@ -21,17 +21,17 @@ $end_date = $class_section_student->end_date;
 ?>
 
     @if(time() < strtotime($start_date))
-        <td>
+        {{--<td>--}}
 
 
-        <div class="day-group">
-            @foreach($class_section_student->class_batch_section_periods as $section_period)
-                <div >
+        {{--<div class="day-group">--}}
+            {{--@foreach($class_section_student->class_batch_section_periods as $section_period)--}}
+                {{--<div >--}}
 
-                </div>
-            @endforeach
-        </div>
-        </td>
+                {{--</div>--}}
+            {{--@endforeach--}}
+        {{--</div>--}}
+        {{--</td>--}}
 
     @else
                 <td>
@@ -73,13 +73,13 @@ $end_date = $class_section_student->end_date;
     @php $start_date = date('Y-m-d',strtotime("+1 day", strtotime($start_date)))  @endphp
 
     @if(time() < strtotime($start_date))
-            <div class="day-group">
-        @foreach($class_section_student->class_batch_section_periods as $section_period)
-            <div id="{{$start_date}}_{{$section_period->period_id}}" >
+            {{--<div class="day-group">--}}
+        {{--@foreach($class_section_student->class_batch_section_periods as $section_period)--}}
+            {{--<div id="{{$start_date}}_{{$section_period->period_id}}" >--}}
 
-            </div>
-        @endforeach
-            </div>
+            {{--</div>--}}
+        {{--@endforeach--}}
+            {{--</div>--}}
 
     @elseif(($atten = \App\Attendance::where('student_id',$id)->whereBetween('updated_at', array($start_date.' 00:00:00',$start_date.' 23:59:59'))->get()) && ($atten->count()))
 
