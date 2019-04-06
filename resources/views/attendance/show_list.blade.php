@@ -2,9 +2,17 @@
 <style>
     .day-group{
         display: inline-block;
-        width: 50px;
+        width: 51px;
         border-right: solid 1px grey;
         text-align: center;
+        font-size: 16px;
+
+    }
+    .day-group-month{
+        display: inline-block;
+        width: 50px;
+        text-align: center;
+        font-size: 14px;
     }
     .day-group div{
         display: block;

@@ -70,14 +70,18 @@
                         <th class="font-w700">{{__('language.Japanese_Name')}}</th>
                         <th class="font-w700">{{__('language.Sex')}}</th>
                         <th class="font-w700">{{__('language.Period')}}</th>
-                        <th class="font-w700" width="20px">{{$class_section_student->start_date}} @php $daycount = 1; @endphp </th>
+                        <th class="font-w700">
+                            <div class="day-group-month">{{date('M d',strtotime($class_section_student->start_date))}} @php $daycount = 1; @endphp</div>
+                        </th>
                         <?php
                         $start_date = $class_section_student->start_date;
                         $end_date = $class_section_student->end_date;
                         ?>
                         @while($start_date != $end_date)
                             @php $start_date = date('Y-m-d',strtotime("+1 day", strtotime($start_date)))  @endphp
-                            <th class="font-w700" width="20px">{{date('M-d',strtotime($start_date))}}</th>
+                            <th class="font-w700">
+                                <div class="day-group-month">{{date('M d',strtotime($start_date))}}</div>
+                            </th>
                             @php $daycount += 1; @endphp
                         @endwhile
                     </tr>
