@@ -251,4 +251,12 @@ return[
     'Record_Not_Found'=>'Record Not Found',
     'View_All_Year'=>'View All Year',
 
+    /* Day Translation*/
+    'sunday'=>'Sun',
+    'monday'=>'Mon',
+    'tuesday'=>'Tue',
+    'wednesday'=>'Wed',
+    'thursday'=>'Thu',
+    'friday'=>'Fri',
+    'saturday'=>'Sat',
 ];

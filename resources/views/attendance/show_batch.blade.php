@@ -56,10 +56,28 @@
                         $start_date = $class_section_student->start_date;
                         $end_date = $class_section_student->end_date;
                         ?>
-                        <td >{{date('D',strtotime($start_date))}}</td>
+                        <td >
+                            @if(date('D',strtotime($start_date))=='Sun') {{__('language.sunday')}}
+                                @elseif(date('D',strtotime($start_date))=='Mon') {{__('language.monday')}}
+                                @elseif(date('D',strtotime($start_date))=='Tue') {{__('language.tuesday')}}
+                                @elseif(date('D',strtotime($start_date))=='Wed') {{__('language.wednesday')}}
+                                @elseif(date('D',strtotime($start_date))=='Thu') {{__('language.thursday')}}
+                                @elseif(date('D',strtotime($start_date))=='Fri') {{__('language.friday')}}
+                                @elseif(date('D',strtotime($start_date))=='Sat') {{__('language.saturday')}}
+                            @endif
+                        </td>
                         @while($start_date != $end_date)
                             @php $start_date = date('Y-m-d',strtotime("+1 day", strtotime($start_date)))  @endphp
-                            <td >{{date('D',strtotime($start_date))}}</td>
+                            <td >
+                                @if(date('D',strtotime($start_date))=='Sun') {{__('language.sunday')}}
+                                @elseif(date('D',strtotime($start_date))=='Mon') {{__('language.monday')}}
+                                @elseif(date('D',strtotime($start_date))=='Tue') {{__('language.tuesday')}}
+                                @elseif(date('D',strtotime($start_date))=='Wed') {{__('language.wednesday')}}
+                                @elseif(date('D',strtotime($start_date))=='Thu') {{__('language.thursday')}}
+                                @elseif(date('D',strtotime($start_date))=='Fri') {{__('language.friday')}}
+                                @elseif(date('D',strtotime($start_date))=='Sat') {{__('language.saturday')}}
+                                @endif
+                            </td>
                         @endwhile
                     </tr>
                     <tr>
@@ -67,7 +85,11 @@
                         <th >{{__('language.Student_ID_No')}}</th>
                         <th class="font-w700">{{__('language.Photo')}}</th>
                         <th class="font-w700">{{__('language.Student_Name')}}</th>
-                        <th class="font-w700">{{__('language.Japanese_Name')}}</th>
+                        <th class="font-w700">
+                            <div style="display: block; width:120px;">
+                                {{__('language.Japanese_Name')}}
+                            </div>
+                        </th>
                         <th class="font-w700">{{__('language.Sex')}}</th>
                         <th class="font-w700">{{__('language.Period')}}</th>
                         <th class="font-w700">
