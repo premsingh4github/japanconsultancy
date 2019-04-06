@@ -4,6 +4,14 @@
         .row.row-deck>div>.block{
             min-width: unset;
         }
+        /*.attend table{*/
+            /*display: inline-block;*/
+        /*}*/
+        /*.attend div{*/
+            /*display: inline-block;*/
+            /*text-align: center;*/
+            /*width: 40px;*/
+        /*}*/
     </style>
 @endsection
 @section('body')
@@ -52,14 +60,15 @@
                         <th class="font-w700">{{__('language.Japanese_Name')}}</th>
                         <th class="font-w700">{{__('language.Sex')}}</th>
                         <th class="font-w700">{{__('language.Period')}}</th>
-                        <th class="font-w700">{{$class_section_student->start_date}}</th>
+                        <th class="font-w700" width="20px">{{$class_section_student->start_date}} @php $daycount = 1; @endphp </th>
                         <?php
                         $start_date = $class_section_student->start_date;
                         $end_date = $class_section_student->end_date;
                         ?>
                         @while($start_date != $end_date)
                             @php $start_date = date('Y-m-d',strtotime("+1 day", strtotime($start_date)))  @endphp
-                            <th class="font-w700">{{date('d',strtotime($start_date))}}</th>
+                            <th class="font-w700" width="20px">{{date('d',strtotime($start_date))}}</th>
+                            @php $daycount += 1; @endphp
                         @endwhile
                     </tr>
                     </thead>
@@ -71,11 +80,11 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$student->unique_id}}</td>
                             <td>
-                                @if(isset($student->photo))
-                                    <img src="{{url('public/photos/'.$student->photo)}}" alt="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">
-                                @else
-                                    <img src="{{url('photos/avatar.jpg')}}" alt="" class="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">
-                                @endif
+                                {{--@if(isset($student->photo))--}}
+                                    {{--<img src="{{url('public/photos/'.$student->photo)}}" alt="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">--}}
+                                {{--@else--}}
+                                    {{--<img src="{{url('photos/avatar.jpg')}}" alt="" class="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">--}}
+                                {{--@endif--}}
                             </td>
                             <td>{{$student->last_student_name}} {{$student->first_student_name}}</td>
                             <td>{{$student->last_student_japanese_name}} {{$student->first_student_japanese_name}}</td>
@@ -99,53 +108,14 @@
                                     @endforeach
                                 </table>
                             </td>
-                            <?php
-                            $start_date = $class_section_student->start_date;
-                            $end_date = $class_section_student->end_date;
-                            ?>
-                            <td >
+                            <td colspan="{{$daycount}}">
                                 <table>
+                                    <tr>
+                                        <div id="attend_{{$student->id}}" class="attend" data-student_id="{{$student->id}}">Loading</div>
 
-                                    @foreach($class_section_student->class_batch_section_periods as $section_period)
-                                        <tr>
-                                            <td>
-
-                                                @if(time() < strtotime($start_date))
-                                                    F
-                                                @else
-                                                    <span id="{{$section_period->period->id}}_{{$classSectionStudent->id}}_{{$start_date}}_{{$student->id}}" class="attendance" >checking..</span>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                    </tr>
                                 </table>
                             </td>
-                            @while($start_date != $end_date)
-                                @php $start_date = date('Y-m-d',strtotime("+1 day", strtotime($start_date)))  @endphp
-
-
-                                <td >
-                                    <table>
-
-
-                                        @foreach($class_section_student->class_batch_section_periods as $section_period)
-                                            <tr>
-                                                <td>
-
-                                                    @if(time() < strtotime($start_date))
-                                                        F
-                                                    @else
-                                                        <span id="{{$section_period->period->id}}_{{$classSectionStudent->id}}_{{$start_date}}_{{$student->id}}" class="attendance" >coming..</span>
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </table>
-                                </td>
-                            @endwhile
-
-
-
                         </tr>
                     @endforeach
                     </tbody>
@@ -180,19 +150,37 @@
             // });
         }
         $(document).ready(function () {
-            $('.attendance').each(function (i,ls) {
+            // $('.attendance').each(function (i,ls) {
+            //     $.ajax({
+            //        url: Laravel.url + "/getattendace/"+$(ls).attr('id'),
+            //         method:"GET",
+            //         success: function (data) {
+            //            $("#"+data['id']).html(data['status']);
+            //         },
+            //         error: function (error) {
+            //             debugger;
+            //         }
+            //
+            //     });
+            // })
+
+            $('.attend').each(function (i,ls) {
+                var section = "{{request('section')}}";
+                $(ls).data('student_id');
                 $.ajax({
-                   url: Laravel.url + "/getattendace/"+$(ls).attr('id'),
+                    url: Laravel.url + "/getattendacelist/"+section+"/"+$(ls).data('student_id'),
                     method:"GET",
-                    success: function (data) {
-                       $("#"+data['id']).html(data['status']);
+                    success: function (data, textStatus, request) {
+
+                        $('#attend_'+request.getResponseHeader('id')).html(data);
+                        // $("#"+data['id']).html(data['status']);
                     },
                     error: function (error) {
                         debugger;
                     }
 
                 });
-            })
+            });
         });
     </script>
 @endsection
