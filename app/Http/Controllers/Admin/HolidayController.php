@@ -29,20 +29,23 @@ class HolidayController extends Controller
         $datetime1 = strtotime(\request('start_date'));
        // dd($datetime1);
         $datetime2 = strtotime(\request('end_date'));
-        while($datetime1 <= $datetime2) {
-            $date = date('Y-m-d', $datetime1);
-            $datetime1 = $datetime1 +86400;
-            $holiday = Event::firstOrNew(['start_date' => $date]);
-            $holiday->title = \request('title');
-            $holiday->end_date = $date;
-            $holiday->save();
-        }
-//        $holiday = new Event();
-//
-//        $holiday->title = \request('title');
-//        $holiday->start_date = \request('start_date');
+        if (\request('end_date') && \request('start_date')){
+            while($datetime1 <= $datetime2) {
+                $date = date('Y-m-d', $datetime1);
+                $datetime1 = $datetime1 +86400;
+                $holiday = Event::firstOrNew(['start_date' => $date]);
+                $holiday->title = \request('title');
+//                $holiday->end_date = $date;
+                $holiday->save();
+            }
+        }else{
+        $holiday = new Event();
+
+        $holiday->title = \request('title');
+        $holiday->start_date = \request('start_date');
 //        $holiday->end_date = \request('end_date');
-//        $holiday->save();
+        $holiday->save();
+        }
     return redirect('admin/holiday')->with('success', 'Record Saved Successfully');
     }
     public function edit($id){
@@ -84,5 +87,10 @@ class HolidayController extends Controller
         $sections->class_section_id = \request('class_section_id');
         $sections->save();
         return redirect('admin/section_day')->with('success', 'Record Saved Successfully');
+    }
+    public function delete($id){
+        $holiday = Event::findOrFail($id);
+        $holiday->delete();
+        return redirect()->back()->with('success','Holiday Deleted Successfully !!');
     }
 }

@@ -103,6 +103,7 @@ return[
     'No_file_choosen'=>'ファイルを選択してないです。',
     'SN'=>'S.N',
     'Choose'=>'選択する',
+    'Student_Attendance_Report'=>'学生出席レポート',
 
     'Morning'=>'朝',
     'Evening'=>'夕方',
@@ -147,6 +148,7 @@ return[
     'Gender	'=>'性別	',
     'Action'=>'アクション',
     'Edit'=>'編集',
+    'Pdf'=>'Pdf',
     'Delete'=>'削除する',
     'SUBJECT_NAME'=>'件名',
     'SUBJECT_TYPE'=>'対象タイプ',

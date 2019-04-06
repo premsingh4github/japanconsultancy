@@ -21,7 +21,7 @@
         <div class="container" style="background-color: #2196f300;">
             <!-- Hero -->
             <div class="block-content block-content-full">
-                <div class="row">
+                <div class="row hidden-print">
                     <div class="form-group col-sm-4">
                         <div class="student_image">
                             <label for="student_name">{{__('language.Select_Running_Section')}}</label>
@@ -32,8 +32,18 @@
                             </select>
                         </div>
                     </div>
+                    <div class="col-sm-2">
+                        <div class="student_image">
+                            <label for="">Download/Print</label>
+                        <button  class="form-control btn btn-primary" onclick="window.print()"> {{__('language.Print')}}/{{__('language.Pdf')}}
+                        </button>
+                        </div>
+                    </div>
                 </div>
-                <table class="table table-sm table-bordered table-striped table-hover table-borderless table-vcenter font-size-sm mb-0 js-dataTable-buttons">
+                <div class="row">
+                    <h2 class="attendance_report">{{__('language.Student_Attendance_Report')}}</h2>
+                </div>
+                <table border="1">
                     <thead  class="thead-dark">
                     <tr>
                         <td colspan="6"> &nbsp;</td>
@@ -67,7 +77,7 @@
                         ?>
                         @while($start_date != $end_date)
                             @php $start_date = date('Y-m-d',strtotime("+1 day", strtotime($start_date)))  @endphp
-                            <th class="font-w700" width="20px">{{date('d',strtotime($start_date))}}</th>
+                            <th class="font-w700" width="20px">{{date('M-d',strtotime($start_date))}}</th>
                             @php $daycount += 1; @endphp
                         @endwhile
                     </tr>
@@ -89,10 +99,10 @@
                             <td>{{$student->last_student_name}} {{$student->first_student_name}}</td>
                             <td>{{$student->last_student_japanese_name}} {{$student->first_student_japanese_name}}</td>
                             <td>
-                                @if($student->student_sex == 'm')Male
-                                @elseif($student->student_sex == 'f')Female
+                                @if($student->student_sex == 'm')男
+                                @elseif($student->student_sex == 'f')女
                                 @else
-                                    Others
+                                    その他の
                                 @endif
                             </td>
                             <td>
@@ -102,9 +112,9 @@
                                 {{--@endforeach--}}
                                 <table>
                                     @foreach($class_section_student->class_batch_section_periods as $section_period)
-                                    <tr>
-                                        <td>{{$section_period->period->name}}</td>
-                                    </tr>
+                                        <tr>
+                                            <td>{{$section_period->period->name}}</td>
+                                        </tr>
                                     @endforeach
                                 </table>
                             </td>
@@ -112,7 +122,6 @@
                                 <table>
                                     <tr>
                                         <div id="attend_{{$student->id}}" class="attend" data-student_id="{{$student->id}}">Loading</div>
-
                                     </tr>
                                 </table>
                             </td>

@@ -70,7 +70,7 @@ class SectionController extends Controller
             $class_section = ClassBatchSection::findOrFail($id);
             $requestData = \request()->all();
             $class_section->update($requestData);
-            return redirect('admin/class_section')->with('success', 'Recored Updated');
+            return redirect('admin/class_section')->with('success', 'Record Updated');
         }
 
     public function class_section(Request $request){
@@ -138,7 +138,7 @@ class SectionController extends Controller
         $class_section_period = ClassBatchSectionPeriod::findOrFail($id);
         $requestData = \request()->all();
         $class_section_period->update($requestData);
-        return redirect('admin/section_period')->with('success', 'Recored Updated');
+        return redirect('admin/section_period')->with('success', 'Record Updated');
     }
 
 }

@@ -6,6 +6,7 @@ use App\Attendance;
 use App\ClassBatchSection;
 use App\ClassBatchSectionPeriod;
 use App\ClassSectionStudent;
+use App\Event;
 use App\Exports\ClassBatchSectionExport;
 use App\Period;
 use App\Student;
@@ -125,7 +126,7 @@ class AttendanceController extends Controller
                 });
             })->find($class_section_student_id);
            $dif = (strtotime(date('H:i',strtotime($attendences[0]->created_at))) - strtotime($class_section_student->start_at))/(60);
-            if($dif < 10){
+           if($dif < 10){
                 return response()->json(['id'=>$code,'status'=>"P"]);
             }elseif (($dif >= 10 ) && (strtotime(date('H:i',strtotime($attendences[0]->created_at))) < strtotime($class_section_student->end_at)) ) {
                 return response()->json(['id'=>$code,'status'=>"L"]);

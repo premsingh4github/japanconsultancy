@@ -59,7 +59,7 @@
                         ?>
                         @while($start_date != $end_date)
                             @php $start_date = date('Y-m-d',strtotime("+1 day", strtotime($start_date)))  @endphp
-                            <th class="font-w700">{{date('d',strtotime($start_date))}}</th>
+                            <th class="font-w700">{{date('M-d',strtotime($start_date))}}</th>
                         @endwhile
                     </tr>
                     </thead>
@@ -80,10 +80,10 @@
                             <td>{{$student->last_student_name}} {{$student->first_student_name}}</td>
                             <td>{{$student->last_student_japanese_name}} {{$student->first_student_japanese_name}}</td>
                             <td>
-                                @if($student->student_sex == 'm')Male
-                                @elseif($student->student_sex == 'f')Female
+                                @if($student->student_sex == 'm')男
+                                @elseif($student->student_sex == 'f')女
                                 @else
-                                    Others
+                                    その他の
                                 @endif
                             </td>
                             <td>

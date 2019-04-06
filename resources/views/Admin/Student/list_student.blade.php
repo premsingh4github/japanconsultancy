@@ -152,10 +152,10 @@
                                     @endif
                                     <td>{{$students->address}}</td>
                                     <td>
-                                        @if($students->student_sex == 'm')Male
-                                            @elseif($students->student_sex == 'f')Female
-                                            @else
-                                            Others
+                                        @if($students->student_sex == 'm')男
+                                        @elseif($students->student_sex == 'f')女
+                                        @else
+                                            その他の
                                         @endif
                                     </td>
                                     <td>
