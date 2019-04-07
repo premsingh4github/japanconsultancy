@@ -111,7 +111,11 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::post('post_section_wise_days','HolidayController@post_section_wise_days');
 
 
-    
+    /*================= calender export======================*/
+    Route::post('calender_search','HolidayController@calender_search');
+    Route::get('calender_search','HolidayController@calender');
+    /*================= calender export======================*/
+
     
      /*==================graduation_prospect_certificate=======*/
     Route::get('graduation_prospect_certificate/{id}','CertificateController@graduation_prospect_certificate');

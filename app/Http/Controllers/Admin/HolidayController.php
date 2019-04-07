@@ -93,4 +93,10 @@ class HolidayController extends Controller
         $holiday->delete();
         return redirect()->back()->with('success','Holiday Deleted Successfully !!');
     }
+    public function calender_search(Request $request){
+        return view('attendance.calendar');
+    }
+    public function calender(Request $request){
+        return redirect('admin');
+    }
 }
