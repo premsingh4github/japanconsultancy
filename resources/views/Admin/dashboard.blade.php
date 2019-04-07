@@ -1,5 +1,12 @@
 
 @extends('Admin.index')
+@section('style')
+    <style>
+        .fc-event-container .fc-day-grid-event .fc-title{
+            color:#fff;
+        }
+    </style>
+    @endsection
 @section('body')
 
     <main id="main-container">
