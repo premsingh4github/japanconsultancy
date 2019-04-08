@@ -2,10 +2,8 @@
 @section('body')
     <!-- Main Container -->
     <main id="container">
-
         <!-- Page Content -->
         <div class="content" style="margin-top:50px;">
-
             <!-- Dynamic Table with Export Buttons -->
             <div class="block">
                 <div class="i_float_left">
@@ -38,9 +36,6 @@
                         </ul>
                         @endif
                         </p>
-
-
-
                         <div class="block-content hidden-print" style="margin-bottom: 20px;">
                         <form action="" method="post">
                             {{csrf_field()}}
@@ -70,8 +65,7 @@
                                     @endif
                             </div>
                         </form>
-
-                    </div>
+                        </div>
                     <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
                     <table class="table-bordered">
                         <thead style="font-size: 12px">
@@ -122,7 +116,6 @@
             <!-- END Dynamic Table with Export Buttons -->
         </div>
         <!-- END Page Content -->
-
     </main>
     <!-- END Main Container -->
 @endsection

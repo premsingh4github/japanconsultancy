@@ -60,15 +60,12 @@ class TeacherController extends Controller
     }
 
 
-    public function list_teacher (Request $request)
-    {
+    public function list_teacher (Request $request){
         if ($request->isMethod('get')){
             $TeacherData  = Teacher::all();
         }
        return view('Admin.Teacher.list_teacher',compact('TeacherData'));
     }
-
-
     public function edit_teacher($id){
         $teacher = Teacher::findOrfail($id);
         $countries = Country::all();
