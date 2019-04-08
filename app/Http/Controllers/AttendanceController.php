@@ -10,9 +10,11 @@ use App\Event;
 use App\Exports\ClassBatchSectionExport;
 use App\Period;
 use App\Student;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\View\View;
 use Maatwebsite\Excel\Facades\Excel;
 use Nexmo\Numbers\Number;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
@@ -50,6 +52,21 @@ class AttendanceController extends Controller
             $attendances = Attendance::select(DB::raw('MAX(attendances.id) as my_id, attendances.student_id ,MAX(attendances.created_at) as time'))->with('student')->groupBy('attendances.student_id')->orderBy('my_id','DESC')->get();
             return view('attendance.show_today',compact('attendances','sections','class_section_student'));
         }
+    }
+
+    public function getattendacelist($section,$id)
+    {
+        $class_section_student = ClassBatchSection::with('class_batch_section_periods')->with('class_section_students.student')->find($section);
+
+
+
+
+//        $view = view('attendance.show_list',compact('class_section_student'));
+//        $view = View::make('attendance.show_list', $data);  //View::make('attendance.show_list', $data);
+
+
+//        return $view;
+        return \response()->view('attendance.show_list',compact('class_section_student','id'))->header('id',$id);
     }
     public function attendance_form()
     {

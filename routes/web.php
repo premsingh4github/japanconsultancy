@@ -111,7 +111,11 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::post('post_section_wise_days','HolidayController@post_section_wise_days');
 
 
-    
+    /*================= calender export======================*/
+    Route::post('calender_search','HolidayController@calender_search');
+    Route::get('calender_search','HolidayController@calender');
+    /*================= calender export======================*/
+
     
      /*==================graduation_prospect_certificate=======*/
     Route::get('graduation_prospect_certificate/{id}','CertificateController@graduation_prospect_certificate');
@@ -131,6 +135,7 @@ Route::get('attendance','AttendanceController@index')->middleware('auth');
 Route::get('attendance_form','AttendanceController@attendance_form')->middleware('auth');
 Route::get('attendance/{code}','AttendanceController@store')->middleware('auth');
 Route::get('attendance_list','AttendanceController@show')->middleware('auth');
+Route::get('getattendacelist/{section}/{id}','AttendanceController@getattendacelist')->middleware('auth');
 Route::get('section_attendance_excel','AttendanceController@getAttendanceExcel');
 Route::get('test','HomeController@test');
 Route::get('admin/manage_attendance','AttendanceController@getAttendance')->middleware('admin');
