@@ -70,7 +70,7 @@
                         </div>
                         <div class="form-group col-sm-9">
                             <label for="student_note">Remarks <font color="#ff0000">*</font></label>
-                            <textarea class="form-control content" id="js-ckeditor" name="student_note">{{$student->student_note}}</textarea>
+                            <textarea class="form-control content" name="student_note">{!! $student->student_note !!}</textarea>
                             {{$errors->first('student_note')}}
                         </div>
 

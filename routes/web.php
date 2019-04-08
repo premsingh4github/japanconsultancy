@@ -41,6 +41,7 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::get('list_student/student_id={id}','StudentController@edit_student');
     Route::post('list_student/student_id={id}','StudentController@update_student');
     Route::get('list_student/student_id={id}/delete','StudentController@destroy');
+    Route::get('list_student/student_id={id}/confirm_destroy','StudentController@confirm_destroy');
     Route::get('list_student/{id}','StudentController@id_preview');
     Route::get('list_student/pdf/{id}','StudentController@export_pdf');
 
