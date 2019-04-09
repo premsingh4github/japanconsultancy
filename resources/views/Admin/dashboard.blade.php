@@ -113,7 +113,7 @@
                                     <h4> Calender </h4>
                                 </div>
                                 <div class="col-sm-6">
-                                    <form action="{{url('admin/calender_search')}}" method="post">
+                                    <form action="{{url('admin/calendar')}}" method="post">
                                         {{csrf_field()}}
                                         <div class="row">
                                             <div class="col-sm-9 form-group">
