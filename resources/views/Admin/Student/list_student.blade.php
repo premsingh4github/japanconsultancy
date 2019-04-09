@@ -33,6 +33,57 @@
                     </div>
                 </div>
                 <!-- Latest Orders -->
+
+                @if(\Illuminate\Support\Facades\Session::has('student_id'))
+                    @php $student_record=\App\Student::find(\Illuminate\Support\Facades\Session::get('student_id')); @endphp
+                    <div class="col-lg-12">
+                        <div class="block block-mode-loading-oneui">
+                            <div class="block-header border-bottom">
+                                <h3 class="block-title" style="color:Red;">
+                                    Delete Confirmation
+                                </h3>
+                            </div>
+                            <div class="block-content block-content-full">
+                                <p>Student usages on another record !</p>
+
+                                <table class="table table-striped table-bordered">
+                                    @php
+                                        $attendances = \App\Attendance::where('student_id',$student_record->id)->orderBy('id','DESC')->limit(1)->get();
+                                        $class_section_students = \App\ClassSectionStudent::where('student_id',$student_record->id)->get();
+                                    @endphp
+                                    <tr>
+                                        <th>Usages</th>
+                                        <th>Student Name</th>
+                                    </tr>
+                                    @foreach($attendances as $attendance)
+                                        <tr>
+                                            <td>Attendance Table</td>
+                                            <td>{{$student_record->last_student_japanese_name}} {{$student_record->first_student_japanese_name}}</td>
+                                        </tr>
+                                        @endforeach
+                                    @foreach($class_section_students as $class_section_student)
+                                        <tr>
+                                            <td>Section Wise Student</td>
+                                            <td>{{$student_record->last_student_japanese_name}} {{$student_record->first_student_japanese_name}}</td>
+                                        </tr>
+                                        @endforeach
+                                    <tr>
+                                       <th colspan="2">Note : Student related data also delete from server. After confirmation data can not restore !</th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="{{url('admin/list_student/student_id=').$student_record->id.'/confirm_destroy'}}" class="btn btn-success btn-sm">Confirmed Delete</a>
+                                            <a href="{{url('admin/list_student')}}" class="btn btn-danger btn-sm">Cancle</a>
+                                        </td>
+                                    </tr>
+                                    </table>
+                            </div>
+                        </div>
+                    </div>
+
+                @endif
+
+
                 <div class="col-lg-12">
                     <div class="block block-mode-loading-oneui">
                         <div class="block-header border-bottom">
@@ -160,7 +211,8 @@
                                     </td>
                                     <td>
                                         <a href="{{url('admin/list_student/student_id=').$students->id}}" class="fa fa-edit"></a>
-                                        <a href="#" onclick="return confirm('Are you sure you want to transfer this Student another batch?');"  class="fa fa-exchange-alt" style="color: red;"></a>
+                                        {{--<a href="#" onclick="return confirm('Are you sure you want to transfer this Student another batch?');"  class="fa fa-exchange-alt" style="color: red;"></a>--}}
+                                        <a href="{{url('admin/list_student/student_id=').$students->id.'/delete'}}" onclick="return confirm('Are you sure to delete?');"  class="fa fa-trash" style="color: red;"></a>
                                     </td>
                                 </tr>
                                     @endforeach

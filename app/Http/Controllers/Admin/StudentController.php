@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Attendance;
 use App\Batch;
 use App\ClassBatchSection;
 use App\ClassRoom;
@@ -15,6 +16,7 @@ use App\Subject;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\Session;
 
 class StudentController extends Controller
 {
@@ -225,8 +227,8 @@ class StudentController extends Controller
         $list_student->student_note = \request('student_note');
         $list_student->subject_optional_id = \request('subject_optional_id');
         if($request->hasFile('photo')){
-            if (is_file(url('public/photos').'/'.$list_student->photo) && file_exists(url('public/photos').'/'.$list_student->photo)){
-                unlink(url('public/photos').'/'.$list_student->photo);
+            if (is_file(public_path('photos/').'/'.$list_student->photo) && file_exists(public_path('photos/').'/'.$list_student->photo)){
+                unlink(public_path('photos/').'/'.$list_student->photo);
             }
             $filename = time().'.'.request()->file('photo')->getClientOriginalExtension();
 
@@ -241,10 +243,44 @@ class StudentController extends Controller
     }
 
     public function destroy($id){
-        $listStudents = Student::findOrFail($id);
+        $list_student = Student::findOrFail($id);
+        $attendance = Attendance::where('student_id',$list_student->id)->get();
+        $class_section_student = ClassSectionStudent::where('student_id',$list_student->id)->get();
+        $count_value = count($attendance)+count($class_section_student);
+        if ($count_value>0){
+            Session::flash('student_id',$list_student->id);
+            return redirect()->back()->withErrors('errors','Unable to delete this Student, This Student Usages on another record!!');
 
-        $listStudents->delete();
+        }else{
+            if (is_file(public_path('photos/').'/'.$list_student->photo) && file_exists(public_path('photos/').'/'.$list_student->photo)){
+                unlink(public_path('photos/').'/'.$list_student->photo);
+            }
+            foreach ($attendance as $attendances){
+                $attendances->delete();
+            }
+            foreach ($class_section_student as $class_section_students){
+                $class_section_students->delete();
+            }
+            $list_student->delete();
+        }
 
+        return redirect()->back()->with('success', 'Record Deleted');
+
+    }
+    public function confirm_destroy($id){
+        $list_student = Student::findOrFail($id);
+        $attendance = Attendance::where('student_id',$list_student->id)->get();
+        $class_section_student = ClassSectionStudent::where('student_id',$list_student->id)->get();
+            foreach ($attendance as $attendances){
+                $attendances->delete();
+            }
+            foreach ($class_section_student as $class_section_students){
+                $class_section_students->delete();
+            }
+            if (is_file(public_path('photos/').'/'.$list_student->photo) && file_exists(public_path('photos/').'/'.$list_student->photo)){
+                unlink(public_path('photos/').'/'.$list_student->photo);
+            }
+        $list_student->delete();
         return redirect()->back()->with('success', 'Record Deleted');
 
     }
