@@ -65,7 +65,7 @@ $end_date = $class_section_student->end_date;
             <div class="day-group">
             @foreach($class_section_student->class_batch_section_periods as $section_period)
                 <div width="20px">
-                    <i class="fa fa-times btn btn-success btn-sm" style="font-size: 9px"></i>
+                    <i class="fa fa-times btn btn-danger btn-sm" style="font-size: 9px"></i>
                 </div>
             @endforeach
             </div>
