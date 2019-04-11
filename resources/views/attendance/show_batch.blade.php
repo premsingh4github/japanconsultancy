@@ -22,23 +22,48 @@
             <!-- Hero -->
             <div class="block-content block-content-full">
                 <div class="row hidden-print">
-                    <div class="form-group col-sm-4">
-                        <div class="student_image">
-                            <label for="student_name">{{__('language.Select_Running_Section')}}</label>
+                    <div class="form-group col-sm-6">
+                            <label for="section">{{__('language.Select_Running_Section')}}</label>
                             <select name="section" class="form-control " onchange="sectionChanged(this)" id="section">
                                 <option value="">{{__('language.Select_Running_Section')}}</option>
                                 @foreach($sections as $section)
                                     <option @if(request('section') == $section->id) selected @endif value="{{$section->id}}">{{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}}</option>
                                 @endforeach
                             </select>
-                        </div>
                     </div>
-                    <div class="col-sm-2">
-                        <div class="student_image">
+                    <div class="form-group col-sm-2">
                             <label for="">Download/Print</label>
                         <button  class="form-control btn btn-primary" onclick="window.print()"> {{__('language.Print')}}/{{__('language.Pdf')}}
                         </button>
-                        </div>
+                    </div>
+                    <div class="form-group col-sm-4" style="text-align: center; float:right;">
+                        <table  class="table-bordered table-striped" style="width:100%;">
+                            <tr>
+                                <th colspan="4">Index</th>
+                            </tr>
+                            <tr>
+                                <th>Present</th>
+                                <th>Late</th>
+                                <th>Absent</th>
+                                <th>Holiday</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="btn btn-success btn-sm" style="font-size: 9px">0</span>
+                                </td>
+                                <td>
+                                    <span class="btn btn-warning btn-sm" style="font-size: 9px">△</span>
+                                </td>
+                                <td>
+                                    <i class="fa fa-times btn btn-danger btn-sm" style="font-size: 9px"></i>
+                                </td>
+                                <td style="padding:5px;">
+                                    <div style="background-color: lightgray; width:100%; height: 50px;">
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </table>
                     </div>
                 </div>
                 <div class="row">

@@ -14,16 +14,14 @@
             <!-- Hero -->
             <div class="block-content block-content-full">
                 <div class="row">
-                    <div class="form-group col-sm-4">
-                        <div class="student_image">
-                            <label for="student_name">{{__('language.Select_Running_Section')}}</label>
+                    <div class="form-group col-sm-6">
+                            <label for="section">{{__('language.Select_Running_Section')}}</label>
                             <select name="section" class="form-control " onchange="sectionChanged(this)" id="section">
 							<option value="">{{__('language.Select_Running_Section')}}</option>
                                 @foreach($sections as $section)
                                     <option @if(request('section') == $section->id) selected @endif value="{{$section->id}}">{{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}}</option>
                                 @endforeach
                             </select>
-                        </div>
                     </div>
                 </div>
                 <table border="1">
