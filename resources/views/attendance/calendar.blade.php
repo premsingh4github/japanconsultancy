@@ -117,10 +117,10 @@
                         echo "</tr><tr>";
                     }
 
-                    echo "<td><table class='main' ><td colspan=6 align=center> $monthName $year
+                    echo "<td><table class='main' ><td colspan=7 align=center> $monthName $year
 
 
- </td><td align='center'><a href=# onClick='self.close();'>X</a></td></tr>";
+ </td></tr>";
 //echo "<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr><tr>";
                     echo "<tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr><tr>";
 ////// End of the top line showing name of the days of the week//////////
@@ -137,14 +137,12 @@
 
                     }
                     echo $adj2;   // Blank the balance cell of calendar at the end
-
-                    echo "</tr></table></td>";
-
+                    echo "</tr><tr><td colspan='7'><ul>";
+                    echo "</ul></td></tr></table></td>";
                     $row_no=$row_no+1;
                 } // end of for loop for 12 months
                 echo "</table>";
                 ?>
-
             </div>
         </div>
     </div>

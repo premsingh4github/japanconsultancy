@@ -26,7 +26,9 @@
 $start_date = $class_section_student->start_date;
 
 $end_date = $class_section_student->end_date;
+
 ?>
+    @php $holidays = \App\Event::where('start_date',$start_date)->get(); @endphp
 
     @if(time() < strtotime($start_date))
         {{--<td>--}}
@@ -43,7 +45,16 @@ $end_date = $class_section_student->end_date;
 
     @else
                 <td>
-        @if(($atten = \App\Attendance::where('student_id',$id)->whereBetween('updated_at', array($start_date.' 00:00:00',$start_date.' 23:59:59'))->get()) && ($atten->count()))
+            @if(count($holidays)>0)
+                        <div class="day-group">
+                        <i class="btn btn-secondary btn-sm fa fa-book-dead" style="font-size: 9px;">H</i>
+                        </div>
+            @elseif(date('D',strtotime($start_date))=='Sat' || date('D',strtotime($start_date))=='Sun')
+                        <div class="day-group">
+                            <i class="btn btn-secondary btn-sm fa fa-book-dead" style="font-size: 9px;">H</i>
+                        </div>
+
+            @elseif(($atten = \App\Attendance::where('student_id',$id)->whereBetween('updated_at', array($start_date.' 00:00:00',$start_date.' 23:59:59'))->get()) && ($atten->count()))
 
            <div class="day-group">
                 @foreach($class_section_student->class_batch_section_periods as $section_period)
@@ -79,7 +90,7 @@ $end_date = $class_section_student->end_date;
 @while($start_date != $end_date)
     <td>
     @php $start_date = date('Y-m-d',strtotime("+1 day", strtotime($start_date)))  @endphp
-
+    @php $holidays = \App\Event::where('start_date',$start_date)->get(); @endphp
     @if(time() < strtotime($start_date))
             {{--<div class="day-group">--}}
         {{--@foreach($class_section_student->class_batch_section_periods as $section_period)--}}
@@ -88,7 +99,14 @@ $end_date = $class_section_student->end_date;
             {{--</div>--}}
         {{--@endforeach--}}
             {{--</div>--}}
-
+        @elseif(count($holidays)>0)
+            <div class="day-group">
+            <i class="btn btn-secondary btn-sm fa fa-book-dead" style="font-size: 9px;">H</i>
+            </div>
+    @elseif(date('D',strtotime($start_date))=='Sat' || date('D',strtotime($start_date))=='Sun')
+            <div class="day-group">
+            <i class="btn btn-secondary btn-sm fa fa-book-dead" style="font-size: 9px;">H</i>
+            </div>
     @elseif(($atten = \App\Attendance::where('student_id',$id)->whereBetween('updated_at', array($start_date.' 00:00:00',$start_date.' 23:59:59'))->get()) && ($atten->count()))
 
             <div class="day-group">
