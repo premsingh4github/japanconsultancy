@@ -46,8 +46,7 @@ $end_date = $class_section_student->end_date;
     @else
                 <td>
             @if(count($holidays)>0)
-                        <div class="day-group">
-                        <i class="btn btn-secondary btn-sm fa fa-book-dead" style="font-size: 9px;">H</i>
+                        <div class="day-group" style="background-color: lightgray; height: 96px; margin-top:5px;">
                         </div>
             @elseif(date('D',strtotime($start_date))=='Sat' || date('D',strtotime($start_date))=='Sun')
                         <div class="day-group" style="background-color: lightgray; height: 96px; margin-top:5px;">
@@ -99,8 +98,7 @@ $end_date = $class_section_student->end_date;
         {{--@endforeach--}}
             {{--</div>--}}
         @elseif(count($holidays)>0)
-            <div class="day-group" style="background-color: red; height: 105px;">
-            <i class="btn btn-secondary btn-sm fa fa-book-dead" style="font-size: 9px;">H</i>
+            <div class="day-group" style="background-color: lightgray; height: 96px; margin-top:5px;">
             </div>
     @elseif(date('D',strtotime($start_date))=='Sat' || date('D',strtotime($start_date))=='Sun')
             <div class="day-group" style="background-color: lightgray; height: 96px; margin-top:5px;">
