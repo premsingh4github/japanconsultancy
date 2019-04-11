@@ -26,6 +26,7 @@
                         <div class="student_image">
                             <label for="student_name">{{__('language.Select_Running_Section')}}</label>
                             <select name="section" class="form-control " onchange="sectionChanged(this)" id="section">
+                                <option value="">{{__('language.Select_Running_Section')}}</option>
                                 @foreach($sections as $section)
                                     <option @if(request('section') == $section->id) selected @endif value="{{$section->id}}">{{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}}</option>
                                 @endforeach
@@ -93,7 +94,22 @@
                         <th class="font-w700">{{__('language.Sex')}}</th>
                         <th class="font-w700">{{__('language.Period')}}</th>
                         <th class="font-w700">
-                            <div class="day-group-month">{{date('M d',strtotime($class_section_student->start_date))}} @php $daycount = 1; @endphp</div>
+                            <div class="day-group-month">
+                                @if(date('M',strtotime($class_section_student->start_date))=='Jan') {{__('language.Jan')}}
+                                @elseif(date('M',strtotime($class_section_student->start_date))=='Feb') {{__('language.Feb')}}
+                                @elseif(date('M',strtotime($class_section_student->start_date))=='Mar') {{__('language.Mar')}}
+                                @elseif(date('M',strtotime($class_section_student->start_date))=='Apr') {{__('language.Apr')}}
+                                @elseif(date('M',strtotime($class_section_student->start_date))=='May') {{__('language.May')}}
+                                @elseif(date('M',strtotime($class_section_student->start_date))=='Jun') {{__('language.Jun')}}
+                                @elseif(date('M',strtotime($class_section_student->start_date))=='Jul') {{__('language.Jul')}}
+                                @elseif(date('M',strtotime($class_section_student->start_date))=='Aug') {{__('language.Aug')}}
+                                @elseif(date('M',strtotime($class_section_student->start_date))=='Sep') {{__('language.Sep')}}
+                                @elseif(date('M',strtotime($class_section_student->start_date))=='Oct') {{__('language.Oct')}}
+                                @elseif(date('M',strtotime($class_section_student->start_date))=='Nov') {{__('language.Nov')}}
+                                @elseif(date('M',strtotime($class_section_student->start_date))=='Dec') {{__('language.Dec')}}
+                                @endif
+                                    {{date('d',strtotime($class_section_student->start_date))}} @php $daycount = 1; @endphp
+                            </div>
                         </th>
                         <?php
                         $start_date = $class_section_student->start_date;
@@ -102,7 +118,27 @@
                         @while($start_date != $end_date)
                             @php $start_date = date('Y-m-d',strtotime("+1 day", strtotime($start_date)))  @endphp
                             <th class="font-w700">
-                                <div class="day-group-month">{{date('M d',strtotime($start_date))}}</div>
+                                <div class="day-group-month">
+
+                                    {{--{{date('M d',strtotime($start_date))}}--}}
+                                    @if(date('M',strtotime($start_date))=='Jan') {{__('language.Jan')}}
+                                    @elseif(date('M',strtotime($start_date))=='Feb') {{__('language.Feb')}}
+                                    @elseif(date('M',strtotime($start_date))=='Mar') {{__('language.Mar')}}
+                                    @elseif(date('M',strtotime($start_date))=='Apr') {{__('language.Apr')}}
+                                    @elseif(date('M',strtotime($start_date))=='May') {{__('language.May')}}
+                                    @elseif(date('M',strtotime($start_date))=='Jun') {{__('language.Jun')}}
+                                    @elseif(date('M',strtotime($start_date))=='Jul') {{__('language.Jul')}}
+                                    @elseif(date('M',strtotime($start_date))=='Aug') {{__('language.Aug')}}
+                                    @elseif(date('M',strtotime($start_date))=='Sep') {{__('language.Sep')}}
+                                    @elseif(date('M',strtotime($start_date))=='Oct') {{__('language.Oct')}}
+                                    @elseif(date('M',strtotime($start_date))=='Nov') {{__('language.Nov')}}
+                                    @elseif(date('M',strtotime($start_date))=='Dec') {{__('language.Dec')}}
+                                    {{--                                @elseif(date('M',strtotime($start_date))=='Dec') {{__('language.Dec')}}--}}
+                                    @endif
+                                    {{date('d',strtotime($start_date))}}
+
+
+                                </div>
                             </th>
                             @php $daycount += 1; @endphp
                         @endwhile

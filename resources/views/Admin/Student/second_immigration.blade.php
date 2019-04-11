@@ -18,7 +18,7 @@
                     <h3 class="block-title">当該機関で受け入れている外国人リスト</h3>
                 </div>
                 <div class="i_float_right_b">
-                    <b>受け入れ機関名学）専門学校中央美術学園</b>
+                    <b>受け入れ機関名　学）専門学校　中央美術学園</b>
                 </div>
                 <div class="block-header hidden-print">
                     <h3 class="block-title">{{__('language.Name_of_the_organization')}}<small></small></h3>
@@ -68,8 +68,8 @@
                         </div>
                     <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
                     <table class="table-bordered">
-                        <thead style="font-size: 12px">
-                        <tr>
+                        <thead class="table_bordered" style="font-size: 12px">
+                        <tr class="table_bordered">
                             <th>{{__('language.SN')}}</th>
                             <th>{{__('language.Residential_Card_No')}}</th>
                             <th>{{__('language.Nationality')}}</th>
@@ -84,9 +84,9 @@
                             <th>{{__('language.student_remarks')}}</th>
                         </tr>
                         </thead>
-                        <tbody style="font-size: 12px;">
+                        <tbody class="table_bordered" style="font-size: 12px;">
                         @foreach($list_students as $key=>$students)
-                        <tr>
+                        <tr class="table_bordered">
                             <td>{{++$key}}</td>
                             <td>{{$students->residensal_card}}</td>
                             <td>{{$students->country->name}}</td>

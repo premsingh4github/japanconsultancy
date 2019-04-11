@@ -72,7 +72,7 @@
                     <!-- DataTables init on table by adding .js-dataTable-buttons class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
                     <table class="table-bordered">
                         <thead style="font-size: 12px">
-                        <tr>
+                        <tr class="table_bordered">
                             <th>{{__('language.SN')}}</th>
                             <th>{{__('language.Nationality')}}</th>
                             <th>{{__('language.student_name')}}</th>
@@ -86,8 +86,8 @@
                         <tbody style="font-size: 12px;">
                         @foreach($list_students as $key=>$students)
                             <tr>
-                                <td>{{++$key}}</td>
-                                <td>{{$students->country->name}}</td>
+                                <td class="table_bordered">{{++$key}}</td>
+                                <td class="table_bordered">{{$students->country->name}}</td>
                                 <td>{{$students->last_student_name}} {{$students->first_student_name}}</td>
                                 {{--<td>{{$students->last_student_japanese_name}} {{$students->first_student_japanese_name}}</td>--}}
                                 <td>
