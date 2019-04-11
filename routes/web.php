@@ -113,8 +113,8 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
 
 
     /*================= calender export======================*/
-    Route::post('calender_search','HolidayController@calender_search');
-    Route::get('calender_search','HolidayController@calender');
+    Route::post('calendar','HolidayController@calender_search');
+    Route::get('calendar','HolidayController@calender');
     /*================= calender export======================*/
 
     
