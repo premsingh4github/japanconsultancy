@@ -742,6 +742,13 @@
                             <span class="nav-main-link-name">Attendance by Admin</span>
                         </a>
                     </li>
+                    <li class="nav-main-heading ">{{__('language.main_reports')}}</li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link   <?php if(request()->segment('2') =='attendance_report'){ echo 'active' ;} ?>" href="{{url('admin/attendance_report')}}">
+                            <i class="nav-main-link-icon fa fa-th-list"></i>
+                            <span class="nav-main-link-name">{{__('language.report_attendance')}}</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <!-- END Side Navigation -->

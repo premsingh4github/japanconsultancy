@@ -221,6 +221,9 @@ return[
     'Period_Name'=>'生理時',
 
 
+    'main_reports'=>'報告書',
+    'report_attendance'=>'出席 報告書',
+
 
     'Class_Room_Status'=>'Class Room Status',
     /*Class Batch manager*/

@@ -123,6 +123,15 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::get('Graduation_certificate/{id}','CertificateController@Graduation_certificate');
     Route::get('certificate_of_student_status/{id}','CertificateController@certificate_of_student_status');
     /*==================graduation_prospect_certificate=======*/
+
+     /*==================Report-Section=======*/
+    Route::get('attendance_report','ReportController@index');
+    Route::post('attendance_report','ReportController@view');
+    Route::get('attendance_report/{section}/{id}','ReportController@getattendacelist');
+    Route::get('admin/get_student/{class_batch_section_id}','ReportController@getStudents');
+
+
+    /*==================Report-Section=======*/
 });
 /* ================================================ ADMIN CONTROL END============================================================== */
 

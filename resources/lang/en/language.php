@@ -237,6 +237,8 @@ return[
     'Student_immigration'=>'Student Immigration',
 
     'student_record'=>'Student Record',
+    'main_reports'=>'Reports',
+    'report_attendance'=>'Attendance Report',
 
     /*List Student */
     'Save_section'=>'Save section',
