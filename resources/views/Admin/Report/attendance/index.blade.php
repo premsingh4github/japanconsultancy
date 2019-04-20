@@ -50,7 +50,6 @@
                         <div class="form-group col-sm-3">
                             <label for="c_b_s_id">{{__('language.Select_Running_Section')}}</label>
                             <select name="c_b_s_id" class="form-control" id="c_b_s_id">
-                                <option value="">{{__('language.Select_Running_Section')}}</option>
                                 @foreach($sections as $section)
                                     <option @if(request('c_b_s_id') == $section->id) selected @endif value="{{$section->id}}">({{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}}</option>
                                 @endforeach
@@ -60,10 +59,10 @@
                             <label for="period_id">Date Duration</label>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <input type="date" name="from_date" class="form-control" placeholder="From Date">
+                                    <input type="date" name="from_date" class="form-control" placeholder="From Date" required>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="date"  name="to_date" class="form-control" placeholder="To Date">
+                                    <input type="date"  name="to_date" class="form-control" placeholder="To Date" required>
                                 </div>
                             </div>
                         </div>

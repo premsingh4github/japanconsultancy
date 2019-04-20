@@ -32,6 +32,19 @@
         table.main a{TEXT-DECORATION: none;}
         table,td{ border: 1px solid #ffffff }
     </style>
+    <style>
+        .row.row-deck>div>.block{
+            min-width: unset;
+        }
+        /*.attend table{*/
+        /*display: inline-block;*/
+        /*}*/
+        /*.attend div{*/
+        /*display: inline-block;*/
+        /*text-align: center;*/
+        /*width: 40px;*/
+        /*}*/
+    </style>
 
     <link rel="stylesheet" href="{{asset('public/server')}}/assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -66,15 +79,34 @@
         border:1px solid lightgrey;
         width: 100%;
     }
+    .day-group{
+        display: inline-block;
+        width: 50px !important;
+        border-right: solid 1px grey;
+        text-align: center;
+        font-size: 16px;
+
+    }
+    .day-group-month{
+        display: inline-block;
+        width: 50px;
+        text-align: center;
+        font-size: 14px;
+    }
+    .day-group div{
+        display: block;
+
+    }
+
 </style>
 <body>
 
 
 <div class="container-fluid">
-    <div class="report_section" style="margin:20px;">
+    <div class="report_section">
         <div class="row">
             <div class="col-sm-12">
-                <table class="table">
+                <table border="1">
                     <thead>
                     <tr>
                             @if(request('c_b_s_id'))
@@ -301,7 +333,7 @@
                             <td colspan="{{$daycount}}">
                                 <table>
                                     <tr>
-                                        <div id="attend_{{$student->id}}" class="attend" data-student_id="{{$student->id}}">Loading</div>
+                                        <div id="attendance_{{$student->id}}" class="attendance" data-student_id="{{$student->id}}">Loading</div>
                                     </tr>
                                 </table>
                             </td>
@@ -343,7 +375,7 @@
                             <td colspan="{{$daycount}}">
                                 <table>
                                     <tr>
-                                        <div id="attend_{{$student->id}}" class="attend" data-student_id="{{$student->id}}">Loading</div>
+                                        <div id="attendance_{{$student->id}}" class="attendance" data-student_id="{{$student->id}}">Loading</div>
                                     </tr>
                                 </table>
                             </td>
@@ -356,18 +388,19 @@
         </div>
     </div>
 </div>
-
 <script>
     $(document).ready(function () {
-        $('.attend').each(function (i,ls) {
-            var c_b_s_id = "{{request('c_b_s_id')}}";
+        $('.attendance').each(function (i,ls) {
+            var section = "{{request('c_b_s_id')}}";
+            var from_date ="{{request('from_date')}}";
+            var to_date ="{{request('to_date')}}";
             $(ls).data('student_id');
             $.ajax({
-                url: Laravel.url + "admin/attendance_report/"+c_b_s_id+"/"+$(ls).data('student_id'),
+                url:   "attendance_report/"+section+"/"+$(ls).data('student_id')+"/"+from_date+"/"+to_date,
                 method:"GET",
                 success: function (data, textStatus, request) {
 
-                    $('#attend_'+request.getResponseHeader('id')).html(data);
+                    $('#attendance_'+request.getResponseHeader('id')).html(data);
                     // $("#"+data['id']).html(data['status']);
                 },
                 error: function (error) {
@@ -377,8 +410,8 @@
             });
         });
     });
-</script>
 
+</script>
 
 <!-- END Page Container -->
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
@@ -391,33 +424,35 @@
 <script src="{{asset('public/server')}}/assets/js/oneui.core.min.js"></script>
 
 <script src="{{asset('public/server')}}/assets/js/oneui.app.min.js"></script>
-<script src="{{asset('public/server')}}/assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="{{asset('public/server')}}/assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
-<script src="{{asset('public/server')}}/assets/js/plugins/datatables/buttons/dataTables.buttons.min.js"></script>
-<script src="{{asset('public/server')}}/assets/js/plugins/datatables/buttons/buttons.print.min.js"></script>
-<script src="{{asset('public/server')}}/assets/js/plugins/datatables/buttons/buttons.html5.min.js"></script>
-<script src="{{asset('public/server')}}/assets/js/plugins/datatables/buttons/buttons.flash.min.js"></script>
-<script src="{{asset('public/server')}}/assets/js/plugins/datatables/buttons/buttons.colVis.min.js"></script>
+{{--<script src="{{asset('public/server')}}/assets/js/plugins/datatables/jquery.dataTables.min.js"></script>--}}
+{{--<script src="{{asset('public/server')}}/assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>--}}
+{{--<script src="{{asset('public/server')}}/assets/js/plugins/datatables/buttons/dataTables.buttons.min.js"></script>--}}
+{{--<script src="{{asset('public/server')}}/assets/js/plugins/datatables/buttons/buttons.print.min.js"></script>--}}
+{{--<script src="{{asset('public/server')}}/assets/js/plugins/datatables/buttons/buttons.html5.min.js"></script>--}}
+{{--<script src="{{asset('public/server')}}/assets/js/plugins/datatables/buttons/buttons.flash.min.js"></script>--}}
+{{--<script src="{{asset('public/server')}}/assets/js/plugins/datatables/buttons/buttons.colVis.min.js"></script>--}}
 
 <!-- Page JS Code -->
-<script src="{{asset('public/server')}}/assets/js/pages/be_tables_datatables.min.js"></script>
+{{--<script src="{{asset('public/server')}}/assets/js/pages/be_tables_datatables.min.js"></script>--}}
 <script src="{{asset('public/server')}}/assets/js/custom.js"></script>
 <!-- Page JS Plugins -->
-<script src="{{asset('public/server')}}/assets/js/plugins/summernote/summernote-bs4.min.js"></script>
-<script src="{{asset('public/server')}}/assets/js/plugins/ckeditor/ckeditor.js"></script>
-<script src="{{asset('public/server')}}/assets/js/plugins/simplemde/simplemde.min.js"></script>
+{{--<script src="{{asset('public/server')}}/assets/js/plugins/summernote/summernote-bs4.min.js"></script>--}}
+{{--<script src="{{asset('public/server')}}/assets/js/plugins/ckeditor/ckeditor.js"></script>--}}
+{{--<script src="{{asset('public/server')}}/assets/js/plugins/simplemde/simplemde.min.js"></script>--}}
 <!-- Page JS Plugins -->
 <script src="{{asset('public/server')}}/assets/js/plugins/chart.js/Chart.bundle.min.js"></script>
 
 <!-- Page JS Code -->
 <script src="{{asset('public/server')}}/assets/js/pages/be_pages_dashboard.min.js"></script>
-<script>jQuery(function(){ One.helpers(['summernote', 'ckeditor', 'simplemde']); });</script>
-<script src="{{asset('public/server')}}/assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+{{--<script>jQuery(function(){ One.helpers(['summernote', 'ckeditor', 'simplemde']); });</script>--}}
+{{--<script src="{{asset('public/server')}}/assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>--}}
 {{--<script>jQuery(function(){ One.helpers(['datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']); });</script>--}}
 {{--<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>--}}
 <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
+{{--<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>--}}
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+
+
 </body>
 </html>
 

@@ -21,43 +21,10 @@
 </style>
     <table>
         <tr>
-            @if(request('from_date') && request('to_date'))
-                @php
-                    $start_date = request('from_date');
-                    $end_date = request('to_date');
-                @endphp
-            @elseif(request('from_date'))
-                @php
-                    $start_date = request('from_date');
-                $end_date = $class_section_student->end_date;
-                @endphp
-            @elseif(request('to_date'))
-                @php
-                    $start_date = $class_section_student->start_date;
-                        $end_date = request('to_date');
-                @endphp
-            @else
-                <?php
-                $start_date = $class_section_student->start_date;
-                $end_date = $class_section_student->end_date;
-                ?>
 
-            @endif
     @php $holidays = \App\Event::where('start_date',$start_date)->get(); @endphp
 
     @if(time() < strtotime($start_date))
-        {{--<td>--}}
-
-
-        {{--<div class="day-group">--}}
-            {{--@foreach($class_section_student->class_batch_section_periods as $section_period)--}}
-                {{--<div >--}}
-
-                {{--</div>--}}
-            {{--@endforeach--}}
-        {{--</div>--}}
-        {{--</td>--}}
-
     @else
                 <td>
             @if(count($holidays)>0)
