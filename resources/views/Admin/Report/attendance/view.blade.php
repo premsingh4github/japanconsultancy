@@ -75,8 +75,8 @@
     .report_section{
         margin:30px 0;
         padding:10px;
-        background-color: #fff;
-        border:1px solid lightgrey;
+        /*background-color: #fff;*/
+        /*border:1px solid lightgrey;*/
         width: 100%;
     }
     .day-group{
@@ -138,7 +138,7 @@
                 <table border="1">
                     <thead  class="thead-dark">
                     <tr>
-                        <td colspan="6"> &nbsp;</td>
+                        <td colspan="6"></td>
                         <td >{{__('language.Day')}}</td>
                         @if(request('from_date') && request('to_date'))
                             @php
@@ -185,6 +185,10 @@
                                 @endif
                             </td>
                         @endwhile
+                        <td style="width:50px;"> &nbsp;</td>
+                        <td colspan="7">
+                            Attendance Calculation
+                        </td>
                     </tr>
                     <tr>
                         <th >{{__('language.SN')}}</th>
@@ -288,6 +292,14 @@
                             </th>
                             @php $daycount += 1; @endphp
                         @endwhile
+                        <th style="width:50px;"></th>
+                        <th>欠席合計(Total absence)</th>
+                        <th>欠席(ABSENCE)</th>
+                        <th>遅刻(LATE)</th>
+                        <th>早退(Leave early)</th>
+                        <th>出席(ATTENDANCE)</th>
+                        <th>出席率(ATTENDANCE %)</th>
+                        <th>時数・日数(HOURS/DAY)</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -337,6 +349,19 @@
                                     </tr>
                                 </table>
                             </td>
+                            <td></td>
+                            <td>
+                                <table>
+                                    @foreach($class_section_student->class_batch_section_periods as $section_period)
+                                        @php $attendance = \App\Attendance::where('student_id',$student->id)->get(); @endphp
+                                    <tr>
+                                            <td>
+                                                {{count($attendance)}}
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                </table>
+                            </td>
                         </tr>
                                 @endif
                         @else
@@ -379,6 +404,45 @@
                                     </tr>
                                 </table>
                             </td>
+                            <td></td>
+                            <td>
+                                <table>
+                                    @if(request('from_date') && request('to_date'))
+                                        @php
+                                            $start_date = request('from_date');
+                                            $end_date = request('to_date');
+                                        @endphp
+                                    @elseif(request('from_date'))
+                                        @php
+                                            $start_date = request('from_date');
+                                        $end_date = $class_section_student->end_date;
+                                        @endphp
+                                    @elseif(request('to_date'))
+                                        @php
+                                            $start_date = $class_section_student->start_date;
+                                                $end_date = request('to_date');
+                                        @endphp
+                                    @else
+                                        <?php
+                                        $start_date = $class_section_student->start_date;
+                                        $end_date = $class_section_student->end_date;
+                                        ?>
+
+                                    @endif
+
+                                @foreach($class_section_student->class_batch_section_periods as $section_period)
+                                        @php
+                                            $attendance = \App\Attendance::where('student_id',$student->id)->where('created_at','>=',date('Y-m-d H:i',strtotime($start_date)) )->where('created_at','<=',date('Y-m-d 23:59:59',strtotime($end_date)))->get();
+                                        @endphp
+                                        <tr>
+                                            <td>
+                                                {{count($attendance)}}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+                            </td>
+
                         </tr>
                         @endif
                     @endforeach
