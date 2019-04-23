@@ -351,30 +351,7 @@
                             </td>
                             <td></td>
                             <td>
-                                <table>
-                                    @if(request('from_date') && request('to_date'))
-                                        @php
-                                            $start_date = request('from_date');
-                                            $end_date = request('to_date');
-                                        @endphp
-                                    @elseif(request('from_date'))
-                                        @php
-                                            $start_date = request('from_date');
-                                        $end_date = $class_section_student->end_date;
-                                        @endphp
-                                    @elseif(request('to_date'))
-                                        @php
-                                            $start_date = $class_section_student->start_date;
-                                                $end_date = request('to_date');
-                                        @endphp
-                                    @else
-                                        <?php
-                                        $start_date = $class_section_student->start_date;
-                                        $end_date = $class_section_student->end_date;
-                                        ?>
-
-                                    @endif
-
+                                <table >
                                     @foreach($class_section_student->class_batch_section_periods as $section_period)
                                         @php
                                             $attendance = \App\Attendance::where('student_id',$student->id)->where('created_at','>=',date('Y-m-d H:i',strtotime($start_date)) )->where('created_at','<=',date('Y-m-d 23:59:59',strtotime($end_date)))->get();
@@ -429,49 +406,21 @@
                                     </tr>
                                 </table>
                             </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <table>
-                                    @if(request('from_date') && request('to_date'))
-                                        @php
-                                            $start_date = request('from_date');
-                                            $end_date = request('to_date');
-                                        @endphp
-                                    @elseif(request('from_date'))
-                                        @php
-                                            $start_date = request('from_date');
-                                        $end_date = $class_section_student->end_date;
-                                        @endphp
-                                    @elseif(request('to_date'))
-                                        @php
-                                            $start_date = $class_section_student->start_date;
-                                                $end_date = request('to_date');
-                                        @endphp
-                                    @else
-                                        <?php
-                                        $start_date = $class_section_student->start_date;
-                                        $end_date = $class_section_student->end_date;
-                                        ?>
-
-                                    @endif
-
-                                    @foreach($class_section_student->class_batch_section_periods as $section_period)
-                                        @php
-                                            $attendance = \App\Attendance::where('student_id',$student->id)->where('created_at','>=',date('Y-m-d H:i',strtotime($start_date)) )->where('created_at','<=',date('Y-m-d 23:59:59',strtotime($end_date)))->get();
-                                        @endphp
-                                        <tr>
-                                            <td>
-                                                {{--{{count($attendance)}}--}}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </table>
+                            <td> </td>
+                            <td id="total_absent_{{$student->id}}">
                             </td>
-
+                            <td id="absent_{{$student->id}}">
+                            </td>
+                            <td id="late_{{$student->id}}">
+                            </td>
+                            <td id="early_{{$student->id}}">
+                            </td>
+                            <td id="atten_{{$student->id}}">
+                            </td>
+                            <td id="attendance_p_{{$student->id}}">
+                            </td>
+                            <td id="hours_per_day_{{$student->id}}">
+                            </td>
                         </tr>
                         @endif
                     @endforeach
@@ -494,6 +443,18 @@
                 success: function (data, textStatus, request) {
 
                     $('#attendance_'+request.getResponseHeader('id')).html(data);
+                    $('#total_absent_'+request.getResponseHeader('id')).html($('#attendance_'+request.getResponseHeader('id')).find('.btn-danger').length);
+                    $('#late_'+request.getResponseHeader('id')).html($('#attendance_'+request.getResponseHeader('id')).find('.btn-warning').length);
+                    $('#atten_'+request.getResponseHeader('id')).html($('#attendance_'+request.getResponseHeader('id')).find('.btn-success').length);
+                    var total = $('#attendance_'+request.getResponseHeader('id')).find('.btn').length ;
+                    var absent =  parseInt($('#total_absent_'+request.getResponseHeader('id')).html());
+
+                    var percent = parseFloat(((total - absent) * 100)/total).toFixed( 2 ) ;
+
+                    $('#attendance_p_'+request.getResponseHeader('id')).html(percent + " %");
+                    $('#absent_'+request.getResponseHeader('id')).html($('#attendance_'+request.getResponseHeader('id')).find('.btn-danger').length);
+
+
                     // $("#"+data['id']).html(data['status']);
                 },
                 error: function (error) {
