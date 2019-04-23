@@ -352,14 +352,39 @@
                             <td></td>
                             <td>
                                 <table>
+                                    @if(request('from_date') && request('to_date'))
+                                        @php
+                                            $start_date = request('from_date');
+                                            $end_date = request('to_date');
+                                        @endphp
+                                    @elseif(request('from_date'))
+                                        @php
+                                            $start_date = request('from_date');
+                                        $end_date = $class_section_student->end_date;
+                                        @endphp
+                                    @elseif(request('to_date'))
+                                        @php
+                                            $start_date = $class_section_student->start_date;
+                                                $end_date = request('to_date');
+                                        @endphp
+                                    @else
+                                        <?php
+                                        $start_date = $class_section_student->start_date;
+                                        $end_date = $class_section_student->end_date;
+                                        ?>
+
+                                    @endif
+
                                     @foreach($class_section_student->class_batch_section_periods as $section_period)
-                                        @php $attendance = \App\Attendance::where('student_id',$student->id)->get(); @endphp
-                                    <tr>
+                                        @php
+                                            $attendance = \App\Attendance::where('student_id',$student->id)->where('created_at','>=',date('Y-m-d H:i',strtotime($start_date)) )->where('created_at','<=',date('Y-m-d 23:59:59',strtotime($end_date)))->get();
+                                        @endphp
+                                        <tr>
                                             <td>
-                                                {{count($attendance)}}
+                                                {{--{{count($attendance)}}--}}
                                             </td>
                                         </tr>
-                                        @endforeach
+                                    @endforeach
                                 </table>
                             </td>
                         </tr>
@@ -405,6 +430,10 @@
                                 </table>
                             </td>
                             <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td>
                                 <table>
                                     @if(request('from_date') && request('to_date'))
@@ -430,13 +459,13 @@
 
                                     @endif
 
-                                @foreach($class_section_student->class_batch_section_periods as $section_period)
+                                    @foreach($class_section_student->class_batch_section_periods as $section_period)
                                         @php
                                             $attendance = \App\Attendance::where('student_id',$student->id)->where('created_at','>=',date('Y-m-d H:i',strtotime($start_date)) )->where('created_at','<=',date('Y-m-d 23:59:59',strtotime($end_date)))->get();
                                         @endphp
                                         <tr>
                                             <td>
-                                                {{count($attendance)}}
+                                                {{--{{count($attendance)}}--}}
                                             </td>
                                         </tr>
                                     @endforeach
