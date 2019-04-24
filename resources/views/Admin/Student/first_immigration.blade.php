@@ -8,18 +8,18 @@
             <!-- Dynamic Table with Export Buttons -->
             <div class="block">
                 <div class="i_float_left">
-                    <b>届出機関名</b>
+                    <b>届 出 機 関 名</b>
                 </div>
-                <div class="i_float_right">
-                    <b>{{ date('Y') }}年
-                        {{ date('m') }}月
-                        {{ date('d') }}日</b>
-                </div>
+                {{--<div class="i_float_right">--}}
+                    {{--<b>{{ date('Y') }}年--}}
+                        {{--{{ date('m') }}月--}}
+                        {{--{{ date('d') }}日</b>--}}
+                {{--</div>--}}
                 <div class="block-header printView">
                     <h3 class="block-title">学校法人郡山学園専門学校</h3>
                 </div>
                 <div class="i_float_left">
-                    <b>{{__('language.Name_of_the_organization')}}</b>
+                    <b>Name of the organization</b>
                 </div>
                 <div class="block-header hidden-print">
                     <h3 class="block-title">{{__('language.Name_of_the_organization')}}<small></small></h3>

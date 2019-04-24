@@ -7,7 +7,7 @@
             <!-- Dynamic Table with Export Buttons -->
             <div class="block">
                 <div class="i_float_left">
-                    <b>別記第3号様式の2</b>
+                    <b>(別記第3号様式の2)</b>
                 </div>
                 <div class="i_float_right">
                     <b>{{ date('Y') }}年
@@ -20,8 +20,8 @@
                 <div class="i_float_right_b">
                     <b>受け入れ機関名　学）専門学校　中央美術学園</b>
                 </div>
-                <div class="block-header hidden-print">
-                    <h3 class="block-title">{{__('language.Name_of_the_organization')}}<small></small></h3>
+                <div class="i_float_left">
+                    <b>Name of the organization</b>
                 </div>
                 <div class="block-content block-content-full">
                     <p class="font-size-sm text-muted">
