@@ -41,11 +41,11 @@
                     <div id="{{$start_date}}_{{$section_period->period_id}}" width="20px">
                         @php $dif = (strtotime(date('H:i',strtotime($atten[0]->created_at))) - strtotime($section_period->start_at))/(60); @endphp
                         @if($dif < 10)
-                            <span class="btn btn-success btn-sm" style="font-size: 9px">0</span>
+                            <span class="btn btn-success btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px">0</span>
                         @elseif (($dif >= 10 ) && (strtotime(date('H:i',strtotime($atten[0]->created_at))) < strtotime($section_period->end_at)) )
-                            <span class="btn btn-warning btn-sm" style="font-size: 9px">△</span>
+                            <span class="btn btn-warning btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px">△</span>
                         @else
-                            <i class="fa fa-times btn btn-danger btn-sm" style="font-size: 9px"></i>
+                            <i class="fa fa-times btn btn-danger btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px"></i>
                         @endif
                     </div>
             @endforeach
@@ -56,7 +56,7 @@
             <div class="day-group">
             @foreach($class_section_student->class_batch_section_periods as $section_period)
                 <div width="20px">
-                    <i class="fa fa-times btn btn-danger btn-sm" style="font-size: 9px"></i>
+                    <i class="fa fa-times btn btn-danger btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px"></i>
                 </div>
             @endforeach
             </div>
@@ -92,11 +92,11 @@
             <div id="{{$start_date}}_{{$section_period->period_id}}" width="20px">
                 @php $dif = (strtotime(date('H:i',strtotime($atten[0]->created_at))) - strtotime($section_period->start_at))/(60); @endphp
                 @if($dif < 10)
-                    <span class="btn btn-success btn-sm" style="font-size: 9px">0</span>
+                    <span class="btn btn-success btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px">0</span>
                 @elseif (($dif >= 10 ) && (strtotime(date('H:i',strtotime($atten[0]->created_at))) < strtotime($section_period->end_at)) )
-                    <span class="btn btn-warning btn-sm" style="font-size: 9px">△</span>
+                    <span class="btn btn-warning btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px">△</span>
                 @else
-                    <i class="fa fa-times btn btn-danger btn-sm" style="font-size: 9px"></i>
+                    <i class="fa fa-times btn btn-danger btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px"></i>
                 @endif
             </div>
         @endforeach
@@ -105,7 +105,7 @@
             <div class="day-group">
         @foreach($class_section_student->class_batch_section_periods as $section_period)
             <div id="{{$start_date}}_{{$section_period->period_id}}" width="20px">
-                <i class="fa fa-times btn btn-danger btn-sm" style="font-size: 9px"></i>
+                <i class="fa fa-times btn btn-danger btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px"></i>
             </div>
         @endforeach
             </div>
