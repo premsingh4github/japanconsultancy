@@ -57,14 +57,10 @@
                 </form>
             </div>
             <div class="block-content block-content-full">
-                <table>
-                    <thead>
-                    <tr>
-                        <th colspan="6">Make Absent Student</th>
-                    </tr>
-                    </thead>
-
-                </table>
+                <h5>
+                    Make Student Absent
+                    <span style="float: right;">Search By Name, Date & Time</span>
+                </h5>
                 <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                     <thead>
                     <tr>

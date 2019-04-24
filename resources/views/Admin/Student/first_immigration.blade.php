@@ -16,7 +16,7 @@
                         {{--{{ date('d') }}日</b>--}}
                 {{--</div>--}}
                 <div class="block-header printView">
-                    <h3 class="block-title">学校法人郡山学園専門学校</h3>
+                    <h3 class="block-title">学校法人郡山学園  専門学校  中央美術学園</h3>
                 </div>
                 <div class="i_float_left">
                     <b>Name of the organization</b>
