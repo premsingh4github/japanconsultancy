@@ -443,16 +443,44 @@
                 success: function (data, textStatus, request) {
 
                     $('#attendance_'+request.getResponseHeader('id')).html(data);
-                    $('#total_absent_'+request.getResponseHeader('id')).html($('#attendance_'+request.getResponseHeader('id')).find('.btn-danger').length);
-                    $('#late_'+request.getResponseHeader('id')).html($('#attendance_'+request.getResponseHeader('id')).find('.btn-warning').length);
-                    $('#atten_'+request.getResponseHeader('id')).html($('#attendance_'+request.getResponseHeader('id')).find('.btn-success').length);
-                    var total = $('#attendance_'+request.getResponseHeader('id')).find('.btn').length ;
-                    var absent =  parseInt($('#total_absent_'+request.getResponseHeader('id')).html());
+                    var i;
+                    var period;
+                    var absent = "<table>";
+                    var late = "<table>";
+                    var attendace = "<table>";
+                    var attendace_p_d = "<table>";
+                    var attendace_p = 0;
+                    var total = 0;
+                    var abs_count = 0;
+                    if($($('#attendance_'+request.getResponseHeader('id')).find('.day-group')[0]).html() != undefined){
 
-                    var percent = parseFloat(((total - absent) * 100)/total).toFixed( 2 ) ;
+                        for(i =0 ; i <  $($($('#attendance_'+request.getResponseHeader('id')).find('.day-group')[0]).find('.btn-sm')).length; i++ ){
+                            period = $($($($('#attendance_'+request.getResponseHeader('id')).find('.day-group')[0]).find('.btn-sm'))[i]);
+                            absent += "<tr><td>"+ $($('#attendance_'+request.getResponseHeader('id')).find('.day-group')).find('.btn-danger.period-'+$(period).data('period')).length + "</td></tr>";
+                            late += "<tr><td>"+ $($('#attendance_'+request.getResponseHeader('id')).find('.day-group')).find('.btn-warning.period-'+$(period).data('period')).length + "</td></tr>";
+                            attendace += "<tr><td>"+ $($('#attendance_'+request.getResponseHeader('id')).find('.day-group')).find('.btn-success.period-'+$(period).data('period')).length + "</td></tr>";
+                            total = $($('#attendance_'+request.getResponseHeader('id')).find('.day-group')).find('.btn.period-'+$(period).data('period')).length;
+                            abs_count = $($('#attendance_'+request.getResponseHeader('id')).find('.day-group')).find('.btn-danger.period-'+$(period).data('period')).length;
+                            attendace_p = parseFloat(((total - abs_count) * 100)/total).toFixed( 2 ) ;
+                            attendace_p_d  += "<tr><td>"+ attendace_p + " %</td></tr>";
+                        }
+                        $('#total_absent_'+request.getResponseHeader('id')).html(absent);
+                        $('#absent_'+request.getResponseHeader('id')).html(absent);
+                        $('#late_'+request.getResponseHeader('id')).html(late);
+                        $('#atten_'+request.getResponseHeader('id')).html(attendace);
+                        $('#attendance_p_'+request.getResponseHeader('id')).html(attendace_p_d);
 
-                    $('#attendance_p_'+request.getResponseHeader('id')).html(percent + " %");
-                    $('#absent_'+request.getResponseHeader('id')).html($('#attendance_'+request.getResponseHeader('id')).find('.btn-danger').length);
+                    }
+                    // $('#total_absent_'+request.getResponseHeader('id')).html($('#attendance_'+request.getResponseHeader('id')).find('.btn-danger').length);
+                    // $('#late_'+request.getResponseHeader('id')).html($('#attendance_'+request.getResponseHeader('id')).find('.btn-warning').length);
+                    // $('#atten_'+request.getResponseHeader('id')).html($('#attendance_'+request.getResponseHeader('id')).find('.btn-success').length);
+                    // var total = $('#attendance_'+request.getResponseHeader('id')).find('.btn').length ;
+                    // var absent =  parseInt($('#total_absent_'+request.getResponseHeader('id')).html());
+                    //
+                    // var percent = parseFloat(((total - absent) * 100)/total).toFixed( 2 ) ;
+                    //
+                    // $('#attendance_p_'+request.getResponseHeader('id')).html(percent + " %");
+                    // $('#absent_'+request.getResponseHeader('id')).html($('#attendance_'+request.getResponseHeader('id')).find('.btn-danger').length);
 
 
                     // $("#"+data['id']).html(data['status']);
