@@ -127,8 +127,7 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
      /*==================Report-Section=======*/
     Route::get('attendance_report','ReportController@index');
     Route::post('attendance_report','ReportController@view');
-    Route::get('attendance_report/{section}/{id}','ReportController@getattendacelist');
-    Route::get('admin/get_student/{class_batch_section_id}','ReportController@getStudents');
+    Route::get('attendance_report/{section}/{id}/{from_date}/{to_date}','ReportController@getattendacelist');
 
 
     /*==================Report-Section=======*/
