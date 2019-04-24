@@ -103,8 +103,7 @@ $end_date = $class_section_student->end_date;
     @elseif(date('D',strtotime($start_date))=='Sat' || date('D',strtotime($start_date))=='Sun')
             <div class="day-group" style="background-color: lightgray; height: 96px; margin-top:5px;">
             </div>
-    @elseif(($atten = \App\Attendance::where('student_id',$id)->whereBetween('updated_at', array($start_date.' 00:00:00',$start_date.' 23:59:59'))->get()) && ($atten->count()))
-
+    @elseif(($atten = \App\Attendance::where('student_id',$id)->whereBetween('created_at', array($start_date.' 00:00:00',$start_date.' 23:59:59'))->get()) && ($atten->count()))
             <div class="day-group">
             @foreach($class_section_student->class_batch_section_periods as $section_period)
             <div id="{{$start_date}}_{{$section_period->period_id}}" width="20px">

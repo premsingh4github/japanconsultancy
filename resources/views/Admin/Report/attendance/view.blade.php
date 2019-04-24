@@ -349,20 +349,20 @@
                                     </tr>
                                 </table>
                             </td>
-                            <td></td>
-                            <td>
-                                <table >
-                                    @foreach($class_section_student->class_batch_section_periods as $section_period)
-                                        @php
-                                            $attendance = \App\Attendance::where('student_id',$student->id)->where('created_at','>=',date('Y-m-d H:i',strtotime($start_date)) )->where('created_at','<=',date('Y-m-d 23:59:59',strtotime($end_date)))->get();
-                                        @endphp
-                                        <tr>
-                                            <td>
-                                                {{--{{count($attendance)}}--}}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </table>
+                            <td> </td>
+                            <td id="total_absent_{{$student->id}}">
+                            </td>
+                            <td id="absent_{{$student->id}}">
+                            </td>
+                            <td id="late_{{$student->id}}">
+                            </td>
+                            <td id="early_{{$student->id}}">
+                            </td>
+                            <td id="atten_{{$student->id}}">
+                            </td>
+                            <td id="attendance_p_{{$student->id}}">
+                            </td>
+                            <td id="hours_per_day_{{$student->id}}">
                             </td>
                         </tr>
                                 @endif

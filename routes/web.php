@@ -149,6 +149,7 @@ Route::get('section_attendance_excel','AttendanceController@getAttendanceExcel')
 Route::get('test','HomeController@test');
 Route::get('admin/manage_attendance','AttendanceController@getAttendance')->middleware('admin');
 Route::post('admin/manage_attendance','AttendanceController@postAttendance')->middleware('admin');
+Route::get('admin/manage_attendance/{id}','AttendanceController@make_absent')->middleware('auth');
 Route::get('admin/get_students/{class_batch_section_id}','AttendanceController@getStudents')->middleware('admin');
 
 Route::get('getattendace/{code}','AttendanceController@getattendace');

@@ -139,4 +139,9 @@ class AttendanceController extends Controller
         
     }
 
+    public function make_absent($id){
+        $attendance = Attendance::findOrFail($id);
+        $attendance->delete();
+        return redirect()->back()->with('success','Student Absent Successfully!');
+    }
 }
