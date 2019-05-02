@@ -378,9 +378,10 @@ class StudentController extends Controller
         $title='Student Report - Admin-Panel - Chubi Management System';
         $student = Student::findOrFail($id);
         $attendances = Attendance::where('student_id',$student->id)->get();
+        $subjects = Subject::orderBy('id','ASC')->limit(5)->get();
         if (count($attendances)>0){
             $first_attend =Attendance::where('student_id',$student->id)->orderBy('id','ASC')->firstOrFail();
-            return view('Admin.Student.student_report',compact('title','student','attendances','first_attend'));
+            return view('Admin.Student.student_report',compact('title','student','subjects','attendances','first_attend'));
         }else{
             return view('Admin.Student.student_report_not',compact('title','student'));
         }

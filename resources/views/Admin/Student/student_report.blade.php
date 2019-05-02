@@ -250,11 +250,9 @@
                                         </tr>
                                         <tr>
                                             <td class="text-align-center" colspan="2">科目名</td>
-                                            <td class="text-align-center" colspan="3">授業名</td>
-                                            <td class="text-align-center" colspan="3">授業名</td>
-                                            <td class="text-align-center" colspan="3">授業名</td>
-                                            <td class="text-align-center" colspan="3">授業名</td>
-                                            <td class="text-align-center" colspan="3">授業名</td>
+                                            @foreach($subjects as $subject)
+                                            <td class="text-align-center" colspan="3">{{$subject->name}}</td>
+                                            @endforeach
                                         </tr>
                                         <tr>
                                             <td class="text-align-center" colspan="2">成績</td>
