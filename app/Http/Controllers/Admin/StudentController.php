@@ -374,5 +374,10 @@ class StudentController extends Controller
         $classSectionStudent->delete();
         return redirect('admin/section_wise_student_edit')->with('success','Record Deleted Successfully');
     }
-
+    public function student_report($id){
+        $title='Student Report - Admin-Panel - Chubi Management System';
+        $student = Student::findOrFail($id);
+        $attendances = Attendance::where('student_id',$student->id);
+        return view('Admin.Student.student_report',compact('title','student','attendances'));
+    }
 }

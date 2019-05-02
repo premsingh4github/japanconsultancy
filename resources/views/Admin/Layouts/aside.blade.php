@@ -539,8 +539,8 @@
                         </a>
                     </li>
                     <li class="nav-main-heading ">{{__('language.STUDENT_TEACHER_MANAGER')}}</li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu  <?php if(request()->segment('2') =='clients' || request()->segment('2') =='createClient'){ echo 'active' ;} ?>" data-toggle="submenu"  href="#">
+                    <li class="nav-main-item <?php if(request()->segment('2') =='list_teacher' || request()->segment('2') =='add_teacher'){ echo 'open' ;} ?>">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu"  href="#">
                             <i class="nav-main-link-icon si si-user"></i>
                             <span class="nav-main-link-name">{{__('language.Teachers')}}</span>
                         </a>
@@ -557,8 +557,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='add_student' || request()->segment('2') =='list_student' || request()->segment('2') =='section_wise_student_edit' || request()->segment('2') =='section_wise_student'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                    <li class="nav-main-item <?php if(request()->segment('2') =='add_student' || request()->segment('2') =='list_student' || request()->segment('2') =='section_wise_student_edit' || request()->segment('2') =='section_wise_student'){ echo 'open' ;} ?>">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-user"></i>
                             <span class="nav-main-link-name">{{__('language.Students')}}</span>
                         </a>
@@ -585,8 +585,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='second_immigration' || request()->segment('2') =='first_immigration'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                    <li class="nav-main-item <?php if(request()->segment('2') =='second_immigration' || request()->segment('2') =='first_immigration'){ echo 'open' ;} ?>">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-user"></i>
                             <span class="nav-main-link-name">{{__('language.Student_immigration')}}</span>
                         </a>
@@ -604,8 +604,8 @@
                         </ul>
                     </li>
                     <li class="nav-main-heading ">{{__('language.CLASS_BATCH_MANAGER')}} </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='list_section' || request()->segment('2') =='add_section' || request()->segment('2') =='add_section' || request()->segment('2') =='class_section'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                    <li class="nav-main-item <?php if(request()->segment('2') =='list-residensal' || request()->segment('2') =='add-residensal'){ echo 'open' ;} ?>">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon far fa-calendar-alt"></i>
                             <span class="nav-main-link-name">{{__('language.Residensal_Card_Time')}}</span>
                         </a>
@@ -622,8 +622,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='list_subject' || request()->segment('2') =='add_subject' || request()->segment('2') =='batch_wise_subject'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                    <li class="nav-main-item <?php if(request()->segment('2') =='list_subject' || request()->segment('2') =='add_subject' || request()->segment('2') =='batch_wise_subject'){ echo 'open' ;} ?>">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon fa fa-book-open"></i>
                             <span class="nav-main-link-name">{{__('language.Subjects')}}</span>
                         </a>
@@ -645,8 +645,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='list_record' || request()->segment('2') =='add_record'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                    <li class="nav-main-item <?php if(request()->segment('2') =='list_record' || request()->segment('2') =='add_record'){ echo 'open' ;} ?>">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon fa fa-layer-group"></i>
                             <span class="nav-main-link-name">{{__('language.Class_Batch')}}</span>
                         </a>
@@ -663,8 +663,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='list_section' || request()->segment('2') =='section_period' || request()->segment('2') =='add_section' || request()->segment('2') =='add_section' || request()->segment('2') =='class_section'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                    <li class="nav-main-item <?php if(request()->segment('2') =='list_section' || request()->segment('2') =='section_period' || request()->segment('2') =='add_section' || request()->segment('2') =='add_section' || request()->segment('2') =='class_section'){ echo 'open' ;} ?>">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon fa fa-object-group"></i>
                             <span class="nav-main-link-name">{{__('language.Section')}}</span>
                         </a>
@@ -692,8 +692,8 @@
                         </ul>
                     </li>
                     <li class="nav-main-heading ">{{__('language.Days_Holiday_Manager')}}</li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='holiday' || request()->segment('2') =='new_holiday'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                    <li class="nav-main-item <?php if(request()->segment('2') =='holiday' || request()->segment('2') =='new_holiday'){ echo 'open' ;} ?>">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon fa fa-birthday-cake"></i>
                             <span class="nav-main-link-name">{{__('language.Holiday')}}</span>
                         </a>
@@ -710,8 +710,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='holiday' || request()->segment('2') =='new_holiday'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                    <li class="nav-main-item <?php if(request()->segment('2') =='holiday' || request()->segment('2') =='new_holiday'){ echo 'open' ;} ?>">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-calendar"></i>
                             <span class="nav-main-link-name">{{__('language.Section_Wise_Days')}}</span>
                         </a>
@@ -725,7 +725,7 @@
                     </li>
                     <li class="nav-main-heading ">{{__('language.Attendance')}}</li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link   <?php if(request()->segment('2') =='attendance_list'){ echo 'active' ;} ?>" href="{{url('attendance_list')}}">
+                        <a class="nav-main-link <?php if(request()->segment('1') =='attendance_list'){ echo 'active' ;} ?>" href="{{url('attendance_list')}}">
                             <i class="nav-main-link-icon fa fa-th-list"></i>
                             <span class="nav-main-link-name">{{__('language.List_Attendance')}}</span>
                         </a>
@@ -733,11 +733,11 @@
                             {{--<i class="nav-main-link-icon si si-reload"></i>--}}
                             {{--<span class="nav-main-link-name">{{__('language.QR_Scanner')}}</span>--}}
                         {{--</a>--}}
-                         <a class="nav-main-link" href="{{url('attendance_form')}}" >
+                         <a class="nav-main-link <?php if(request()->segment('1') =='attendance_form'){ echo 'active' ;} ?>" href="{{url('attendance_form')}}" >
                             <i class="nav-main-link-icon si si-reload"></i>
                             <span class="nav-main-link-name">Attendance Form</span>
                         </a>
-                        <a class="nav-main-link" href="{{url('admin/manage_attendance')}}" >
+                        <a class="nav-main-link <?php if(request()->segment('2') =='manage_attendance'){ echo 'active' ;} ?>" href="{{url('admin/manage_attendance')}}" >
                             <i class="nav-main-link-icon si si-reload"></i>
                             <span class="nav-main-link-name">Attendance by Admin</span>
                         </a>

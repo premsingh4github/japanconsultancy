@@ -44,6 +44,7 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::get('list_student/student_id={id}/confirm_destroy','StudentController@confirm_destroy');
     Route::get('list_student/{id}','StudentController@id_preview');
     Route::get('list_student/pdf/{id}','StudentController@export_pdf');
+    Route::get('list_student/{id}/report','StudentController@student_report');
 
     Route::any('add_teacher','TeacherController@add_teacher');
     Route::get('list_teacher','TeacherController@list_teacher');
