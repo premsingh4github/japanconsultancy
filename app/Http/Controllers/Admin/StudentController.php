@@ -377,11 +377,14 @@ class StudentController extends Controller
     public function student_report($id){
         $title='Student Report - Admin-Panel - Chubi Management System';
         $student = Student::findOrFail($id);
+        $class_section_students = ClassSectionStudent::where('student_id',$student->id)->firstOrFail();
+        $batch_start = $class_section_students->class_section->start_date;
+        $batch_end = $class_section_students->class_section->end_date;
         $attendances = Attendance::where('student_id',$student->id)->get();
         $subjects = Subject::orderBy('id','ASC')->limit(5)->get();
         if (count($attendances)>0){
             $first_attend =Attendance::where('student_id',$student->id)->orderBy('id','ASC')->firstOrFail();
-            return view('Admin.Student.student_report',compact('title','student','subjects','attendances','first_attend'));
+            return view('Admin.Student.student_report',compact('title','student','batch_end','batch_start','subjects','attendances','first_attend'));
         }else{
             return view('Admin.Student.student_report_not',compact('title','student'));
         }

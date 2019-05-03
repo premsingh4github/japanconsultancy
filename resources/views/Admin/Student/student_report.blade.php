@@ -26,7 +26,7 @@
                                             <td class="text-align-right" colspan="17">{{date('d M-Y')}}</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-align-center" colspan="17"> ({{date('M d, Y',strtotime($first_attend->created_at))}} to {{date('M d, Y')}})</td>
+                                            <td class="text-align-center" colspan="17"> ({{date('M d, Y',strtotime($batch_start))}} to {{date('M d, Y',strtotime($batch_end))}})</td>
                                         </tr>
                                         <tr>
                                             <td class="text-align-center" colspan="4">国籍/母国語</td>
@@ -101,18 +101,34 @@
                                         <tr>
                                             <td class="text-align-center">1</td>
                                             <td class="text-align-center" colspan="2">授業時数</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            @php
+                                                $year = date('Y',strtotime($batch_start));
+                                                $end_year = date('Y',strtotime($batch_end));
+                                                $apr = 'Apr'.'-'.$year;
+                                                $may = 'May'.'-'.$year;
+                                                $Jun = 'Jun'.'-'.$year;
+                                                $Jul = 'Jul'.'-'.$year;
+                                                $Aug = 'Aug'.'-'.$year;
+                                                $Sep = 'Sep'.'-'.$year;
+                                                $Oct = 'Oct'.'-'.$year;
+                                                $Nov = 'Nov'.'-'.$year;
+                                                $Dec = 'Dec'.'-'.$year;
+                                                $Jan = 'Jan'.'-'.$end_year;
+                                                $Feb = 'Feb'.'-'.$end_year;
+                                                $Mar = 'Mar'.'-'.$end_year;
+                                            @endphp
+                                            <td>{{date('t',strtotime($apr))}}</td>
+                                            <td>{{date('t',strtotime($may))}}</td>
+                                            <td>{{date('t',strtotime($Jun))}}</td>
+                                            <td>{{date('t',strtotime($Jul))}}</td>
+                                            <td>{{date('t',strtotime($Aug))}}</td>
+                                            <td>{{date('t',strtotime($Sep))}}</td>
+                                            <td>{{date('t',strtotime($Oct))}}</td>
+                                            <td>{{date('t',strtotime($Nov))}}</td>
+                                            <td>{{date('t',strtotime($Dec))}}</td>
+                                            <td>{{date('t',strtotime($Jan))}}</td>
+                                            <td>{{date('t',strtotime($Feb))}}</td>
+                                            <td>{{date('t',strtotime($Mar))}}</td>
                                             <td class="text-align-right">0</td>
                                             <td class="text-align-right">h</td>
                                         </tr>
@@ -176,18 +192,18 @@
                                         <tr>
                                             <td class="text-align-center">2</td>
                                             <td class="text-align-center" colspan="2">授業時数</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{date('t',strtotime($apr))}}</td>
+                                            <td>{{date('t',strtotime($may))}}</td>
+                                            <td>{{date('t',strtotime($Jun))}}</td>
+                                            <td>{{date('t',strtotime($Jul))}}</td>
+                                            <td>{{date('t',strtotime($Aug))}}</td>
+                                            <td>{{date('t',strtotime($Sep))}}</td>
+                                            <td>{{date('t',strtotime($Oct))}}</td>
+                                            <td>{{date('t',strtotime($Nov))}}</td>
+                                            <td>{{date('t',strtotime($Dec))}}</td>
+                                            <td>{{date('t',strtotime($Jan))}}</td>
+                                            <td>{{date('t',strtotime($Feb))}}</td>
+                                            <td>{{date('t',strtotime($Mar))}}</td>
                                             <td class="text-align-right">0</td>
                                             <td class="text-align-right">h</td>
                                         </tr>
