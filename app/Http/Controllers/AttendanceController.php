@@ -33,9 +33,9 @@ class AttendanceController extends Controller
             $attendance->student_id = $student->id;
             $attendance->save();
             Session::flash('student_id',$student->id);
-            return redirect('attendance_form')->with('success','Attendance Successfully !!! ' .$student->first_student_name .' '.$student->last_student_name .' is Present !');
+            return redirect()->back()->with('success','Attendance Successfully !!! ' .$student->first_student_name .' '.$student->last_student_name .' is Present !');
         }else{
-			return redirect('attendance_form')->withErrors(['Something went wrong!.Please Try Again']);
+			return redirect()->back()->withErrors(['Something went wrong!.Please Try Again']);
         }
     }
 

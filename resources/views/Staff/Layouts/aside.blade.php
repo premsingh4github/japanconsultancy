@@ -532,30 +532,19 @@
                         </a>
                     </li>
                     <li class="nav-main-heading ">User Manager</li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu <?php if(request()->segment('2') =='superAdmin' || request()->segment('2') =='generalAdmin' || request()->segment('2') =='moderator'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                    <li class="nav-main-item <?php if(request()->segment('1') =='staff' || request()->segment('2') =='manage_attendance'){ echo 'open' ;} ?>">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-energy"></i>
-                            <span class="nav-main-link-name">Admins</span>
-                        </a>
-                    </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu  <?php if(request()->segment('2') =='clients' || request()->segment('2') =='createClient'){ echo 'active' ;} ?>" data-toggle="submenu"  href="#">
-                            <i class="nav-main-link-icon si si-badge"></i>
-                            <span class="nav-main-link-name">Teachers</span>
-                        </a>
-                    </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu   <?php if(request()->segment('2') =='candidates'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-badge"></i>
-                            <span class="nav-main-link-name">Students</span>
+                            <span class="nav-main-link-name">Attendance</span>
                         </a>
                         <ul class="nav-main-submenu">
                             <li class="nav-main-item">
-                                <a class="nav-main-link <?php if(request()->segment('2') =='candidates'){ echo 'active' ;} ?>" href="">
-                                    <span class="nav-main-link-name">List Students</span>
+                                <a class="nav-main-link <?php if(request()->segment('2') =='manage_attendance'){ echo 'active' ;} ?>" href="{{url('admin/manage_attendance')}}">
+                                    <span class="nav-main-link-name">Make Attendance</span>
                                 </a>
                             </li>
                         </ul>
+
                     </li>
                 </ul>
             </div>
@@ -664,24 +653,24 @@
                     <div class="dropdown d-inline-block ml-2">
                         <button type="button" class="btn btn-sm btn-dual" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="si si-bell"></i>
-                            <span class="badge badge-primary badge-pill">1</span>
+                            <span class="badge badge-primary badge-pill">0</span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-notifications-dropdown">
                             <div class="p-2 bg-primary text-center">
                                 <h5 class="dropdown-header text-uppercase text-white">Notifications</h5>
                             </div>
                             <ul class="nav-items mb-0">
-                                        <li>
-                                            <a class="text-dark media py-2" href="">
-                                                <div class="mr-2 ml-3">
-                                                    <i class="fa fa-fw fa-check-circle text-success"></i>
-                                                </div>
-                                                <div class="media-body pr-2">
-                                                    <div class="font-w600">someone Claimed Listing</div>
-                                                    <small class="text-muted"></small>
-                                                </div>
-                                            </a>
-                                        </li>
+                                        {{--<li>--}}
+                                            {{--<a class="text-dark media py-2" href="">--}}
+                                                {{--<div class="mr-2 ml-3">--}}
+                                                    {{--<i class="fa fa-fw fa-check-circle text-success"></i>--}}
+                                                {{--</div>--}}
+                                                {{--<div class="media-body pr-2">--}}
+                                                    {{--<div class="font-w600">someone Claimed Listing</div>--}}
+                                                    {{--<small class="text-muted"></small>--}}
+                                                {{--</div>--}}
+                                            {{--</a>--}}
+                                        {{--</li>--}}
                             </ul>
                             <div class="p-2 border-top">
                                 <a class="btn btn-sm btn-light btn-block text-center" href="javascript:void(0)">

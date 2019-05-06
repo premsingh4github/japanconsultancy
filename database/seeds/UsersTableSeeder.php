@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
     {
         \Illuminate\Support\Facades\DB::table('users')->insert([
             ['name'=>'admin','email'=>'admin@gmail.com','role_id'=>'1','password'=>bcrypt('admin123')],
-            ['name'=>'staff','email'=>'staff@gmail.com','role_id'=>'2','password'=>bcrypt('staff123')]
+            ['name'=>'staff','email'=>'staff@chubi.com','role_id'=>'2','password'=>bcrypt('staff123')]
 
         ]);
     }
