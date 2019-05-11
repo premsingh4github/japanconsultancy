@@ -97,10 +97,10 @@
                             <td>{{$student->last_student_japanese_name}} {{$student->first_student_japanese_name}}</td>
                             <td>
                             @php
-                                $attends = \App\Attendance::where('student_id',$student->id)->whereRaw("created_at >= ? AND created_at <= ?",array($start_date, $end_date))->get();
+                                $attends = \App\Attendance::where('student_id',$student->id)->whereBetween("attendance_for",[$start_date, $end_date])->where('type','1')->count();
                             @endphp
-                                @if(count($attends)>0)
-                                    Value goes here
+                                @if(($attends) > 0)
+                                    {{$attends}}
                                 @else
 
                                     0%

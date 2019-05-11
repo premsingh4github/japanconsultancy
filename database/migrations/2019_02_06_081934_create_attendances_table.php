@@ -17,6 +17,8 @@ class CreateAttendancesTable extends Migration
             $table->increments('id');
             $table->integer('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('students');
+            $table->date('attendance_for');
+            $table->enum('type',['1','2'])->comment('1: entry. 2: exit');
             $table->timestamps();
         });
     }

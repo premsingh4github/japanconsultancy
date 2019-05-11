@@ -71,10 +71,13 @@ class ReportController extends Controller
         if (\request('from_date') && \request('to_date')){
             $start_date = date('Y-m-d',strtotime(\request('from_date')));
             $end_date = date('Y-m-d',strtotime(\request('to_date')));
+
             $holidays = Event::orderBy('start_date','ASC')->whereRaw("start_date >= ? AND start_date <= ?",array($start_date, $end_date))->get();
+
         }else{
             $start_date = date('Y-m-d',strtotime(Carbon::now()->startOfMonth()));
             $end_date = date('Y-m-d',strtotime(Carbon::now()));
+
             $holidays = Event::orderBy('start_date','ASC')->whereRaw("start_date >= ? AND start_date <= ?",array($start_date, $end_date))->get();
         }
         $datetime1 = new DateTime($start_date);
@@ -83,7 +86,10 @@ class ReportController extends Controller
         $days = $interval->format('%a')+1;
         $total_holiday = count($holidays);
         $total_study_day = $days-$total_holiday;
-        $students = $list_students->get();
+//        $students = $list_students->select(DB::raw('students.* , attend.*'))->leftjoin(DB::raw("(select attendances.id as attendace_id , attendances.created_at as attendace_at, attendances.student_id , DATE_FORMAT((attendances.created_at), '%e %b %Y') AS 'date_formatted' from attendances group by date_formatted) as attend"),'attend.student_id','=','students.id')->get();
+
+                $students = $list_students->get();
+//        dd($students);
         return view('Admin.Report.attendance.report_batch_wise',compact('title','class_section_prediods','students','total_study_day','start_date','end_date'));
     }
 }
