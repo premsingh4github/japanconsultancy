@@ -131,6 +131,8 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::get('attendance_report/{section}/{id}/{from_date}/{to_date}','ReportController@getattendacelist');
 
     Route::get('report_batch_wise','ReportController@report_batch_wise');
+
+    Route::get('view_calendar','CalendarController@index');
     /*==================Report-Section=======*/
 });
 /* ================================================ ADMIN CONTROL END============================================================== */
