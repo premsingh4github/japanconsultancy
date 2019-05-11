@@ -90,6 +90,7 @@
     </div>
     <!-- END Page Container -->
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="{{asset('public/server')}}/assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 
 
     <script src="{{asset('public/js/custom.js')}}"></script>

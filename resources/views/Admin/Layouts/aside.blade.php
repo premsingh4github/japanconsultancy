@@ -743,12 +743,25 @@
                         </a>
                     </li>
                     <li class="nav-main-heading ">{{__('language.main_reports')}}</li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link   <?php if(request()->segment('2') =='attendance_report'){ echo 'active' ;} ?>" href="{{url('admin/attendance_report')}}">
-                            <i class="nav-main-link-icon fa fa-th-list"></i>
+                    <li class="nav-main-item <?php if(request()->segment('2') =='attendance_report' || request()->segment('2') =='report_batch_wise'){ echo 'open' ;} ?>">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                            <i class="nav-main-link-icon fa fa-list"></i>
                             <span class="nav-main-link-name">{{__('language.report_attendance')}}</span>
                         </a>
+                        <ul class="nav-main-submenu">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='attendance_report'){ echo 'active' ;} ?>" href="{{url('admin/attendance_report')}}">
+                                    <span class="nav-main-link-name">{{__('language.report_attendance')}}</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='report_batch_wise'){ echo 'active' ;} ?>" href="{{url('admin/report_batch_wise')}}">
+                                    <span class="nav-main-link-name">Batch Wise Report</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+
                 </ul>
             </div>
             <!-- END Side Navigation -->

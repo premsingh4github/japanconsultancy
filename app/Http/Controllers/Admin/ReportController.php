@@ -4,10 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Attendance;
 use App\ClassBatchSection;
+use App\ClassBatchSectionPeriod;
 use App\ClassSectionStudent;
+use App\Event;
+use App\Student;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use DateTime;
 
 class ReportController extends Controller
 {
@@ -57,6 +62,28 @@ class ReportController extends Controller
 
 //        return $view;
     }
-
-
+    public function report_batch_wise(){
+        $title = "Batch Wise Attendance Report - Chubi Management System";
+        $list_students = Student::orderBy('id','ASC');
+        if (\request('student_of_year')){
+            $list_students->where('student_of_year',\request('student_of_year'));
+        }
+        if (\request('from_date') && \request('to_date')){
+            $start_date = date('Y-m-d',strtotime(\request('from_date')));
+            $end_date = date('Y-m-d',strtotime(\request('to_date')));
+            $holidays = Event::orderBy('start_date','ASC')->whereRaw("start_date >= ? AND start_date <= ?",array($start_date, $end_date))->get();
+        }else{
+            $start_date = date('Y-m-d',strtotime(Carbon::now()->startOfMonth()));
+            $end_date = date('Y-m-d',strtotime(Carbon::now()));
+            $holidays = Event::orderBy('start_date','ASC')->whereRaw("start_date >= ? AND start_date <= ?",array($start_date, $end_date))->get();
+        }
+        $datetime1 = new DateTime($start_date);
+        $datetime2 = new DateTime($end_date);
+        $interval = $datetime1->diff($datetime2);
+        $days = $interval->format('%a')+1;
+        $total_holiday = count($holidays);
+        $total_study_day = $days-$total_holiday;
+        $students = $list_students->get();
+        return view('Admin.Report.attendance.report_batch_wise',compact('title','class_section_prediods','students','total_study_day','start_date','end_date'));
+    }
 }
