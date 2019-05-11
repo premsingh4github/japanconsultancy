@@ -761,6 +761,19 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-main-item <?php if(request()->segment('2') =='view_calendar' || request()->segment('2') =='calendar_list'){ echo 'open' ;} ?>">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                            <i class="nav-main-link-icon fa fa-calendar"></i>
+                            <span class="nav-main-link-name">Calendar</span>
+                        </a>
+                        <ul class="nav-main-submenu">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='view_calendar'){ echo 'active' ;} ?>" href="{{url('admin/view_calendar')}}">
+                                    <span class="nav-main-link-name">View Calendar</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
                 </ul>
             </div>
