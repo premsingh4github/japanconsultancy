@@ -80,6 +80,7 @@ class ReportController extends Controller
 
             $holidays = Event::orderBy('start_date','ASC')->whereBetween("start_date",[$start_date, $end_date])->get();
         }
+        /*============== Finding Saturday & Sunday From Holiday Listing ============ */
         $holi_sat=0;
         $holi_sun=0;
         foreach ($holidays as $holiday){
@@ -91,32 +92,34 @@ class ReportController extends Controller
             }
 
         }
-        $datetime1 = new DateTime($start_date);
-        $datetime2 = new DateTime($end_date);
-        $no=0;
+        /*============== Finding Saturday & Sunday From Holiday Listing ============ */
+
+        /*============== Geting Total Number of  Saturday & Sunday Between Start To End Date  ============ */
+        $sunday=0;
+        $saturday=0;
         for($i=$start_date;$i<=$end_date;$i++)
         {
 
             $day=date("N",strtotime($i));
             if($day==7)
             {
-                $no++;
+                $sunday++;
             }
-        }
-        $saturday=0;
-        for($s=$start_date;$s<=$end_date;$s++)
-        {
-
-            $sday=date("N",strtotime($s));
-            if($sday==6)
+            if($day==6)
             {
                 $saturday++;
             }
+
         }
+        /*============== Geting Total Number of  Saturday & Sunday Between Start To End Date  ============ */
+
+
+        $datetime1 = new DateTime($start_date);
+        $datetime2 = new DateTime($end_date);
         $interval = $datetime1->diff($datetime2);
         $days = $interval->format('%a')+1;
 //        dd($days);
-        $total_holiday = count($holidays)+$no+$saturday-$holi_sat-$holi_sun;
+        $total_holiday = count($holidays)+$sunday+$saturday-$holi_sat-$holi_sun;
         $total_study_day = $days-$total_holiday;
 //        $students = $list_students->select(DB::raw('students.* , attend.*'))->leftjoin(DB::raw("(select attendances.id as attendace_id , attendances.created_at as attendace_at, attendances.student_id , DATE_FORMAT((attendances.created_at), '%e %b %Y') AS 'date_formatted' from attendances group by date_formatted) as attend"),'attend.student_id','=','students.id')->get();
 
