@@ -98,11 +98,11 @@
                             <td>
                             @php
                                 $attends = \App\Attendance::where('student_id',$student->id)->whereBetween("attendance_for",[$start_date, $end_date])->where('type','1')->count();
+                            $average_attend = round(($attends*100)/$total_study_day,2);
                             @endphp
                                 @if(($attends) > 0)
-                                    {{$attends}}
+                                    {{$average_attend}}%
                                 @else
-
                                     0%
                                 @endif
 

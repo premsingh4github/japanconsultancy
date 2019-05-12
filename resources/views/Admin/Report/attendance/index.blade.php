@@ -59,10 +59,10 @@
                             <label for="period_id">Date Duration</label>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <input type="text" name="from_date" class="js-datepicker form-control" placeholder="From Date" required>
+                                    <input type="date" name="from_date" class="form-control" placeholder="From Date" required>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text"  name="to_date" class="js-datepicker form-control" placeholder="To Date" required>
+                                    <input type="date"  name="to_date" class="form-control" placeholder="To Date" required>
                                 </div>
                             </div>
                         </div>

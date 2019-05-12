@@ -69,6 +69,7 @@
                         <th>Student Name</th>
                         <th>Attendance Date</th>
                         <th>Attendance Time</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -87,6 +88,13 @@
                         <td>{{$attendance->student->last_student_name}} {{$attendance->student->first_student_name}}</td>
                         <td>{{date('d M-Y',strtotime($attendance->created_at))}}</td>
                         <td>{{date('H:i',strtotime($attendance->created_at))}}</td>
+                        <td>
+                            @if($attendance->type==1)
+                                In Class
+                                @elseif($attendance->type==2)
+                            Leave Class
+                                @endif
+                        </td>
                         <td>
                             <a href="{{url('admin/manage_attendance').'/'.$attendance->id}}" onclick="return confirm('Are you sure to absent this student?')" class="btn btn-success btn-sm">Make Absent</a>
                         </td>
