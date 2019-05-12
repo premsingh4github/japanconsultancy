@@ -110,14 +110,6 @@
                         </tr>
                     @endforeach
                     </tbody>
-                    <tbody>
-                    {{--<tr>--}}
-                    {{--<th colspan="11">--}}
-                    {{--{{ $list_students->links() }}--}}
-
-                    {{--</th>--}}
-                    {{--</tr>--}}
-                    </tbody>
                 </table>
             </div>
             <!-- END Partial Table -->

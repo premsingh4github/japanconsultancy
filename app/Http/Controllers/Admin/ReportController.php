@@ -80,6 +80,17 @@ class ReportController extends Controller
 
             $holidays = Event::orderBy('start_date','ASC')->whereBetween("start_date",[$start_date, $end_date])->get();
         }
+        $holi_sat=0;
+        $holi_sun=0;
+        foreach ($holidays as $holiday){
+            if (date('D',strtotime($holiday->start_date))=='Sat'){
+                $holi_sat +=1;
+            }
+            if (date('D',strtotime($holiday->start_date))=='Sun'){
+                $holi_sun +=1;
+            }
+
+        }
         $datetime1 = new DateTime($start_date);
         $datetime2 = new DateTime($end_date);
         $no=0;
@@ -105,12 +116,12 @@ class ReportController extends Controller
         $interval = $datetime1->diff($datetime2);
         $days = $interval->format('%a')+1;
 //        dd($days);
-        $total_holiday = count($holidays)+$no+$saturday;
+        $total_holiday = count($holidays)+$no+$saturday-$holi_sat-$holi_sun;
         $total_study_day = $days-$total_holiday;
 //        $students = $list_students->select(DB::raw('students.* , attend.*'))->leftjoin(DB::raw("(select attendances.id as attendace_id , attendances.created_at as attendace_at, attendances.student_id , DATE_FORMAT((attendances.created_at), '%e %b %Y') AS 'date_formatted' from attendances group by date_formatted) as attend"),'attend.student_id','=','students.id')->get();
 
                 $students = $list_students->get();
 //        dd($students);
-        return view('Admin.Report.attendance.report_batch_wise',compact('title','class_section_prediods','students','total_study_day','start_date','end_date'));
+        return view('Admin.Report.attendance.report_batch_wise',compact('title','class_section_prediods','holidays','students','total_study_day','start_date','end_date'));
     }
 }
