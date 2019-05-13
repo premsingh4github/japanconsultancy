@@ -13,14 +13,16 @@ class CreateClassBatchSectionPeriodsTable extends Migration
      */
     public function up()
     {
-        Schema::create('class_batch_section_periods', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('c_b_s_id')->nullable();
-            $table->integer('period_id')->nullable();
-            $table->string('start_at')->nullable();
-            $table->string('end_at')->nullable();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('class_batch_section_periods')) {
+            Schema::create('class_batch_section_periods', function (Blueprint $table) {
+                $table->increments('id');
+                $table->integer('c_b_s_id')->nullable();
+                $table->integer('period_id')->nullable();
+                $table->string('start_at')->nullable();
+                $table->string('end_at')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**

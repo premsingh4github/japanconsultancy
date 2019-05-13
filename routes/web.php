@@ -158,3 +158,6 @@ Route::get('admin/get_students/{class_batch_section_id}','AttendanceController@g
 Route::get('getattendace/{code}','AttendanceController@getattendace');
 //Route::get('test','HomeController@test');
 Route::get('days','HomeController@updateType')->middleware('admin');
+
+Route::post('exist_attend_update/{id}','AttendanceController@exist_attend_update')->middleware('admin');
+Route::post('new_attend_entry/{attend}/{period}','AttendanceController@new_attend_entry')->middleware('admin');

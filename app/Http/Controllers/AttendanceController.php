@@ -10,6 +10,7 @@ use App\Event;
 use App\Exports\ClassBatchSectionExport;
 use App\Period;
 use App\Student;
+use App\StudentStatus;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -37,6 +38,12 @@ class AttendanceController extends Controller
                 $attendance->student_id = $student->id;
                 $attendance->attendance_for = date('Y-m-d');
                 $attendance->save();
+                $student_status = new StudentStatus();
+                $student_status->attendance_id = $attendance->id;
+                $student_status->student_id = $student->id;
+                $student_status->period_id = 1;
+                $student_status->status = 'present';
+                $student_status->save();
                 Session::flash('student_id',$student->id);
                 return redirect()->back()->with('success','Attendance Successfully !!! ' .$student->first_student_name .' '.$student->last_student_name .' is Present !');
             }else{
@@ -156,5 +163,22 @@ class AttendanceController extends Controller
         $attendance = Attendance::findOrFail($id);
         $attendance->delete();
         return redirect()->back()->with('success','Student Absent Successfully!');
+    }
+    public function new_attend_entry(Request $request, $attend, $period){
+        $attends = Attendance::findOrFail($attend);
+        $attend_sts = new StudentStatus();
+        $attend_sts->attendance_id = $attends->id;
+        $attend_sts->student_id = $attends->student_id;
+        $attend_sts->status = $request->status;
+        $attend_sts->created_at = $attends->created_at;
+        $attend_sts->period_id = $period;
+        $attend_sts->save();
+        return redirect()->back();
+    }
+    public function exist_attend_update(Request $request, $id){
+        $attends = StudentStatus::findOrFail($id);
+        $attends->status = $request->status;
+        $attends->save();
+        return redirect()->back();
     }
 }
