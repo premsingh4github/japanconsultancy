@@ -16,7 +16,22 @@
     }
     .day-group div{
         display: block;
-
+    }
+    .main-menu{
+        position: relative;
+    }
+    .main-menu:hover .sub-menu{
+        display: block;
+        z-index: 111;
+        text-align: left;
+        background-color: #fff;
+        padding:2px;
+        border:1px solid lightgrey;
+        border-radius: 10px;
+    }
+    .main-menu .sub-menu{
+        position: absolute;
+        display: none;
     }
 </style>
     <table>
@@ -59,11 +74,32 @@ $end_date = $class_section_student->end_date;
                     <div id="{{$start_date}}_{{$section_period->period_id}}" width="20px">
                         @php $dif = (strtotime(date('H:i',strtotime($atten[0]->created_at))) - strtotime($section_period->start_at))/(60); @endphp
                         @if($dif < 10)
+                            <span class="main-menu">
                             <span class="btn btn-success btn-sm" style="font-size: 9px" title="Present">0</span>
+                                <span class="sub-menu">
+                                    <button class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present" onclick="return confirm('Function in Developing...')">△</button>
+                                    <button class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px" onclick="return confirm('Function in Developing...')"></button>
+                                </span>
+                            </span>
+                            {{--<span class="btn btn-success btn-sm" style="font-size: 9px" title="Present">0</span>--}}
                         @elseif (($dif >= 10 ) && (strtotime(date('H:i',strtotime($atten[0]->created_at))) < strtotime($section_period->end_at)) )
-                            <span class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present">△</span>
+                            {{--<span class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present">△</span>--}}
+                            <span class="main-menu">
+                                <span class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present">△</span>
+                                    <span class="sub-menu">
+                                        <button class="btn btn-success btn-sm" style="font-size: 9px" title="Present" onclick="return confirm('Function in Developing...')">0</button>
+                                        <button class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px" onclick="return confirm('Function in Developing...')"></button>
+                                    </span>
+                            </span>
                         @else
-                            <i class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px"></i>
+                            {{--<i class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px"></i>--}}
+                            <span class="main-menu">
+                                <i class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px"></i>
+                                    <span class="sub-menu">
+                                        <button class="btn btn-success btn-sm" style="font-size: 9px" title="Present" onclick="return confirm('Function in Developing...')">0</button>
+                                        <button class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present" onclick="return confirm('Function in Developing...')">△</button>
+                                    </span>
+                            </span>
                         @endif
                     </div>
             @endforeach
@@ -74,7 +110,14 @@ $end_date = $class_section_student->end_date;
             <div class="day-group">
             @foreach($class_section_student->class_batch_section_periods as $section_period)
                 <div width="20px">
-                    <i class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px"></i>
+                    {{--<i class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px"></i>--}}
+                    <span class="main-menu">
+                                <i class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px"></i>
+                                    <span class="sub-menu">
+                                        <button class="btn btn-success btn-sm" style="font-size: 9px" title="Present" onclick="return confirm('Function in Developing...')">0</button>
+                                        <button class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present" onclick="return confirm('Function in Developing...')">△</button>
+                                    </span>
+                            </span>
                 </div>
             @endforeach
             </div>
@@ -109,11 +152,31 @@ $end_date = $class_section_student->end_date;
             <div id="{{$start_date}}_{{$section_period->period_id}}" width="20px">
                 @php $dif = (strtotime(date('H:i',strtotime($atten[0]->created_at))) - strtotime($section_period->start_at))/(60); @endphp
                 @if($dif <= 10)
-                    <span class="btn btn-success btn-sm" style="font-size: 9px" title="Present">0</span>
+                        <span class="main-menu">
+                            <span class="btn btn-success btn-sm" style="font-size: 9px" title="Present">0</span>
+                            <span class="sub-menu">
+                                <button class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present" onclick="return confirm('Function in Developing...')">△</button>
+                                <button class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px" onclick="return confirm('Function in Developing...')"></button>
+                            </span>
+                        </span>
                 @elseif (($dif >= 10 ) && (strtotime(date('H:i',strtotime($atten[0]->created_at))) < strtotime($section_period->end_at)) )
-                    <span class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present">△</span>
+                    {{--<span class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present">△</span>--}}
+                        <span class="main-menu">
+                        <span class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present">△</span>
+                            <span class="sub-menu">
+                                <button class="btn btn-success btn-sm" style="font-size: 9px" title="Present" onclick="return confirm('Function in Developing...')">0</button>
+                                <button class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px" onclick="return confirm('Function in Developing...')"></button>
+                            </span>
+                        </span>
                 @else
-                    <i class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px"></i>
+                    {{--<i class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px"></i>--}}
+                    <span class="main-menu">
+                                <i class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px"></i>
+                                    <span class="sub-menu">
+                                        <button class="btn btn-success btn-sm" style="font-size: 9px" title="Present" onclick="return confirm('Function in Developing...')">0</button>
+                                        <button class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present" onclick="return confirm('Function in Developing...')">△</button>
+                                    </span>
+                            </span>
                 @endif
             </div>
             @endforeach
@@ -122,7 +185,14 @@ $end_date = $class_section_student->end_date;
             <div class="day-group">
         @foreach($class_section_student->class_batch_section_periods as $section_period)
             <div id="{{$start_date}}_{{$section_period->period_id}}" width="20px">
-                <i class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px"></i>
+                {{--<i class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px"></i>--}}
+                <span class="main-menu">
+                                <i class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px"></i>
+                                    <span class="sub-menu">
+                                        <button class="btn btn-success btn-sm" style="font-size: 9px" title="Present" onclick="return confirm('Function in Developing...')">0</button>
+                                        <button class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present" onclick="return confirm('Function in Developing...')">△</button>
+                                    </span>
+                            </span>
             </div>
         @endforeach
             </div>

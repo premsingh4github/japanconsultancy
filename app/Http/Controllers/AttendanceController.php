@@ -28,15 +28,20 @@ class AttendanceController extends Controller
 
     public function store($code)
     {
-        if($student = Student::where('unique_id',$code)->first()){
-            $attendance = new Attendance;
-            $attendance->student_id = $student->id;
-            $attendance->attendance_for = date('Y-m-d');
-            $attendance->save();
-            Session::flash('student_id',$student->id);
-            return redirect()->back()->with('success','Attendance Successfully !!! ' .$student->first_student_name .' '.$student->last_student_name .' is Present !');
+        $holidays = \App\Event::where('start_date',date('Y-m-d'))->count();
+        if (date('D')=='Sat' || date('D')=='Sun' || $holidays>0){
+            return redirect()->back()->withErrors(['Something went wrong!.Please Try Again | Today it may be a holiday.']);
         }else{
-            return redirect()->back()->withErrors(['Something went wrong!.Please Try Again']);
+            if($student = Student::where('unique_id',$code)->first()){
+                $attendance = new Attendance;
+                $attendance->student_id = $student->id;
+                $attendance->attendance_for = date('Y-m-d');
+                $attendance->save();
+                Session::flash('student_id',$student->id);
+                return redirect()->back()->with('success','Attendance Successfully !!! ' .$student->first_student_name .' '.$student->last_student_name .' is Present !');
+            }else{
+                return redirect()->back()->withErrors(['Something went wrong!.Please Try Again']);
+            }
         }
     }
 
@@ -89,18 +94,23 @@ class AttendanceController extends Controller
 
     public function postAttendance()
     {
+        $holidays = \App\Event::where('start_date',date('Y-m-d'))->count();
         $this->validate(request(),[
             'date' => 'required',
             'student_id' => 'required',
         ]);
-        $attendance = new Attendance();
-        $attendance->student_id = \request('student_id');
-        $attendance->created_at = date('Y-m-d h:i:s', strtotime(\request('date')));
-        $attendance->updated_at = date('Y-m-d h:i:s', strtotime(\request('date')));
-        $attendance->attendance_for = date('Y-m-d', strtotime(\request('date')));
-        $attendance->save();
-        Session::flash('success','Attendance created!');
-        return redirect('admin/manage_attendance');
+        if (date('D')=='Sat' || date('D')=='Sun' || $holidays>0){
+            return redirect()->back()->withErrors(['Something went wrong!.Please Try Again | Today it may be a holiday.']);
+        }else {
+            $attendance = new Attendance();
+            $attendance->student_id = \request('student_id');
+            $attendance->created_at = date('Y-m-d h:i:s', strtotime(\request('date')));
+            $attendance->updated_at = date('Y-m-d h:i:s', strtotime(\request('date')));
+            $attendance->attendance_for = date('Y-m-d', strtotime(\request('date')));
+            $attendance->save();
+            Session::flash('success', 'Attendance created!');
+            return redirect('admin/manage_attendance');
+        }
     }
 
     public function getAttendanceExcel()
