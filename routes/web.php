@@ -156,5 +156,5 @@ Route::get('admin/manage_attendance/{id}','AttendanceController@make_absent')->m
 Route::get('admin/get_students/{class_batch_section_id}','AttendanceController@getStudents')->middleware('admin');
 
 Route::get('getattendace/{code}','AttendanceController@getattendace');
-Route::get('test','HomeController@test');
-Route::get('days','HomeController@updateType');
+//Route::get('test','HomeController@test');
+Route::get('days','HomeController@updateType')->middleware('admin');

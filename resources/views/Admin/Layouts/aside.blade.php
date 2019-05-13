@@ -755,7 +755,7 @@
                                 </a>
                             </li>
                             <li class="nav-main-item">
-                                <a class="nav-main-link <?php if(request()->segment('2') =='report_batch_wise'){ echo 'active' ;} ?>" href="{{url('admin/report_batch_wise')}}">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='report_batch_wise'){ echo 'active' ;} ?>" href="{{url('days')}}">
                                     <span class="nav-main-link-name">Batch Wise Report</span>
                                 </a>
                             </li>
@@ -768,7 +768,7 @@
                         </a>
                         <ul class="nav-main-submenu">
                             <li class="nav-main-item">
-                                <a class="nav-main-link <?php if(request()->segment('2') =='view_calendar'){ echo 'active' ;} ?>" href="{{url('admin/view_calendar')}}">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='view_calendar'){ echo 'active' ;} ?>" href="#">
                                     <span class="nav-main-link-name">View Calendar</span>
                                 </a>
                             </li>

@@ -31,11 +31,12 @@ class AttendanceController extends Controller
         if($student = Student::where('unique_id',$code)->first()){
             $attendance = new Attendance;
             $attendance->student_id = $student->id;
+            $attendance->attendance_for = date('Y-m-d');
             $attendance->save();
             Session::flash('student_id',$student->id);
             return redirect()->back()->with('success','Attendance Successfully !!! ' .$student->first_student_name .' '.$student->last_student_name .' is Present !');
         }else{
-			return redirect()->back()->withErrors(['Something went wrong!.Please Try Again']);
+            return redirect()->back()->withErrors(['Something went wrong!.Please Try Again']);
         }
     }
 
@@ -96,6 +97,7 @@ class AttendanceController extends Controller
         $attendance->student_id = \request('student_id');
         $attendance->created_at = date('Y-m-d h:i:s', strtotime(\request('date')));
         $attendance->updated_at = date('Y-m-d h:i:s', strtotime(\request('date')));
+        $attendance->attendance_for = date('Y-m-d', strtotime(\request('date')));
         $attendance->save();
         Session::flash('success','Attendance created!');
         return redirect('admin/manage_attendance');
@@ -126,8 +128,8 @@ class AttendanceController extends Controller
                     $section_periods->where('period_id',$period);
                 });
             })->find($class_section_student_id);
-           $dif = (strtotime(date('H:i',strtotime($attendences[0]->created_at))) - strtotime($class_section_student->start_at))/(60);
-           if($dif < 10){
+            $dif = (strtotime(date('H:i',strtotime($attendences[0]->created_at))) - strtotime($class_section_student->start_at))/(60);
+            if($dif < 10){
                 return response()->json(['id'=>$code,'status'=>"P"]);
             }elseif (($dif >= 10 ) && (strtotime(date('H:i',strtotime($attendences[0]->created_at))) < strtotime($class_section_student->end_at)) ) {
                 return response()->json(['id'=>$code,'status'=>"L"]);
@@ -137,7 +139,7 @@ class AttendanceController extends Controller
             return response()->json(['id'=>$code,'status'=>"A"]);
         }
 
-        
+
     }
 
     public function make_absent($id){

@@ -74,7 +74,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @php $attendances = \App\Attendance::orderBy('id','DESC')->get(); @endphp
+                    @php $attendances = \App\Attendance::orderBy('created_at','DESC')->get(); @endphp
                     @foreach($attendances as $key=>$attendance)
                     <tr>
                         <td>{{++$key}}</td>
@@ -90,9 +90,9 @@
                         <td>{{date('H:i',strtotime($attendance->created_at))}}</td>
                         <td>
                             @if($attendance->type==1)
-                                In Class
+                                <button class="btn btn-primary btn-sm">In Class</button>
                                 @elseif($attendance->type==2)
-                            Leave Class
+                            <button class="btn btn-warning btn-sm">Leave Class</button>
                                 @endif
                         </td>
                         <td>
