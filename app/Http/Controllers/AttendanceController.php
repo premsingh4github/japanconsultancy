@@ -38,12 +38,12 @@ class AttendanceController extends Controller
                 $attendance->student_id = $student->id;
                 $attendance->attendance_for = date('Y-m-d');
                 $attendance->save();
-                $student_status = new StudentStatus();
-                $student_status->attendance_id = $attendance->id;
-                $student_status->student_id = $student->id;
-                $student_status->period_id = 1;
-                $student_status->status = 'present';
-                $student_status->save();
+//                $student_status = new StudentStatus();
+//                $student_status->attendance_id = $attendance->id;
+//                $student_status->student_id = $student->id;
+//                $student_status->period_id = 1;
+//                $student_status->status = 'present';
+//                $student_status->save();
                 Session::flash('student_id',$student->id);
                 return redirect()->back()->with('success','Attendance Successfully !!! ' .$student->first_student_name .' '.$student->last_student_name .' is Present !');
             }else{
@@ -179,6 +179,34 @@ class AttendanceController extends Controller
         $attends = StudentStatus::findOrFail($id);
         $attends->status = $request->status;
         $attends->save();
+        return redirect()->back();
+    }
+    public function get_new_attend(Request $request,$period_time,$period,$student){
+        $start_at = date('Y-m-d H:i:s',strtotime($period_time));
+        $attends = new Attendance();
+        $attends->student_id = $student;
+        $attends->created_at = $start_at;
+        $attends->attendance_for = date('Y-m-d',strtotime($start_at));
+        $attends->type = '1';
+        $attends->save();
+        $periods = Period::all();
+        foreach ($periods as $period_exist){
+            $attend_sts = new StudentStatus();
+            $attend_sts->attendance_id = $attends->id;
+            $attend_sts->student_id = $student;
+            $attend_sts->created_at = $attends->created_at;
+            if ($period_exist->id == $period && $request->status=='present'){
+                $attend_sts->period_id = $period;
+                $attend_sts->status = 'present';
+            }elseif($period_exist->id == $period && $request->status=='late'){
+                $attend_sts->period_id = $period;
+                $attend_sts->status = 'late';
+            }else{
+                $attend_sts->period_id = $period_exist->id;
+                $attend_sts->status = 'absent';
+            }
+            $attend_sts->save();
+        }
         return redirect()->back();
     }
 }

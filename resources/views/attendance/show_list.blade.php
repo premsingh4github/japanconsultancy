@@ -146,8 +146,16 @@ $end_date = $class_section_student->end_date;
                                 <span class="main-menu">
                         <span class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present">△</span>
                             <span class="sub-menu">
-                                <button class="btn btn-success btn-sm" style="font-size: 9px" title="Present" onclick="return confirm('Function in Developing...')">0</button>
-                                <button class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px" onclick="return confirm('Function in Developing...')"></button>
+                                <form action="{{url('new_attend_entry').'/'.$atten[0]->id.'/'.$section_period->period_id}}" method="post">
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="status" value="present">
+                                <button class="btn btn-success btn-sm" style="font-size: 9px" title="Present" onclick="return confirm('Are you sure to make present for this period?')">0</button>
+                                </form>
+                                <form action="{{url('new_attend_entry').'/'.$atten[0]->id.'/'.$section_period->period_id}}" method="post">
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="status" value="absent">
+                                    <button class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px" onclick="return confirm('Are you sure to make absent for this period?')"></button>
+                                </form>
                             </span>
                         </span>
                             @else
@@ -155,8 +163,16 @@ $end_date = $class_section_student->end_date;
                                 <span class="main-menu">
                                 <i class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px"></i>
                                     <span class="sub-menu">
-                                        <button class="btn btn-success btn-sm" style="font-size: 9px" title="Present" onclick="return confirm('Function in Developing...')">0</button>
-                                        <button class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present" onclick="return confirm('Function in Developing...')">△</button>
+                                <form action="{{url('new_attend_entry').'/'.$atten[0]->id.'/'.$section_period->period_id}}" method="post">
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="status" value="present">
+                                <button class="btn btn-success btn-sm" style="font-size: 9px" title="Present" onclick="return confirm('Are you sure to make present for this period?')">0</button>
+                                </form>
+                                <form action="{{url('new_attend_entry').'/'.$atten[0]->id.'/'.$section_period->period_id}}" method="post">
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="status" value="late">
+                                        <button class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present" onclick="return confirm('Are you sure to make late for this period?')">△</button>
+                                </form>
                                     </span>
                             </span>
                             @endif
@@ -198,13 +214,26 @@ $end_date = $class_section_student->end_date;
 
             <div class="day-group">
             @foreach($class_section_student->class_batch_section_periods as $section_period)
+                @php
+                $period_time = $start_date.' '.$section_period->start_at;
+                $period = $section_period->period_id;
+                $student = $id;
+                @endphp
                 <div width="20px">
                     {{--<i class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px"></i>--}}
                     <span class="main-menu">
                                 <i class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px"></i>
                                     <span class="sub-menu">
-                                        <button class="btn btn-success btn-sm" style="font-size: 9px" title="Present" onclick="return confirm('Function in Developing...')">0</button>
-                                        <button class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present" onclick="return confirm('Function in Developing...')">△</button>
+                                        <form action="{{url('get_new_attend').'/'.$period_time.'/'.$period.'/'.$student}}" method="post">
+                                            {{csrf_field()}}
+                                            <input type="hidden" name="status" value="present">
+                                            <button type="submit" class="btn btn-success btn-sm" style="font-size: 9px" title="Present" onclick="return confirm('Are you sure to make present for this period?')">0</button>
+                                        </form>
+                                        <form action="{{url('get_new_attend').'/'.$period_time.'/'.$period.'/'.$student}}" method="post">
+                                            {{csrf_field()}}
+                                            <input type="hidden" name="status" value="late">
+                                        <button class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present" onclick="return confirm('Are you sure to make late for this period?')">△</button>
+                                        </form>
                                     </span>
                             </span>
                 </div>
@@ -299,12 +328,12 @@ $end_date = $class_section_student->end_date;
                                 <form action="{{url('new_attend_entry').'/'.$atten[0]->id.'/'.$section_period->period_id}}" method="post">
                                     {{csrf_field()}}
                                     <input type="hidden" name="status" value="late">
-                                    <button type="submit" class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present" onclick="return confirm('Are you sure to make late for this period')">△</button>
+                                    <button type="submit" class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present" onclick="return confirm('Are you sure to make late for this period?')">△</button>
                                 </form>
                                 <form action="{{url('new_attend_entry').'/'.$atten[0]->id.'/'.$section_period->period_id}}" method="post">
                                     {{csrf_field()}}
                                     <input type="hidden" name="status" value="absent">
-                                    <button class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px" onclick="return confirm('Function in Developing...')"></button>
+                                    <button class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px" onclick="return confirm('Are you sure to make absent for this period?')"></button>
                                 </form>
                             </span>
                         </span>
@@ -313,8 +342,16 @@ $end_date = $class_section_student->end_date;
                         <span class="main-menu">
                         <span class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present">△</span>
                             <span class="sub-menu">
-                                <button class="btn btn-success btn-sm" style="font-size: 9px" title="Present" onclick="return confirm('Function in Developing...')">0</button>
-                                <button class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px" onclick="return confirm('Function in Developing...')"></button>
+                                <form action="{{url('new_attend_entry').'/'.$atten[0]->id.'/'.$section_period->period_id}}" method="post">
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="status" value="present">
+                                <button class="btn btn-success btn-sm" style="font-size: 9px" title="Present" onclick="return confirm('Are you sure to make present for this period?')">0</button>
+                                </form>
+                                <form action="{{url('new_attend_entry').'/'.$atten[0]->id.'/'.$section_period->period_id}}" method="post">
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="status" value="absent">
+                                    <button class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px" onclick="return confirm('Are you sure to make absent for this period?')"></button>
+                                </form>
                             </span>
                         </span>
                 @else
@@ -322,8 +359,16 @@ $end_date = $class_section_student->end_date;
                     <span class="main-menu">
                                 <i class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px"></i>
                                     <span class="sub-menu">
-                                        <button class="btn btn-success btn-sm" style="font-size: 9px" title="Present" onclick="return confirm('Function in Developing...')">0</button>
-                                        <button class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present" onclick="return confirm('Function in Developing...')">△</button>
+                                <form action="{{url('new_attend_entry').'/'.$atten[0]->id.'/'.$section_period->period_id}}" method="post">
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="status" value="present">
+                                <button class="btn btn-success btn-sm" style="font-size: 9px" title="Present" onclick="return confirm('Are you sure to make present for this period?')">0</button>
+                                </form>
+                                <form action="{{url('new_attend_entry').'/'.$atten[0]->id.'/'.$section_period->period_id}}" method="post">
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="status" value="late">
+                                        <button class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present" onclick="return confirm('Are you sure to make late for this period?')">△</button>
+                                </form>
                                     </span>
                             </span>
                 @endif
@@ -334,16 +379,31 @@ $end_date = $class_section_student->end_date;
     @else
             <div class="day-group">
         @foreach($class_section_student->class_batch_section_periods as $section_period)
+                    @php
+                        $period_time = $start_date.' '.$section_period->start_at;
+                        $period = $section_period->period_id;
+                        $student = $id;
+                    @endphp
             <div id="{{$start_date}}_{{$section_period->period_id}}" width="20px">
                 {{--<i class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px"></i>--}}
                 <span class="main-menu">
                                 <i class="fa fa-times btn btn-danger btn-sm" title="Absent" style="font-size: 9px"></i>
                                     <span class="sub-menu">
-                                        <button class="btn btn-success btn-sm" style="font-size: 9px" title="Present" onclick="return confirm('Function in Developing...')">0</button>
-                                        <button class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present" onclick="return confirm('Function in Developing...')">△</button>
+                                        <form action="{{url('get_new_attend').'/'.$period_time.'/'.$period.'/'.$student}}" method="post">
+                                            {{csrf_field()}}
+                                            <input type="hidden" name="status" value="present">
+                                            <button type="submit" class="btn btn-success btn-sm" style="font-size: 9px" title="Present" onclick="return confirm('Are you sure to make present for this period?')">0</button>
+                                        </form>
+                                        <form action="{{url('get_new_attend').'/'.$period_time.'/'.$period.'/'.$student}}" method="post">
+                                            {{csrf_field()}}
+                                            <input type="hidden" name="status" value="late">
+                                        <button class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present" onclick="return confirm('Are you sure to make late for this period?')">△</button>
+                                        </form>
                                     </span>
                             </span>
             </div>
+
+
         @endforeach
             </div>
     @endif

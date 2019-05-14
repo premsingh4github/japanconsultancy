@@ -39,13 +39,24 @@
            <div class="day-group">
                 @foreach($class_section_student->class_batch_section_periods as $section_period)
                     <div id="{{$start_date}}_{{$section_period->period_id}}" width="20px">
-                        @php $dif = (strtotime(date('H:i',strtotime($atten[0]->created_at))) - strtotime($section_period->start_at))/(60); @endphp
-                        @if($dif < 10)
-                            <span class="btn btn-success btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px">0</span>
-                        @elseif (($dif >= 10 ) && (strtotime(date('H:i',strtotime($atten[0]->created_at))) < strtotime($section_period->end_at)) )
-                            <span class="btn btn-warning btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px">△</span>
+                        @php $check_status = \App\StudentStatus::where('period_id',$section_period->period_id)->where('attendance_id',$atten[0]->id)->where('student_id',$id)->whereBetween('created_at', array($start_date.' 00:00:00',$start_date.' 23:59:59'))->get() @endphp
+                        @if(count($check_status)>0)
+                            @if($check_status[0]->status=='present')
+                                <span class="btn btn-success btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px">0</span>
+                            @elseif ($check_status[0]->status=='late')
+                                <span class="btn btn-warning btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px">△</span>
+                            @else
+                                <i class="fa fa-times btn btn-danger btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px"></i>
+                            @endif
                         @else
-                            <i class="fa fa-times btn btn-danger btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px"></i>
+                            @php $dif = (strtotime(date('H:i',strtotime($atten[0]->created_at))) - strtotime($section_period->start_at))/(60); @endphp
+                            @if($dif < 10)
+                                <span class="btn btn-success btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px">0</span>
+                            @elseif (($dif >= 10 ) && (strtotime(date('H:i',strtotime($atten[0]->created_at))) < strtotime($section_period->end_at)) )
+                                <span class="btn btn-warning btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px">△</span>
+                            @else
+                                <i class="fa fa-times btn btn-danger btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px"></i>
+                            @endif
                         @endif
                     </div>
             @endforeach
@@ -90,13 +101,24 @@
             <div class="day-group">
             @foreach($class_section_student->class_batch_section_periods as $section_period)
             <div id="{{$start_date}}_{{$section_period->period_id}}" width="20px">
-                @php $dif = (strtotime(date('H:i',strtotime($atten[0]->created_at))) - strtotime($section_period->start_at))/(60); @endphp
-                @if($dif < 10)
-                    <span class="btn btn-success btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px">0</span>
-                @elseif (($dif >= 10 ) && (strtotime(date('H:i',strtotime($atten[0]->created_at))) < strtotime($section_period->end_at)) )
-                    <span class="btn btn-warning btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px">△</span>
+                @php $check_status = \App\StudentStatus::where('period_id',$section_period->period_id)->where('attendance_id',$atten[0]->id)->where('student_id',$id)->whereBetween('created_at', array($start_date.' 00:00:00',$start_date.' 23:59:59'))->get() @endphp
+                @if(count($check_status)>0)
+                    @if($check_status[0]->status=='present')
+                        <span class="btn btn-success btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px">0</span>
+                    @elseif ($check_status[0]->status=='late')
+                        <span class="btn btn-warning btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px">△</span>
+                    @else
+                        <i class="fa fa-times btn btn-danger btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px"></i>
+                    @endif
                 @else
-                    <i class="fa fa-times btn btn-danger btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px"></i>
+                    @php $dif = (strtotime(date('H:i',strtotime($atten[0]->created_at))) - strtotime($section_period->start_at))/(60); @endphp
+                    @if($dif < 10)
+                        <span class="btn btn-success btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px">0</span>
+                    @elseif (($dif >= 10 ) && (strtotime(date('H:i',strtotime($atten[0]->created_at))) < strtotime($section_period->end_at)) )
+                        <span class="btn btn-warning btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px">△</span>
+                    @else
+                        <i class="fa fa-times btn btn-danger btn-sm period-{{$section_period->period_id}}" data-period="{{$section_period->period_id}}" style="font-size: 9px"></i>
+                    @endif
                 @endif
             </div>
         @endforeach

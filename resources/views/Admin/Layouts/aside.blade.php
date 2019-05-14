@@ -749,13 +749,11 @@
                             <span class="nav-main-link-name">{{__('language.report_attendance')}}</span>
                         </a>
                         <ul class="nav-main-submenu">
-                            <!-----------
                             <li class="nav-main-item">
                                 <a class="nav-main-link <?php if(request()->segment('2') =='attendance_report'){ echo 'active' ;} ?>" href="{{url('admin/attendance_report')}}">
                                     <span class="nav-main-link-name">{{__('language.report_attendance')}}</span>
                                 </a>
                             </li>
-                            ---------->
                             <li class="nav-main-item">
                                 <a class="nav-main-link <?php if(request()->segment('2') =='report_batch_wise'){ echo 'active' ;} ?>" href="{{url('days')}}">
                                     <span class="nav-main-link-name">Batch Wise Report</span>
