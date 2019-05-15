@@ -15,6 +15,6 @@ class DatabaseSeeder extends Seeder
 //         $this->call(RolesTableSeeder::class);
 //         $this->call(CoutryTableSeeder::class);
 //         $this->call(PeriodsTableSeeder::class);
-
+//         $this->call(GradeTableSeeder::class);
     }
 }

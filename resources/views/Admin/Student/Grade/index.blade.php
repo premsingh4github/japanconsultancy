@@ -1,0 +1,193 @@
+@extends('Admin.index')
+@section('body')
+    <!-- Main Container -->
+    <main id="container">
+        <!-- Page Content -->
+        <div class="content" style="margin-top:50px;">
+
+                <!-- Customers and Latest Orders -->
+            <div class="row row-deck">
+                <div class="col-lg-12">
+                    <div class="block block-mode-loading-oneui">
+                        <form action="" method="post">
+                            {{csrf_field()}}
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <input type="text" name="student_number" @if(request('student_number')) value="{{request('student_number')}}" @endif  class="form-control" placeholder="Student Number">
+                                </div>
+                                <div class="col-sm-3">
+                                    <select name="year" class="form-control"  required="required" data-validation-error-msg="Year Required">
+                                        <option value="">Choose Year</option>
+                                        <option value="{{date('Y')}}">{{date('Y')}}</option>
+                                        <option value="2030" <?php if (date('y')=='30') echo 'selected'?>>2030</option>
+                                        <option value="2029" <?php if (date('y')=='29') echo 'selected'?>>2029</option>
+                                        <option value="2028" <?php if (date('y')=='28') echo 'selected'?>>2028</option>
+                                        <option value="2027" <?php if (date('y')=='27') echo 'selected'?>>2027</option>
+                                        <option value="2026" <?php if (date('y')=='26') echo 'selected'?>>2026</option>
+                                        <option value="2025" <?php if (date('y')=='25') echo 'selected'?>>2025</option>
+                                        <option value="2024" <?php if (date('y')=='24') echo 'selected'?>>2024</option>
+                                        <option value="2023" <?php if (date('y')=='23') echo 'selected'?>>2023</option>
+                                        <option value="2022" <?php if (date('y')=='22') echo 'selected'?>>2022</option>
+                                        <option value="2021" <?php if (date('y')=='21') echo 'selected'?>>2021</option>
+                                        <option value="2020" <?php if (date('y')=='20') echo 'selected'?>>2020</option>
+                                        <option value="2019" <?php if (date('y')=='19') echo 'selected'?>>2019</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2015">2017</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <select  name="grade_id"  class="form-control">
+                                        <option value="">{{__('language.Choose_Student_Grade')}}</option>
+                                        @foreach($grades as $grade)
+                                        <option @if(request('grade_id') == $grade->id) selected @endif value="{{$grade->id}}">{{$grade->name}}</option>
+                                            @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button type="submit" class="btn btn-outline-primary">{{__('language.Search')}}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Latest Orders -->
+
+
+
+                <div class="col-lg-12">
+                    <div class="block block-mode-loading-oneui">
+                        <div class="block-header border-bottom">
+                            <h3 class="block-title">{{__('language.student_record')}}
+                            </h3>
+                            <div class="block-options">
+                                {{--<button type="button" class="btn-block-option">--}}
+                                    {{--{{ $list_students->links() }}--}}
+                                {{--</button>--}}
+                                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
+                                    <i class="si si-refresh"></i>
+                                </button>
+                                <button type="button" class="btn-block-option">
+                                    <i class="si si-settings"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="block-content block-content-full">
+                            <p class="font-size-sm text-muted">
+                                @if(session('success'))
+                                    <span class="alert alert-success"> {{session('success')}}</span>
+                            @endif
+                            @if($errors->any())
+                                <ul  class="alert alert-danger">
+                                    @foreach($errors->all() as $error)
+                                        <li>{{$error}}</li>
+                                    @endforeach
+                                </ul>
+                                @endif
+                                </p>
+
+                                @foreach($grades as $key=>$grade)
+                                    <h4>{{$grade->name}}</h4>
+                                <table class="table table-striped table-hover table-borderless table-vcenter js-dataTable-full">
+                                <thead class="thead-dark" >
+                                <style>
+                                    .block-content .thead-dark th{
+                                       text-transform: none;
+                                    }
+                                </style>
+                                <tr>
+                                    <th class="font-w700">{{__('language.SN')}}</th>
+                                    <th class="font-w700">{{__('language.Photo')}}</th>
+                                    <th class="font-w700">{{__('language.Download')}}</th>
+                                    <th class="font-w700">{{__('language.Residential_ID')}}</th>
+                                    <th class="font-w700">{{__('language.Student_Name')}}</th>
+                                    <th class="font-w700">{{__('language.Japanese_Name')}}</th>
+                                    <th class="font-w700">{{__('language.Student_ID_No')}}</th>
+                                    <th class="font-w700">Year</th>
+                                    <th class="font-w700">{{__('language.Address')}}</th>
+                                    <th class="font-w700">{{__('language.Gender')}}</th>
+                                    <th class="font-w700">{{__('language.Action')}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @php $list_students = \App\StudentGrade::where('grade_id',$grade->id)->orderBy('year','DESC')->get(); @endphp
+                                @if(count($list_students)>0)
+                                @foreach($list_students as $key=>$students)
+                                <tr>
+                                    <td>{{++$key}}</td>
+                                    <td>
+                                        @if(isset($students->photo))
+                                        <img src="{{url('public/photos').'/'.$students->student->photo}}" alt="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">
+                                        @else
+                                            <img src="{{url('public/photos/avatar.jpg')}}" alt="" class="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="dropdown d-inline-block ml-2">
+                                            <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="d-none d-sm-inline-block ml-1"><i class="fa fa-download"></i>{{__('language.Download')}}</span>
+                                                <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-left p-0 border-0 font-size-sm" aria-labelledby="page-header-user-dropdown">
+                                                <div class="p-2">
+                                                    <a class="dropdown-item d-flex align-items-center justify-content-between" onclick="window.open('{{url('admin/list_student/'.$students->student->id)}}', 'popup', 'height=600,width=700,scrollbars=yes,resize=no,status=no,left=100,top=100');">
+                                                    <span>ID Card</span> <i class="fa fa-eye"></i>
+                                                    </a>
+                                                    {{--<a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ url('admin/list_student/pdf').'/'.$students->id }}">--}}
+                                                        {{--<span>ID Card</span>  <i class="fa fa-download"></i>--}}
+                                                    {{--</a>--}}
+                                                    <a class="dropdown-item d-flex align-items-center justify-content-between" onclick="window.open('{{url('admin/graduation_prospect_certificate/'.$students->student->id)}}', 'popup', 'height=1122,width=994,scrollbars=yes,resize=no,status=no,left=100,top=100');">
+                                                        <span>{{__('language.Graduation_Prospect_Certificate')}}</span> <i class="fa fa-eye"></i>
+                                                    </a>
+                                                    <a class="dropdown-item d-flex align-items-center justify-content-between" onclick="window.open('{{url('admin/Graduation_certificate/'.$students->student->id)}}', 'popup', 'height=1122,width=994,scrollbars=yes,resize=no,status=no,left=100,top=100');">
+                                                        <span>{{__('language.Graduation_Certificate')}}</span>  <i class="fa fa-eye"></i>
+                                                    </a>
+                                                    <a class="dropdown-item d-flex align-items-center justify-content-between" onclick="window.open('{{url('admin/certificate_of_student_status/'.$students->student->id)}}', 'popup', 'height=1122,width=994,scrollbars=yes,resize=no,status=no,left=100,top=100');">
+                                                        <span>{{__('language.Certificate_of_Student_Status')}}</span> <i class="fa fa-eye"></i>
+                                                    </a>
+                                                    <a href="{{url('admin/list_student/'.$students->student->id.'/report')}}" class="dropdown-item d-flex align-items-center justify-content-between">
+                                                        <span>Student Report</span> <i class="fa fa-eye"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{{$students->student->residensal_card}}</td>
+                                    <td>{{$students->student->last_student_name}} {{$students->student->first_student_name}}</td>
+                                    <td>{{$students->student->last_student_japanese_name}} {{$students->student->first_student_japanese_name}}</td>
+                                    <td>{{$students->student->student_number}}</td>
+                                    <td>{{$students->year}}</td>
+                                    <td>{{$students->student->address}}</td>
+                                    <td>
+                                        @if($students->student->student_sex == 'm')男
+                                        @elseif($students->student->student_sex == 'f')女
+                                        @else
+                                            その他の
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{url('admin/view_grade_wise/student_id=').$students->id}}" class="fa fa-edit"></a>
+                                        {{--<a href="#" onclick="return confirm('Are you sure you want to transfer this Student another batch?');"  class="fa fa-exchange-alt" style="color: red;"></a>--}}
+                                        <a href="{{url('admin/view_grade_wise/student_id=').$students->id.'/delete'}}" onclick="return confirm('Are you sure to delete?');"  class="fa fa-trash" style="color: red;"></a>
+                                    </td>
+                                </tr>
+                                    @endforeach
+                                    @endif
+                                </tbody>
+                                <tbody>
+                                </tbody>
+                            </table>
+                                @endforeach
+                        </div>
+                    </div>
+                </div>
+                <!-- END Latest Orders -->
+            </div>
+            <!-- END Customers and Latest Orders -->
+        </div>
+        <!-- END Page Content -->
+
+    </main>
+    <!-- END Main Container -->
+@endsection

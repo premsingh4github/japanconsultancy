@@ -134,6 +134,16 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
 
     Route::get('view_calendar','CalendarController@index');
     /*==================Report-Section=======*/
+
+    /*==================Grade Management=======*/
+    Route::get('view_grade_wise','GradeController@index');
+    Route::get('add_grade_wise','GradeController@create');
+    Route::post('add_grade_wise','GradeController@store');
+    Route::get('view_grade_wise/student_id={id}','GradeController@edit');
+    Route::post('view_grade_wise/student_id={id}','GradeController@update');
+    Route::get('view_grade_wise/student_id={id}/delete','GradeController@delete');
+
+    /*==================Grade Management=======*/
 });
 /* ================================================ ADMIN CONTROL END============================================================== */
 

@@ -12,7 +12,12 @@ return[
     'Admin_Panel'=>'管理パネル',
     'User_Manager'=>'ユーザー管',
     'User_controller'=>'ユーザーコントロール',
-    'STUDENT_TEACHER_MANAGER'=>'学生/先生管理',
+    'TEACHER_MANAGER'=>'先生管理',
+    'STUDENT_MANAGER'=>'学生',
+    'GRADE_WISE_STUDENT'=>'グレードワイズ学生',
+    'Student_Grade_Manage'=>'学生グレード管理',
+    'View_Grade_Manage'=>'成績管理を表示',
+    'Choose_Student_Grade'=>'学年を選択してください',
     'Teachers'=>'先生',
     'MANAGER'=>'学生/先生管理',
 

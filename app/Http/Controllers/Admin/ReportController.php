@@ -127,4 +127,5 @@ class ReportController extends Controller
 //        dd($students);
         return view('Admin.Report.attendance.report_batch_wise',compact('title','class_section_prediods','holidays','students','total_study_day','start_date','end_date'));
     }
+
 }

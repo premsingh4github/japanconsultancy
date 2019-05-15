@@ -17,7 +17,6 @@
                                     <h4> Calender View <a href="{{url('admin/view_calendar')}}" class="btn btn-primary btn-sm" style="float: right;">Back</a> </h4>
                                 </div>
                                 <div class="col-sm-12">
-                                    fghfh
                                 </div>
                             </div>
                         </div>

@@ -313,7 +313,6 @@ class StudentController extends Controller
                 'student_id' => 'required|unique:class_section_students,student_id',
             ]);
 
-
         }
 
         foreach (\request('student_id')as $key => $value){
