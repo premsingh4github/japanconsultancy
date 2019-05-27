@@ -39,7 +39,7 @@
                     {{csrf_field()}}
                     <div class="row">
                         <div class="form-group col-sm-2">
-                            <label for="class_section_id">Year<font color="#ff0000">*</font></label>
+                            <label for="class_section_id">Join Year<font color="#ff0000">*</font></label>
                             <select name="year" class="form-control"  required="required" data-validation-error-msg="Year Required">
                                 <option value="">Choose Year</option>
                                 <option value="{{date('Y')}}">{{date('Y')}}</option>

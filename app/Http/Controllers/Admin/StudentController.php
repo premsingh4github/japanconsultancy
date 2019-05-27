@@ -99,7 +99,7 @@ class StudentController extends Controller
             $list_students = Student::orderBy('student_number', 'ASC')->get();
             $classRoomBatch = ClassRoomBatch::all();
             $title = 'Student Immigration | Chubi Project : Management System';
-            return view('Admin.Student.first_immigration', compact('title', 'list_students', 'classRoomBatch', 'count'));
+            return view('Admin.Student.first_immigration_print', compact('title', 'list_students', 'classRoomBatch', 'count'));
         }
         if ($request->isMethod('post')){
             $list_students = Student::orderBy('student_number','ASC');
@@ -108,7 +108,7 @@ class StudentController extends Controller
             }
             $list_students =$list_students->get();
             $classRoomBatch = ClassRoomBatch::all();
-            return view('Admin.Student.first_immigration', compact( 'title','list_students','classRoomBatch','count'));
+            return view('Admin.Student.first_immigration_print', compact( 'title','list_students','classRoomBatch','count'));
         }
     }
     public function second_immigration(Request $request){
@@ -116,7 +116,7 @@ class StudentController extends Controller
             $list_students = Student::orderBy('student_number', 'ASC')->get();
             $classRoomBatch = ClassRoomBatch::all();
             $title = 'Student Immigration | Chubi Project : Management System';
-            return view('Admin.Student.second_immigration', compact('title', 'list_students', 'classRoomBatch', 'count'));
+            return view('Admin.Student.second_immigration_print', compact('title', 'list_students', 'classRoomBatch', 'count'));
         }
         if ($request->isMethod('post')){
             $list_students = Student::orderBy('student_number','ASC');
@@ -125,7 +125,7 @@ class StudentController extends Controller
             }
             $list_students =$list_students->get();
             $classRoomBatch = ClassRoomBatch::all();
-            return view('Admin.Student.second_immigration', compact( 'title','list_students','classRoomBatch','count'));
+            return view('Admin.Student.second_immigration_print', compact( 'title','list_students','classRoomBatch','count'));
         }
     }
     public function update_student_remarks(Request $request, $id){
@@ -271,15 +271,15 @@ class StudentController extends Controller
         $list_student = Student::findOrFail($id);
         $attendance = Attendance::where('student_id',$list_student->id)->get();
         $class_section_student = ClassSectionStudent::where('student_id',$list_student->id)->get();
-            foreach ($attendance as $attendances){
-                $attendances->delete();
-            }
-            foreach ($class_section_student as $class_section_students){
-                $class_section_students->delete();
-            }
-            if (is_file(public_path('photos/').'/'.$list_student->photo) && file_exists(public_path('photos/').'/'.$list_student->photo)){
-                unlink(public_path('photos/').'/'.$list_student->photo);
-            }
+        foreach ($attendance as $attendances){
+            $attendances->delete();
+        }
+        foreach ($class_section_student as $class_section_students){
+            $class_section_students->delete();
+        }
+        if (is_file(public_path('photos/').'/'.$list_student->photo) && file_exists(public_path('photos/').'/'.$list_student->photo)){
+            unlink(public_path('photos/').'/'.$list_student->photo);
+        }
         $list_student->delete();
         return redirect()->back()->with('success', 'Record Deleted');
 
@@ -388,4 +388,12 @@ class StudentController extends Controller
             return view('Admin.Student.student_report_not',compact('title','student'));
         }
     }
+//     public function change(){
+//         $students = Student::all();
+//         foreach($students as $student){
+//             $student->student_note = '正規生';
+//             $student->save();
+//         }
+//         return redirect('admin/second_immigration')->with('success','Updated');
+//     }
 }

@@ -105,7 +105,6 @@
                                 @else
                                     0%
                                 @endif
-
                             </td>
                         </tr>
                     @endforeach
