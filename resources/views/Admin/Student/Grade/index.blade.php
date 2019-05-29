@@ -9,55 +9,6 @@
             <div class="row row-deck">
                 <div class="col-lg-12">
                     <div class="block block-mode-loading-oneui">
-                        <form action="" method="post">
-                            {{csrf_field()}}
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <input type="text" name="student_number" @if(request('student_number')) value="{{request('student_number')}}" @endif  class="form-control" placeholder="Student Number">
-                                </div>
-                                <div class="col-sm-3">
-                                    <select name="year" class="form-control"  required="required" data-validation-error-msg="Year Required">
-                                        <option value="">Choose Year</option>
-                                        <option value="{{date('Y')}}">{{date('Y')}}</option>
-                                        <option value="2030" <?php if (date('y')=='30') echo 'selected'?>>2030</option>
-                                        <option value="2029" <?php if (date('y')=='29') echo 'selected'?>>2029</option>
-                                        <option value="2028" <?php if (date('y')=='28') echo 'selected'?>>2028</option>
-                                        <option value="2027" <?php if (date('y')=='27') echo 'selected'?>>2027</option>
-                                        <option value="2026" <?php if (date('y')=='26') echo 'selected'?>>2026</option>
-                                        <option value="2025" <?php if (date('y')=='25') echo 'selected'?>>2025</option>
-                                        <option value="2024" <?php if (date('y')=='24') echo 'selected'?>>2024</option>
-                                        <option value="2023" <?php if (date('y')=='23') echo 'selected'?>>2023</option>
-                                        <option value="2022" <?php if (date('y')=='22') echo 'selected'?>>2022</option>
-                                        <option value="2021" <?php if (date('y')=='21') echo 'selected'?>>2021</option>
-                                        <option value="2020" <?php if (date('y')=='20') echo 'selected'?>>2020</option>
-                                        <option value="2019" <?php if (date('y')=='19') echo 'selected'?>>2019</option>
-                                        <option value="2018">2018</option>
-                                        <option value="2017">2017</option>
-                                        <option value="2016">2016</option>
-                                        <option value="2015">2017</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-3">
-                                    <select  name="grade_id"  class="form-control">
-                                        <option value="">{{__('language.Choose_Student_Grade')}}</option>
-                                        @foreach($grades as $grade)
-                                        <option @if(request('grade_id') == $grade->id) selected @endif value="{{$grade->id}}">{{$grade->name}}</option>
-                                            @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-sm-3">
-                                    <button type="submit" class="btn btn-outline-primary">{{__('language.Search')}}</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- Latest Orders -->
-
-
-
-                <div class="col-lg-12">
-                    <div class="block block-mode-loading-oneui">
                         <div class="block-header border-bottom">
                             <h3 class="block-title">{{__('language.student_record')}}
                             </h3>
@@ -100,7 +51,7 @@
                                     <th class="font-w700">{{__('language.SN')}}</th>
                                     <th class="font-w700">{{__('language.Photo')}}</th>
                                     <th class="font-w700">{{__('language.Download')}}</th>
-                                    <th class="font-w700">{{__('language.Residential_ID')}}</th>
+                                    {{--<th class="font-w700">{{__('language.Residential_ID')}}</th>--}}
                                     <th class="font-w700">{{__('language.Student_Name')}}</th>
                                     <th class="font-w700">{{__('language.Japanese_Name')}}</th>
                                     <th class="font-w700">{{__('language.Student_ID_No')}}</th>
@@ -153,7 +104,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{{$students->student->residensal_card}}</td>
+                                    {{--<td>{{$students->student->residensal_card}}</td>--}}
                                     <td>{{$students->student->last_student_name}} {{$students->student->first_student_name}}</td>
                                     <td>{{$students->student->last_student_japanese_name}} {{$students->student->first_student_japanese_name}}</td>
                                     <td>{{$students->student->student_number}}</td>

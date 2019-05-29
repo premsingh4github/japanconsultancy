@@ -77,7 +77,7 @@
                             <table  class="table-striped table-bordered js-dataTable-full" style="width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th>{{__('language.SN')}}</th>
+                                        {{--<th>{{__('language.SN')}}</th>--}}
                                         <th>{{__('language.Student_Name')}}</th>
                                         <th>{{__('language.Student_ID_No')}}</th>
                                         {{--<th>{{__('language.Address')}}</th>--}}
@@ -86,15 +86,29 @@
                                 </thead>
                                 <tbody>
                                 @foreach($students as $key=>$Student)
-                                    <tr>
-                                        <td>{{++$key}}</td>
+                                    @php $check = \App\StudentGrade::where('student_id',$Student->id)->get(); @endphp
+                                    @if(count($check)<=1)
+                                        <tr>
+                                        {{--<td>{{++$key}}</td>--}}
                                         <td>{{$Student->last_student_name}} {{$Student->first_student_name}}</td>
                                         <td>{{$Student->student_number}}</td>
                                         {{--<td>{{$Student->address}}</td>--}}
-                                        <td><input type="checkbox" name="student_id[{{$Student->id}}]" id="student_id" value="{{$Student->id}}"></td>
+                                         <td>
+                                         <input type="checkbox" class="select_self" name="student_id[{{$Student->id}}]" id="student_id" value="{{$Student->id}}">
+                                         </td>
                                     </tr>
-
+                                    @endif
                                 @endforeach
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        Choose All : <input id='checkall' type="checkbox" >
+                                    </td>
+                                </tr>
+
                                 </tbody>
                             </table>
                         </div>
@@ -111,3 +125,19 @@
     </main>
     <!-- END Main Container -->
 @endsection
+@section('script')
+    <script>
+        $(function() {
+
+            $('#checkall').click(function() {
+                if ($(this).prop('checked')) {
+                    $('.select_self').prop('checked', true);
+                } else {
+                    $('.select_self').prop('checked', false);
+                }
+            });
+
+        });
+    </script>
+@endsection
+
