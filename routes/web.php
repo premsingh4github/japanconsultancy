@@ -143,6 +143,10 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::post('view_grade_wise/student_id={id}','GradeController@update');
     Route::get('view_grade_wise/student_id={id}/delete','GradeController@delete');
 
+    Route::get('add_grade_duration','GradeController@create_grade_duration');
+    Route::post('add_grade_duration','GradeController@store_grade_duration');
+    Route::get('add_grade_duration/{id}/edit','GradeController@edit_grade_duration');
+    Route::post('add_grade_duration/{id}/edit','GradeController@update_grade_duration');
     /*==================Grade Management=======*/
 });
 /* ================================================ ADMIN CONTROL END============================================================== */

@@ -604,12 +604,17 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-main-item <?php if(request()->segment('2') =='add_grade_wise' || request()->segment('2') =='view_grade_wise'){ echo 'open' ;} ?>">
+                    <li class="nav-main-item <?php if(request()->segment('2') =='add_grade_duration' ||request()->segment('2') =='add_grade_wise' || request()->segment('2') =='view_grade_wise'){ echo 'open' ;} ?>">
                         <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-user"></i>
                             <span class="nav-main-link-name">{{__('language.GRADE_WISE_STUDENT')}}</span>
                         </a>
                         <ul class="nav-main-submenu">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='add_grade_duration'){ echo 'active' ;} ?>" href="{{url('admin/add_grade_duration')}}">
+                                    <span class="nav-main-link-name">Grade Duration Manage</span>
+                                </a>
+                            </li>
                             <li class="nav-main-item">
                                 <a class="nav-main-link <?php if(request()->segment('2') =='add_grade_wise'){ echo 'active' ;} ?>" href="{{url('admin/add_grade_wise')}}">
                                     <span class="nav-main-link-name">{{__('language.Student_Grade_Manage')}}</span>

@@ -26,7 +26,11 @@
                                             <td class="text-align-right" colspan="17">{{date('d M-Y')}}</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-align-center" colspan="17"> ({{date('M d, Y',strtotime($batch_start))}} to {{date('M d, Y',strtotime($batch_end))}})</td>
+                                            <td class="text-align-center" colspan="17">
+                                                @foreach($student->grades as $grade)
+                                                {{$grade->grade->grade->name}}: ({{date('M d, Y',strtotime($grade->grade->start_at))}} to {{date('M d, Y',strtotime($grade->grade->end_at))}})<br>
+                                                    @endforeach
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td class="text-align-center" colspan="4">国籍/母国語</td>
@@ -81,170 +85,206 @@
                                         <tr>
                                             <td class="blank_td" colspan="17"></td>
                                         </tr>
-                                        <tr>
-                                            <td class="text-align-center" colspan="2">出席状況</td>
-                                            <td class="text-align-center">月別</td>
-                                            <td>４月</td>
-                                            <td>5月</td>
-                                            <td>6月</td>
-                                            <td>7月</td>
-                                            <td>8月</td>
-                                            <td>9月</td>
-                                            <td>10月</td>
-                                            <td>11月</td>
-                                            <td>12月</td>
-                                            <td>1月</td>
-                                            <td>2月</td>
-                                            <td>3月</td>
-                                            <td class="text-align-right" colspan="2">合計・出席率</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-align-center">1</td>
-                                            <td class="text-align-center" colspan="2">授業時数</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="text-align-right">0</td>
-                                            <td class="text-align-right">h</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-align-center">年</td>
-                                            <td class="text-align-center" colspan="2">出席時数</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="text-align-right">0</td>
-                                            <td class="text-align-right">h</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-align-center">次</td>
-                                            <td class="text-align-center" colspan="2">授業日数</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="text-align-right">0</td>
-                                            <td class="text-align-right">h</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-align-center"></td>
-                                            <td class="text-align-center" colspan="2">出席日数</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="text-align-right">0</td>
-                                            <td class="text-align-right">h</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="blank_td" colspan="17"></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-align-center">2</td>
-                                            <td class="text-align-center" colspan="2">授業時数</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="text-align-right">0</td>
-                                            <td class="text-align-right">h</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-align-center">年</td>
-                                            <td class="text-align-center" colspan="2">出席時数</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="text-align-right">0</td>
-                                            <td class="text-align-right">h</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-align-center">次</td>
-                                            <td class="text-align-center" colspan="2">授業日数</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="text-align-right">0</td>
-                                            <td class="text-align-right">h</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-align-center"></td>
-                                            <td class="text-align-center" colspan="2">出席日数</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="text-align-right">0</td>
-                                            <td class="text-align-right">h</td>
-                                        </tr>
+                                        @foreach($student->grades as $grade)
+                                            <tr>
+                                                <td class="text-align-center" colspan="2">出席状況</td>
+                                                <td class="text-align-center">月別</td>
+                                                @php
+                                                $date1 = strtotime($grade->grade->start_at);
+                                                $date2 = strtotime($grade->grade->end_at);
+                                                @endphp
+                                                @while ($date1 <= $date2)
+                                                    <td>{{date('m', $date1)}}月</td>
+                                                @php $date1 = strtotime('+1 month', $date1); @endphp
+                                                @endwhile
+                                                <td class="text-align-right" colspan="2">合計・出席率</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-align-center">{{$grade->grade->grade->name}}</td>
+                                                <td class="text-align-center" colspan="17">
+                                                    <table border="1">
+                                                        <tr>
+                                                            <td>授業時数</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>出席時数</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>授業日数</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>出席日数</td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
+                                        {{--<tr>--}}
+                                            {{--<td class="text-align-center" colspan="2">出席状況</td>--}}
+                                            {{--<td class="text-align-center">月別</td>--}}
+                                            {{--<td>４月</td>--}}
+                                            {{--<td>5月</td>--}}
+                                            {{--<td>6月</td>--}}
+                                            {{--<td>7月</td>--}}
+                                            {{--<td>8月</td>--}}
+                                            {{--<td>9月</td>--}}
+                                            {{--<td>10月</td>--}}
+                                            {{--<td>11月</td>--}}
+                                            {{--<td>12月</td>--}}
+                                            {{--<td>1月</td>--}}
+                                            {{--<td>2月</td>--}}
+                                            {{--<td>3月</td>--}}
+                                            {{--<td class="text-align-right" colspan="2">合計・出席率</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td class="text-align-center">1</td>--}}
+                                            {{--<td class="text-align-center" colspan="2">授業時数</td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td class="text-align-right">0</td>--}}
+                                            {{--<td class="text-align-right">h</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td class="text-align-center">年</td>--}}
+                                            {{--<td class="text-align-center" colspan="2">出席時数</td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td class="text-align-right">0</td>--}}
+                                            {{--<td class="text-align-right">h</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td class="text-align-center">次</td>--}}
+                                            {{--<td class="text-align-center" colspan="2">授業日数</td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td class="text-align-right">0</td>--}}
+                                            {{--<td class="text-align-right">h</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td class="text-align-center"></td>--}}
+                                            {{--<td class="text-align-center" colspan="2">出席日数</td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td class="text-align-right">0</td>--}}
+                                            {{--<td class="text-align-right">h</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td class="blank_td" colspan="17"></td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td class="text-align-center">2</td>--}}
+                                            {{--<td class="text-align-center" colspan="2">授業時数</td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td class="text-align-right">0</td>--}}
+                                            {{--<td class="text-align-right">h</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td class="text-align-center">年</td>--}}
+                                            {{--<td class="text-align-center" colspan="2">出席時数</td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td class="text-align-right">0</td>--}}
+                                            {{--<td class="text-align-right">h</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td class="text-align-center">次</td>--}}
+                                            {{--<td class="text-align-center" colspan="2">授業日数</td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td class="text-align-right">0</td>--}}
+                                            {{--<td class="text-align-right">h</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td class="text-align-center"></td>--}}
+                                            {{--<td class="text-align-center" colspan="2">出席日数</td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td></td>--}}
+                                            {{--<td class="text-align-right">0</td>--}}
+                                            {{--<td class="text-align-right">h</td>--}}
+                                        {{--</tr>--}}
+
                                         <tr>
                                             <td class="text-align-left" colspan="17">◎時数の増えている箇所は学校行事等による</td>
                                         </tr>

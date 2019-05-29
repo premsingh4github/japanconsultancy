@@ -39,7 +39,7 @@
                                 </p>
 
                                 @foreach($grades as $key=>$grade)
-                                    <h4>{{$grade->name}}</h4>
+                                    <h4>{{$grade->grade->name}}({{$grade->year}})</h4>
                                 <table class="table table-striped table-hover table-borderless table-vcenter js-dataTable-full">
                                 <thead class="thead-dark" >
                                 <style>
@@ -55,14 +55,13 @@
                                     <th class="font-w700">{{__('language.Student_Name')}}</th>
                                     <th class="font-w700">{{__('language.Japanese_Name')}}</th>
                                     <th class="font-w700">{{__('language.Student_ID_No')}}</th>
-                                    <th class="font-w700">Year</th>
                                     <th class="font-w700">{{__('language.Address')}}</th>
                                     <th class="font-w700">{{__('language.Gender')}}</th>
                                     <th class="font-w700">{{__('language.Action')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @php $list_students = \App\StudentGrade::where('grade_id',$grade->id)->orderBy('year','DESC')->get(); @endphp
+                                @php $list_students = \App\StudentGrade::where('grade_id',$grade->id)->get(); @endphp
                                 @if(count($list_students)>0)
                                 @foreach($list_students as $key=>$students)
                                 <tr>
@@ -108,7 +107,6 @@
                                     <td>{{$students->student->last_student_name}} {{$students->student->first_student_name}}</td>
                                     <td>{{$students->student->last_student_japanese_name}} {{$students->student->first_student_japanese_name}}</td>
                                     <td>{{$students->student->student_number}}</td>
-                                    <td>{{$students->year}}</td>
                                     <td>{{$students->student->address}}</td>
                                     <td>
                                         @if($students->student->student_sex == 'm')男

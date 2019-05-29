@@ -9,10 +9,13 @@ use App\ClassRoom;
 use App\ClassRoomBatch;
 use App\ClassSectionStudent;
 use App\Country;
+use App\Event;
 use App\ResidensalCardTime;
 use App\Student;
+use App\StudentGrade;
 use App\StudentOptional;
 use App\Subject;
+use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -374,16 +377,15 @@ class StudentController extends Controller
         return redirect('admin/section_wise_student_edit')->with('success','Record Deleted Successfully');
     }
     public function student_report($id){
+        ini_set('max_execution_time',1200);
         $title='Student Report - Admin-Panel - Chubi Management System';
         $student = Student::findOrFail($id);
-        $class_section_students = ClassSectionStudent::where('student_id',$student->id)->firstOrFail();
-        $batch_start = $class_section_students->class_section->start_date;
-        $batch_end = $class_section_students->class_section->end_date;
         $attendances = Attendance::where('student_id',$student->id)->get();
         $subjects = Subject::orderBy('id','ASC')->limit(5)->get();
+        $student_grades = \App\StudentGrade::where('student_id',$student->id)->get();
         if (count($attendances)>0){
             $first_attend =Attendance::where('student_id',$student->id)->orderBy('id','ASC')->firstOrFail();
-            return view('Admin.Student.student_report',compact('title','student','batch_end','batch_start','subjects','attendances','first_attend'));
+            return view('Admin.Student.student_report',compact('title','student','student_grades','subjects','attendances','first_attend'));
         }else{
             return view('Admin.Student.student_report_not',compact('title','student'));
         }
