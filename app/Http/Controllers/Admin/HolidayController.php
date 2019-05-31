@@ -35,16 +35,16 @@ class HolidayController extends Controller
                 $datetime1 = $datetime1 +86400;
                 $holiday = Event::firstOrNew(['start_date' => $date]);
                 $holiday->title = \request('title');
-//                $holiday->end_date = $date;
+                $holiday->end_date = $date;
                 $holiday->save();
             }
         }else{
-        $holiday = new Event();
+            $holiday = new Event();
 
-        $holiday->title = \request('title');
-        $holiday->start_date = \request('start_date');
-//        $holiday->end_date = \request('end_date');
-        $holiday->save();
+            $holiday->title = \request('title');
+            $holiday->start_date = \request('start_date');
+            $holiday->end_date = \request('start_date');
+            $holiday->save();
         }
     return redirect('admin/holiday')->with('success', 'Record Saved Successfully');
     }

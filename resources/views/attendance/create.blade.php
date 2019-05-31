@@ -8,6 +8,8 @@
 @endsection
 @section('body')
     <!-- Main Container -->
+
+
     <main id="main-container">
 
         <div class="container" style="background-color: #2196f300;">
@@ -53,6 +55,53 @@
                         <button class="btn btn-primary btn-sm" type="submit">Submit</button>
                     </div>
                 </form>
+            </div>
+            <div class="block-content block-content-full">
+                <h5>
+                    Make Student Absent
+                    <span style="float: right;">Search By Name, Date & Time</span>
+                </h5>
+                <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                    <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>Photo</th>
+                        <th>Student Name</th>
+                        <th>Attendance Date</th>
+                        <th>Attendance Time</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @php $attendances = \App\Attendance::orderBy('created_at','DESC')->get(); @endphp
+                    @foreach($attendances as $key=>$attendance)
+                    <tr>
+                        <td>{{++$key}}</td>
+                        <td>
+                            @if(isset($attendance->student->photo))
+                                <img src="{{url('public/photos/'.$attendance->student->photo)}}" alt="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">
+                            @else
+                                <img src="{{url('photos/avatar.jpg')}}" alt="" class="" style="background-color: #fff; width:65px;  border: 2px solid lightgrey; border-radius: 50%; padding:2px;">
+                            @endif
+                        </td>
+                        <td>{{$attendance->student->last_student_name}} {{$attendance->student->first_student_name}}</td>
+                        <td>{{date('d M-Y',strtotime($attendance->created_at))}}</td>
+                        <td>{{date('H:i',strtotime($attendance->created_at))}}</td>
+                        <td>
+                            @if($attendance->type==1)
+                                <button class="btn btn-primary btn-sm">In Class</button>
+                                @elseif($attendance->type==2)
+                            <button class="btn btn-warning btn-sm">Leave Class</button>
+                                @endif
+                        </td>
+                        <td>
+                            <a href="{{url('admin/manage_attendance').'/'.$attendance->id}}" onclick="return confirm('Are you sure to absent this student?')" class="btn btn-success btn-sm">Make Absent</a>
+                        </td>
+                    </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
         <!-- END Main Container -->

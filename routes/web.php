@@ -44,6 +44,7 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::get('list_student/student_id={id}/confirm_destroy','StudentController@confirm_destroy');
     Route::get('list_student/{id}','StudentController@id_preview');
     Route::get('list_student/pdf/{id}','StudentController@export_pdf');
+    Route::get('list_student/{id}/report','StudentController@student_report');
 
     Route::any('add_teacher','TeacherController@add_teacher');
     Route::get('list_teacher','TeacherController@list_teacher');
@@ -123,6 +124,31 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::get('Graduation_certificate/{id}','CertificateController@Graduation_certificate');
     Route::get('certificate_of_student_status/{id}','CertificateController@certificate_of_student_status');
     /*==================graduation_prospect_certificate=======*/
+
+     /*==================Report-Section=======*/
+    Route::get('attendance_report','ReportController@index');
+    Route::post('attendance_report','ReportController@view');
+    Route::get('attendance_report/{section}/{id}/{from_date}/{to_date}','ReportController@getattendacelist');
+
+    Route::get('report_batch_wise','ReportController@report_batch_wise');
+    Route::get('get_std_report/{grade_id}/{start_at}/{end_at}','StudentController@get_std_report');
+
+    Route::get('view_calendar','CalendarController@index');
+    /*==================Report-Section=======*/
+
+    /*==================Grade Management=======*/
+    Route::get('view_grade_wise','GradeController@index');
+    Route::get('add_grade_wise','GradeController@create');
+    Route::post('add_grade_wise','GradeController@store');
+    Route::get('view_grade_wise/student_id={id}','GradeController@edit');
+    Route::post('view_grade_wise/student_id={id}','GradeController@update');
+    Route::get('view_grade_wise/student_id={id}/delete','GradeController@delete');
+
+    Route::get('add_grade_duration','GradeController@create_grade_duration');
+    Route::post('add_grade_duration','GradeController@store_grade_duration');
+    Route::get('add_grade_duration/{id}/edit','GradeController@edit_grade_duration');
+    Route::post('add_grade_duration/{id}/edit','GradeController@update_grade_duration');
+    /*==================Grade Management=======*/
 });
 /* ================================================ ADMIN CONTROL END============================================================== */
 
@@ -141,6 +167,14 @@ Route::get('section_attendance_excel','AttendanceController@getAttendanceExcel')
 Route::get('test','HomeController@test');
 Route::get('admin/manage_attendance','AttendanceController@getAttendance')->middleware('admin');
 Route::post('admin/manage_attendance','AttendanceController@postAttendance')->middleware('admin');
+Route::get('admin/manage_attendance/{id}','AttendanceController@make_absent')->middleware('auth');
 Route::get('admin/get_students/{class_batch_section_id}','AttendanceController@getStudents')->middleware('admin');
 
 Route::get('getattendace/{code}','AttendanceController@getattendace');
+//Route::get('test','HomeController@test');
+Route::get('days','HomeController@updateType')->middleware('admin');
+
+Route::post('exist_attend_update/{id}','AttendanceController@exist_attend_update')->middleware('admin');
+Route::post('new_attend_entry/{attend}/{period}','AttendanceController@new_attend_entry')->middleware('admin');
+Route::post('get_new_attend/{period_time}/{period}/{student}','AttendanceController@get_new_attend')->middleware('admin');
+//Route::get('change_cal','HomeController@cal');

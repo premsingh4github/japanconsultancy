@@ -90,6 +90,7 @@
     </div>
     <!-- END Page Container -->
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="{{asset('public/server')}}/assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 
 
     <script src="{{asset('public/js/custom.js')}}"></script>
@@ -119,7 +120,7 @@
 
     <!-- Page JS Code -->
     <script src="{{asset('public/server')}}/assets/js/pages/be_pages_dashboard.min.js"></script>
-    <script>jQuery(function(){ One.helpers(['summernote', 'ckeditor', 'simplemde']); });</script>
+    <script>jQuery(function(){ One.helpers(['datepicker','summernote', 'ckeditor', 'simplemde']); });</script>
     <script src="{{asset('public/server')}}/assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
     {{--<script>jQuery(function(){ One.helpers(['datepicker', 'colorpicker', 'maxlength', 'select2', 'masked-inputs', 'rangeslider']); });</script>--}}
     {{--<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>--}}

@@ -9,10 +9,13 @@ use App\ClassRoom;
 use App\ClassRoomBatch;
 use App\ClassSectionStudent;
 use App\Country;
+use App\Event;
 use App\ResidensalCardTime;
 use App\Student;
+use App\StudentGrade;
 use App\StudentOptional;
 use App\Subject;
+use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -271,15 +274,15 @@ class StudentController extends Controller
         $list_student = Student::findOrFail($id);
         $attendance = Attendance::where('student_id',$list_student->id)->get();
         $class_section_student = ClassSectionStudent::where('student_id',$list_student->id)->get();
-            foreach ($attendance as $attendances){
-                $attendances->delete();
-            }
-            foreach ($class_section_student as $class_section_students){
-                $class_section_students->delete();
-            }
-            if (is_file(public_path('photos/').'/'.$list_student->photo) && file_exists(public_path('photos/').'/'.$list_student->photo)){
-                unlink(public_path('photos/').'/'.$list_student->photo);
-            }
+        foreach ($attendance as $attendances){
+            $attendances->delete();
+        }
+        foreach ($class_section_student as $class_section_students){
+            $class_section_students->delete();
+        }
+        if (is_file(public_path('photos/').'/'.$list_student->photo) && file_exists(public_path('photos/').'/'.$list_student->photo)){
+            unlink(public_path('photos/').'/'.$list_student->photo);
+        }
         $list_student->delete();
         return redirect()->back()->with('success', 'Record Deleted');
 
@@ -312,7 +315,6 @@ class StudentController extends Controller
                 'class_section_id' => 'required',
                 'student_id' => 'required|unique:class_section_students,student_id',
             ]);
-
 
         }
 
@@ -374,5 +376,30 @@ class StudentController extends Controller
         $classSectionStudent->delete();
         return redirect('admin/section_wise_student_edit')->with('success','Record Deleted Successfully');
     }
-
+    public function student_report($id){
+        ini_set('max_execution_time',1200);
+        $title='Student Report - Admin-Panel - Chubi Management System';
+        $student = Student::findOrFail($id);
+        $attendances = Attendance::where('student_id',$student->id)->get();
+        $subjects = Subject::orderBy('id','ASC')->limit(5)->get();
+        $student_grades = \App\StudentGrade::where('student_id',$student->id)->get();
+        if (count($attendances)>0){
+            $first_attend =Attendance::where('student_id',$student->id)->orderBy('id','ASC')->firstOrFail();
+            return view('Admin.Student.student_report',compact('title','student','student_grades','subjects','attendances','first_attend'));
+        }else{
+            return view('Admin.Student.student_report_not',compact('title','student'));
+        }
+    }
+    public function get_std_report($grade_id,$start_at,$end_at){
+        ini_set('max_execution_time',1200);
+        return \response()->view('Admin.Report.student.class_hour',compact('start_at','end_at','grade_id'))->header('grade_id',$grade_id);
+    }
+//     public function change(){
+//         $students = Student::all();
+//         foreach($students as $student){
+//             $student->student_note = '正規生';
+//             $student->save();
+//         }
+//         return redirect('admin/second_immigration')->with('success','Updated');
+//     }
 }

@@ -18,9 +18,14 @@ return[
     'admin'=>'Admin',
     'User_Manager'=>'USER MANAGER',
     'User_controller'=>'User Control',
-    'STUDENT_TEACHER_MANAGER'=>'STUDENT/TEACHER MANAGER',
+    'TEACHER_MANAGER'=>'TEACHER MANAGER',
+    'STUDENT_MANAGER'=>'STUDENT MANAGER',
     'Teachers'=>'Teachers',
     'MANAGER'=>'MANAGER',
+    'GRADE_WISE_STUDENT'=>'Grade Wise Student',
+    'Student_Grade_Manage'=>'Student Grade Manage',
+    'View_Grade_Manage'=>'View Grade Manage',
+    'Choose_Student_Grade'=>'Choose Student Grade',
     'Students'=>'Students',
     'Subject_Record'=>'Subject Record',
     'Subject_Name'=>'Subject Name',
@@ -237,6 +242,8 @@ return[
     'Student_immigration'=>'Student Immigration',
 
     'student_record'=>'Student Record',
+    'main_reports'=>'Reports',
+    'report_attendance'=>'Attendance Report',
 
     /*List Student */
     'Save_section'=>'Save section',

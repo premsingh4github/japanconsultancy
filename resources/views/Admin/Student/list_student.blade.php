@@ -174,6 +174,9 @@
                                                     <a class="dropdown-item d-flex align-items-center justify-content-between" onclick="window.open('{{url('admin/certificate_of_student_status/'.$students->id)}}', 'popup', 'height=1122,width=994,scrollbars=yes,resize=no,status=no,left=100,top=100');">
                                                         <span>{{__('language.Certificate_of_Student_Status')}}</span> <i class="fa fa-eye"></i>
                                                     </a>
+                                                    <a href="{{url('admin/list_student/'.$students->id.'/report')}}" class="dropdown-item d-flex align-items-center justify-content-between">
+                                                        <span>Student Report</span> <i class="fa fa-eye"></i>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
