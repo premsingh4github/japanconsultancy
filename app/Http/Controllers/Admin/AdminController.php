@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\ClassRoomBatch;
 use App\Event;
+use App\GradeDuration;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +33,7 @@ class AdminController extends Controller
     {
         $events = [];
         $data = Event::all();
+        $grades = GradeDuration::all();
         if($data->count()){
             foreach ($data as $key => $value) {
                 $events[] = Calendar::event(
@@ -44,6 +46,6 @@ class AdminController extends Controller
         }
         $calendar = \MaddHatter\LaravelFullcalendar\Facades\Calendar::addEvents($events);
         $batch = ClassRoomBatch::withCount('students')->orderBy('students_count','DESC')->get();
-        return view('Admin.dashboard',compact('batch','calendar'));
+        return view('Admin.dashboard',compact('batch','calendar','grades'));
     }
 }

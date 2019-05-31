@@ -26,6 +26,9 @@
                         </div>
                         <div class="block-content block-content-full">
                             <p class="font-size-sm text-muted">
+                                @if(session('error'))
+                                    <span class="alert alert-danger"> {{session('error')}}</span>
+                            @endif
                                 @if(session('success'))
                                     <span class="alert alert-success"> {{session('success')}}</span>
                             @endif

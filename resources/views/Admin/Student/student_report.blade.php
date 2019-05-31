@@ -86,205 +86,80 @@
                                             <td class="blank_td" colspan="17"></td>
                                         </tr>
                                         @foreach($student->grades as $grade)
-                                            <tr>
-                                                <td class="text-align-center" colspan="2">出席状況</td>
-                                                <td class="text-align-center">月別</td>
+                                            <tr style="background-color: lightgray;">
+                                                <td class="text-align-center" colspan="2" style="width: 70px;">出席状況</td>
+                                                <td class="text-align-center" style="width: 70px;">月別</td>
                                                 @php
                                                 $date1 = strtotime($grade->grade->start_at);
                                                 $date2 = strtotime($grade->grade->end_at);
                                                 @endphp
                                                 @while ($date1 <= $date2)
-                                                    <td>{{date('m', $date1)}}月</td>
+                                                    <td class="text-align-center" style="width: 60px;">{{date('m', $date1)}}月</td>
                                                 @php $date1 = strtotime('+1 month', $date1); @endphp
                                                 @endwhile
                                                 <td class="text-align-right" colspan="2">合計・出席率</td>
                                             </tr>
                                             <tr>
-                                                <td class="text-align-center">{{$grade->grade->grade->name}}</td>
+                                                <td class="text-align-center" style="width: 70px;">{{$grade->grade->grade->name}}</td>
                                                 <td class="text-align-center" colspan="17">
                                                     <table border="1">
                                                         <tr>
-                                                            <td>授業時数</td>
+                                                            <td style="width: 70px;">授業時数</td>
+                                                            @php
+                                                                $date1 = strtotime($grade->grade->start_at);
+                                                                $date2 = strtotime($grade->grade->end_at);
+                                                            @endphp
+                                                            @while ($date1 <= $date2)
+                                                                <td style="width: 60px; background-color: #ffdede;">11</td>
+                                                                @php $date1 = strtotime('+1 month', $date1); @endphp
+                                                            @endwhile
+                                                            <td style="width: 65px;" id="student_report_1{{$grade->id}}" class="student_report" data-std_report="1{{$grade->id}}" data-start_at="{{$grade->grade->start_at}}" data-end_at="{{$grade->grade->end_at}}"></td>
+                                                            <td style="width: 50px;">h</td>
                                                         </tr>
                                                         <tr>
                                                             <td>出席時数</td>
+                                                            @php
+                                                                $date1 = strtotime($grade->grade->start_at);
+                                                                $date2 = strtotime($grade->grade->end_at);
+                                                            @endphp
+                                                            @while ($date1 <= $date2)
+                                                                <td style="width: 60px; background-color: #ffdede;">11</td>
+                                                                @php $date1 = strtotime('+1 month', $date1); @endphp
+                                                            @endwhile
+                                                            <td style="width: 65px;">0</td>
+                                                            <td style="width: 50px;">h</td>
+
                                                         </tr>
                                                         <tr>
                                                             <td>授業日数</td>
+                                                            @php
+                                                                $date1 = strtotime($grade->grade->start_at);
+                                                                $date2 = strtotime($grade->grade->end_at);
+                                                            @endphp
+                                                            @while ($date1 <= $date2)
+                                                                <td style="width: 60px; background-color: #ffdede;">11</td>
+                                                                @php $date1 = strtotime('+1 month', $date1); @endphp
+                                                            @endwhile
+                                                            <td style="width: 65px;">0</td>
+                                                            <td style="width: 50px;">h</td>
                                                         </tr>
                                                         <tr>
                                                             <td>出席日数</td>
+                                                            @php
+                                                                $date1 = strtotime($grade->grade->start_at);
+                                                                $date2 = strtotime($grade->grade->end_at);
+                                                            @endphp
+                                                            @while ($date1 <= $date2)
+                                                                <td style="width: 60px; background-color: #ffdede;">11</td>
+                                                                @php $date1 = strtotime('+1 month', $date1); @endphp
+                                                            @endwhile
+                                                            <td style="width: 65px;">0</td>
+                                                            <td style="width: 50px;">h</td>
                                                         </tr>
                                                     </table>
                                                 </td>
                                             </tr>
                                         @endforeach
-
-                                        {{--<tr>--}}
-                                            {{--<td class="text-align-center" colspan="2">出席状況</td>--}}
-                                            {{--<td class="text-align-center">月別</td>--}}
-                                            {{--<td>４月</td>--}}
-                                            {{--<td>5月</td>--}}
-                                            {{--<td>6月</td>--}}
-                                            {{--<td>7月</td>--}}
-                                            {{--<td>8月</td>--}}
-                                            {{--<td>9月</td>--}}
-                                            {{--<td>10月</td>--}}
-                                            {{--<td>11月</td>--}}
-                                            {{--<td>12月</td>--}}
-                                            {{--<td>1月</td>--}}
-                                            {{--<td>2月</td>--}}
-                                            {{--<td>3月</td>--}}
-                                            {{--<td class="text-align-right" colspan="2">合計・出席率</td>--}}
-                                        {{--</tr>--}}
-                                        {{--<tr>--}}
-                                            {{--<td class="text-align-center">1</td>--}}
-                                            {{--<td class="text-align-center" colspan="2">授業時数</td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td class="text-align-right">0</td>--}}
-                                            {{--<td class="text-align-right">h</td>--}}
-                                        {{--</tr>--}}
-                                        {{--<tr>--}}
-                                            {{--<td class="text-align-center">年</td>--}}
-                                            {{--<td class="text-align-center" colspan="2">出席時数</td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td class="text-align-right">0</td>--}}
-                                            {{--<td class="text-align-right">h</td>--}}
-                                        {{--</tr>--}}
-                                        {{--<tr>--}}
-                                            {{--<td class="text-align-center">次</td>--}}
-                                            {{--<td class="text-align-center" colspan="2">授業日数</td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td class="text-align-right">0</td>--}}
-                                            {{--<td class="text-align-right">h</td>--}}
-                                        {{--</tr>--}}
-                                        {{--<tr>--}}
-                                            {{--<td class="text-align-center"></td>--}}
-                                            {{--<td class="text-align-center" colspan="2">出席日数</td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td class="text-align-right">0</td>--}}
-                                            {{--<td class="text-align-right">h</td>--}}
-                                        {{--</tr>--}}
-                                        {{--<tr>--}}
-                                            {{--<td class="blank_td" colspan="17"></td>--}}
-                                        {{--</tr>--}}
-                                        {{--<tr>--}}
-                                            {{--<td class="text-align-center">2</td>--}}
-                                            {{--<td class="text-align-center" colspan="2">授業時数</td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td class="text-align-right">0</td>--}}
-                                            {{--<td class="text-align-right">h</td>--}}
-                                        {{--</tr>--}}
-                                        {{--<tr>--}}
-                                            {{--<td class="text-align-center">年</td>--}}
-                                            {{--<td class="text-align-center" colspan="2">出席時数</td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td class="text-align-right">0</td>--}}
-                                            {{--<td class="text-align-right">h</td>--}}
-                                        {{--</tr>--}}
-                                        {{--<tr>--}}
-                                            {{--<td class="text-align-center">次</td>--}}
-                                            {{--<td class="text-align-center" colspan="2">授業日数</td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td class="text-align-right">0</td>--}}
-                                            {{--<td class="text-align-right">h</td>--}}
-                                        {{--</tr>--}}
-                                        {{--<tr>--}}
-                                            {{--<td class="text-align-center"></td>--}}
-                                            {{--<td class="text-align-center" colspan="2">出席日数</td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td></td>--}}
-                                            {{--<td class="text-align-right">0</td>--}}
-                                            {{--<td class="text-align-right">h</td>--}}
-                                        {{--</tr>--}}
-
                                         <tr>
                                             <td class="text-align-left" colspan="17">◎時数の増えている箇所は学校行事等による</td>
                                         </tr>
@@ -424,4 +299,30 @@
 
     </main>
     <!-- END Main Container -->
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function () {
+
+            $('.student_report').each(function (i,ls) {
+                {{--var section = "{{request('section')}}";--}}
+                $(ls).data('std_report');
+                $(ls).data('start_at');
+                $(ls).data('end_at');
+                $.ajax({
+                    url: Laravel.url + "/admin/get_std_report/"+$(ls).data('std_report')+"/"+$(ls).data('start_at')+"/"+$(ls).data('end_at'),
+                    method:"GET",
+                    success: function (data, textStatus, request) {
+
+                        $('#student_report_'+request.getResponseHeader('grade_id')).html(data);
+                        // $("#"+data['id']).html(data['status']);
+                    },
+                    error: function (error) {
+                        debugger;
+                    }
+
+                });
+            });
+        });
+    </script>
 @endsection

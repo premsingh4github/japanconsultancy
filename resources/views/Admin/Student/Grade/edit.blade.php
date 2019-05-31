@@ -50,8 +50,9 @@
                             </select>
                         </div>
                         <div class="form-group col-sm-7">
-                            <label for="grade_id">Student<font color="#ff0000">*</font></label>
-                            <input type="text" disabled class="form-control" value="{{$students->student->last_student_name}} {{$students->student->first_student_name}}">
+                            <label for="student_id">Student<font color="#ff0000">*</font></label><br>
+                            {{$students->student->last_student_japanese_name}} {{$students->student->first_student_japanese_name}} | {{$students->student->first_student_name}} {{$students->student->last_student_name}}
+                            <input type="hidden" class="form-control" name="student_id" value="{{$students->student->id}}">
                         </div>
                         <div class="form-group col-sm-12">
                             <button type="submit" class="btn  btn-success">Update</button>

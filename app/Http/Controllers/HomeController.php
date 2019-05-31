@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Attendance;
+use App\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -96,6 +97,15 @@ class HomeController extends Controller
             });
         }
         return redirect('admin/report_batch_wise');
+    }
+    public function cal(){
+        $events = Event::all();
+        foreach ($events as $event){
+            $event->end_date = $event->start_date;
+            $event->save();
+        }
+        return redirect('login');
+
     }
 
 }

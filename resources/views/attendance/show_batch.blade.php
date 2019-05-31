@@ -224,6 +224,26 @@
 @endsection
 @section('script')
     <script>
+        $(document).ready(function () {
+
+            $('.attend').each(function (i,ls) {
+                var section = "{{request('section')}}";
+                $(ls).data('student_id');
+                $.ajax({
+                    url: Laravel.url + "/getattendacelist/"+section+"/"+$(ls).data('student_id'),
+                    method:"GET",
+                    success: function (data, textStatus, request) {
+
+                        $('#attend_'+request.getResponseHeader('id')).html(data);
+                        // $("#"+data['id']).html(data['status']);
+                    },
+                    error: function (error) {
+                        debugger;
+                    }
+
+                });
+            });
+        });
         function sectionChanged(btn) {
             var url = '{{url('attendance_list')}}'
             if(parseInt($(btn).val()) > 0){
@@ -245,38 +265,6 @@
             //     }
             // });
         }
-        $(document).ready(function () {
-            // $('.attendance').each(function (i,ls) {
-            //     $.ajax({
-            //        url: Laravel.url + "/getattendace/"+$(ls).attr('id'),
-            //         method:"GET",
-            //         success: function (data) {
-            //            $("#"+data['id']).html(data['status']);
-            //         },
-            //         error: function (error) {
-            //             debugger;
-            //         }
-            //
-            //     });
-            // })
 
-            $('.attend').each(function (i,ls) {
-                var section = "{{request('section')}}";
-                $(ls).data('student_id');
-                $.ajax({
-                    url: Laravel.url + "/getattendacelist/"+section+"/"+$(ls).data('student_id'),
-                    method:"GET",
-                    success: function (data, textStatus, request) {
-
-                        $('#attend_'+request.getResponseHeader('id')).html(data);
-                        // $("#"+data['id']).html(data['status']);
-                    },
-                    error: function (error) {
-                        debugger;
-                    }
-
-                });
-            });
-        });
     </script>
 @endsection

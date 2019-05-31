@@ -131,6 +131,7 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::get('attendance_report/{section}/{id}/{from_date}/{to_date}','ReportController@getattendacelist');
 
     Route::get('report_batch_wise','ReportController@report_batch_wise');
+    Route::get('get_std_report/{grade_id}/{start_at}/{end_at}','StudentController@get_std_report');
 
     Route::get('view_calendar','CalendarController@index');
     /*==================Report-Section=======*/
@@ -176,4 +177,4 @@ Route::get('days','HomeController@updateType')->middleware('admin');
 Route::post('exist_attend_update/{id}','AttendanceController@exist_attend_update')->middleware('admin');
 Route::post('new_attend_entry/{attend}/{period}','AttendanceController@new_attend_entry')->middleware('admin');
 Route::post('get_new_attend/{period_time}/{period}/{student}','AttendanceController@get_new_attend')->middleware('admin');
-//Route::get('change_remark','Admin\StudentController@change');
+//Route::get('change_cal','HomeController@cal');

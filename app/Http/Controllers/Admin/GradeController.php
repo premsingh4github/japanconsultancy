@@ -33,7 +33,7 @@ class GradeController extends Controller
                 $student_grades = StudentGrade::firstOrNew(['student_id'=>$value,'grade_id'=>$request->grade_id]);
                 $student_grades->save();
             }else{
-                return redirect()->back()->with('error', 'This student already transfered in choosen garde and year');
+                return redirect()->back()->with('error', 'This student already transfered in choosen grade and year');
             }
         }
         return redirect()->back()->with('success', 'Record Saved Successfully');
@@ -48,10 +48,16 @@ class GradeController extends Controller
         $this->validate($request, [
             'grade_id' => 'required',
         ]);
-        $students = StudentGrade::findOrFail($id);
-        $students->grade_id = $request->grade_id;
-        $students->save();
-        return redirect('admin/view_grade_wise')->with('success', 'Record Updated Successfully');
+        $check = StudentGrade::where('student_id',$request->student_id)->where('grade_id',$request->grade_id)->count();
+        if ($check==0)
+        {
+            $students = StudentGrade::findOrFail($id);
+            $students->grade_id = $request->grade_id;
+            $students->save();
+            return redirect('admin/view_grade_wise')->with('success', 'Record Updated Successfully');
+        }else{
+            return redirect('admin/view_grade_wise')->with('error', 'This student already transfered in choosen grade and year');
+        }
     }
     public function delete($id){
         $students = StudentGrade::findOrFail($id);

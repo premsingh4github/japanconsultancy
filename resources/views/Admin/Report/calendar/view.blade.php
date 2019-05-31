@@ -20,13 +20,13 @@
                                     <h4> Calender View <a href="{{url('admin/view_calendar')}}" class="btn btn-primary btn-sm" style="float: right;">Back</a> </h4>
                                 </div>
                                 <div class="col-sm-12">
-                                    <table class="table table-striped">
+                                    <table class="table table-striped" style="border: 1px solid darkgrey;">
                                         <tr>
                                             <th colspan="36">{{$year}} 年度学事日程表（アートビジネスコース）</th>
                                         </tr>
                                         <tr>
                                             @while ($date1 <= $date2)
-                                                <td colspan="3">{{date('m', $date1)}}月 ({{date('Y', $date1)}})</td>
+                                                <td colspan="3" style="text-align:center;">{{date('m', $date1)}}月 ({{date('Y', $date1)}})</td>
                                                 @php $date1 = strtotime('+1 month', $date1); @endphp
                                             @endwhile
                                         </tr>
@@ -37,10 +37,9 @@
                                             @endphp
                                         @while ($month1 <= $month2)
                                             <td colspan="3">
-                                                <table class="table table-striped">
+                                                <table class="table table-striped" style="border: 1px solid darkgrey;">
                                                     <tr>
-                                                        <td>Date</td>
-                                                        <td>Day</td>
+                                                        <td colspan="2" style="text-align: center;">Date</td>
                                                         <td>Description</td>
                                                     </tr>
                                                     @php

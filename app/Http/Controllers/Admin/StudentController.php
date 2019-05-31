@@ -102,7 +102,7 @@ class StudentController extends Controller
             $list_students = Student::orderBy('student_number', 'ASC')->get();
             $classRoomBatch = ClassRoomBatch::all();
             $title = 'Student Immigration | Chubi Project : Management System';
-            return view('Admin.Student.first_immigration_print', compact('title', 'list_students', 'classRoomBatch', 'count'));
+            return view('Admin.Student.first_immigration', compact('title', 'list_students', 'classRoomBatch', 'count'));
         }
         if ($request->isMethod('post')){
             $list_students = Student::orderBy('student_number','ASC');
@@ -111,7 +111,7 @@ class StudentController extends Controller
             }
             $list_students =$list_students->get();
             $classRoomBatch = ClassRoomBatch::all();
-            return view('Admin.Student.first_immigration_print', compact( 'title','list_students','classRoomBatch','count'));
+            return view('Admin.Student.first_immigration', compact( 'title','list_students','classRoomBatch','count'));
         }
     }
     public function second_immigration(Request $request){
@@ -119,7 +119,7 @@ class StudentController extends Controller
             $list_students = Student::orderBy('student_number', 'ASC')->get();
             $classRoomBatch = ClassRoomBatch::all();
             $title = 'Student Immigration | Chubi Project : Management System';
-            return view('Admin.Student.second_immigration_print', compact('title', 'list_students', 'classRoomBatch', 'count'));
+            return view('Admin.Student.second_immigration', compact('title', 'list_students', 'classRoomBatch', 'count'));
         }
         if ($request->isMethod('post')){
             $list_students = Student::orderBy('student_number','ASC');
@@ -128,7 +128,7 @@ class StudentController extends Controller
             }
             $list_students =$list_students->get();
             $classRoomBatch = ClassRoomBatch::all();
-            return view('Admin.Student.second_immigration_print', compact( 'title','list_students','classRoomBatch','count'));
+            return view('Admin.Student.second_immigration', compact( 'title','list_students','classRoomBatch','count'));
         }
     }
     public function update_student_remarks(Request $request, $id){
@@ -389,6 +389,10 @@ class StudentController extends Controller
         }else{
             return view('Admin.Student.student_report_not',compact('title','student'));
         }
+    }
+    public function get_std_report($grade_id,$start_at,$end_at){
+        ini_set('max_execution_time',1200);
+        return \response()->view('Admin.Report.student.class_hour',compact('start_at','end_at','grade_id'))->header('grade_id',$grade_id);
     }
 //     public function change(){
 //         $students = Student::all();
