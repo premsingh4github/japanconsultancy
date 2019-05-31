@@ -10,6 +10,7 @@ use App\Event;
 use App\Exports\ClassBatchSectionExport;
 use App\Period;
 use App\Student;
+use App\StudentStatus;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -28,14 +29,26 @@ class AttendanceController extends Controller
 
     public function store($code)
     {
-        if($student = Student::where('unique_id',$code)->first()){
-            $attendance = new Attendance;
-            $attendance->student_id = $student->id;
-            $attendance->save();
-            Session::flash('student_id',$student->id);
-            return redirect('attendance_form')->with('success','Attendance Successfully !!! ' .$student->first_student_name .' '.$student->last_student_name .' is Present !');
+        $holidays = \App\Event::where('start_date',date('Y-m-d'))->count();
+        if (date('D')=='Sat' || date('D')=='Sun' || $holidays>0){
+            return redirect()->back()->withErrors(['Something went wrong!.Please Try Again | Today it may be a holiday.']);
         }else{
-			return redirect('attendance_form')->withErrors(['Something went wrong!.Please Try Again']);
+            if($student = Student::where('unique_id',$code)->first()){
+                $attendance = new Attendance;
+                $attendance->student_id = $student->id;
+                $attendance->attendance_for = date('Y-m-d');
+                $attendance->save();
+//                $student_status = new StudentStatus();
+//                $student_status->attendance_id = $attendance->id;
+//                $student_status->student_id = $student->id;
+//                $student_status->period_id = 1;
+//                $student_status->status = 'present';
+//                $student_status->save();
+                Session::flash('student_id',$student->id);
+                return redirect()->back()->with('success','Attendance Successfully !!! ' .$student->first_student_name .' '.$student->last_student_name .' is Present !');
+            }else{
+                return redirect()->back()->withErrors(['Something went wrong!.Please Try Again']);
+            }
         }
     }
 
@@ -88,16 +101,23 @@ class AttendanceController extends Controller
 
     public function postAttendance()
     {
+        $holidays = \App\Event::where('start_date',date('Y-m-d'))->count();
         $this->validate(request(),[
             'date' => 'required',
             'student_id' => 'required',
         ]);
-        $attendance = new Attendance();
-        $attendance->student_id = \request('student_id');
-        $attendance->created_at = date('Y-m-d h:i:s', strtotime(\request('date')));
-        $attendance->save();
-        Session::flash('success','Attendance created!');
-        return redirect('admin/manage_attendance');
+        if (date('D')=='Sat' || date('D')=='Sun' || $holidays>0){
+            return redirect()->back()->withErrors(['Something went wrong!.Please Try Again | Today it may be a holiday.']);
+        }else {
+            $attendance = new Attendance();
+            $attendance->student_id = \request('student_id');
+            $attendance->created_at = date('Y-m-d h:i:s', strtotime(\request('date')));
+            $attendance->updated_at = date('Y-m-d h:i:s', strtotime(\request('date')));
+            $attendance->attendance_for = date('Y-m-d', strtotime(\request('date')));
+            $attendance->save();
+            Session::flash('success', 'Attendance created!');
+            return redirect('admin/manage_attendance');
+        }
     }
 
     public function getAttendanceExcel()
@@ -125,8 +145,8 @@ class AttendanceController extends Controller
                     $section_periods->where('period_id',$period);
                 });
             })->find($class_section_student_id);
-           $dif = (strtotime(date('H:i',strtotime($attendences[0]->created_at))) - strtotime($class_section_student->start_at))/(60);
-           if($dif < 10){
+            $dif = (strtotime(date('H:i',strtotime($attendences[0]->created_at))) - strtotime($class_section_student->start_at))/(60);
+            if($dif < 10){
                 return response()->json(['id'=>$code,'status'=>"P"]);
             }elseif (($dif >= 10 ) && (strtotime(date('H:i',strtotime($attendences[0]->created_at))) < strtotime($class_section_student->end_at)) ) {
                 return response()->json(['id'=>$code,'status'=>"L"]);
@@ -136,7 +156,57 @@ class AttendanceController extends Controller
             return response()->json(['id'=>$code,'status'=>"A"]);
         }
 
-        
+
     }
 
+    public function make_absent($id){
+        $attendance = Attendance::findOrFail($id);
+        $attendance->delete();
+        return redirect()->back()->with('success','Student Absent Successfully!');
+    }
+    public function new_attend_entry(Request $request, $attend, $period){
+        $attends = Attendance::findOrFail($attend);
+        $attend_sts = new StudentStatus();
+        $attend_sts->attendance_id = $attends->id;
+        $attend_sts->student_id = $attends->student_id;
+        $attend_sts->status = $request->status;
+        $attend_sts->created_at = $attends->created_at;
+        $attend_sts->period_id = $period;
+        $attend_sts->save();
+        return redirect()->back();
+    }
+    public function exist_attend_update(Request $request, $id){
+        $attends = StudentStatus::findOrFail($id);
+        $attends->status = $request->status;
+        $attends->save();
+        return redirect()->back();
+    }
+    public function get_new_attend(Request $request,$period_time,$period,$student){
+        $start_at = date('Y-m-d H:i:s',strtotime($period_time));
+        $attends = new Attendance();
+        $attends->student_id = $student;
+        $attends->created_at = $start_at;
+        $attends->attendance_for = date('Y-m-d',strtotime($start_at));
+        $attends->type = '1';
+        $attends->save();
+        $periods = Period::all();
+        foreach ($periods as $period_exist){
+            $attend_sts = new StudentStatus();
+            $attend_sts->attendance_id = $attends->id;
+            $attend_sts->student_id = $student;
+            $attend_sts->created_at = $attends->created_at;
+            if ($period_exist->id == $period && $request->status=='present'){
+                $attend_sts->period_id = $period;
+                $attend_sts->status = 'present';
+            }elseif($period_exist->id == $period && $request->status=='late'){
+                $attend_sts->period_id = $period;
+                $attend_sts->status = 'late';
+            }else{
+                $attend_sts->period_id = $period_exist->id;
+                $attend_sts->status = 'absent';
+            }
+            $attend_sts->save();
+        }
+        return redirect()->back();
+    }
 }
