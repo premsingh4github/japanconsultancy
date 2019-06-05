@@ -558,7 +558,7 @@
                         </ul>
                     </li>
                     <li class="nav-main-heading ">{{__('language.STUDENT_MANAGER')}}</li>
-                    <li class="nav-main-item <?php if(request()->segment('2') =='add_student' || request()->segment('2') =='list_student' || request()->segment('2') =='section_wise_student_edit' || request()->segment('2') =='section_wise_student'){ echo 'open' ;} ?>">
+                    <li class="nav-main-item <?php if(request()->segment('2') =='add_student' || request()->segment('2') =='mark_obtained' || request()->segment('2') =='list_student' || request()->segment('2') =='section_wise_student_edit' || request()->segment('2') =='section_wise_student'){ echo 'open' ;} ?>">
                         <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-user"></i>
                             <span class="nav-main-link-name">{{__('language.Students')}}</span>
@@ -572,6 +572,11 @@
                             <li class="nav-main-item">
                                 <a class="nav-main-link <?php if(request()->segment('2') =='add_student'){ echo 'active' ;} ?>" href="{{url('admin/add_student')}}">
                                     <span class="nav-main-link-name">{{__('language.Add_New_Students')}}</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='mark_obtained'){ echo 'active' ;} ?>" href="{{url('admin/mark_obtained')}}">
+                                    <span class="nav-main-link-name">{{__('language.mark_obtained')}}</span>
                                 </a>
                             </li>
                             <li class="nav-main-item">

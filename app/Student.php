@@ -83,5 +83,8 @@ class Student extends Model
     public function grades(){
         return $this->hasMany(StudentGrade::class,'student_id');
     }
+    public function marks(){
+        return $this->hasMany(Marksheet::class,'student_id');
+    }
 }
 

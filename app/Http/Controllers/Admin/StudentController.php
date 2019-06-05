@@ -10,6 +10,7 @@ use App\ClassRoomBatch;
 use App\ClassSectionStudent;
 use App\Country;
 use App\Event;
+use App\Exam;
 use App\ResidensalCardTime;
 use App\Student;
 use App\StudentGrade;
@@ -378,21 +379,55 @@ class StudentController extends Controller
     }
     public function student_report($id){
         ini_set('max_execution_time',1200);
+        $attendance_days = Attendance::groupBy('attendance_for')->orderBy('attendance_for')->where('attendance_for','>=','2019-06-04')->where('attendance_for','<=',date('Y-m-d'))->get();
+        foreach ($attendance_days as $days){
+            $attendaces_day = Attendance::where('attendance_for',$days->attendance_for)->groupBy('student_id')->orderBy('student_id')->chunk(100,function ($students_data){
+                foreach ($students_data as $student_data){
+                    $same_attendaces = Attendance::where('attendance_for',$student_data->attendance_for)->where('student_id',$student_data->student_id)->get();
+                    $i = 0;
+                    foreach ($same_attendaces as $s_attendace){
+                        if($i == 0){
+
+                            $s_attendace->type = '1';
+                            $s_attendace->save();
+                        }
+                        elseif ($i == count($same_attendaces) - 1) {
+
+                            $s_attendace->type = '2';
+                            $s_attendace->save();
+                        }
+                        else{
+                            $s_attendace->delete();
+                        }
+                        $i +=1;
+                    }
+
+                }
+            });
+        }
+
         $title='Student Report - Admin-Panel - Chubi Management System';
         $student = Student::findOrFail($id);
         $attendances = Attendance::where('student_id',$student->id)->get();
-        $subjects = Subject::orderBy('id','ASC')->limit(5)->get();
+        $subjects = Subject::orderBy('id','ASC')->get();
+        $exams = Exam::all();
         $student_grades = \App\StudentGrade::where('student_id',$student->id)->get();
         if (count($attendances)>0){
             $first_attend =Attendance::where('student_id',$student->id)->orderBy('id','ASC')->firstOrFail();
-            return view('Admin.Student.student_report',compact('title','student','student_grades','subjects','attendances','first_attend'));
+            return view('Admin.Student.student_report',compact('title','student','exams','student_grades','subjects','attendances','first_attend'));
+//            return view('Admin.Report.student.student_report',compact('title','student','exams','student_grades','subjects','attendances','first_attend'));
         }else{
             return view('Admin.Student.student_report_not',compact('title','student'));
         }
     }
-    public function get_std_report($grade_id,$start_at,$end_at){
+    public function get_student_grade($grade_id,$start_at,$end_at,$id){
         ini_set('max_execution_time',1200);
-        return \response()->view('Admin.Report.student.class_hour',compact('start_at','end_at','grade_id'))->header('grade_id',$grade_id);
+        if(date('Y-m-d',strtotime($end_at)) <= date('Y-m-d')){
+            $end_date_new = $end_at;
+        }else{
+            $end_date_new = date('Y-m-d');
+        }
+        return \response()->view('Admin.Report.student.student_grade',compact('start_at','end_at','end_date_new','grade_id','id','attendances'))->header('grade_id',$grade_id);
     }
 //     public function change(){
 //         $students = Student::all();

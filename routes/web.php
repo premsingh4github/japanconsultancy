@@ -38,6 +38,11 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::get('list_student/student_id={id}/remarks','StudentController@edit_student_remarks');
     Route::post('list_student/student_id={id}/remarks','StudentController@update_student_remarks');
 
+    Route::get('mark_obtained','MarkController@index');
+    Route::post('mark_obtained/store','MarkController@store');
+    Route::get('mark_obtained/{student}/{exam}/edit','MarkController@edit');
+
+
     Route::get('list_student/student_id={id}','StudentController@edit_student');
     Route::post('list_student/student_id={id}','StudentController@update_student');
     Route::get('list_student/student_id={id}/delete','StudentController@destroy');
@@ -131,7 +136,7 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::get('attendance_report/{section}/{id}/{from_date}/{to_date}','ReportController@getattendacelist');
 
     Route::get('report_batch_wise','ReportController@report_batch_wise');
-    Route::get('get_std_report/{grade_id}/{start_at}/{end_at}','StudentController@get_std_report');
+    Route::get('student_grade/{grade_id}/{start_at}/{end_at}/{id}','StudentController@get_student_grade');
 
     Route::get('view_calendar','CalendarController@index');
     /*==================Report-Section=======*/

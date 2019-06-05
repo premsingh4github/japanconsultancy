@@ -70,7 +70,7 @@ class HomeController extends Controller
 
     public function updateType()
     {
-        $attendance_days = Attendance::groupBy('attendance_for')->orderBy('attendance_for')->where('attendance_for','>=','2019-05-13')->where('attendance_for','<=',date('Y-m-d'))->get();
+        $attendance_days = Attendance::groupBy('attendance_for')->orderBy('attendance_for')->where('attendance_for','>=','2019-06-04')->where('attendance_for','<=',date('Y-m-d'))->get();
         foreach ($attendance_days as $days){
             $attendaces = Attendance::where('attendance_for',$days->attendance_for)->groupBy('student_id')->orderBy('student_id')->chunk(100,function ($students){
                 foreach ($students as $student){

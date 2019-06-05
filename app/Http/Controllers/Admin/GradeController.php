@@ -19,7 +19,7 @@ class GradeController extends Controller
     }
     public function create(){
         $title = 'Student Grade Management - Admin-Panel - Chubi Management System';
-        $students = Student::orderBy('class_room_batch_id','ASC')->get();
+        $students = Student::orderBy('id','DESC')->get();
         $grades = GradeDuration::all();
         return view('Admin.Student.Grade.create',compact('title','grades','students'));
     }

@@ -63,7 +63,7 @@
                                                                     @endif
                                                         </tr>
                                                         @endif
-                                                            @php $day1 = strtotime('+1 day', $day1); @endphp
+                                                        @php $day1 = strtotime('+1 day', $day1); @endphp
 
                                                     @endwhile
                                                 </table>

@@ -40,6 +40,7 @@ return[
 
     'List_All_Students'=>'List All Students',
     'Add_New_Students'=>'Add New Students',
+    'mark_obtained'=>'Student Marks Obtain',
     'Students_1st_Immigration'=>'1st Immigration',
     'Students_2nd_Immigration'=>'2nd Immigration',
     'Section_Wise_Students1'=>'Section Wise (Add)',

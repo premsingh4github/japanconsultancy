@@ -16,5 +16,7 @@ class DatabaseSeeder extends Seeder
 //         $this->call(CoutryTableSeeder::class);
 //         $this->call(PeriodsTableSeeder::class);
 //         $this->call(GradeTableSeeder::class);
+//         $this->call(ExamTableSeeder::class);
+//         $this->call(MarkSeederTable::class);
     }
 }

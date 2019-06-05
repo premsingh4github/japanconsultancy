@@ -28,8 +28,14 @@
                                         <tr>
                                             <td class="text-align-center" colspan="17">
                                                 @foreach($student->grades as $grade)
+                                                    @if(date('Y-m-d',strtotime($grade->grade->start_at)) <= date('Y-m-d') && date('Y-m-d',strtotime($grade->grade->end_at)) <= date('Y-m-d'))
                                                 {{$grade->grade->grade->name}}: ({{date('M d, Y',strtotime($grade->grade->start_at))}} to {{date('M d, Y',strtotime($grade->grade->end_at))}})<br>
-                                                    @endforeach
+                                                    @elseif(date('Y-m-d',strtotime($grade->grade->start_at)) <= date('Y-m-d') && date('Y-m-d',strtotime($grade->grade->end_at)) >= date('Y-m-d'))
+                                                {{$grade->grade->grade->name}}: ({{date('M d, Y',strtotime($grade->grade->start_at))}} to {{date('M d, Y')}})<br>
+                                                    @else
+                                                {{$grade->grade->grade->name}}: ({{date('M 01, Y')}} to {{date('M d, Y')}})<br>
+                                                    @endif
+                                                @endforeach
                                             </td>
                                         </tr>
                                         <tr>
@@ -85,14 +91,30 @@
                                         <tr>
                                             <td class="blank_td" colspan="17"></td>
                                         </tr>
+                                        @php
+                                            $total_attend_hour = 0;
+                                            $total_attend_day = 0;
+                                        @endphp
                                         @foreach($student->grades as $grade)
                                             <tr style="background-color: lightgray;">
                                                 <td class="text-align-center" colspan="2" style="width: 70px;">出席状況</td>
                                                 <td class="text-align-center" style="width: 70px;">月別</td>
-                                                @php
-                                                $date1 = strtotime($grade->grade->start_at);
-                                                $date2 = strtotime($grade->grade->end_at);
-                                                @endphp
+                                                @if(date('Y-m-d',strtotime($grade->grade->start_at)) <= date('Y-m-d') && date('Y-m-d',strtotime($grade->grade->end_at)) <= date('Y-m-d'))
+                                                    @php
+                                                        $date1 = strtotime($grade->grade->start_at);
+                                                        $date2 = strtotime($grade->grade->end_at);
+                                                    @endphp
+                                                @elseif(date('Y-m-d',strtotime($grade->grade->start_at)) <= date('Y-m-d') && date('Y-m-d',strtotime($grade->grade->end_at)) >= date('Y-m-d'))
+                                                    @php
+                                                        $date1 = strtotime($grade->grade->start_at);
+                                                        $date2 = strtotime(date('Y-m-d'));
+                                                    @endphp
+                                                @else
+                                                    @php
+                                                        $date1 = strtotime(date('Y-m-01'));
+                                                        $date2 = strtotime(date('Y-m-d'));
+                                                    @endphp
+                                                @endif
                                                 @while ($date1 <= $date2)
                                                     <td class="text-align-center" style="width: 60px;">{{date('m', $date1)}}月</td>
                                                 @php $date1 = strtotime('+1 month', $date1); @endphp
@@ -102,63 +124,367 @@
                                             <tr>
                                                 <td class="text-align-center" style="width: 70px;">{{$grade->grade->grade->name}}</td>
                                                 <td class="text-align-center" colspan="17">
+                                                    {{--<table border="1" id="student_grade_{{$grade->id}}" class="student_grade" data-grade_id="{{$grade->id}}" data-start_at="{{$grade->grade->start_at}}" data-end_at="{{$grade->grade->end_at}}" data-student_id="{{$student->id}}">--}}
+
+                                                    {{--</table>--}}
                                                     <table border="1">
                                                         <tr>
-                                                            <td style="width: 70px;">授業時数</td>
+                                                            <td style="width:73px;">授業日数</td>
+                                                            @if(date('Y-m-d',strtotime($grade->grade->start_at)) <= date('Y-m-d') && date('Y-m-d',strtotime($grade->grade->end_at)) <= date('Y-m-d'))
+                                                                @php
+                                                                    $date1 = strtotime($grade->grade->start_at);
+                                                                    $date2 = strtotime($grade->grade->end_at);
+                                                                @endphp
+                                                            @elseif(date('Y-m-d',strtotime($grade->grade->start_at)) <= date('Y-m-d') && date('Y-m-d',strtotime($grade->grade->end_at)) >= date('Y-m-d'))
+                                                                @php
+                                                                    $date1 = strtotime($grade->grade->start_at);
+                                                                    $date2 = strtotime(date('Y-m-d'));
+                                                                @endphp
+                                                            @else
+                                                                @php
+                                                                    $date1 = strtotime(date('Y-m-01'));
+                                                                    $date2 = strtotime(date('Y-m-d'));
+                                                                @endphp
+                                                            @endif
+
                                                             @php
-                                                                $date1 = strtotime($grade->grade->start_at);
-                                                                $date2 = strtotime($grade->grade->end_at);
+                                                                $total_study_day =0;
                                                             @endphp
                                                             @while ($date1 <= $date2)
-                                                                <td style="width: 60px; background-color: #ffdede;">11</td>
-                                                                @php $date1 = strtotime('+1 month', $date1); @endphp
+                                                                @if(date('Y-m') == date('Y-m',$date1))
+                                                                    @php
+                                                                        $holidays = \App\Event::orderBy('start_date','ASC')->whereBetween("start_date",[date('Y-m-01',$date1),  date('Y-m-d')])->get();
+                                                                    /*============== Finding Saturday & Sunday From Holiday Listing ============ */
+                                                                    $holi_sat=0;
+                                                                    $holi_sun=0;
+                                                                    foreach ($holidays as $holiday){
+                                                                        if (date('D',strtotime($holiday->start_date))=='Sat'){
+                                                                            $holi_sat +=1;
+                                                                        }
+                                                                        if (date('D',strtotime($holiday->start_date))=='Sun'){
+                                                                            $holi_sun +=1;
+                                                                        }
+                                                                    }
+                                                                    $t_h_sat_sun = $holi_sat+$holi_sun;
+                                                                    /*============== Finding Saturday & Sunday From Holiday Listing ============ */
+                                                                    /*============== Geting Total Number of  Saturday & Sunday Between Start To End Date  ============ */
+                                                                    $sunday=0;
+                                                                    $saturday=0;
+                                                                    $start_date = date('Y-m-01',$date1);
+                                                                    $end_date = date('Y-m-d');
+                                                                    for($i=$start_date;$i<=$end_date;$i++)
+                                                                    {
+
+                                                                        $day=date("N",strtotime($i));
+                                                                        if($day==7)
+                                                                        {
+                                                                            $sunday++;
+                                                                        }
+                                                                        if($day==6)
+                                                                        {
+                                                                            $saturday++;
+                                                                        }
+                                                                    }
+                                                                    $t_sun = $sunday;
+                                                                    $t_sat = $saturday;
+                                                                    $t_sat_sun=$t_sat+$t_sun;
+                                                                    /*============== Geting Total Number of  Saturday & Sunday Between Start To End Date  ============ */
+                                                                    $datetime1 = new DateTime($start_date);
+                                                                    $datetime2 = new DateTime($end_date);
+                                                                    $interval = $datetime1->diff($datetime2);
+                                                                    $days = $interval->format('%a')+1;
+                                                                    $total_holiday = count($holidays)+$t_sat_sun-$t_h_sat_sun;
+                                                                    $study_day = ($days-$total_holiday)*4;
+                                                                    $total_study_day +=$study_day;
+                                                                    @endphp
+                                                                    <td style="width: 60px; background-color: #ffdede;">{{$study_day}}</td>
+                                                                    @php $date1 = strtotime('+1 month', $date1); @endphp
+                                                                @else
+                                                                    @php
+                                                                        $holidays = \App\Event::orderBy('start_date','ASC')->whereBetween("start_date",[date('Y-m-01',$date1),  date('Y-m-t',$date1)])->get();
+                                                                    /*============== Finding Saturday & Sunday From Holiday Listing ============ */
+                                                                    $holi_sat=0;
+                                                                    $holi_sun=0;
+                                                                    foreach ($holidays as $holiday){
+                                                                        if (date('D',strtotime($holiday->start_date))=='Sat'){
+                                                                            $holi_sat +=1;
+                                                                        }
+                                                                        if (date('D',strtotime($holiday->start_date))=='Sun'){
+                                                                            $holi_sun +=1;
+                                                                        }
+                                                                    }
+                                                                    $t_h_sat_sun = $holi_sat+$holi_sun;
+                                                                    /*============== Finding Saturday & Sunday From Holiday Listing ============ */
+                                                                    /*============== Geting Total Number of  Saturday & Sunday Between Start To End Date  ============ */
+                                                                    $sunday=0;
+                                                                    $saturday=0;
+                                                                    $start_date = date('Y-m-01',$date1);
+                                                                    $end_date = date('Y-m-t',$date1);
+                                                                    for($i=$start_date;$i<=$end_date;$i++)
+                                                                    {
+
+                                                                        $day=date("N",strtotime($i));
+                                                                        if($day==7)
+                                                                        {
+                                                                            $sunday++;
+                                                                        }
+                                                                        if($day==6)
+                                                                        {
+                                                                            $saturday++;
+                                                                        }
+                                                                    }
+                                                                    $t_sun = $sunday;
+                                                                    $t_sat = $saturday;
+                                                                    $t_sat_sun=$t_sat+$t_sun;
+                                                                    /*============== Geting Total Number of  Saturday & Sunday Between Start To End Date  ============ */
+                                                                    $datetime1 = new DateTime($start_date);
+                                                                    $datetime2 = new DateTime($end_date);
+                                                                    $interval = $datetime1->diff($datetime2);
+                                                                    $days = $interval->format('%a')+1;
+                                                                    $total_holiday = count($holidays)+$t_sat_sun-$t_h_sat_sun;
+                                                                    $study_day = ($days-$total_holiday)*4;
+                                                                    $total_study_day +=$study_day;
+                                                                    @endphp
+                                                                    <td style="width: 60px; background-color: #ffdede;">{{$study_day}}</td>
+                                                                    @php $date1 = strtotime('+1 month', $date1); @endphp
+                                                                @endif
                                                             @endwhile
-                                                            <td style="width: 65px;" id="student_report_1{{$grade->id}}" class="student_report" data-std_report="1{{$grade->id}}" data-start_at="{{$grade->grade->start_at}}" data-end_at="{{$grade->grade->end_at}}"></td>
+                                                            <td style="width: 65px;">{{$total_study_day}}</td>
                                                             <td style="width: 50px;">h</td>
                                                         </tr>
                                                         <tr>
                                                             <td>出席時数</td>
+                                                            @if(date('Y-m-d',strtotime($grade->grade->start_at)) <= date('Y-m-d') && date('Y-m-d',strtotime($grade->grade->end_at)) <= date('Y-m-d'))
+                                                                @php
+                                                                    $date1 = strtotime($grade->grade->start_at);
+                                                                    $date2 = strtotime($grade->grade->end_at);
+                                                                @endphp
+                                                            @elseif(date('Y-m-d',strtotime($grade->grade->start_at)) <= date('Y-m-d') && date('Y-m-d',strtotime($grade->grade->end_at)) >= date('Y-m-d'))
+                                                                @php
+                                                                    $date1 = strtotime($grade->grade->start_at);
+                                                                    $date2 = strtotime(date('Y-m-d'));
+                                                                @endphp
+                                                            @else
+                                                                @php
+                                                                    $date1 = strtotime(date('Y-m-01'));
+                                                                    $date2 = strtotime(date('Y-m-d'));
+                                                                @endphp
+                                                            @endif
+
                                                             @php
-                                                                $date1 = strtotime($grade->grade->start_at);
-                                                                $date2 = strtotime($grade->grade->end_at);
+                                                                $total_month_attend = 0;
                                                             @endphp
                                                             @while ($date1 <= $date2)
-                                                                <td style="width: 60px; background-color: #ffdede;">11</td>
-                                                                @php $date1 = strtotime('+1 month', $date1); @endphp
+                                                                @if(date('Y-m') == date('Y-m',$date1))
+                                                                    @php
+
+                                                                        $attendances = \App\Attendance::where('student_id',$student->id)->where('type','1')->whereBetween("created_at",[date('Y-m-01 H:i:s',$date1), date('Y-m-d').' 23:59:59'])->get();
+                                                                        $total_attend = count($attendances)*4;
+                                                                            $total_month_attend +=$total_attend;
+                                                                    @endphp
+                                                                    <td style="width: 60px; background-color: #ffdede;">{{count($attendances)*4}}</td>
+                                                                    @php $date1 = strtotime('+1 month', $date1); @endphp
+                                                                @else
+                                                                    @php
+
+                                                                        $attendances = \App\Attendance::where('student_id',$student->id)->where('type','1')->whereBetween("created_at",[date('Y-m-01 H:i:s',$date1), date('Y-m-t',$date1).' 23:59:59'])->get();
+                                                                        $total_attend = count($attendances)*4;
+                                                                            $total_month_attend +=$total_attend;
+                                                                    @endphp
+                                                                    <td style="width: 60px; background-color: #ffdede;">{{count($attendances)*4}}</td>
+                                                                    @php $date1 = strtotime('+1 month', $date1); @endphp
+                                                                @endif
                                                             @endwhile
-                                                            <td style="width: 65px;">0</td>
-                                                            <td style="width: 50px;">h</td>
+                                                            @php
+                                                                $attend_hour_rate = round(($total_month_attend/$total_study_day)*100,1);
+                                                            @endphp
+                                                            <td style="width: 65px;">{{$total_month_attend}}</td>
+                                                            <td style="width: 50px;">{{$attend_hour_rate}}%</td>
 
                                                         </tr>
                                                         <tr>
                                                             <td>授業日数</td>
+                                                            @if(date('Y-m-d',strtotime($grade->grade->start_at)) <= date('Y-m-d') && date('Y-m-d',strtotime($grade->grade->end_at)) <= date('Y-m-d'))
+                                                                @php
+                                                                    $date1 = strtotime($grade->grade->start_at);
+                                                                    $date2 = strtotime($grade->grade->end_at);
+                                                                @endphp
+                                                            @elseif(date('Y-m-d',strtotime($grade->grade->start_at)) <= date('Y-m-d') && date('Y-m-d',strtotime($grade->grade->end_at)) >= date('Y-m-d'))
+                                                                @php
+                                                                    $date1 = strtotime($grade->grade->start_at);
+                                                                    $date2 = strtotime(date('Y-m-d'));
+                                                                @endphp
+                                                            @else
+                                                                @php
+                                                                    $date1 = strtotime(date('Y-m-01'));
+                                                                    $date2 = strtotime(date('Y-m-d'));
+                                                                @endphp
+                                                            @endif
                                                             @php
-                                                                $date1 = strtotime($grade->grade->start_at);
-                                                                $date2 = strtotime($grade->grade->end_at);
+                                                                $total_study_day =0;
                                                             @endphp
                                                             @while ($date1 <= $date2)
-                                                                <td style="width: 60px; background-color: #ffdede;">11</td>
-                                                                @php $date1 = strtotime('+1 month', $date1); @endphp
+                                                                @if(date('Y-m') == date('Y-m',$date1))
+                                                                    @php
+                                                                    $holidays = \App\Event::orderBy('start_date','ASC')->whereBetween("start_date",[date('Y-m-01',$date1),date('Y-m-d')])->get();
+                                                                    /*============== Finding Saturday & Sunday From Holiday Listing ============ */
+                                                                    $holi_sat=0;
+                                                                    $holi_sun=0;
+                                                                    foreach ($holidays as $holiday){
+                                                                        if (date('D',strtotime($holiday->start_date))=='Sat'){
+                                                                            $holi_sat +=1;
+                                                                        }
+                                                                        if (date('D',strtotime($holiday->start_date))=='Sun'){
+                                                                            $holi_sun +=1;
+                                                                        }
+                                                                    }
+                                                                    $t_h_sat_sun = $holi_sat+$holi_sun;
+                                                                    /*============== Finding Saturday & Sunday From Holiday Listing ============ */
+                                                                    /*============== Geting Total Number of  Saturday & Sunday Between Start To End Date  ============ */
+                                                                    $sunday=0;
+                                                                    $saturday=0;
+                                                                    $start_date = date('Y-m-01',$date1);
+                                                                    $end_date = date('Y-m-d');
+                                                                    for($i=$start_date;$i<=$end_date;$i++)
+                                                                    {
+
+                                                                        $day=date("N",strtotime($i));
+                                                                        if($day==7)
+                                                                        {
+                                                                            $sunday++;
+                                                                        }
+                                                                        if($day==6)
+                                                                        {
+                                                                            $saturday++;
+                                                                        }
+                                                                    }
+                                                                    $t_sun = $sunday;
+                                                                    $t_sat = $saturday;
+                                                                    $t_sat_sun=$t_sat+$t_sun;
+                                                                    /*============== Geting Total Number of  Saturday & Sunday Between Start To End Date  ============ */
+                                                                    $datetime1 = new DateTime($start_date);
+                                                                    $datetime2 = new DateTime($end_date);
+                                                                    $interval = $datetime1->diff($datetime2);
+                                                                    $days = $interval->format('%a')+1;
+                                                                    $total_holiday = count($holidays)+$t_sat_sun-$t_h_sat_sun;
+                                                                    $study_day = $days-$total_holiday;
+                                                                    $total_study_day +=$study_day;
+                                                                    @endphp
+                                                                    <td style="width: 60px; background-color: #ffdede;">{{$study_day}}</td>
+                                                                    @php $date1 = strtotime('+1 month', $date1); @endphp
+                                                                @else
+                                                                    @php
+                                                                    $holidays = \App\Event::orderBy('start_date','ASC')->whereBetween("start_date",[date('Y-m-01',$date1),  date('Y-m-t',$date1)])->get();
+                                                                    /*============== Finding Saturday & Sunday From Holiday Listing ============ */
+                                                                    $holi_sat=0;
+                                                                    $holi_sun=0;
+                                                                    foreach ($holidays as $holiday){
+                                                                        if (date('D',strtotime($holiday->start_date))=='Sat'){
+                                                                            $holi_sat +=1;
+                                                                        }
+                                                                        if (date('D',strtotime($holiday->start_date))=='Sun'){
+                                                                            $holi_sun +=1;
+                                                                        }
+                                                                    }
+                                                                    $t_h_sat_sun = $holi_sat+$holi_sun;
+                                                                    /*============== Finding Saturday & Sunday From Holiday Listing ============ */
+                                                                    /*============== Geting Total Number of  Saturday & Sunday Between Start To End Date  ============ */
+                                                                    $sunday=0;
+                                                                    $saturday=0;
+                                                                    $start_date = date('Y-m-01',$date1);
+                                                                    $end_date = date('Y-m-t',$date1);
+                                                                    for($i=$start_date;$i<=$end_date;$i++)
+                                                                    {
+
+                                                                        $day=date("N",strtotime($i));
+                                                                        if($day==7)
+                                                                        {
+                                                                            $sunday++;
+                                                                        }
+                                                                        if($day==6)
+                                                                        {
+                                                                            $saturday++;
+                                                                        }
+                                                                    }
+                                                                    $t_sun = $sunday;
+                                                                    $t_sat = $saturday;
+                                                                    $t_sat_sun=$t_sat+$t_sun;
+                                                                    /*============== Geting Total Number of  Saturday & Sunday Between Start To End Date  ============ */
+                                                                    $datetime1 = new DateTime($start_date);
+                                                                    $datetime2 = new DateTime($end_date);
+                                                                    $interval = $datetime1->diff($datetime2);
+                                                                    $days = $interval->format('%a')+1;
+                                                                    $total_holiday = count($holidays)+$t_sat_sun-$t_h_sat_sun;
+                                                                    $study_day = $days-$total_holiday;
+                                                                    $total_study_day +=$study_day;
+                                                                    @endphp
+                                                                    <td style="width: 60px; background-color: #ffdede;">{{$study_day}}</td>
+                                                                    @php $date1 = strtotime('+1 month', $date1); @endphp
+                                                                @endif
                                                             @endwhile
-                                                            <td style="width: 65px;">0</td>
-                                                            <td style="width: 50px;">h</td>
+                                                            <td style="width: 65px;">{{$total_study_day}}</td>
+                                                            <td style="width: 50px;">日</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>出席日数</td>
+                                                            <td>出席時数</td>
+
+                                                            @if(date('Y-m-d',strtotime($grade->grade->start_at)) <= date('Y-m-d') && date('Y-m-d',strtotime($grade->grade->end_at)) <= date('Y-m-d'))
+                                                                @php
+                                                                    $date1 = strtotime($grade->grade->start_at);
+                                                                    $date2 = strtotime($grade->grade->end_at);
+                                                                @endphp
+                                                            @elseif(date('Y-m-d',strtotime($grade->grade->start_at)) <= date('Y-m-d') && date('Y-m-d',strtotime($grade->grade->end_at)) >= date('Y-m-d'))
+                                                                @php
+                                                                    $date1 = strtotime($grade->grade->start_at);
+                                                                    $date2 = strtotime(date('Y-m-d'));
+                                                                @endphp
+                                                            @else
+                                                                @php
+                                                                    $date1 = strtotime(date('Y-m-01'));
+                                                                    $date2 = strtotime(date('Y-m-d'));
+                                                                @endphp
+                                                            @endif
+
                                                             @php
-                                                                $date1 = strtotime($grade->grade->start_at);
-                                                                $date2 = strtotime($grade->grade->end_at);
+                                                                $total_month_attend = 0;
                                                             @endphp
                                                             @while ($date1 <= $date2)
-                                                                <td style="width: 60px; background-color: #ffdede;">11</td>
-                                                                @php $date1 = strtotime('+1 month', $date1); @endphp
+                                                                @if(date('Y-m') == date('Y-m',$date1))
+                                                                    @php
+                                                                    $student_present = \App\StudentStatus::where('student_id',$student->id)->whereBetween("created_at",[date('Y-m-01 H:i:s',$date1), date('Y-m-d').' 23:59:59'])->where('status','present')->count();
+                                                                    $student_absent = \App\StudentStatus::where('student_id',$student->id)->whereBetween("created_at",[date('Y-m-01 H:i:s',$date1), date('Y-m-d').' 23:59:59'])->where('status','absent')->count();
+                                                                        $attendances = \App\Attendance::where('student_id',$student->id)->where('type','1')->whereBetween("created_at",[date('Y-m-01 H:i:s',$date1), date('Y-m-d').' 23:59:59'])->get();
+                                                                        $total_attend = count($attendances)+(($student_present)/4)-(($student_absent)/4);
+                                                                            $total_month_attend +=$total_attend;
+                                                                    @endphp
+                                                                    <td style="width: 60px; background-color: #ffdede;">{{$total_attend}}</td>
+                                                                    @php $date1 = strtotime('+1 month', $date1); @endphp
+                                                                @else
+                                                                    @php
+                                                                        $student_present = \App\StudentStatus::where('student_id',$student->id)->whereBetween("created_at",[date('Y-m-01 H:i:s',$date1), date('Y-m-t',$date1).' 23:59:59'])->where('status','present')->count();
+                                                                        $student_absent = \App\StudentStatus::where('student_id',$student->id)->whereBetween("created_at",[date('Y-m-01 H:i:s',$date1), date('Y-m-t',$date1).' 23:59:59'])->where('status','absent')->count();
+                                                                            $attendances = \App\Attendance::where('student_id',$student->id)->where('type','1')->whereBetween("created_at",[date('Y-m-01 H:i:s',$date1), date('Y-m-t',$date1).' 23:59:59'])->get();
+                                                                        $total_attend = count($attendances)+(($student_present)/4)-(($student_absent)/4);
+                                                                            $total_month_attend +=$total_attend;
+                                                                    @endphp
+                                                                    <td style="width: 60px; background-color: #ffdede;">{{$total_attend}}</td>
+                                                                    @php $date1 = strtotime('+1 month', $date1); @endphp
+                                                                    @endif
                                                             @endwhile
-                                                            <td style="width: 65px;">0</td>
-                                                            <td style="width: 50px;">h</td>
+                                                            @php
+                                                                $attend_day_rate = round(($total_month_attend/$total_study_day)*100,1);
+                                                            @endphp
+                                                            <td style="width: 65px;">{{$total_month_attend}}</td>
+                                                            <td style="width: 50px;">{{$attend_day_rate}}%</td>
                                                         </tr>
                                                     </table>
                                                 </td>
                                             </tr>
+
+                                            @php
+                                                $total_attend_hour += $attend_hour_rate;
+                                                $total_attend_day += $attend_day_rate;
+                                            @endphp
                                         @endforeach
                                         <tr>
                                             <td class="text-align-left" colspan="17">◎時数の増えている箇所は学校行事等による</td>
@@ -169,78 +495,63 @@
                                             <td class="text-align-center" colspan="3">{{$subject->name}}</td>
                                             @endforeach
                                         </tr>
+                                        @foreach($exams as $e=>$exam)
+                                            @if(!($exam->name=='Assignment'))
                                         <tr>
-                                            <td class="text-align-center" colspan="2">成績</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
+                                            <td class="text-align-center" rowspan="2" colspan="2">成績</td>
+                                            <td class="text-align-center" colspan="3" style="width: 100px;">{{$exam->name}}</td>
+                                            <td class="text-align-center" colspan="3">{{$exam->name}}</td>
+                                            <td class="text-align-center" colspan="3">{{$exam->name}}</td>
+                                            <td class="text-align-center" colspan="3">{{$exam->name}}</td>
+                                            <td class="text-align-center" colspan="3">{{$exam->name}}</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-align-center" colspan="2"></td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
+                                            @foreach($subjects as $subject)
+                                                @php
+                                                $marks = \App\Marksheet::where('student_id',$student->id)->where('class_id',$subject->id)->where('exam_id',$exam->id)->get();
+                                                @endphp
+                                            @if(count($marks)>0)
+                                            <td class="text-align-center" colspan="3">
+                                                @foreach($marks as $mark)
+                                                    {{$mark->marks->name}}
+                                                    @endforeach
+                                            </td>
+                                                @else
+                                                    <td class="text-align-center" colspan="3">
+                                                        ----
+                                                    </td>
+                                                @endif
+                                            @endforeach
                                         </tr>
-                                        <tr>
-                                            <td class="text-align-center" colspan="2"></td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-align-center" colspan="2"></td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-align-center" colspan="2"></td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-align-center" colspan="2"></td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-align-center" colspan="2"></td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-align-center" colspan="2"></td>
-                                            <td class="text-align-center" colspan="3">卒業課題①</td>
-                                            <td class="text-align-center" colspan="3">卒業課題②</td>
-                                            <td class="text-align-center" colspan="3">卒業課題③</td>
-                                            <td class="text-align-center" colspan="3">卒業課題④</td>
-                                            <td class="text-align-center" colspan="3">卒業課題⑤</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-align-center" colspan="2"></td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                            <td class="text-align-center" colspan="3">----</td>
-                                        </tr>
+                                            @else
+                                                <tr>
+                                                    <td class="text-align-center" rowspan="2" colspan="2"></td>
+                                                    <td class="text-align-center" colspan="3">卒業課題1</td>
+                                                    <td class="text-align-center" colspan="3">卒業課題2</td>
+                                                    <td class="text-align-center" colspan="3">卒業課題3</td>
+                                                    <td class="text-align-center" colspan="3">卒業課題4</td>
+                                                    <td class="text-align-center" colspan="3">卒業課題5</td>
+                                                </tr>
+                                                <tr>
+                                                    @foreach($subjects as $subject)
+                                                        @php
+                                                            $marks = \App\Marksheet::where('student_id',$student->id)->where('class_id',$subject->id)->where('exam_id',$exam->id)->get();
+                                                        @endphp
+                                                        @if(count($marks)>0)
+                                                            <td class="text-align-center" colspan="3">
+                                                                @foreach($marks as $mark)
+                                                                    {{$mark->marks->name}}
+                                                                @endforeach
+                                                            </td>
+                                                        @else
+                                                            <td class="text-align-center" colspan="3">
+                                                                ----
+                                                            </td>
+                                                        @endif
+                                                    @endforeach
+                                                </tr>
+                                                @endif
+                                        @endforeach
                                         <tr>
                                             <td class="blank_td" colspan="17"></td>
                                         </tr>
@@ -252,8 +563,53 @@
                                         <tr>
                                             <td colspan="2"></td>
                                             <td class="text-align-left" colspan="7">◎　成績評価　AA≧AB≧AC≧</td>
-                                            <td class="text-align-center" colspan="4">#DIV/0!</td>
-                                            <td class="text-align-center" colspan="4">D</td>
+                                            <td class="text-align-center" colspan="4" id="average_attend">
+                                               {{($total_attend_hour+$total_attend_day)/(count($student->grades)*2)}}%
+                                            </td>
+                                            <td class="text-align-center" colspan="4">
+                                            @php
+                                                $markrank = \App\Markrank::all();
+                                                $total_mark = 0;
+                                            @endphp
+                                            @foreach($markrank as $rank)
+                                                @php
+                                                    $total_sub = \App\Subject::all();
+                                                    $marksheets = \App\Marksheet::where('student_id',$student->id)->where('marks_id',$rank->id)->get();
+                                                    $total_mark += count($marksheets)*$rank->rank;
+                                                @endphp
+                                            @endforeach
+                                            @php
+                                                $mark_t = \App\Marksheet::where('student_id',$student->id)->get();
+                                            @endphp
+                                            @if(count($mark_t)>0)
+                                            @php
+                                                $average_rank = $total_mark/count($subjects);
+                                            @endphp
+                                                @if($average_rank>='90')
+                                                    AA
+                                                @elseif($average_rank>='85' && $average_rank<'90')
+                                                    AB
+                                                @elseif($average_rank>='80' && $average_rank<'85')
+                                                    AC
+                                                @elseif($average_rank>='78' && $average_rank<'80')
+                                                    BA
+                                                @elseif($average_rank>='75' && $average_rank<'78')
+                                                    BB
+                                                @elseif($average_rank>='70' && $average_rank<'75')
+                                                    BC
+                                                @elseif($average_rank>='68' && $average_rank<'70')
+                                                    CA
+                                                @elseif($average_rank>='65' && $average_rank<'68')
+                                                    CB
+                                                @elseif($average_rank>='60' && $average_rank<'65')
+                                                    CC
+                                                @elseif($average_rank<='59')
+                                                    D
+                                                @endif
+                                            @else
+                                                D
+                                            @endif
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td colspan="2"></td>
@@ -304,18 +660,19 @@
     <script>
         $(document).ready(function () {
 
-            $('.student_report').each(function (i,ls) {
+            $('.student_grade').each(function (i,ls) {
                 {{--var section = "{{request('section')}}";--}}
-                $(ls).data('std_report');
+                $(ls).data('grade_id');
                 $(ls).data('start_at');
                 $(ls).data('end_at');
+                $(ls).data('student_id');
                 $.ajax({
-                    url: Laravel.url + "/admin/get_std_report/"+$(ls).data('std_report')+"/"+$(ls).data('start_at')+"/"+$(ls).data('end_at'),
+                    url: Laravel.url + "/admin/student_grade/"+$(ls).data('grade_id')+"/"+$(ls).data('start_at')+"/"+$(ls).data('end_at')+"/"+$(ls).data('student_id'),
                     method:"GET",
                     success: function (data, textStatus, request) {
 
-                        $('#student_report_'+request.getResponseHeader('grade_id')).html(data);
-                        // $("#"+data['id']).html(data['status']);
+                        $('#student_grade_'+request.getResponseHeader('grade_id')).html(data);
+
                     },
                     error: function (error) {
                         debugger;
@@ -323,6 +680,8 @@
 
                 });
             });
+
         });
+
     </script>
 @endsection

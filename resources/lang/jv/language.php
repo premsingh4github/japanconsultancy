@@ -24,6 +24,7 @@ return[
     'Students'=>'学生',
     'List_All_Students'=>'学生の一覧',
     'Add_New_Students'=>'学生追加',
+    'mark_obtained'=>'マーク取得',
     'Students_1st_Immigration'=>'初回入国',
     'Students_2nd_Immigration'=>'再入国',
     'Section_Wise_Students1'=>'セクションごとの学生 (Add)',
