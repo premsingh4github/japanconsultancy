@@ -53,7 +53,9 @@ class AttendanceController extends Controller
 
         if(\request('section')){
             $class_section_student = ClassBatchSection::with('class_batch_section_periods')->with('class_section_students.student')->find(\request('section'));
-            return view('attendance.show_batch',compact('class_section_student','sections'));
+
+            $students = $class_section_student->class_section_students()->paginate(15);
+            return view('attendance.show_batch',compact('class_section_student','sections','students'));
         }else{
             $class_section_student = $sections[0];
             $attendances = Attendance::select(DB::raw('MAX(attendances.id) as my_id, attendances.student_id ,MAX(attendances.created_at) as time'))->with('student')->groupBy('attendances.student_id')->orderBy('my_id','DESC')->get();
@@ -167,15 +169,17 @@ class AttendanceController extends Controller
         $attend_sts->created_at = $attends->created_at;
         $attend_sts->period_id = $period;
         $attend_sts->save();
-        return redirect()->back();
+
+        return \response()->view('attendance.new_attend_entry',compact('attend_sts'))->header('id',"attendance_".$attend."_".$period);
     }
     public function exist_attend_update(Request $request, $id){
-        $attends = StudentStatus::findOrFail($id);
-        $attends->status = $request->status;
-        $attends->save();
-        return redirect()->back();
+        $attend_sts = StudentStatus::findOrFail($id);
+        $attend_sts->status = $request->status;
+        $attend_sts->save();
+
+        return \response()->view('attendance.ajax.exist_attend_update',compact('attend_sts'))->header('old_status',"old_status_".$id);
     }
-    public function get_new_attend(Request $request,$period_time,$period,$student){
+    public function get_new_attend(Request $request,$section_period,$period_time,$period,$student){
         $start_at = date('Y-m-d H:i:s',strtotime($period_time));
         $attends = new Attendance();
         $attends->student_id = $student;
@@ -183,6 +187,7 @@ class AttendanceController extends Controller
         $attends->attendance_for = date('Y-m-d',strtotime($start_at));
         $attends->type = '1';
         $attends->save();
+
         $periods = Period::all();
         foreach ($periods as $period_exist){
             $attend_sts = new StudentStatus();
@@ -200,7 +205,8 @@ class AttendanceController extends Controller
                 $attend_sts->status = 'absent';
             }
             $attend_sts->save();
+
         }
-        return redirect()->back();
+        return \response()->view('attendance.ajax.get_new_attend_entry',compact('attends'))->header('new_attendance',"xyz_attendance_".$section_period."_".$student);
     }
 }

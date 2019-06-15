@@ -10,4 +10,9 @@ class Attendance extends Model
     {
         return $this->belongsTo(Student::class);
     }
+
+    public function studentStatus()
+    {
+        return $this->hasMany(StudentStatus::class);
+    }
 }
