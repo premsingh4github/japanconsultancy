@@ -81,7 +81,7 @@
                         <div class="i_float_right">
                             <b>{{ date('Y') }}年
                                 {{ date('m') }}月
-                                {{ date('d') }}日 現在</b>
+                                {{ date('01') }}日 現在</b>
                         </div>
                         <div class="block-header printView">
                             <h3 class="block-title">当該機関で受け入れている外国人リスト</h3>

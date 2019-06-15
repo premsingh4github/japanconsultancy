@@ -451,20 +451,16 @@
                                                             @while ($date1 <= $date2)
                                                                 @if(date('Y-m') == date('Y-m',$date1))
                                                                     @php
-                                                                    $student_present = \App\StudentStatus::where('student_id',$student->id)->whereBetween("created_at",[date('Y-m-01 H:i:s',$date1), date('Y-m-d').' 23:59:59'])->where('status','present')->count();
-                                                                    $student_absent = \App\StudentStatus::where('student_id',$student->id)->whereBetween("created_at",[date('Y-m-01 H:i:s',$date1), date('Y-m-d').' 23:59:59'])->where('status','absent')->count();
                                                                         $attendances = \App\Attendance::where('student_id',$student->id)->where('type','1')->whereBetween("created_at",[date('Y-m-01 H:i:s',$date1), date('Y-m-d').' 23:59:59'])->get();
-                                                                        $total_attend = count($attendances)+(($student_present)/4)-(($student_absent)/4);
+                                                                        $total_attend = count($attendances);
                                                                             $total_month_attend +=$total_attend;
                                                                     @endphp
                                                                     <td style="width: 60px; background-color: #ffdede;">{{$total_attend}}</td>
                                                                     @php $date1 = strtotime('+1 month', $date1); @endphp
                                                                 @else
                                                                     @php
-                                                                        $student_present = \App\StudentStatus::where('student_id',$student->id)->whereBetween("created_at",[date('Y-m-01 H:i:s',$date1), date('Y-m-t',$date1).' 23:59:59'])->where('status','present')->count();
-                                                                        $student_absent = \App\StudentStatus::where('student_id',$student->id)->whereBetween("created_at",[date('Y-m-01 H:i:s',$date1), date('Y-m-t',$date1).' 23:59:59'])->where('status','absent')->count();
                                                                             $attendances = \App\Attendance::where('student_id',$student->id)->where('type','1')->whereBetween("created_at",[date('Y-m-01 H:i:s',$date1), date('Y-m-t',$date1).' 23:59:59'])->get();
-                                                                        $total_attend = count($attendances)+(($student_present)/4)-(($student_absent)/4);
+                                                                        $total_attend = count($attendances);
                                                                             $total_month_attend +=$total_attend;
                                                                     @endphp
                                                                     <td style="width: 60px; background-color: #ffdede;">{{$total_attend}}</td>

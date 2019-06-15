@@ -38,12 +38,6 @@ class AttendanceController extends Controller
                 $attendance->student_id = $student->id;
                 $attendance->attendance_for = date('Y-m-d');
                 $attendance->save();
-//                $student_status = new StudentStatus();
-//                $student_status->attendance_id = $attendance->id;
-//                $student_status->student_id = $student->id;
-//                $student_status->period_id = 1;
-//                $student_status->status = 'present';
-//                $student_status->save();
                 Session::flash('student_id',$student->id);
                 return redirect()->back()->with('success','Attendance Successfully !!! ' .$student->first_student_name .' '.$student->last_student_name .' is Present !');
             }else{
