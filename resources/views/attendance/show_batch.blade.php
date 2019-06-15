@@ -170,7 +170,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @php $students = $class_section_student->class_section_students @endphp
                     @foreach($students as $classSectionStudent)
                         @php $student = $classSectionStudent->student @endphp
                         <tr>
@@ -193,10 +192,6 @@
                                 @endif
                             </td>
                             <td>
-                                {{--@foreach($students->classSections as $section)--}}
-                                {{--{{$section->class_section}}--}}
-                                {{--{{$section->class_section->class_section->name}}--}}
-                                {{--@endforeach--}}
                                 <table>
                                     @foreach($class_section_student->class_batch_section_periods as $section_period)
                                         <tr>
@@ -214,8 +209,14 @@
                             </td>
                         </tr>
                     @endforeach
+                    <tr>
+                        <td colspan="7">
+                            {{$students->appends(['section'=>request('section')])->links()}}
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
+
             </div>
 
         </div>
@@ -264,6 +265,33 @@
             //     success:function(data){
             //     }
             // });
+        }
+
+
+        function changeAttendace(form){
+            $.ajax({
+                url: form.action,
+                method: form.method,
+                data: $(form).serialize(),
+                success: function (data, textStatus, request) {
+                    if(request.getResponseHeader('old_status') != undefined){
+                        $('#'+request.getResponseHeader('old_status')).html(data);
+                    }
+                    else if(request.getResponseHeader('id') != undefined){
+                        $('#'+request.getResponseHeader('id')).html(data);
+                    }
+                    else if(request.getResponseHeader('new_attendance') != undefined){
+                        $('#'+request.getResponseHeader('new_attendance')).parent().parent().html(data)
+                    }
+
+                    debugger;
+                },
+                error : function (error) {
+                    debugger;
+                }
+            });
+            debugger;
+            return false;
         }
 
     </script>
