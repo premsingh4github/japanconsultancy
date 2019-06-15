@@ -17,7 +17,7 @@
                         </span>
     @elseif($check_status->status=='late')
         <span class="main-menu" id="old_status_{{$check_status->id}}">
-                        <span class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present from admin">△ Lat</span>
+                        <span class="btn btn-warning btn-sm" style="font-size: 9px" title="Late Present from admin">△</span>
                             <span class="sub-menu">
                                     <form action="{{url('exist_attend_update').'/'.$check_status->id}}" method="post" onsubmit="changeAttendace(this); return  false;">
                                         {{csrf_field()}}

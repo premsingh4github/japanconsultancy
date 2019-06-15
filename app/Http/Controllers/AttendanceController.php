@@ -152,7 +152,6 @@ class AttendanceController extends Controller
             return response()->json(['id'=>$code,'status'=>"A"]);
         }
 
-
     }
 
     public function make_absent($id){
