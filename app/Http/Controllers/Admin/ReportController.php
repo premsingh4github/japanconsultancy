@@ -63,6 +63,8 @@ class ReportController extends Controller
 //        return $view;
     }
     public function report_batch_wise(){
+        ini_set('memory_limit', '-1');
+
         $title = "Batch Wise Attendance Report - Chubi Management System";
         $list_students = Student::orderBy('id','ASC');
         if (\request('student_of_year')){
@@ -75,8 +77,8 @@ class ReportController extends Controller
             $holidays = Event::orderBy('start_date','ASC')->whereBetween("start_date",[$start_date, $end_date])->get();
 
         }else{
-            $start_date = date('Y-m-d',strtotime(Carbon::now()->startOfMonth()));
-            $end_date = date('Y-m-d',strtotime(Carbon::now()));
+            $start_date = date('Y-m-01');
+            $end_date = date('Y-m-d');
 
             $holidays = Event::orderBy('start_date','ASC')->whereBetween("start_date",[$start_date, $end_date])->get();
         }

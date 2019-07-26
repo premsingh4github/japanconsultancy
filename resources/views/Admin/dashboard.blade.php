@@ -40,7 +40,7 @@
                     <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
                         <div class="block-content block-content-full">
                             <div class="font-size-sm font-w600 text-uppercase text-muted">{{__('language.Teachers')}}</div>
-                            <div class="font-size-h2 font-w400 text-dark">0</div>
+                            <div class="font-size-h2 font-w400 text-dark"><i class="fa fa-chalkboard-teacher"></i> {{$teacher}}</div>
                         </div>
                     </a>
                 </div>
@@ -59,7 +59,7 @@
                         <div class="block-content block-content-full">
                             <div class="font-size-sm font-w600 text-uppercase text-muted">{{__('language.Students')}} ({{__('language.Male')}})</div>
                             <?php $totalUser = \App\Student::where('student_sex','m')->get()?>
-                            <div class="font-size-h2 font-w400 text-dark"> <i class="fa fa-users"></i> {{count($totalUser)}}</div>
+                            <div class="font-size-h2 font-w400 text-dark"> <i class="fa fa-male"></i> {{count($totalUser)}}</div>
                             <?php ; ?>
                         </div>
                     </a>
@@ -69,12 +69,13 @@
                         <div class="block-content block-content-full">
                             <div class="font-size-sm font-w600 text-uppercase text-muted">{{__('language.Students')}} ({{__('language.Female')}})</div>
                             <?php $totalUser = \App\Student::where('student_sex','f')->get()?>
-                            <div class="font-size-h2 font-w400 text-dark"> <i class="fa fa-users"></i> {{count($totalUser)}}</div>
+                            <div class="font-size-h2 font-w400 text-dark"> <i class="fa fa-female"></i> {{count($totalUser)}}</div>
                             <?php ; ?>
                         </div>
                     </a>
                 </div>
 
+                <!--
                 <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                     <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
                         <div class="block-content block-content-full">
@@ -105,19 +106,20 @@
                 </div>
                     @endif
                     @endforeach
+                -->
                 <div class="col-12" style="background-color: #fff; padding:10px;">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <h4> Calender </h4>
+                                    <h4> {{__('language.calendar')}} </h4>
                                 </div>
                                 <div class="col-sm-6">
                                     <form action="{{url('admin/view_calendar')}}" method="get">
                                         <div class="row">
                                             <div class="col-sm-9 form-group">
                                                 <div class="row">
-                                                    <div class="col-sm-4"><label for="">Select Student Grade</label></div>
+                                                    <div class="col-sm-4"><label for="">{{__('language.Choose_Student_Grade')}}</label></div>
                                                     <div class="col-sm-8">
                                                         <select name="grade_id" id="grade_id" class="form-control">
                                                             @foreach($grades as $grade)

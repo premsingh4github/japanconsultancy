@@ -6,6 +6,15 @@ return[
     'Graduation_Certificate'=>'卒業証明書',
     'Certificate_of_Student_Status'=>'在学証明書',
     'Download'=>'ダウンロード',
+
+    'Grade-Manage' => 'グレード管理',
+    'Grade-Duration-Manage' => '成績 期間 管理',
+    'attend-by-admin' => '管理者 による 出席',
+    'attend-form' => '出席 フォーム',
+    'calendar' => 'カレンダー',
+    'view-calendar' => 'カレンダーを見る',
+    'batch_wise_report' => 'バッチワイズレポート',
+
     'Period_Time_Update'=>'期間更新',
 
     'admin'=>'アドミン',
@@ -85,7 +94,6 @@ return[
     'Class_Batch'=>'クラス',
     'Section'=>'セクション',
     'Class_batch_manger'=>'クラスとバッチ管理',
-    'class_shift'=>'クラスシフト',
 
 
     /*admin left Menu */
@@ -283,6 +291,17 @@ return[
     'Oct'=>'十月',
     'Nov'=>'十一月',
     'Dec'=>'十二月',
+
+    'class_batch' =>'クラスバッチ',
+    'grade_year' =>'学年',
+    'class_section' =>'クラスセクション',
+    'class_shift' =>'クラスシフト',
+    'start_date' =>'開始日',
+    'end_date' =>'終了日',
+    'create_class_section' => '作成する',
+    'save'=>'保存する',
+    'grade_duration_list'=>'成績期間リスト'
+
 
 
 ];

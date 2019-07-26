@@ -50,6 +50,7 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::get('list_student/{id}','StudentController@id_preview');
     Route::get('list_student/pdf/{id}','StudentController@export_pdf');
     Route::get('list_student/{id}/report','StudentController@student_report');
+    Route::get('list_student/{id}/export_report_pdf','StudentController@export_report_pdf');
 
     Route::any('add_teacher','TeacherController@add_teacher');
     Route::get('list_teacher','TeacherController@list_teacher');
@@ -128,6 +129,8 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','namespace'=>'Admin'],func
     Route::get('graduation_prospect_certificate/{id}','CertificateController@graduation_prospect_certificate');
     Route::get('Graduation_certificate/{id}','CertificateController@Graduation_certificate');
     Route::get('certificate_of_student_status/{id}','CertificateController@certificate_of_student_status');
+    Route::get('student_invoice/{id}','InvoiceController@student_invoice');
+
     /*==================graduation_prospect_certificate=======*/
 
      /*==================Report-Section=======*/
@@ -167,7 +170,7 @@ Route::get('attendance','AttendanceController@index')->middleware('auth');
 Route::get('attendance_form','AttendanceController@attendance_form')->middleware('auth');
 Route::get('attendance/{code}','AttendanceController@store')->middleware('auth');
 Route::get('attendance_list','AttendanceController@show')->middleware('auth');
-Route::get('getattendacelist/{section}/{id}','AttendanceController@getattendacelist')->middleware('auth');
+Route::get('getattendacelist/{section}/{id}/{session_start}/{session_end}','AttendanceController@getattendacelist')->middleware('auth');
 Route::get('section_attendance_excel','AttendanceController@getAttendanceExcel');
 Route::get('test','HomeController@test');
 Route::get('admin/manage_attendance','AttendanceController@getAttendance')->middleware('admin');

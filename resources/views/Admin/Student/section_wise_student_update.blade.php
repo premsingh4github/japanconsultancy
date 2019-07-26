@@ -43,16 +43,7 @@
                 <form action="" method="post">
                     {{csrf_field()}}
                     <div class="row">
-                        <div class="col-sm-3">
-                            <label for="class_section_id">Choose Class Batch Group</label>
-                            <select name="class_section_id" id="class_section_id" class="form-control">
-                                <option value="">[Choose Class Batch Group]</option>
-                                @foreach($class_section as $section)
-                                    <option value="{{$section->id}}" @if($section->id == $classSectionStudent->class_section_id) selected @endif>({{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}}</option>
-                                    @endforeach
-                            </select>
-                        </div>
-                        <div class="col-sm-7">
+                        <div class="col-sm-6">
                             <label>Student Name</label>
                             <input disabled="disabled" value="{{$classSectionStudent->student->first_student_japanese_name}} {{$classSectionStudent->student->last_student_japanese_name}} || {{$classSectionStudent->student->first_student_name}} {{$classSectionStudent->student->last_student_name}}" class="form-control">
                         </div>
@@ -60,6 +51,16 @@
                             <label>Student Number</label>
                             <input disabled="disabled" value="{{$classSectionStudent->student->student_number}}" class="form-control">
                         </div>
+                        <div class="col-sm-4">
+                            <label for="class_section_id">Choose Class Batch Group</label>
+                            <select name="class_section_id" id="class_section_id" class="form-control">
+                                <option value="">[Choose Class Batch Group]</option>
+                                @foreach($class_section as $section)
+                                    <option value="{{$section->id}}" @if($section->id == $classSectionStudent->class_section_id) selected @endif>({{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}} @if(isset($section->grade->name)) ({{$section->grade->name}}) @endif</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="col-sm-12">
                             <button class="btn btn-success btn-xs">Update</button>
                         </div>

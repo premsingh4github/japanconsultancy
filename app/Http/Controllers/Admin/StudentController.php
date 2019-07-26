@@ -21,6 +21,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 
 class StudentController extends Controller
 {
@@ -71,9 +73,9 @@ class StudentController extends Controller
         $data['address_where_they_works']=$request->address_where_they_works;
         $data['nearest_station']=$request->nearest_station;
         $data['student_note']=$request->student_note;
-        $data['subject_optional_id']=$request->subject_optional_id;
+//        $data['subject_optional_id']=$request->subject_optional_id;
         $data['nearest_station1']=$request->nearest_station1;
-        $data['student_of_year']=$request->student_of_year;
+//        $data['student_of_year']=$request->student_of_year;
         $code = \request('batch_default');
         $data['unique_id']= $code.mt_rand(1000, 9999);
 
@@ -234,6 +236,7 @@ class StudentController extends Controller
             if (is_file(public_path('photos/').'/'.$list_student->photo) && file_exists(public_path('photos/').'/'.$list_student->photo)){
                 unlink(public_path('photos/').'/'.$list_student->photo);
             }
+
             $filename = time().'.'.request()->file('photo')->getClientOriginalExtension();
 
             $filename = md5(microtime()) . '.' . $filename;
@@ -387,9 +390,13 @@ class StudentController extends Controller
                     $i = 0;
                     foreach ($same_attendaces as $s_attendace){
                         if($i == 0){
-
-                            $s_attendace->type = '1';
-                            $s_attendace->save();
+                            if ($s_attendace->type==2){
+                                $s_attendace->type = 2;
+                                $s_attendace->save();
+                            }else{
+                                $s_attendace->type = '1';
+                                $s_attendace->save();
+                            }
                         }
                         elseif ($i == count($same_attendaces) - 1) {
 
@@ -414,7 +421,9 @@ class StudentController extends Controller
         $student_grades = \App\StudentGrade::where('student_id',$student->id)->get();
         if (count($attendances)>0){
             $first_attend =Attendance::where('student_id',$student->id)->orderBy('id','ASC')->firstOrFail();
-            return view('Admin.Student.student_report',compact('title','student','exams','student_grades','subjects','attendances','first_attend'));
+            $grades = $student->grades()->orderBy('grade_id','ASC')->get();
+            // return view('Admin.Student.student_report',compact('title','student','exams','student_grades','subjects','attendances','first_attend'));
+            return view('Admin.Student.student_report_backup',compact('title','student','grades','exams','student_grades','subjects','attendances','first_attend'));
 //            return view('Admin.Report.student.student_report',compact('title','student','exams','student_grades','subjects','attendances','first_attend'));
         }else{
             return view('Admin.Student.student_report_not',compact('title','student'));
@@ -437,4 +446,28 @@ class StudentController extends Controller
 //         }
 //         return redirect('admin/second_immigration')->with('success','Updated');
 //     }
+
+
+    public function export_report_pdf($id)
+    {
+        ini_set('max_execution_time',2200);
+        $title='Student Report - Admin-Panel - Chubi Management System';
+        $student = Student::findOrFail($id);
+        $attendances = Attendance::where('student_id',$student->id)->get();
+        $subjects = Subject::orderBy('id','ASC')->get();
+        $exams = Exam::all();
+        $student_grades = \App\StudentGrade::where('student_id',$student->id)->get();
+        if (count($attendances)>0){
+            $first_attend =Attendance::where('student_id',$student->id)->orderBy('id','ASC')->firstOrFail();
+            $grades = $student->grades()->orderBy('grade_id','ASC')->get();
+            return \view('Admin.Student.print_student_report',compact('title','student','grades','exams','student_grades','subjects','attendances','first_attend'));
+
+//            $pdf = PDF::loadView('Admin.Student.print_student_report',compact('title','student','grades','exams','student_grades','subjects','attendances','first_attend'));
+//            return $pdf->download('student_report.pdf');
+
+        }else{
+            return view('Admin.Student.student_report_not',compact('title','student'));
+        }
+    }
+
 }

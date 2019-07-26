@@ -49,7 +49,7 @@
                                 <option value="">[{{__('language.Choose')}}]</option>
                                 @foreach($class_section as $section)
                                     <option value="{{$section->id}}">
-                                        {{$section->class_room_batch->class_room->name}}({{$section->class_room_batch->batch->name}})-{{$section->class_section->name}}-{{$section->shift}}
+                                        {{$section->class_room_batch->class_room->name}}({{$section->class_room_batch->batch->name}})-{{$section->class_section->name}}-{{$section->shift}} @if(isset($section->grade->name)) ({{$section->grade->name}}) @endif
                                     </option>
                                 @endforeach
                             </select>

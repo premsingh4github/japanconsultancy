@@ -32,12 +32,10 @@ class ClassBatchController extends Controller
                 'name' => 'required|unique:class_rooms,name'
             ]);
 
-            $data['name']=$request->name;
-
-            if (ClassRoom::create($data)) {
+            $class = new ClassRoom();
+            $class->name = $request->name;
+            $class->save();
                 return redirect()->back()->with('success', 'Record Saved Successfully');
-            }
-
         }
 
         public function edit_class_room($id){
@@ -68,13 +66,15 @@ class ClassBatchController extends Controller
 
         }
         public function post_classbatch_record (Request $request){
-            $data['class_room_id']=1;
-            $data['batch_id']=$request->batch_id;
-
-            if (ClassRoomBatch::create($data)) {
+            if (count(ClassRoomBatch::where('class_room_id',1)->where('batch_id',$request->batch_id)->get())<1){
+                $class_batch = new ClassRoomBatch();
+                $class_batch->class_room_id = 1;
+                $class_batch->batch_id = $request->batch_id;
+                $class_batch->save();
                 return redirect()->back()->with('success', 'Record Saved Successfully');
+            }else{
+                return redirect()->back()->with('error','Alreacy Created !!');
             }
-
         }
     public function destroy($id){
         $listStudents = Student::findOrFail($id);

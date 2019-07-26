@@ -148,7 +148,7 @@
 
                         <div class="border_bottom"></div>
 
-                        <div class="form-group col-sm-2">
+                        <div class="form-group col-sm-4">
                             <label for="class_room_batch_id">{{__('language.Class')}}</label>
                             <select name="class_room_batch_id" class="form-control" id="class_room_batch_id">
                                 <option value="">[{{__('language.Select')}}]</option>
@@ -158,17 +158,17 @@
                             </select>
                             <i style="font-size: 14px; color:Red;">Not Found? <a href="{{url('admin/add_record')}}" target="_blank">Click here</a></i>
                         </div>
-                        <div class="form-group col-sm-2">
-                            <label for="class_room_batch_id">{{__('language.Opt_Subject')}}</label>
-                            <select name="subject_optional_id" class="form-control" id="subject_optional_id">
-                                <option value="">[{{__('language.Select')}}]</option>
-                                @foreach($subjects as $subject)
-                                    <option value="{{$subject->id}}">{{$subject->name}}</option>
-                                @endforeach
-                            </select>
-                            <i style="font-size: 14px; color:Red;">Not Found? <a href="{{url('admin/add_subject')}}" target="_blank">Click here</a></i>
-                        </div>
-                        <div class="form-group col-sm-2">
+                        {{--<div class="form-group col-sm-2">--}}
+                            {{--<label for="class_room_batch_id">{{__('language.Opt_Subject')}}</label>--}}
+                            {{--<select name="subject_optional_id" class="form-control" id="subject_optional_id">--}}
+                                {{--<option value="">[{{__('language.Select')}}]</option>--}}
+                                {{--@foreach($subjects as $subject)--}}
+                                    {{--<option value="{{$subject->id}}">{{$subject->name}}</option>--}}
+                                {{--@endforeach--}}
+                            {{--</select>--}}
+                            {{--<i style="font-size: 14px; color:Red;">Not Found? <a href="{{url('admin/add_subject')}}" target="_blank">Click here</a></i>--}}
+                        {{--</div>--}}
+                        <div class="form-group col-sm-4">
                             <label>{{__('language.Batch')}}<font color="#ff0000">*</font></label>
                             <select name="batch_default" class="form-control"  required="required" data-validation-error-msg="Batch Required">
                                 <option value="{{date('y')}}">{{date('Y')}}</option>
@@ -191,17 +191,17 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-sm-2">
-                            <label for="student_of_year">{{__('language.Student_of_Year')}}</label>
-                            <select name="student_of_year" class="form-control" id="student_of_year">
-                                <option value="">[{{__('language.Select')}}]</option>
-                                <option value="第1学年">第1学年</option>
-                                <option value="第2学年">第2学年</option>
+                        {{--<div class="form-group col-sm-2">--}}
+                            {{--<label for="student_of_year">{{__('language.Student_of_Year')}}</label>--}}
+                            {{--<select name="student_of_year" class="form-control" id="student_of_year">--}}
+                                {{--<option value="">[{{__('language.Select')}}]</option>--}}
+                                {{--<option value="第1学年">第1学年</option>--}}
+                                {{--<option value="第2学年">第2学年</option>--}}
 
-                            </select>
-                        </div>
+                            {{--</select>--}}
+                        {{--</div>--}}
 
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-4">
                             <label for="student_number">{{__('language.Student_Number')}}<font color="#ff0000">*</font></label>
                             <input type="tel" class="form-control" id="student_number" name="student_number" placeholder="{{__('language.Student_Number')}}"  required="" data-validation-error-msg="Studnet Number">
                             {{$errors->first('student_number')}}
@@ -279,7 +279,7 @@
 
                         <div class="form-group col-sm-12">
                             <label for="student_note">{{__('language.Student_Note')}}</label>
-                            <textarea class="form-control content" id="js-ckeditor" name="student_note"></textarea>
+                            <textarea class="form-control content" name="student_note"></textarea>
                             {{$errors->first('student_note')}}
                         </div>
 

@@ -26,412 +26,6 @@
             <!-- END Side Header -->
 
             <!-- Side Content -->
-            {{--<div class="content-side">--}}
-                {{--<!-- Side Overlay Tabs -->--}}
-                {{--<div class="block block-transparent pull-x pull-t">--}}
-                    {{--<ul class="nav nav-tabs nav-tabs-alt nav-justified" data-toggle="tabs" role="tablist">--}}
-                        {{--<li class="nav-item">--}}
-                            {{--<a class="nav-link active" href="#so-overview">--}}
-                                {{--<i class="fa fa-fw fa-coffee text-gray mr-1"></i> Overview--}}
-                            {{--</a>--}}
-                        {{--</li>--}}
-                        {{--<li class="nav-item">--}}
-                            {{--<a class="nav-link" href="#so-sales">--}}
-                                {{--<i class="fa fa-fw fa-chart-line text-gray mr-1"></i> Sales--}}
-                            {{--</a>--}}
-                        {{--</li>--}}
-                    {{--</ul>--}}
-                    {{--<div class="block-content tab-content overflow-hidden">--}}
-                        {{--<!-- Overview Tab -->--}}
-                        {{--<div class="tab-pane pull-x fade fade-left show active" id="so-overview" role="tabpanel">--}}
-                            {{--<!-- Activity -->--}}
-                            {{--<div class="block">--}}
-                                {{--<div class="block-header block-header-default">--}}
-                                    {{--<h3 class="block-title">Recent Activity</h3>--}}
-                                    {{--<div class="block-options">--}}
-                                        {{--<button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">--}}
-                                            {{--<i class="si si-refresh"></i>--}}
-                                        {{--</button>--}}
-                                        {{--<button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="block-content">--}}
-                                    {{--<!-- Activity List -->--}}
-                                    {{--<ul class="nav-items mb-0">--}}
-                                        {{--<li>--}}
-                                            {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-                                                {{--<div class="mr-3 ml-2">--}}
-                                                    {{--<i class="si si-wallet text-success"></i>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="media-body">--}}
-                                                    {{--<div class="font-w600">New sale ($15)</div>--}}
-                                                    {{--<div class="text-success">Admin Template</div>--}}
-                                                    {{--<small class="text-muted">3 min ago</small>--}}
-                                                {{--</div>--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-                                                {{--<div class="mr-3 ml-2">--}}
-                                                    {{--<i class="si si-pencil text-info"></i>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="media-body">--}}
-                                                    {{--<div class="font-w600">You edited the file</div>--}}
-                                                    {{--<div class="text-info">--}}
-                                                        {{--<i class="fa fa-file-text"></i> Documentation.doc--}}
-                                                    {{--</div>--}}
-                                                    {{--<small class="text-muted">15 min ago</small>--}}
-                                                {{--</div>--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-                                                {{--<div class="mr-3 ml-2">--}}
-                                                    {{--<i class="si si-close text-danger"></i>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="media-body">--}}
-                                                    {{--<div class="font-w600">Project deleted</div>--}}
-                                                    {{--<div class="text-danger">Line Icon Set</div>--}}
-                                                    {{--<small class="text-muted">4 hours ago</small>--}}
-                                                {{--</div>--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                    {{--</ul>--}}
-                                    {{--<!-- END Activity List -->--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<!-- END Activity -->--}}
-
-                            {{--<!-- Online Friends -->--}}
-                            {{--<div class="block">--}}
-                                {{--<div class="block-header block-header-default">--}}
-                                    {{--<h3 class="block-title">Online Friends</h3>--}}
-                                    {{--<div class="block-options">--}}
-                                        {{--<button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">--}}
-                                            {{--<i class="si si-refresh"></i>--}}
-                                        {{--</button>--}}
-                                        {{--<button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="block-content">--}}
-                                    {{--<!-- Users Navigation -->--}}
-                                    {{--<ul class="nav-items mb-0">--}}
-                                        {{--<li>--}}
-                                            {{--<a class="media py-2" href="javascript:void(0)">--}}
-                                                {{--<div class="mr-3 ml-2 overlay-container overlay-bottom">--}}
-                                                    {{--<img class="img-avatar img-avatar48" src="{{asset('public/server')}}/assets/media/avatars/avatar3.jpg" alt="">--}}
-                                                    {{--<span class="overlay-item item item-tiny item-circle border border-2x border-white bg-success"></span>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="media-body">--}}
-                                                    {{--<div class="font-w600">Helen Jacobs</div>--}}
-                                                    {{--<div class="font-w400 text-muted">Copywriter</div>--}}
-                                                {{--</div>--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a class="media py-2" href="javascript:void(0)">--}}
-                                                {{--<div class="mr-3 ml-2 overlay-container overlay-bottom">--}}
-                                                    {{--<img class="img-avatar img-avatar48" src="{{asset('public/server')}}/assets/media/avatars/avatar10.jpg" alt="">--}}
-                                                    {{--<span class="overlay-item item item-tiny item-circle border border-2x border-white bg-success"></span>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="media-body">--}}
-                                                    {{--<div class="font-w600">Ryan Flores</div>--}}
-                                                    {{--<div class="font-w400 text-muted">Web Developer</div>--}}
-                                                {{--</div>--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a class="media py-2" href="javascript:void(0)">--}}
-                                                {{--<div class="mr-3 ml-2 overlay-container overlay-bottom">--}}
-                                                    {{--<img class="img-avatar img-avatar48" src="{{asset('public/server')}}/assets/media/avatars/avatar8.jpg" alt="">--}}
-                                                    {{--<span class="overlay-item item item-tiny item-circle border border-2x border-white bg-success"></span>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="media-body">--}}
-                                                    {{--<div class="font-w600">Susan Day</div>--}}
-                                                    {{--<div class="font-w400 text-muted">Web Designer</div>--}}
-                                                {{--</div>--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a class="media py-2" href="javascript:void(0)">--}}
-                                                {{--<div class="mr-3 ml-2 overlay-container overlay-bottom">--}}
-                                                    {{--<img class="img-avatar img-avatar48" src="{{asset('public/server')}}/assets/media/avatars/avatar3.jpg" alt="">--}}
-                                                    {{--<span class="overlay-item item item-tiny item-circle border border-2x border-white bg-warning"></span>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="media-body">--}}
-                                                    {{--<div class="font-w600">Sara Fields</div>--}}
-                                                    {{--<div class="font-w400 text-muted">Photographer</div>--}}
-                                                {{--</div>--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a class="media py-2" href="javascript:void(0)">--}}
-                                                {{--<div class="mr-3 ml-2 overlay-container overlay-bottom">--}}
-                                                    {{--<img class="img-avatar img-avatar48" src="{{asset('public/server')}}/assets/media/avatars/avatar15.jpg" alt="">--}}
-                                                    {{--<span class="overlay-item item item-tiny item-circle border border-2x border-white bg-warning"></span>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="media-body">--}}
-                                                    {{--<div class="font-w600">Adam McCoy</div>--}}
-                                                    {{--<div class="font-w400 text-muted">Graphic Designer</div>--}}
-                                                {{--</div>--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                    {{--</ul>--}}
-                                    {{--<!-- END Users Navigation -->--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<!-- END Online Friends -->--}}
-
-                            {{--<!-- Quick Settings -->--}}
-                            {{--<div class="block mb-0">--}}
-                                {{--<div class="block-header block-header-default">--}}
-                                    {{--<h3 class="block-title">Quick Settings</h3>--}}
-                                    {{--<div class="block-options">--}}
-                                        {{--<button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="block-content">--}}
-                                    {{--<!-- Quick Settings Form -->--}}
-                                    {{--<form action="be_pages_dashboard.html" method="POST" onsubmit="return false;">--}}
-                                        {{--<div class="form-group">--}}
-                                            {{--<p class="font-w600 mb-2">--}}
-                                                {{--Online Status--}}
-                                            {{--</p>--}}
-                                            {{--<div class="custom-control custom-switch mb-1">--}}
-                                                {{--<input type="checkbox" class="custom-control-input" id="so-settings-check1" name="so-settings-check1" checked>--}}
-                                                {{--<label class="custom-control-label" for="so-settings-check1">Show your status to all</label>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                        {{--<hr>--}}
-                                        {{--<div class="form-group">--}}
-                                            {{--<p class="font-w600 mb-2">--}}
-                                                {{--Auto Updates--}}
-                                            {{--</p>--}}
-                                            {{--<div class="custom-control custom-switch mb-1">--}}
-                                                {{--<input type="checkbox" class="custom-control-input" id="so-settings-check2" name="so-settings-check2" checked>--}}
-                                                {{--<label class="custom-control-label" for="so-settings-check2">Keep up to date</label>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                        {{--<hr>--}}
-                                        {{--<div class="form-group">--}}
-                                            {{--<p class="font-w600 mb-1">--}}
-                                                {{--Application Alerts--}}
-                                            {{--</p>--}}
-                                            {{--<div class="custom-control custom-switch mb-1">--}}
-                                                {{--<input type="checkbox" class="custom-control-input" id="so-settings-check3" name="so-settings-check3" checked>--}}
-                                                {{--<label class="custom-control-label" for="so-settings-check3">Email Notifications</label>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="custom-control custom-switch mb-1">--}}
-                                                {{--<input type="checkbox" class="custom-control-input" id="so-settings-check4" name="so-settings-check4" checked>--}}
-                                                {{--<label class="custom-control-label" for="so-settings-check4">SMS Notifications</label>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                        {{--<hr>--}}
-                                        {{--<div class="form-group">--}}
-                                            {{--<p class="font-w600 mb-1">--}}
-                                                {{--API--}}
-                                            {{--</p>--}}
-                                            {{--<div class="custom-control custom-switch mb-1">--}}
-                                                {{--<input type="checkbox" class="custom-control-input" id="so-settings-check5" name="so-settings-check5" checked>--}}
-                                                {{--<label class="custom-control-label" for="so-settings-check5">Enable access</label>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--</form>--}}
-                                    {{--<!-- END Quick Settings Form -->--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<!-- END Quick Settings -->--}}
-                        {{--</div>--}}
-                        {{--<!-- END Overview Tab -->--}}
-
-                        {{--<!-- Sales Tab -->--}}
-                        {{--<div class="tab-pane pull-x fade fade-right" id="so-sales" role="tabpanel">--}}
-                            {{--<div class="block mb-0">--}}
-                                {{--<!-- Stats -->--}}
-                                {{--<div class="block-content">--}}
-                                    {{--<div class="row items-push pull-t">--}}
-                                        {{--<div class="col-6">--}}
-                                            {{--<div class="font-w700 text-uppercase">Sales</div>--}}
-                                            {{--<a class="link-fx font-size-h3 font-w300" href="javascript:void(0)">22.030</a>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="col-6">--}}
-                                            {{--<div class="font-w700 text-uppercase">Balance</div>--}}
-                                            {{--<a class="link-fx font-size-h3 font-w300" href="javascript:void(0)">$4.589,00</a>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<!-- END Stats -->--}}
-
-                                {{--<!-- Today -->--}}
-                                {{--<div class="block-content block-content-full block-content-sm bg-body-light">--}}
-                                    {{--<div class="row">--}}
-                                        {{--<div class="col-6">--}}
-                                            {{--<span class="font-w600 text-uppercase">Today</span>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="col-6 text-right">--}}
-                                            {{--<span class="ext-muted">$996</span>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="block-content">--}}
-                                    {{--<ul class="nav-items push">--}}
-                                        {{--<li>--}}
-                                            {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-                                                {{--<div class="mr-3 ml-2">--}}
-                                                    {{--<i class="fa fa-fw fa-circle text-success"></i>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="media-body">--}}
-                                                    {{--<div class="font-w600">New sale! + $249</div>--}}
-                                                    {{--<small class="text-muted">3 min ago</small>--}}
-                                                {{--</div>--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-                                                {{--<div class="mr-3 ml-2">--}}
-                                                    {{--<i class="fa fa-fw fa-circle text-success"></i>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="media-body">--}}
-                                                    {{--<div class="font-w600">New sale! + $129</div>--}}
-                                                    {{--<small class="text-muted">50 min ago</small>--}}
-                                                {{--</div>--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-                                                {{--<div class="mr-3 ml-2">--}}
-                                                    {{--<i class="fa fa-fw fa-circle text-success"></i>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="media-body">--}}
-                                                    {{--<div class="font-w600">New sale! + $119</div>--}}
-                                                    {{--<small class="text-muted">2 hours ago</small>--}}
-                                                {{--</div>--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-                                                {{--<div class="mr-3 ml-2">--}}
-                                                    {{--<i class="fa fa-fw fa-circle text-success"></i>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="media-body">--}}
-                                                    {{--<div class="font-w600">New sale! + $499</div>--}}
-                                                    {{--<small class="text-muted">3 hours ago</small>--}}
-                                                {{--</div>--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                    {{--</ul>--}}
-                                {{--</div>--}}
-                                {{--<!-- END Today -->--}}
-
-                                {{--<!-- Yesterday -->--}}
-                                {{--<div class="block-content block-content-full block-content-sm bg-body-light">--}}
-                                    {{--<div class="row">--}}
-                                        {{--<div class="col-6">--}}
-                                            {{--<span class="font-w600 text-uppercase">Yesterday</span>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="col-6 text-right">--}}
-                                            {{--<span class="text-muted">$765</span>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="block-content">--}}
-                                    {{--<ul class="nav-items push">--}}
-                                        {{--<li>--}}
-                                            {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-                                                {{--<div class="mr-3 ml-2">--}}
-                                                    {{--<i class="fa fa-fw fa-circle text-success"></i>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="media-body">--}}
-                                                    {{--<div class="font-w600">New sale! + $249</div>--}}
-                                                    {{--<small class="text-muted">26 hours ago</small>--}}
-                                                {{--</div>--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-                                                {{--<div class="mr-3 ml-2">--}}
-                                                    {{--<i class="fa fa-fw fa-circle text-danger"></i>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="media-body">--}}
-                                                    {{--<div class="font-w600">Product Purchase - $50</div>--}}
-                                                    {{--<small class="text-muted">28 hours ago</small>--}}
-                                                {{--</div>--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-                                                {{--<div class="mr-3 ml-2">--}}
-                                                    {{--<i class="fa fa-fw fa-circle text-success"></i>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="media-body">--}}
-                                                    {{--<div class="font-w600">New sale! + $119</div>--}}
-                                                    {{--<small class="text-muted">29 hours ago</small>--}}
-                                                {{--</div>--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-                                                {{--<div class="mr-3 ml-2">--}}
-                                                    {{--<i class="fa fa-fw fa-circle text-danger"></i>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="media-body">--}}
-                                                    {{--<div class="font-w600">Paypal Withdrawal - $300</div>--}}
-                                                    {{--<small class="text-muted">37 hours ago</small>--}}
-                                                {{--</div>--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-                                                {{--<div class="mr-3 ml-2">--}}
-                                                    {{--<i class="fa fa-fw fa-circle text-success"></i>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="media-body">--}}
-                                                    {{--<div class="font-w600">New sale! + $129</div>--}}
-                                                    {{--<small class="text-muted">39 hours ago</small>--}}
-                                                {{--</div>--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-                                                {{--<div class="mr-3 ml-2">--}}
-                                                    {{--<i class="fa fa-fw fa-circle text-success"></i>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="media-body">--}}
-                                                    {{--<div class="font-w600">New sale! + $119</div>--}}
-                                                    {{--<small class="text-muted">45 hours ago</small>--}}
-                                                {{--</div>--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                        {{--<li>--}}
-                                            {{--<a class="text-dark media py-2" href="javascript:void(0)">--}}
-                                                {{--<div class="mr-3 ml-2">--}}
-                                                    {{--<i class="fa fa-fw fa-circle text-success"></i>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="media-body">--}}
-                                                    {{--<div class="font-w600">New sale! + $499</div>--}}
-                                                    {{--<small class="text-muted">46 hours ago</small>--}}
-                                                {{--</div>--}}
-                                            {{--</a>--}}
-                                        {{--</li>--}}
-                                    {{--</ul>--}}
-
-                                    {{--<!-- More -->--}}
-                                    {{--<div class="text-center">--}}
-                                        {{--<a class="btn btn-sm btn-light" href="javascript:void(0)">--}}
-                                            {{--<i class="fa fa-arrow-down mr-1"></i> Load More..--}}
-                                        {{--</a>--}}
-                                    {{--</div>--}}
-                                    {{--<!-- END More -->--}}
-                                {{--</div>--}}
-                                {{--<!-- END Yesterday -->--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                        {{--<!-- END Sales Tab -->--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<!-- END Side Overlay Tabs -->--}}
-            {{--</div>--}}
-            <!-- END Side Content -->
         </aside>
         <!-- END Side Overlay -->
 
@@ -531,6 +125,7 @@
                             <span class="nav-main-link-name">{{__('language.Admin_Panel')}} </span>
                         </a>
                     </li>
+                    <!---------
                     <li class="nav-main-heading ">{{__('language.User_Manager')}}</li>
                     <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu <?php if(request()->segment('2') =='superAdmin' || request()->segment('2') =='generalAdmin' || request()->segment('2') =='moderator'){ echo 'active' ;} ?>" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
@@ -538,143 +133,8 @@
                             <span class="nav-main-link-name">{{__('language.User_controller')}}</span>
                         </a>
                     </li>
-                    <li class="nav-main-heading ">{{__('language.TEACHER_MANAGER')}}</li>
-                    <li class="nav-main-item <?php if(request()->segment('2') =='list_teacher' || request()->segment('2') =='add_teacher'){ echo 'open' ;} ?>">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu"  href="#">
-                            <i class="nav-main-link-icon si si-user"></i>
-                            <span class="nav-main-link-name">{{__('language.Teachers')}}</span>
-                        </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link <?php if(request()->segment('2') =='list_teacher'){ echo 'active' ;} ?>" href="{{url('admin/list_teacher')}}">
-                                    <span class="nav-main-link-name">{{__('language.List_of_Teacher')}}</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link <?php if(request()->segment('2') =='add_teacher'){ echo 'active' ;} ?>" href="{{url('admin/add_teacher')}}">
-                                    <span class="nav-main-link-name">{{__('language.Add_New_Teacher')}}</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-main-heading ">{{__('language.STUDENT_MANAGER')}}</li>
-                    <li class="nav-main-item <?php if(request()->segment('2') =='add_student' || request()->segment('2') =='mark_obtained' || request()->segment('2') =='list_student' || request()->segment('2') =='section_wise_student_edit' || request()->segment('2') =='section_wise_student'){ echo 'open' ;} ?>">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-user"></i>
-                            <span class="nav-main-link-name">{{__('language.Students')}}</span>
-                        </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link <?php if(request()->segment('2') =='list_student'){ echo 'active' ;} ?>" href="{{url('admin/list_student')}}">
-                                    <span class="nav-main-link-name">{{__('language.List_All_Students')}}</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link <?php if(request()->segment('2') =='add_student'){ echo 'active' ;} ?>" href="{{url('admin/add_student')}}">
-                                    <span class="nav-main-link-name">{{__('language.Add_New_Students')}}</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link <?php if(request()->segment('2') =='mark_obtained'){ echo 'active' ;} ?>" href="{{url('admin/mark_obtained')}}">
-                                    <span class="nav-main-link-name">{{__('language.mark_obtained')}}</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link <?php if(request()->segment('2') =='section_wise_student'){ echo 'active' ;} ?>" href="{{url('admin/section_wise_student')}}">
-                                    <span class="nav-main-link-name">{{__('language.Section_Wise_Students1')}}</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link <?php if(request()->segment('2') =='section_wise_student_edit'){ echo 'active' ;} ?>" href="{{url('admin/section_wise_student_edit')}}">
-                                    <span class="nav-main-link-name">{{__('language.Section_Wise_Students2')}}</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-main-item <?php if(request()->segment('2') =='second_immigration' || request()->segment('2') =='first_immigration'){ echo 'open' ;} ?>">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-user"></i>
-                            <span class="nav-main-link-name">{{__('language.Student_immigration')}}</span>
-                        </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link <?php if(request()->segment('2') =='first_immigration'){ echo 'active' ;} ?>" href="{{url('admin/first_immigration')}}">
-                                    <span class="nav-main-link-name">{{__('language.Students_1st_Immigration')}}</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link <?php if(request()->segment('2') =='second_immigration'){ echo 'active' ;} ?>" href="{{url('admin/second_immigration')}}">
-                                    <span class="nav-main-link-name">{{__('language.Students_2nd_Immigration')}}</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-main-item <?php if(request()->segment('2') =='add_grade_duration' ||request()->segment('2') =='add_grade_wise' || request()->segment('2') =='view_grade_wise'){ echo 'open' ;} ?>">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-user"></i>
-                            <span class="nav-main-link-name">{{__('language.GRADE_WISE_STUDENT')}}</span>
-                        </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link <?php if(request()->segment('2') =='add_grade_duration'){ echo 'active' ;} ?>" href="{{url('admin/add_grade_duration')}}">
-                                    <span class="nav-main-link-name">Grade Duration Manage</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link <?php if(request()->segment('2') =='add_grade_wise'){ echo 'active' ;} ?>" href="{{url('admin/add_grade_wise')}}">
-                                    <span class="nav-main-link-name">{{__('language.Student_Grade_Manage')}}</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link <?php if(request()->segment('2') =='view_grade_wise'){ echo 'active' ;} ?>" href="{{url('admin/view_grade_wise')}}">
-                                    <span class="nav-main-link-name">{{__('language.View_Grade_Manage')}}</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-main-heading ">{{__('language.CLASS_BATCH_MANAGER')}} </li>
-                    <li class="nav-main-item <?php if(request()->segment('2') =='list-residensal' || request()->segment('2') =='add-residensal'){ echo 'open' ;} ?>">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon far fa-calendar-alt"></i>
-                            <span class="nav-main-link-name">{{__('language.Residensal_Card_Time')}}</span>
-                        </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link <?php if(request()->segment('2') =='list-residensal'){ echo 'active' ;} ?>" href="{{url('admin/list-residensal')}}">
-                                    <span class="nav-main-link-name">{{__('language.List_Card_Time')}}</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link <?php if(request()->segment('2') =='add-residensal'){ echo 'active' ;} ?>" href="{{url('admin/add-residensal')}}">
-                                    <span class="nav-main-link-name">{{__('language.Residensal_card_Time_Period')}}</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-main-item <?php if(request()->segment('2') =='list_subject' || request()->segment('2') =='add_subject' || request()->segment('2') =='batch_wise_subject'){ echo 'open' ;} ?>">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon fa fa-book-open"></i>
-                            <span class="nav-main-link-name">{{__('language.Subjects')}}</span>
-                        </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link <?php if(request()->segment('2') =='list_subject'){ echo 'active' ;} ?>" href="{{url('admin/list_subject')}}">
-                                    <span class="nav-main-link-name">{{__('language.List_Exist_Subject')}}</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link <?php if(request()->segment('2') =='add_subject'){ echo 'active' ;} ?>" href="{{url('admin/add_subject')}}">
-                                    <span class="nav-main-link-name">{{__('language.Add_New_Subject')}}</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link <?php if(request()->segment('2') =='batch_wise_subject'){ echo 'active' ;} ?>" href="{{url('admin/batch_wise_subject')}}">
-                                    <span class="nav-main-link-name">{{__('language.Batch_Wise_Subject')}}</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    ----------->
+                    <li class="nav-main-heading ">Getting Start </li>
                     <li class="nav-main-item <?php if(request()->segment('2') =='list_record' || request()->segment('2') =='add_record'){ echo 'open' ;} ?>">
                         <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon fa fa-layer-group"></i>
@@ -721,6 +181,129 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-main-item <?php if(request()->segment('2') =='add_grade_duration'){ echo 'open' ;} ?>">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                            <i class="nav-main-link-icon si si-user"></i>
+                            <span class="nav-main-link-name">{{__('language.Grade-Manage')}}</span>
+                        </a>
+                        <ul class="nav-main-submenu">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='add_grade_duration'){ echo 'active' ;} ?>" href="{{url('admin/add_grade_duration')}}">
+                                    <span class="nav-main-link-name">{{__('language.Grade-Duration-Manage')}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-main-item <?php if(request()->segment('2') =='list-residensal' || request()->segment('2') =='add-residensal'){ echo 'open' ;} ?>">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                            <i class="nav-main-link-icon far fa-calendar-alt"></i>
+                            <span class="nav-main-link-name">{{__('language.Residensal_Card_Time')}}</span>
+                        </a>
+                        <ul class="nav-main-submenu">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='add-residensal'){ echo 'active' ;} ?>" href="{{url('admin/add-residensal')}}">
+                                    <span class="nav-main-link-name">{{__('language.Residensal_card_Time_Period')}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-main-heading ">{{__('language.STUDENT_MANAGER')}}</li>
+                    <li class="nav-main-item <?php if(request()->segment('2') =='add_student' || request()->segment('2') =='mark_obtained' || request()->segment('2') =='list_student' || request()->segment('2') =='section_wise_student_edit' || request()->segment('2') =='section_wise_student' ||request()->segment('2') =='add_grade_wise' || request()->segment('2') =='view_grade_wise'){ echo 'open' ;} ?>">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                            <i class="nav-main-link-icon si si-user"></i>
+                            <span class="nav-main-link-name">{{__('language.Students')}}</span>
+                        </a>
+                        <ul class="nav-main-submenu">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='add_student'){ echo 'active' ;} ?>" href="{{url('admin/add_student')}}">
+                                    <span class="nav-main-link-name">{{__('language.Add_New_Students')}}</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='list_student'){ echo 'active' ;} ?>" href="{{url('admin/list_student')}}">
+                                    <span class="nav-main-link-name">{{__('language.List_All_Students')}}</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='mark_obtained'){ echo 'active' ;} ?>" href="{{url('admin/mark_obtained')}}">
+                                    <span class="nav-main-link-name">{{__('language.mark_obtained')}}</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='section_wise_student'){ echo 'active' ;} ?>" href="{{url('admin/section_wise_student')}}">
+                                    <span class="nav-main-link-name">{{__('language.Section_Wise_Students1')}}</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='section_wise_student_edit'){ echo 'active' ;} ?>" href="{{url('admin/section_wise_student_edit')}}">
+                                    <span class="nav-main-link-name">{{__('language.Section_Wise_Students2')}}</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='add_grade_wise'){ echo 'active' ;} ?>" href="{{url('admin/add_grade_wise')}}">
+                                    <span class="nav-main-link-name">{{__('language.Student_Grade_Manage')}}</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='view_grade_wise'){ echo 'active' ;} ?>" href="{{url('admin/view_grade_wise')}}">
+                                    <span class="nav-main-link-name">{{__('language.View_Grade_Manage')}}</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="nav-main-heading ">Subject Manage</li>
+                    <li class="nav-main-item <?php if(request()->segment('2') =='list_subject' || request()->segment('2') =='add_subject' || request()->segment('2') =='batch_wise_subject'){ echo 'open' ;} ?>">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                            <i class="nav-main-link-icon fa fa-book-open"></i>
+                            <span class="nav-main-link-name">{{__('language.Subjects')}}</span>
+                        </a>
+                        <ul class="nav-main-submenu">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='list_subject'){ echo 'active' ;} ?>" href="{{url('admin/list_subject')}}">
+                                    <span class="nav-main-link-name">{{__('language.List_Exist_Subject')}}</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='add_subject'){ echo 'active' ;} ?>" href="{{url('admin/add_subject')}}">
+                                    <span class="nav-main-link-name">{{__('language.Add_New_Subject')}}</span>
+                                </a>
+                            </li>
+                            <!-----------
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='batch_wise_subject'){ echo 'active' ;} ?>" href="{{url('admin/batch_wise_subject')}}">
+                                    <span class="nav-main-link-name">{{__('language.Batch_Wise_Subject')}}</span>
+                                </a>
+                            </li>
+                            ---------------->
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-main-heading ">{{__('language.TEACHER_MANAGER')}}</li>
+                    <li class="nav-main-item <?php if(request()->segment('2') =='list_teacher' || request()->segment('2') =='add_teacher'){ echo 'open' ;} ?>">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu"  href="#">
+                            <i class="nav-main-link-icon si si-user"></i>
+                            <span class="nav-main-link-name">{{__('language.Teachers')}}</span>
+                        </a>
+                        <ul class="nav-main-submenu">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='list_teacher'){ echo 'active' ;} ?>" href="{{url('admin/list_teacher')}}">
+                                    <span class="nav-main-link-name">{{__('language.List_of_Teacher')}}</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='add_teacher'){ echo 'active' ;} ?>" href="{{url('admin/add_teacher')}}">
+                                    <span class="nav-main-link-name">{{__('language.Add_New_Teacher')}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
                     <li class="nav-main-heading ">{{__('language.Days_Holiday_Manager')}}</li>
                     <li class="nav-main-item <?php if(request()->segment('2') =='holiday' || request()->segment('2') =='new_holiday'){ echo 'open' ;} ?>">
                         <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
@@ -740,6 +323,7 @@
                             </li>
                         </ul>
                     </li>
+                    <!-----------
                     <li class="nav-main-item <?php if(request()->segment('2') =='holiday' || request()->segment('2') =='new_holiday'){ echo 'open' ;} ?>">
                         <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-calendar"></i>
@@ -753,6 +337,7 @@
                             </li>
                         </ul>
                     </li>
+                    -->
                     <li class="nav-main-heading ">{{__('language.Attendance')}}</li>
                     <li class="nav-main-item">
                         <a class="nav-main-link <?php if(request()->segment('1') =='attendance_list'){ echo 'active' ;} ?>" href="{{url('attendance_list')}}">
@@ -765,14 +350,33 @@
                         {{--</a>--}}
                          <a class="nav-main-link <?php if(request()->segment('1') =='attendance_form'){ echo 'active' ;} ?>" href="{{url('attendance_form')}}" >
                             <i class="nav-main-link-icon si si-reload"></i>
-                            <span class="nav-main-link-name">Attendance Form</span>
+                            <span class="nav-main-link-name">{{__('language.attend-form')}}</span>
                         </a>
                         <a class="nav-main-link <?php if(request()->segment('2') =='manage_attendance'){ echo 'active' ;} ?>" href="{{url('admin/manage_attendance')}}" >
                             <i class="nav-main-link-icon si si-reload"></i>
-                            <span class="nav-main-link-name">Attendance by Admin</span>
+                            <span class="nav-main-link-name">{{__('language.attend-by-admin')}}</span>
                         </a>
                     </li>
                     <li class="nav-main-heading ">{{__('language.main_reports')}}</li>
+                    <li class="nav-main-item <?php if(request()->segment('2') =='second_immigration' || request()->segment('2') =='first_immigration'){ echo 'open' ;} ?>">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                            <i class="nav-main-link-icon si si-user"></i>
+                            <span class="nav-main-link-name">{{__('language.Student_immigration')}}</span>
+                        </a>
+                        <ul class="nav-main-submenu">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='first_immigration'){ echo 'active' ;} ?>" href="{{url('admin/first_immigration')}}">
+                                    <span class="nav-main-link-name">{{__('language.Students_1st_Immigration')}}</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link <?php if(request()->segment('2') =='second_immigration'){ echo 'active' ;} ?>" href="{{url('admin/second_immigration')}}">
+                                    <span class="nav-main-link-name">{{__('language.Students_2nd_Immigration')}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="nav-main-item <?php if(request()->segment('2') =='attendance_report' || request()->segment('2') =='report_batch_wise'){ echo 'open' ;} ?>">
                         <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon fa fa-list"></i>
@@ -786,7 +390,7 @@
                             </li>
                             <li class="nav-main-item">
                                 <a class="nav-main-link <?php if(request()->segment('2') =='report_batch_wise'){ echo 'active' ;} ?>" href="{{url('days')}}">
-                                    <span class="nav-main-link-name">Batch Wise Report</span>
+                                    <span class="nav-main-link-name">{{__('language.batch_wise_report')}}</span>
                                 </a>
                             </li>
                         </ul>
@@ -794,12 +398,12 @@
                     <li class="nav-main-item <?php if(request()->segment('2') =='view_calendar' || request()->segment('2') =='calendar_list'){ echo 'open' ;} ?>">
                         <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                             <i class="nav-main-link-icon fa fa-calendar"></i>
-                            <span class="nav-main-link-name">Calendar</span>
+                            <span class="nav-main-link-name">{{__('language.calendar')}}</span>
                         </a>
                         <ul class="nav-main-submenu">
                             <li class="nav-main-item">
                                 <a class="nav-main-link <?php if(request()->segment('2') =='view_calendar'){ echo 'active' ;} ?>" href="{{url('admin/view_calendar')}}">
-                                    <span class="nav-main-link-name">View Calendar</span>
+                                    <span class="nav-main-link-name">{{__('language.view-calendar')}}</span>
                                 </a>
                             </li>
                         </ul>
@@ -878,10 +482,10 @@
                         {{--</div>--}}
                     {{--</div>--}}
                     <div class="dropdown d-inline-block ml-2">
-                        <a href="{{url('attendance_form')}}" class="btn btn-sm btn-dual">Student Attendance Form</a>
+                        <a href="{{url('attendance_form')}}" class="btn btn-sm btn-dual">{{__('language.attend-form')}}</a>
                     </div>
                     <div class="dropdown d-inline-block ml-2">
-                        <a href="{{url('admin/manage_attendance')}}" class="btn btn-sm btn-dual">Attendance by Admin</a>
+                        <a href="{{url('admin/manage_attendance')}}" class="btn btn-sm btn-dual">{{__('language.attend-by-admin')}}</a>
                     </div>
                     <div class="dropdown d-inline-block ml-2">
                         <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -26,7 +26,7 @@
                                 <select name="section" id="section" class="form-control" onchange="sectionChanged(this)" required>
                                     <option selected value="" disabled>Choose...</option>
                                     @foreach($sections as $section)
-                                        <option @if(request('section') == $section->id) selected @endif value="{{$section->id}}">{{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}}</option>
+                                        <option @if(request('section') == $section->id) selected @endif value="{{$section->id}}">{{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}} @if(isset($section->grade->name)) ({{$section->grade->name}}) @endif</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -74,7 +74,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @php $attendances = \App\Attendance::orderBy('created_at','DESC')->get(); @endphp
                     @foreach($attendances as $key=>$attendance)
                     <tr>
                         <td>{{++$key}}</td>
@@ -100,6 +99,9 @@
                         </td>
                     </tr>
                         @endforeach
+                    <tr>
+                        <td colspan="7">{{$attendances->links()}}</td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

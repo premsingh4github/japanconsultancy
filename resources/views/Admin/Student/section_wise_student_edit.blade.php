@@ -83,7 +83,7 @@
                     @foreach($classSectionStudent as $key=>$student_section)
                         <tr>
                             <td style="padding:7px;">{{++$key}}</td>
-                            <td>({{$student_section->class_section->class_room_batch->class_room->name}}-{{$student_section->class_section->class_room_batch->batch->name}}) {{$student_section->class_section->class_section->name}}-{{$student_section->class_section->shift}}</td>
+                            <td>({{$student_section->class_section->class_room_batch->class_room->name}}-{{$student_section->class_section->class_room_batch->batch->name}}) {{$student_section->class_section->class_section->name}}-{{$student_section->class_section->shift}} @if(isset($student_section->class_section->grade->name)) ({{$student_section->class_section->grade->name}}) @endif</td>
                             <td>{{$student_section->student->first_student_japanese_name}} {{$student_section->student->last_student_japanese_name}}</td>
                             <td>{{$student_section->student->first_student_name}} {{$student_section->student->last_student_name}}</td>
                             <td>{{$student_section->student->student_number}}</td>

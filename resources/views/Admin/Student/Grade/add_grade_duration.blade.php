@@ -8,11 +8,11 @@
             <div class="content content-full">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-sm-fill h3 my-2">
-                        Grade Duration Manage
+                        {{__('language.Grade-Duration-Manage')}}
                     </h1>
                     <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">Grade Duration Manage</li>
+                            <li class="breadcrumb-item">{{__('language.Grade-Duration-Manage')}}</li>
                         </ol>
                     </nav>
                 </div>
@@ -45,9 +45,9 @@
                     {{csrf_field()}}
                     <div class="row">
                         <div class="form-group col-sm-3">
-                            <label for="shift">Choose Enroll Year<font color="#ff0000">*</font></label>
+                            <label for="shift">{{__('language.Batch_Year')}}<font color="#ff0000">*</font></label>
                             <select name="year" class="form-control"  required="required" data-validation-error-msg="Year Required">
-                                <option value="">Choose Year</option>
+                                <option value="">{{__('language.Batch_Year')}}</option>
                                 <option value="{{date('Y')}}">{{date('Y')}}</option>
                                 <option value="2030" <?php if (date('y')=='30') echo 'selected'?>>2030</option>
                                 <option value="2029" <?php if (date('y')=='29') echo 'selected'?>>2029</option>
@@ -68,7 +68,7 @@
                             </select>
                         </div>
                         <div class="form-group col-sm-3">
-                            <label for="grade_id">Choose Grade<font color="#ff0000">*</font></label>
+                            <label for="grade_id">{{__('language.grade_year')}}<font color="#ff0000">*</font></label>
                             <select name="grade_id" class="form-control" id="grade_id">
                                 <option value="">[Choose]</option>
                                 @foreach($grades as $grade)
@@ -77,15 +77,15 @@
                             </select>
                         </div>
                         <div class="form-group col-sm-3">
-                            <label for="start_at">Start Date<font color="#ff0000">*</font></label>
+                            <label for="start_at">{{__('language.start_date')}}<font color="#ff0000">*</font></label>
                             <input type="date" class="form-control" name="start_at">
                         </div>
                         <div class="form-group col-sm-3">
-                            <label for="end_at">End Date<font color="#ff0000">*</font></label>
+                            <label for="end_at">{{__('language.end_date')}}<font color="#ff0000">*</font></label>
                             <input type="date" class="form-control" name="end_at">
                         </div>
                         <div class="form-group col-sm-4">
-                            <button type="submit" class="btn  btn-success">Save</button>
+                            <button type="submit" class="btn  btn-success">{{__('language.save')}}</button>
                         </div>
                     </div>
                 </form>
@@ -98,7 +98,7 @@
                 <div class="col-lg-12">
                     <div class="block block-mode-loading-oneui">
                         <div class="block-header border-bottom">
-                            <h3 class="block-title">Grade Duration List</h3>
+                            <h3 class="block-title">{{__('language.grade_duration_list')}}</h3>
                             <div class="block-options">
                                 <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
                                     <i class="si si-refresh"></i>
@@ -113,11 +113,11 @@
                                 <thead class="thead-dark">
                                 <tr>
                                     <th class="font-w700">SN</th>
-                                    <th class="font-w700">Enroll Year</th>
-                                    <th class="font-w700">Grade Name</th>
-                                    <th class="font-w700">Start Date</th>
-                                    <th class="font-w700">End Date</th>
-                                    <th class="font-w700">Action</th>
+                                    <th class="font-w700">{{__('language.Batch_Year')}}</th>
+                                    <th class="font-w700">{{__('language.grade_year')}}</th>
+                                    <th class="font-w700">{{__('language.start_date')}}</th>
+                                    <th class="font-w700">{{__('language.end_date')}}</th>
+                                    <th class="font-w700">{{__('language.Action')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>

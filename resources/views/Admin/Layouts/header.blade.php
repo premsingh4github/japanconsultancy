@@ -9,9 +9,13 @@
     <link rel="shortcut icon" href="{{url('public/favcon(2).png')}}">
         <title>
             @if(isset($title))
-                {!! $title !!}
+                @if($title =='Admin Panel')
+                    {{__('language.Admin_Panel')}}
+                @else
+                    {!! $title !!}
+                    @endif
             @else
-                Admin Panel
+                {{__('language.Admin_Panel')}}
             @endif
         </title>
     <style>

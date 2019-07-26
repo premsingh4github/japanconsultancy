@@ -58,10 +58,10 @@
                             <label for="period_id">Date Duration</label>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <input type="text" name="from_date" class="js-datepicker form-control" value="@if(request('from_date')){{request('from_date')}} @else {{$start_date}} @endif"   data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="yyyy-mm-dd" placeholder="From Date" required>
+                                    <input type="text" name="from_date" class="js-datepicker form-control" value="@if(request('from_date')){{request('from_date')}} @else {{date('Y-m-01')}} @endif"   data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="yyyy-mm-dd" placeholder="From Date" required>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text"  name="to_date" class="js-datepicker form-control" value="@if(request('to_date')){{request('to_date')}} @else {{$end_date}} @endif" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="yyyy-mm-dd" placeholder="To Date" required>
+                                    <input type="text"  name="to_date" class="js-datepicker form-control" value="@if(request('to_date')){{request('to_date')}} @else {{date('Y-m-d')}} @endif" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="yyyy-mm-dd" placeholder="To Date" required>
                                 </div>
                             </div>
                         </div>

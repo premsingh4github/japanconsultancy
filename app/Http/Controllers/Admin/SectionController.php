@@ -8,6 +8,7 @@ use App\ClassBatchSectionPeriod;
 use App\ClassRoom;
 use App\ClassRoomBatch;
 use App\Country;
+use App\Grade;
 use App\Period;
 use App\Section;
 use App\Student;
@@ -63,13 +64,19 @@ class SectionController extends Controller
             $class_section = ClassBatchSection::findOrfail($id);
             $class_room_batch = ClassRoomBatch::all();
             $section = Section::all();
+            $grades = Grade::orderBy('name')->get();
             $title = 'Edit Class-Section Record | Chubi Project : Management System';
-            return view('Admin.Section.edit_class_section', compact('', 'title','class_section','class_room_batch','section'));
+            return view('Admin.Section.edit_class_section', compact('', 'title','grades','class_section','class_room_batch','section'));
         }
         public function update_class_section (Request $request, $id){
             $class_section = ClassBatchSection::findOrFail($id);
-            $requestData = \request()->all();
-            $class_section->update($requestData);
+            $class_section->class_batch_id= $request->class_batch_id;
+            $class_section->section_id= $request->section_id;
+            $class_section->grade_id= $request->grade_id;
+            $class_section->shift= $request->shift;
+            $class_section->start_date= $request->start_date;
+            $class_section->end_date= $request->end_date;
+            $class_section->save();
             return redirect('admin/class_section')->with('success', 'Record Updated');
         }
 
@@ -78,13 +85,15 @@ class SectionController extends Controller
             $class_section = ClassBatchSection::all();
             $class_room_batch = ClassRoomBatch::all();
             $section = Section::all();
+            $grades = Grade::orderBy('name')->get();
             $title = 'Class Wise Section Record | Chubi Project : Management System';
-            return view('Admin.Section.class_section',compact('','title','class_section','class_room_batch','section'));
+            return view('Admin.Section.class_section',compact('','title','grades','class_section','class_room_batch','section'));
 
         }
         if ($request->isMethod('post')){
             $this->validate($request, [
                 'class_batch_id' => 'required',
+                'grade_id' => 'required',
                 'section_id' => 'required',
                 'shift' => 'required',
                 'start_date' => 'required',
@@ -95,6 +104,7 @@ class SectionController extends Controller
 
         $data['class_batch_id']=$request->class_batch_id;
         $data['section_id']=$request->section_id;
+        $data['grade_id']=$request->grade_id;
         $data['shift']=$request->shift;
         $data['start_date']=$request->start_date;
         $data['end_date']=$request->end_date;

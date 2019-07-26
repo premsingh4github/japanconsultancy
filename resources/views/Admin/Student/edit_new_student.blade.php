@@ -235,7 +235,7 @@
 
                         <div class="form-group col-sm-12" id="Remarks">
                             <label for="student_note">Student Note</label>
-                            <textarea class="form-control content" id="js-ckeditor" name="student_note">{{$student->student_note}}</textarea>
+                            <textarea class="form-control content" name="student_note">{{$student->student_note}}</textarea>
                             {{$errors->first('student_note')}}
                         </div>
 

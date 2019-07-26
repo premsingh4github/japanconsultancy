@@ -15,7 +15,9 @@ class ClassBatchSection extends Model
     public function class_section(){
         return $this->belongsTo('App\Section','section_id');
     }
-
+    public function grade(){
+        return $this->belongsTo(Grade::class,'grade_id');
+    }
     public function class_section_students()
     {
       return $this->hasMany(ClassSectionStudent::class,'class_section_id');

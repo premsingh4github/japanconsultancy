@@ -19,7 +19,7 @@
                             <select name="section" class="form-control " onchange="sectionChanged(this)" id="section">
 							<option value="">{{__('language.Select_Running_Section')}}</option>
                                 @foreach($sections as $section)
-                                    <option @if(request('section') == $section->id) selected @endif value="{{$section->id}}">{{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}}</option>
+                                    <option @if(request('section') == $section->id) selected @endif value="{{$section->id}}">{{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}} @if(isset($section->grade->name)) ({{$section->grade->name}}) @endif</option>
                                 @endforeach
                             </select>
                     </div>

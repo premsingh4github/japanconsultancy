@@ -48,18 +48,27 @@
                 <form action="" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="row">
-                        <div class="form-group col-sm-3">
-                            <label for="class_batch_id">Class Batch<font color="#ff0000">*</font></label>
+                        <div class="form-group col-sm-2">
+                            <label for="class_batch_id">{{__('language.class_batch')}}<font color="#ff0000">*</font></label>
                             <select name="class_batch_id" class="form-control" id="class_batch_id">
                                 <option value="">[Choose]</option>
                                 @foreach($class_room_batch as $clasBatch)
                                     <option value="{{$clasBatch->id}}">{{$clasBatch->class_room->name}}/{{$clasBatch->batch->name}}</option>
                                 @endforeach
                             </select>
-                            <i style="font-size: 12px;">Note : Class Batch Not Found? <a target="_blank" href="{{url('admin/add_record')}}">Clear Here</a></i>
+                            <i style="font-size: 12px;">Note : {{__('language.class_batch')}} Not Found? <a target="_blank" href="{{url('admin/add_record')}}">Clear Here</a></i>
                         </div>
-                        <div class="form-group col-sm-3">
-                            <label for="section_id">Class Section<font color="#ff0000">*</font></label>
+                        <div class="form-group col-sm-2">
+                            <label for="grade_id">{{__('language.grade_year')}}<font color="#ff0000">*</font></label>
+                            <select name="grade_id" class="form-control" id="grade_id">
+                                <option value="">[Choose]</option>
+                                @foreach($grades as $sections)
+                                    <option value="{{$sections->id}}">{{$sections->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <label for="section_id">{{__('language.class_section')}}<font color="#ff0000">*</font></label>
                             <select name="section_id" class="form-control" id="section_id">
                                 <option value="">[Choose]</option>
                                 @foreach($section as $sections)
@@ -68,7 +77,7 @@
                             </select>
                         </div>
                         <div class="form-group col-sm-2">
-                            <label for="shift">Class Shift<font color="#ff0000">*</font></label>
+                            <label for="shift">{{__('language.class_shift')}}<font color="#ff0000">*</font></label>
                             <select name="shift" class="form-control" id="shift">
                                 <option value="">[Choose]</option>
                                 <option value="morning">Morning</option>
@@ -76,15 +85,15 @@
                             </select>
                         </div>
                         <div class="form-group col-sm-2">
-                            <label for="shift">Start Date<font color="#ff0000">*</font></label>
-                            <input type="date" class="form-control" name="start_date">
+                            <label for="shift">{{__('language.start_date')}}<font color="#ff0000">*</font></label>
+                            <input type="text" class="form-control js-datepicker " name="start_date">
                         </div>
                         <div class="form-group col-sm-2">
-                            <label for="shift">End Date<font color="#ff0000">*</font></label>
-                            <input type="date" class="form-control" name="end_date">
+                            <label for="shift">{{__('language.end_date')}}<font color="#ff0000">*</font></label>
+                            <input type="text" class="js-datepicker form-control" name="end_date">
                         </div>
                         <div class="form-group col-sm-4">
-                            <button type="submit" class="btn  btn-success">Create Class Wise Section</button>
+                            <button type="submit" class="btn  btn-success">{{__('language.create_class_section')}}</button>
                         </div>
                     </div>
                 </form>
@@ -97,7 +106,7 @@
                 <div class="col-lg-12">
                     <div class="block block-mode-loading-oneui">
                         <div class="block-header border-bottom">
-                            <h3 class="block-title">Class Wise Section Record</h3>
+                            <h3 class="block-title">{{__('language.Class_Wise_Section')}}</h3>
                             <div class="block-options">
                                 <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
                                     <i class="si si-refresh"></i>
@@ -112,19 +121,19 @@
                                 <thead class="thead-dark">
                                 <tr>
                                     <th class="font-w700">SN</th>
-                                    <th class="font-w700">Class</th>
-                                    <th class="font-w700">Section Name</th>
-                                    <th class="font-w700">Section Shift</th>
-                                    <th class="font-w700">Start Date</th>
-                                    <th class="font-w700">End Date</th>
-                                    <th class="font-w700">Action</th>
+                                    <th class="font-w700">{{__('language.class_batch')}}</th>
+                                    <th class="font-w700">{{__('language.class_section')}}</th>
+                                    <th class="font-w700">{{__('language.class_shift')}}</th>
+                                    <th class="font-w700">{{__('language.start_date')}}</th>
+                                    <th class="font-w700">{{__('language.end_date')}}</th>
+                                    <th class="font-w700">{{__('language.Action')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($class_section as $key=>$section)
                                 <tr>
                                     <td>{{++$key}}</td>
-                                    <td>{{$section->class_room_batch->class_room->name}}/{{$section->class_room_batch->batch->name}}</td>
+                                    <td>{{$section->class_room_batch->class_room->name}}/{{$section->class_room_batch->batch->name}} @if(isset($section->grade->name)) ({{$section->grade->name}}) @endif</td>
                                     <td>{{$section->class_section->name}}</td>
                                     <td>{{$section->shift}}</td>
                                     <td>{{$section->start_date}}</td>

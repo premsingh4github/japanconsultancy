@@ -55,7 +55,17 @@ class AttendanceController extends Controller
             $class_section_student = ClassBatchSection::with('class_batch_section_periods')->with('class_section_students.student')->find(\request('section'));
 
             $students = $class_section_student->class_section_students()->paginate(15);
-            return view('attendance.show_batch',compact('class_section_student','sections','students'));
+            //current month showing
+            $year_start = $class_section_student->start_date;
+            $year_end = $class_section_student->end_date;
+            if (\request('month_name')){
+                $start_at = date('Y-m-01',strtotime(\request('month_name')));
+                $end_at = date('Y-m-t',strtotime(\request('month_name')));
+            }else{
+                $start_at = date('Y-m-01');
+                $end_at = date('Y-m-t');
+            }
+            return view('attendance.show_batch',compact('class_section_student','sections','students','start_at','end_at','year_start','year_end'));
         }else{
             $class_section_student = $sections[0];
             $attendances = Attendance::select(DB::raw('MAX(attendances.id) as my_id, attendances.student_id ,MAX(attendances.created_at) as time'))->with('student')->groupBy('attendances.student_id')->orderBy('my_id','DESC')->get();
@@ -63,10 +73,13 @@ class AttendanceController extends Controller
         }
     }
 
-    public function getattendacelist($section,$id)
+    public function getattendacelist($section,$id,$session_start,$session_end)
     {
         $class_section_student = ClassBatchSection::with('class_batch_section_periods')->with('class_section_students.student')->find($section);
 
+        //current month showing
+        $start_at = $session_start;
+        $end_at = $session_end;
 
 
 
@@ -75,7 +88,7 @@ class AttendanceController extends Controller
 
 
 //        return $view;
-        return \response()->view('attendance.show_list',compact('class_section_student','id'))->header('id',$id);
+        return \response()->view('attendance.show_list',compact('class_section_student','id','start_at','end_at'))->header('id',$id);
     }
     public function attendance_form()
     {
@@ -86,7 +99,8 @@ class AttendanceController extends Controller
     public function getAttendance()
     {
         $sections = ClassBatchSection::all();
-        return view('attendance.create',compact('sections'));
+        $attendances = \App\Attendance::orderBy('created_at','DESC')->paginate(50);
+        return view('attendance.create',compact('sections','attendances'));
     }
 
     public function getStudents($class_batch_section_id)
@@ -110,6 +124,7 @@ class AttendanceController extends Controller
             $attendance->created_at = date('Y-m-d h:i:s', strtotime(\request('date')));
             $attendance->updated_at = date('Y-m-d h:i:s', strtotime(\request('date')));
             $attendance->attendance_for = date('Y-m-d', strtotime(\request('date')));
+            $attendance->type = '1';
             $attendance->save();
             Session::flash('success', 'Attendance created!');
             return redirect('admin/manage_attendance');
@@ -168,7 +183,8 @@ class AttendanceController extends Controller
         $attend_sts->created_at = $attends->created_at;
         $attend_sts->period_id = $period;
         $attend_sts->save();
-
+        $attends->type = 2;
+        $attends->save();
         return \response()->view('attendance.new_attend_entry',compact('attend_sts'))->header('id',"attendance_".$attend."_".$period);
     }
     public function exist_attend_update(Request $request, $id){
@@ -184,7 +200,7 @@ class AttendanceController extends Controller
         $attends->student_id = $student;
         $attends->created_at = $start_at;
         $attends->attendance_for = date('Y-m-d',strtotime($start_at));
-        $attends->type = '1';
+        $attends->type = 2;
         $attends->save();
 
         $periods = Period::all();

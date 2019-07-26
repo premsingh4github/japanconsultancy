@@ -52,17 +52,17 @@
                 <form action="" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="row">
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-4">
                             <label for="c_b_s_id">{{__('language.Class_Batch')}}<font color="#ff0000">*</font></label>
                             <select name="c_b_s_id" class="form-control" id="c_b_s_id">
                                 <option value="">[Choose]</option>
                                 @foreach($classBatchSections as $section)
-                                    <option value="{{$section->id}}">({{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}}</option>
+                                    <option value="{{$section->id}}">({{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}} @if(isset($section->grade->name)) ({{$section->grade->name}}) @endif</option>
                                 @endforeach
                             </select>
                             <i style="font-size: 12px;">Note : Class Batch Section Not Found? <a target="_blank" href="{{url('admin/class_section')}}">Click Here</a></i>
                         </div>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-2">
                             <label for="period_id">{{__('language.Period')}}<font color="#ff0000">*</font></label>
                             <select name="period_id" class="form-control" id="period_id">
                                 <option value="">[Choose]</option>
@@ -121,7 +121,7 @@
                                     <td>{{++$key}}</td>
                                     <td>
                                         @php $section = $class_batch_section_period->classBatchSection  @endphp
-                                        ({{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}}
+                                        ({{$section->class_room_batch->class_room->name}}-{{$section->class_room_batch->batch->name}}) {{$section->class_section->name}}-{{$section->shift}} @if(isset($section->grade->name)) ({{$section->grade->name}}) @endif
                                     </td>
                                     <td>{{$class_batch_section_period->period->name}}</td>
                                     <td>{{$class_batch_section_period->start_at}}</td>

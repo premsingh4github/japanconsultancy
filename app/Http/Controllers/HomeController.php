@@ -79,8 +79,14 @@ class HomeController extends Controller
                     foreach ($same_attendaces as $s_attendace){
                         if($i == 0){
 
-                            $s_attendace->type = '1';
-                            $s_attendace->save();
+                            if ($s_attendace->type==2){
+                                $s_attendace->type = 2;
+                                $s_attendace->save();
+                            }else{
+                                $s_attendace->type = '1';
+                                $s_attendace->save();
+                            }
+
                         }
                         elseif ($i == count($same_attendaces) - 1) {
 

@@ -6,11 +6,21 @@
  * Time: 6:09 PM
  */
 return[
+    /*admin Top menu*/
+
     /*admin Left menu*/
     'Graduation_Prospect_Certificate'=>'Graduation Prospect Certificate',
     'Graduation_Certificate'=>'Graduation Certificate',
     'Certificate_of_Student_Status'=>'Certificate of Student Status',
     'Download'=>'Download',
+
+    'Grade-Manage' => 'Grade Manage',
+    'Grade-Duration-Manage' => 'Grade Duration Manage',
+    'attend-by-admin' => 'Attendance By Admin',
+    'attend-form' => 'Attendance Form',
+    'calendar' => 'Calendar',
+    'view-calendar' => 'View Calendar',
+    'batch_wise_report' => 'Batch Wise Report',
 
     'Period_Time_Update'=>'Period Time Update',
 
@@ -136,7 +146,6 @@ return[
     'Evening'=>'Evening',
     'create_class_room'=>'Create lass room',
     'create_class'=>'Create class',
-    'class_shift'=>'クラスシフト',
     'Start_date'=>'Start date',
     'End_date'=>'End date',
     'Start_Time'=>'Start Time',
@@ -281,5 +290,16 @@ return[
     'Oct'=>'Oct',
     'Nov'=>'Nov',
     'Dec'=>'Dec',
+
+    'class_batch' =>'Class Batch',
+    'grade_year' =>'Grade Year',
+    'class_section' =>'Class Section',
+    'class_shift' =>'Class Shift',
+    'start_date' =>'Start Date',
+    'end_date' =>'End Date',
+    'create_class_section' => 'Create Class Wise Section',
+    'save'=>'Save',
+    'grade_duration_list'=>'Grade Duration List'
+
 
 ];
